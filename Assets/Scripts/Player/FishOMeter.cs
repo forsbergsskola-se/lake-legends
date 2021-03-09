@@ -1,4 +1,6 @@
 using EventManagement;
+using Fish;
+using Items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,27 +9,26 @@ namespace Player
     public class FishOMeter : MonoBehaviour
     {
         [SerializeField] private float fishingTime = 10;
+        [SerializeField] private Factory factory;
         
-        private float successMeter;
-
-        private float captureZonePosition;
-        private float fishPositionCenterPoint;
-        
-        private int directionMod;
-        private bool isMoving;
-        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + fishStrength &&
-                                     fishPositionCenterPoint >= captureZonePosition - fishStrength;
-
-        private float fishStrength = 0.1f;
-        
-
         [SerializeField] private Text successBarProgressText;
         [SerializeField] private Text fishPositionText;
         [SerializeField] private Text captureZonePositionText;
+        
+        private int directionMod;
+        private float successMeter;
+        private float captureZoneTime = 3;
+        private float currentCaptureZoneTime;
+        private float captureZonePosition;
+        private float fishPositionCenterPoint;
+        private float minimum;
+        private float maximum;
+        
+        private bool isMoving;
 
-        //[SerializeField] private Image successBar;
-        //[SerializeField] private RectTransform captureZone;
-        //[SerializeField] private RectTransform fishPosition;
+        private FishItem fish;
+        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + fish.fishStrength &&
+                                     fishPositionCenterPoint >= captureZonePosition - fish.fishStrength;
 
         private IMessageHandler eventsBroker;
         
@@ -36,6 +37,11 @@ namespace Player
             eventsBroker = gameObject.AddComponent<EventsBroker>();
             successMeter = 3.0f;
             
+            fish = factory.GenerateFish();
+
+            minimum = 0 + fish.fishStrength;
+            maximum = 1 - fish.fishStrength;
+            
             SetupGameplayArea();
         }
         
@@ -43,6 +49,8 @@ namespace Player
         {
             ChangeSuccessMeterValue();
             UpdateFishPosition();
+            UpdateCaptureZonePosition();
+            captureZonePositionText.text = $"Capture Zone: {captureZonePosition}";
             if (successMeter <= 0) FishEscape();
             else if (successMeter >= fishingTime) FishCatch();
 
@@ -58,18 +66,12 @@ namespace Player
         
         private void InitializeCaptureZone()
         {
-            captureZonePosition = Random.Range(0f, 1f);
-            captureZonePositionText.text = $"Capture Zone: {captureZonePosition}";
-            
-            // captureZonePosition = Mathf.Clamp(captureZone.anchoredPosition.x,
-            //     0 + (captureZone.rect.width / 2),
-            //     GetComponentInParent<RectTransform>().rect.width - (captureZone.rect.width / 2));
+            captureZonePosition = 0;
         }
 
         private void InitializeFishSpawnPoint()
         {
-            // var fishPositionAnchoredPosition = fishPosition.anchoredPosition;
-            // fishPositionAnchoredPosition.x = captureZone.anchoredPosition.x;
+            fishPositionCenterPoint = 0f;
         }
 
         private void ChangeSuccessMeterValue()
@@ -94,22 +96,32 @@ namespace Player
             
             fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + Time.deltaTime * directionMod, 0f, 1f);
             fishPositionText.text = $"Fish pos: {fishPositionCenterPoint}";
+        }
+        
+        private void UpdateCaptureZonePosition()
+        {
+            currentCaptureZoneTime += Time.deltaTime / captureZoneTime;
+            captureZonePosition = Mathf.Lerp(minimum, maximum, currentCaptureZoneTime);
 
-            // var fishPositionAnchoredPosition = fishPosition.anchoredPosition;
-            // fishPositionAnchoredPosition.x += (Time.deltaTime * fishPositionSpeedMultiplier) * directionMod;
-
-            // Constantly move fishPositionCenterPoint towards CaptureAreaPanel's XMin-point
-
-            // if isMoving = true, move fish 2x towards CaptureAreaPanel XMax-point
+            if (currentCaptureZoneTime >= 1)
+            {
+                var temp = maximum;
+                maximum = minimum;
+                minimum = temp;
+                currentCaptureZoneTime = 0;
+            }
         }
 
         private void FishCatch()
         {
-            Debug.Log("Caught a fish");
+            // TODO: Pass on fish to Inventory
+            
+            Debug.Log($"Caught a {fish.name}");
         }
         
         private void FishEscape()
         {
+            fish = null;
             Debug.Log("It got away");
         }
     }
