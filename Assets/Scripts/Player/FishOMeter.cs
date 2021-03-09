@@ -117,12 +117,14 @@ namespace Player
             // TODO: Pass on fish to Inventory
             
             Debug.Log($"Caught a {fish.name}");
+            gameObject.SetActive(false);
         }
         
         private void FishEscape()
         {
             fish = null;
             Debug.Log("It got away");
+            gameObject.SetActive(false);
         }
     }
 }
