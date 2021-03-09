@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Fish;
 using UnityEngine;
 
-public class FishItem : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+namespace Items
+{    
+    [CreateAssetMenu(menuName = "ScriptableObjects/FishItem")]
+    public class FishItem : ScriptableObject
     {
-        
-    }
+        public int goldValue = 10;
+        private string ItemID;
+        public FishType type;
+        public Rarity rarity;
+        public float rarityWeight = 100;
+        public GameObject model;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override string ToString()
+        {
+            return rarity.name + " " + type.name;
+        }
     }
 }
