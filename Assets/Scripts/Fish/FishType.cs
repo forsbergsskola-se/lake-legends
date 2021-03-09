@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishType : MonoBehaviour
+namespace Fish
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(menuName = "ScriptableObjects/FishType")]
+    public class FishType : ScriptableObject
     {
-        
-    }
+        private string TypeID;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [ContextMenu("GenerateFishItems")]
+        public void GenerateFishItems()
+        {
+            
+        }
     }
 }
