@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Items
 {    
     [CreateAssetMenu(menuName = "ScriptableObjects/FishItem")]
-    public class FishItem : ScriptableObject
+    public class FishItem : ScriptableObject, IItem
     {
         public int goldValue = 10;
         private string ItemID;
