@@ -8,6 +8,6 @@ namespace EventManagement
 
         void UnsubscribeFrom<TMessage>(Action<TMessage> callback);
 
-        void Publishh<TMessage>(TMessage message);
+        void Publish<TMessage>(TMessage message);
     }
 }
