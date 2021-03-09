@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Fish;
@@ -9,7 +10,7 @@ namespace Items
     public class FishItem : ScriptableObject, IItem
     {
         public int goldValue = 10;
-        private string ItemID;
+        [HideInInspector, SerializeField] private string ItemID;
         public FishType type;
         public Rarity rarity;
         public float rarityWeight = 100;
@@ -21,6 +22,16 @@ namespace Items
         public override string ToString()
         {
             return rarity.name + " " + type.name;
+        }
+
+        public string ID
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ItemID))
+                    ItemID = Guid.NewGuid().ToString();
+                return ItemID;
+            }
         }
     }
 }
