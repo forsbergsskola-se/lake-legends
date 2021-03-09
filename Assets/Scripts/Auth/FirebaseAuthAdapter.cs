@@ -8,7 +8,7 @@ namespace Auth
 {
     public class FirebaseAuthAdapter : IAuthorizer
     {
-        private FirebaseAuth _firebaseAuth;
+        private FirebaseAuth firebaseAuth;
 
         private bool IsDebug => FirebaseApp.LogLevel == LogLevel.Debug;
 
@@ -30,20 +30,20 @@ namespace Auth
 
         public async Task<IUser> LoginAnonymously()
         {
-            var firebaseUserInfo = await Task.Run(() => _firebaseAuth.SignInAnonymouslyAsync());
+            var firebaseUserInfo = await Task.Run(() => firebaseAuth.SignInAnonymouslyAsync());
             return new FireBaseUser(firebaseUserInfo);
         }
         
         public void LogOut()
         {
             if (IsDebug)
-                Debug.Log($"{_firebaseAuth.CurrentUser} Logged Out");
-            _firebaseAuth.SignOut();
+                Debug.Log($"{firebaseAuth.CurrentUser} Logged Out");
+            firebaseAuth.SignOut();
         }
 
         private void InitializeAuthorization()
         {
-            _firebaseAuth = FirebaseAuth.DefaultInstance;
+            firebaseAuth = FirebaseAuth.DefaultInstance;
             FirebaseApp.LogLevel = LogLevel.Debug;
         }
     }

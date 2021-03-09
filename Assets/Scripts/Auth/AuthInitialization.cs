@@ -10,10 +10,7 @@ namespace Auth
         private IAuthorizer authorizer;
         private IEnumerator Start()
         {
-            if (debug)
-                authorizer = new DebugAuth();
-            else
-                authorizer = new FirebaseAuthAdapter();
+            authorizer = debug ? (IAuthorizer) new DebugAuth() : new FirebaseAuthAdapter();
             yield return authorizer.Initialize();
             var userTask = authorizer.LoginAnonymously();
             while (!userTask.IsCompleted)
@@ -22,7 +19,7 @@ namespace Auth
             }
 
             CurrentUser = userTask.Result;
-            Debug.Log($"{CurrentUser.ID} Logged In");
+            Debug.Log($"User {CurrentUser.ID} Logged In");
         }
 
         private void OnDestroy()
