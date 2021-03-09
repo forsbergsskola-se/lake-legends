@@ -16,7 +16,7 @@ namespace Player
         private bool isTimerSet;
         private bool fishBite;
 
-        private EventsBroker eventsBroker;
+        private IMessageHandler eventsBroker;
 
         private void Start()
         {
