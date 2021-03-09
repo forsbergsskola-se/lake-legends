@@ -1,6 +1,7 @@
 using EventManagement;
 using Events;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -17,14 +18,22 @@ namespace Player
         private bool fishBite;
 
         private IMessageHandler eventsBroker;
+
+        [SerializeField] private Image floatNoBite;
+        [SerializeField] private Image floatNibbleOrBite;
+        [SerializeField] private Text statusText;
         
         private void Start()
         {
+            statusText.text = "Press SPACE to cast your rod";
+            
             eventsBroker = gameObject.AddComponent<EventsBroker>();
+
+            floatNoBite.gameObject.SetActive(false);
+            floatNibbleOrBite.gameObject.SetActive(false);
             
             isRodCast = false;
             isTimerSet = false;
-            Debug.Log("Ready to play, press Space to cast your rod");
         }
         
         private void Update()
@@ -48,8 +57,10 @@ namespace Player
 
         private void CastRod()
         {
-            Debug.Log("Casting rod out");
             isRodCast = true;
+            floatNoBite.gameObject.SetActive(true);
+            
+            statusText.text = "Waiting for a bite...";
             RandomizeTimer();
         }
         
@@ -57,7 +68,6 @@ namespace Player
         {
             timeRemaining = Random.Range(minimumTimer, maximumTimer+1);
             isTimerSet = true;
-            Debug.Log("Timer is: " + timeRemaining);
         }
 
         private void CheckFishBite()
@@ -68,12 +78,12 @@ namespace Player
             
             if (!fishBite)
             {
-                Debug.Log("Just a nibble...");
+                statusText.text = "Just a nibble... Waiting  for a bite...";
                 RandomizeTimer();
             }
             else
             {
-                Debug.Log("Got a fish on the hook!");
+                statusText.text = "Got a fish on the hook!";
                 ActivateMinigame();
             }
         }
@@ -81,9 +91,20 @@ namespace Player
         private void ActivateMinigame()
         {
             ResetValues();
+         
+            floatNoBite.gameObject.SetActive(false);
+            floatNibbleOrBite.gameObject.SetActive(true);
             
-            Debug.Log("Starting FishOMeter Minigame");
             eventsBroker.Publish(new StartFishOMeterEvent());
+        }
+
+        private void ReturnFromMinigame()
+        {
+            floatNoBite.gameObject.SetActive(true);
+            floatNibbleOrBite.gameObject.SetActive(false);
+            
+            statusText.text = "Press SPACE to cast your rod";
+            isRodCast = false;
         }
 
         private void ResetValues()
