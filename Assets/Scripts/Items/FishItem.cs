@@ -15,6 +15,9 @@ namespace Items
         public float rarityWeight = 100;
         public GameObject model;
 
+        public float fishSpeed = 1;
+        public float fishStrength = 1;
+
         public override string ToString()
         {
             return rarity.name + " " + type.name;
