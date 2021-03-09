@@ -21,7 +21,7 @@ namespace Editor
         private void OnGUI()
         {
             var fishType = (FishType) serializedObject.targetObject;
-            if (GUILayout.Button("Create With Of All Rarities"))
+            if (GUILayout.Button("Create Items Of All Rarities"))
             {
                 CreateAll(fishType);
             }
