@@ -17,9 +17,11 @@ namespace Player
         private bool fishBite;
 
         private IMessageHandler eventsBroker;
-
+        
         private void Start()
         {
+            eventsBroker = gameObject.AddComponent<EventsBroker>();
+            
             isRodCast = false;
             isTimerSet = false;
             Debug.Log("Ready to play, press Space to cast your rod");
