@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df658d08a65cc84597c919e8c81f5e1, type: 3}
+  m_Name: Jackfish
+  m_EditorClassIdentifier: 
+  goldValue: 10
+  type: {fileID: 11400000, guid: 73ccc497f3457b748b220dc2212cb79d, type: 2}
+  rarity: {fileID: 11400000, guid: f5d0f8625b1dd954e92a886638d3ec48, type: 2}
+  rarityWeight: 100
+  model: {fileID: 0}
