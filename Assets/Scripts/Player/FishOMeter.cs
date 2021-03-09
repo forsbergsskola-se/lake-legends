@@ -27,8 +27,8 @@ namespace Player
         private bool isMoving;
 
         private FishItem fish;
-        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + fish.fishStrength &&
-                                     fishPositionCenterPoint >= captureZonePosition - fish.fishStrength;
+        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + (fish.fishStrength  / 5) &&
+                                     fishPositionCenterPoint >= captureZonePosition - (fish.fishStrength  / 5);
 
         private IMessageHandler eventsBroker;
         
