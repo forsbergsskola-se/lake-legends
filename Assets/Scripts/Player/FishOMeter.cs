@@ -126,7 +126,7 @@ namespace Player
             if (isMoving) directionMod = 1; 
             else directionMod = -1;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * fishSpeedMagnitudeValue * Time.deltaTime),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * Time.deltaTime),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -135,7 +135,7 @@ namespace Player
         
         private void UpdateCaptureZonePosition()
         {
-            currentCaptureZoneTime += Time.deltaTime / captureZoneTime;
+            currentCaptureZoneTime += (Time.deltaTime * fishSpeedMagnitudeValue) / captureZoneTime;
             captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
 
             eventsBroker.Publish(new UpdateCaptureZoneUIPositionEvent(captureZonePosition));
