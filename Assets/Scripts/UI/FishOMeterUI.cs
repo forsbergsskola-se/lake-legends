@@ -1,24 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class FishOMeterUI : MonoBehaviour
+namespace UI
 {
-    //[SerializeField] private Image successBar;
-    //[SerializeField] private RectTransform captureZone;
-    //[SerializeField] private RectTransform fishPosition;
+       public class FishOMeterUI : MonoBehaviour
+       {
+              [SerializeField] public Image successBar;
+              [SerializeField] public RectTransform captureZone;
+              [SerializeField] public RectTransform captureAreaParentZone;
+              [SerializeField] public RectTransform fishPosition;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
-    /*
+              /*
      *    Good to have for when working on the UI;
      *
      *     Clamps the Capture Zone UI panel/sprite position between 0 + half of its width
@@ -35,4 +28,5 @@ public class FishOMeterUI : MonoBehaviour
      *
      * 
      */
+       }
 }

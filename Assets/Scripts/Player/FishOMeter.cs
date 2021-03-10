@@ -1,8 +1,9 @@
 using EventManagement;
+using Events;
 using Fish;
 using Items;
+using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player
 {
@@ -10,10 +11,8 @@ namespace Player
     {
         [SerializeField] private float fishingTime = 10;
         [SerializeField] private Factory factory;
-        
-        [SerializeField] private Text successBarProgressText;
-        [SerializeField] private Text fishPositionText;
-        [SerializeField] private Text captureZonePositionText;
+        [SerializeField] private FishOMeterUI fishOMeterUI;
+        [SerializeField] private GameObject fishOMeterMinigamePanel;
         
         private int directionMod;
         private float successMeter;
@@ -21,47 +20,71 @@ namespace Player
         private float currentCaptureZoneTime;
         private float captureZonePosition;
         private float fishPositionCenterPoint;
-        private float minimum;
-        private float maximum;
+        private float minimumZone;
+        private float maximumZone;
+        private float minimumFishZone;
+        private float maximumFishZone;
         
         private bool isMoving;
+        private bool gameRunning;
 
         private FishItem fish;
-        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + (fish.fishStrength  / 5) &&
-                                     fishPositionCenterPoint >= captureZonePosition - (fish.fishStrength  / 5);
-
         private IMessageHandler eventsBroker;
         
+        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + (fish.fishStrength  / 5) &&
+                                     fishPositionCenterPoint >= captureZonePosition - (fish.fishStrength  / 5);
+        
+
+        private void Awake()
+        {
+            gameRunning = false;
+        }
+
         private void Start()
         {
-            eventsBroker = gameObject.AddComponent<EventsBroker>();
-            successMeter = 3.0f;
-            
-            fish = factory.GenerateFish();
-
-            minimum = 0 + fish.fishStrength;
-            maximum = 1 - fish.fishStrength;
-            
-            SetupGameplayArea();
+            eventsBroker = FindObjectOfType<EventsBroker>();
+            eventsBroker.SubscribeTo<StartFishOMeterEvent>(SetupGameplayArea);
         }
         
         private void Update()
         {
-            ChangeSuccessMeterValue();
-            UpdateFishPosition();
-            UpdateCaptureZonePosition();
-            captureZonePositionText.text = $"Capture Zone: {captureZonePosition}";
-            if (successMeter <= 0) FishEscape();
-            else if (successMeter >= fishingTime) FishCatch();
+            if (gameRunning)
+            {
+                ChangeSuccessMeterValue();
+                UpdateFishPosition();
+                UpdateCaptureZonePosition();
+                if (successMeter <= 0) FishEscape();
+                else if (successMeter >= fishingTime) FishCatch();
 
-            if (Input.GetKey(KeyCode.Space)) isMoving = true;
-            else isMoving = false;
+                if (Input.GetKey(KeyCode.Space)) isMoving = true;
+                else isMoving = false;
+            }
         }
 
-        private void SetupGameplayArea()
+        private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
+            successMeter = 3.0f;
+            
+            fish = factory.GenerateFish();
+            
+            var width = 0.2f;
+            var percent = Mathf.Abs((fish.fishStrength / 100));
+            
+            
+            
+            minimumZone = 0 + ((width / 2) * (1 + percent));
+            maximumZone = 1 - ((width / 2) * (1 + percent));
+            
+            var fishWidth = 0.10f;
+            minimumFishZone = 0 + ((fishWidth / 2));
+            maximumFishZone = 1 - ((fishWidth / 2));
+
             InitializeCaptureZone();
             InitializeFishSpawnPoint();
+            
+            fishOMeterMinigamePanel.gameObject.SetActive(true);
+            eventsBroker.Publish(new UpdateCaptureZoneUISizeEvent(percent, width));
+            gameRunning = true;
         }
         
         private void InitializeCaptureZone()
@@ -85,8 +108,7 @@ namespace Player
                 successMeter -= Time.deltaTime;    
             }
             successMeter = Mathf.Clamp(successMeter, 0 ,fishingTime);
-            
-            successBarProgressText.text = $"Success Bar: {successMeter}";
+            fishOMeterUI.successBar.fillAmount = successMeter / fishingTime;
         }
 
         private void UpdateFishPosition()
@@ -94,37 +116,54 @@ namespace Player
             if (isMoving) directionMod = 1; 
             else directionMod = -1;
             
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + Time.deltaTime * directionMod, 0f, 1f);
-            fishPositionText.text = $"Fish pos: {fishPositionCenterPoint}";
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + Time.deltaTime * directionMod, minimumFishZone, maximumFishZone);
+            
+            eventsBroker.Publish(new UpdateFishUIPositionEvent(fishPositionCenterPoint));
         }
         
         private void UpdateCaptureZonePosition()
         {
             currentCaptureZoneTime += Time.deltaTime / captureZoneTime;
-            captureZonePosition = Mathf.Lerp(minimum, maximum, currentCaptureZoneTime);
+            captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
+
+            eventsBroker.Publish(new UpdateCaptureZoneUIPositionEvent(captureZonePosition));
 
             if (currentCaptureZoneTime >= 1)
             {
-                var temp = maximum;
-                maximum = minimum;
-                minimum = temp;
+                var temp = maximumZone;
+                maximumZone = minimumZone;
+                minimumZone = temp;
                 currentCaptureZoneTime = 0;
             }
         }
 
         private void FishCatch()
         {
-            // TODO: Pass on fish to Inventory
-            
-            Debug.Log($"Caught a {fish.name}");
-            gameObject.SetActive(false);
+            fishOMeterMinigamePanel.gameObject.SetActive(false);
+            gameRunning = false;
+            EndGame();
+            fish = null;
         }
         
         private void FishEscape()
         {
+            fishOMeterMinigamePanel.gameObject.SetActive(false);
+            gameRunning = false;
             fish = null;
-            Debug.Log("It got away");
-            gameObject.SetActive(false);
+            EndGame();
+        }
+
+        private void EndGame()
+        {
+            fishPositionCenterPoint = 0;
+            captureZonePosition = 0;
+            minimumZone = 0;
+            maximumZone = 0;
+            minimumFishZone = 0;
+            maximumFishZone = 0;
+            successMeter = 3f;
+
+            eventsBroker.Publish(new EndFishOMeterEvent(fish));
         }
     }
 }

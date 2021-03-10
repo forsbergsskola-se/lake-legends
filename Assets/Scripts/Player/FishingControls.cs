@@ -27,13 +27,15 @@ namespace Player
         {
             statusText.text = "Press SPACE to cast your rod";
             
-            eventsBroker = gameObject.AddComponent<EventsBroker>();
-
+            eventsBroker = FindObjectOfType<EventsBroker>();
+            
             floatNoBite.gameObject.SetActive(false);
             floatNibbleOrBite.gameObject.SetActive(false);
             
             isRodCast = false;
             isTimerSet = false;
+            
+            eventsBroker.SubscribeTo<EndFishOMeterEvent>(ReturnFromMinigame);
         }
         
         private void Update()
@@ -98,7 +100,7 @@ namespace Player
             eventsBroker.Publish(new StartFishOMeterEvent());
         }
 
-        private void ReturnFromMinigame()
+        private void ReturnFromMinigame(EndFishOMeterEvent eventRef)
         {
             floatNoBite.gameObject.SetActive(true);
             floatNibbleOrBite.gameObject.SetActive(false);
