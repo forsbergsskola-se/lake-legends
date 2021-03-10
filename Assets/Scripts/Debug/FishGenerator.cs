@@ -1,4 +1,5 @@
 using Fish;
+using PlayerData;
 using UnityEngine;
 
 public class FishGenerator : MonoBehaviour
@@ -7,6 +8,7 @@ public class FishGenerator : MonoBehaviour
 
     public void GenerateFish()
     {
-        Debug.Log(fishFactory.GenerateFish().ToString());
+        var fish = fishFactory.GenerateFish();
+        FindObjectOfType<InventoryHandler>().AddItemToInventory(fish);
     }
 }

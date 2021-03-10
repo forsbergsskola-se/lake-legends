@@ -7,5 +7,9 @@ namespace Items
     public interface IItem
     {
         string ID { get; }
+        
+        string Name { get; }
+        
+        int Rarity { get; }
     }
 }

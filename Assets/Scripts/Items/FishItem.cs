@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Fish;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ namespace Items
     public class FishItem : ScriptableObject, IItem
     {
         public int goldValue = 10;
-        [HideInInspector, SerializeField] private string ItemID;
+        [SerializeField] private string ItemID;
         public FishType type;
         public Rarity rarity;
         public float rarityWeight = 100;
@@ -24,14 +22,33 @@ namespace Items
             return rarity.name + " " + type.name;
         }
 
+        private void Awake()
+        {
+            if (string.IsNullOrEmpty(ItemID))
+            {
+                ItemID = Guid.NewGuid().ToString();
+            }
+        }
+
+        private void OnValidate()
+        {
+            if (string.IsNullOrEmpty(ItemID))
+            {
+                ItemID = Guid.NewGuid().ToString();
+            }
+        }
+
         public string ID
         {
             get
             {
-                if (string.IsNullOrEmpty(ItemID))
-                    ItemID = Guid.NewGuid().ToString();
-                return ItemID;
+                if (!string.IsNullOrEmpty(ItemID)) return ItemID;
+                Debug.LogError("Item IDs Aren't Set Up Correctly!");
+                throw new Exception("Item IDs Aren't Set Up Correctly!");
             }
         }
+
+        public string Name => name;
+        public int Rarity => rarity.starAmount;
     }
 }

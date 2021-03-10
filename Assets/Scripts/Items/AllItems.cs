@@ -2,7 +2,7 @@
 
 namespace Items
 {
-    public class AllItems
+    public static class AllItems
     {
         private static ItemIndexer itemIndexer;
         public static ItemIndexer ItemIndexer
