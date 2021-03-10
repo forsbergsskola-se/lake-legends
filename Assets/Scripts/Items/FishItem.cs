@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Fish;
 using UnityEngine;
 
@@ -24,13 +22,29 @@ namespace Items
             return rarity.name + " " + type.name;
         }
 
+        private void Awake()
+        {
+            if (string.IsNullOrEmpty(ItemID))
+            {
+                ItemID = Guid.NewGuid().ToString();
+            }
+        }
+
+        private void OnValidate()
+        {
+            if (string.IsNullOrEmpty(ItemID))
+            {
+                ItemID = Guid.NewGuid().ToString();
+            }
+        }
+
         public string ID
         {
             get
             {
-                if (string.IsNullOrEmpty(ItemID))
-                    ItemID = Guid.NewGuid().ToString();
-                return ItemID;
+                if (!string.IsNullOrEmpty(ItemID)) return ItemID;
+                Debug.LogError("Item IDs Aren't Set Up Correctly!");
+                throw new Exception("Item IDs Aren't Set Up Correctly!");
             }
         }
     }
