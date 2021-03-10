@@ -30,9 +30,6 @@ namespace UI
             
             minimum = 0;
             maximum = captureAreaParentPanel.sizeDelta.x;
-            
-            print(minimum);
-            print(maximum);
         }
 
         private void UpdatePosition(UpdateCaptureZoneUIPositionEvent eventRef)

@@ -30,11 +30,14 @@ namespace Player
 
         private FishItem fish;
         private IMessageHandler eventsBroker;
-        
-        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + (fish.fishStrength  / 5) &&
-                                     fishPositionCenterPoint >= captureZonePosition - (fish.fishStrength  / 5);
-        
+        private float fishSpeedMagnitudeValue;
 
+        private float captureZoneWidth;
+        private float fishPercentMod;
+
+        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + captureZoneWidth &&
+                                     fishPositionCenterPoint >= captureZonePosition - captureZoneWidth;
+        
         private void Awake()
         {
             gameRunning = false;
@@ -67,15 +70,21 @@ namespace Player
             
             fish = factory.GenerateFish();
             
-            var width = 0.2f;
-            var percent = Mathf.Abs((fish.fishStrength / 100));
+            // TODO: Replace this base value with the corresponding RodStat base value
+            captureZoneWidth = 0.2f;
+            
+            fishPercentMod = Mathf.Abs((fish.fishStrength / 100));
+            fishSpeedMagnitudeValue = fish.fishSpeed;
+
+            captureZoneWidth = (captureZoneWidth / (1 + fishPercentMod));
+            
+            minimumZone = 0 + captureZoneWidth  / 2;
+            maximumZone = 1 - captureZoneWidth  / 2;
             
             
+            // TODO: Replace this base value with the FishItem icon width
+            var fishWidth = (1f / 30f) * 2f;
             
-            minimumZone = 0 + ((width / 2) * (1 + percent));
-            maximumZone = 1 - ((width / 2) * (1 + percent));
-            
-            var fishWidth = 0.10f;
             minimumFishZone = 0 + ((fishWidth / 2));
             maximumFishZone = 1 - ((fishWidth / 2));
 
@@ -83,7 +92,8 @@ namespace Player
             InitializeFishSpawnPoint();
             
             fishOMeterMinigamePanel.gameObject.SetActive(true);
-            eventsBroker.Publish(new UpdateCaptureZoneUISizeEvent(percent, width));
+            eventsBroker.Publish(new UpdateCaptureZoneUISizeEvent(fishPercentMod, captureZoneWidth));
+            eventsBroker.Publish(new UpdateFishZoneUISizeEvent(fishWidth));
             gameRunning = true;
         }
         
@@ -115,8 +125,10 @@ namespace Player
         {
             if (isMoving) directionMod = 1; 
             else directionMod = -1;
-            
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + Time.deltaTime * directionMod, minimumFishZone, maximumFishZone);
+
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * fishSpeedMagnitudeValue * Time.deltaTime),
+                minimumFishZone,
+                maximumFishZone);
             
             eventsBroker.Publish(new UpdateFishUIPositionEvent(fishPositionCenterPoint));
         }
@@ -142,6 +154,7 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             EndGame();
+            Debug.Log($"Wohoo! You caught a {fish.name}!");
             fish = null;
         }
         
@@ -150,6 +163,7 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             fish = null;
+            Debug.Log("Oh no! The fish got away!");
             EndGame();
         }
 

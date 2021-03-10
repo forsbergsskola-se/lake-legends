@@ -1854,6 +1854,7 @@ GameObject:
   - component: {fileID: 1313746913}
   - component: {fileID: 1313746915}
   - component: {fileID: 1313746914}
+  - component: {fileID: 1313746916}
   m_Layer: 5
   m_Name: Fish Position Image
   m_TagString: Untagged
@@ -1918,6 +1919,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313746912}
   m_CullTransparentMesh: 1
+--- !u!114 &1313746916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313746912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be7f65df9baf83489adac0ca503bc3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentRectTransform: {fileID: 22363357}
+  captureAreaParentPanel: {fileID: 193935226}
 --- !u!1 &1364405588
 GameObject:
   m_ObjectHideFlags: 0
