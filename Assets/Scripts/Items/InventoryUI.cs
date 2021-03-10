@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using EventManagement;
+using Events;
 using PlayerData;
 using UnityEngine;
 
@@ -10,15 +13,28 @@ namespace Items
         public InventorySlot slotPrefab;
         public Transform gridParent;
         public List<InventorySlot> inventorySlots;
+        private bool decended;
 
-        public void Clear()
+        private void OnEnable()
+        { 
+            Clear();
+            FindObjectOfType<EventsBroker>().SubscribeTo<EnableInventoryEvent>(Setup);
+        }
+
+        private void Clear()
         {
             foreach (var inventorySlot in inventorySlots)
             {
                 Destroy(inventorySlot.gameObject);
             }
         }
-        public void Setup(IInventory inventory)
+
+        private void Setup(EnableInventoryEvent inventoryEvent)
+        {
+            Setup(inventoryEvent.Inventory);
+        }
+
+        private void Setup(IInventory inventory)
         {
             var items = inventory.GetAllItems();
             foreach (var item in items)
@@ -30,11 +46,20 @@ namespace Items
                     inventorySlots.Add(instance);
                 }
             }
-            SortDescended();
+            ToggleSort();
             for (var i = inventorySlots.Count; i < inventory.MaxSize; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
             }
+        }
+
+        public void ToggleSort()
+        {
+            if (decended)
+                SortAscended();
+            else
+                SortDescended();
+            decended = !decended;
         }
 
         public void SortDescended()

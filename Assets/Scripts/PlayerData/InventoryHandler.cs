@@ -1,4 +1,6 @@
-﻿using EventManagement;
+﻿using System;
+using EventManagement;
+using Events;
 using Items;
 using Newtonsoft.Json;
 using Saving;
@@ -10,6 +12,8 @@ namespace PlayerData
     public class InventoryHandler : MonoBehaviour
     {
         private IInventory inventory;
+
+        public IInventory CurrentInventory => inventory;
         private void Start()
         {
             inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()), FindObjectOfType<EventsBroker>());
@@ -18,12 +22,7 @@ namespace PlayerData
             var eventBroker = FindObjectOfType<EventsBroker>();
             if (eventBroker != null)
                 FindObjectOfType<EventsBroker>().SubscribeTo<EndFishOMeterEvent>(fishCaught => PrintInventoryContent());
-        }
-
-        public void VisualizeInventory()
-        {
-            FindObjectOfType<InventoryUI>().Clear();
-            FindObjectOfType<InventoryUI>().Setup(inventory);
+            eventBroker.Publish(new EnableInventoryEvent(CurrentInventory));
         }
 
         private void OnDestroy()
