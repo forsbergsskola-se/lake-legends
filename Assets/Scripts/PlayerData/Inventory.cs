@@ -9,9 +9,9 @@ namespace PlayerData
     public class Inventory : IInventory
     {
         private Dictionary<string, int> items = new Dictionary<string, int>();
-        private int MaxStorage = 50;
         private IInventorySaver saver;
         private const string InventoryKey = "Inventory";
+        public int MaxSize => 50;
         public int TotalSizeOfInventory => items.Sum(item => item.Value);
 
         public Inventory(IInventorySaver saver, IMessageHandler messageHandler)
@@ -26,7 +26,7 @@ namespace PlayerData
 
         public bool AddItem(IItem iItem)
         {
-            if (TotalSizeOfInventory + 1 > MaxStorage)
+            if (TotalSizeOfInventory >= MaxSize)
                 return false;
             if (items.ContainsKey(iItem.ID))
                 items[iItem.ID]++;

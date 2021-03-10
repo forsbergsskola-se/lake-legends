@@ -47,5 +47,8 @@ namespace Items
                 throw new Exception("Item IDs Aren't Set Up Correctly!");
             }
         }
+
+        public string Name => name;
+        public int Rarity => rarity.starAmount;
     }
 }

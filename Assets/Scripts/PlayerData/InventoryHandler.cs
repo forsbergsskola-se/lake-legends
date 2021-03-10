@@ -15,6 +15,15 @@ namespace PlayerData
             inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()), FindObjectOfType<EventsBroker>());
             LoadInventory();
             PrintInventoryContent();
+            var eventBroker = FindObjectOfType<EventsBroker>();
+            if (eventBroker != null)
+                FindObjectOfType<EventsBroker>().SubscribeTo<EndFishOMeterEvent>(fishCaught => PrintInventoryContent());
+        }
+
+        public void VisualizeInventory()
+        {
+            FindObjectOfType<InventoryUI>().Clear();
+            FindObjectOfType<InventoryUI>().Setup(inventory);
         }
 
         private void OnDestroy()
