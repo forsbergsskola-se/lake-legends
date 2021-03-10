@@ -21,19 +21,25 @@ namespace Editor
 
         private void PopulateItemIndexer(ItemIndexer itemIndexer)
         {
-            var dictionary = new StringSoDictionary();
+            /*var dictionary = new StringSoDictionary();
             foreach (var pairs in itemIndexer.indexer.Where(pairs => pairs.Value != null))
             {
                 dictionary.Add(pairs.Key, pairs.Value);
             }
 
-            itemIndexer.indexer = dictionary;
+            itemIndexer.indexer = dictionary;*/
+            ClearDictionary(itemIndexer);
             var items = FindAllItems();
             foreach (var item in items)
             {
                 if (!itemIndexer.indexer.ContainsKey(item.ID))
                     itemIndexer.indexer.Add(item.ID, item as ScriptableObject);
             }
+        }
+
+        private void ClearDictionary(ItemIndexer itemIndexer)
+        {
+            itemIndexer.indexer.Clear();
         }
         
         public static IEnumerable<IItem> FindAllItems()
