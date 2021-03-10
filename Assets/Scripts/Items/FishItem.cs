@@ -10,7 +10,7 @@ namespace Items
     public class FishItem : ScriptableObject, IItem
     {
         public int goldValue = 10;
-        [HideInInspector, SerializeField] private string ItemID;
+        [SerializeField] private string ItemID;
         public FishType type;
         public Rarity rarity;
         public float rarityWeight = 100;
