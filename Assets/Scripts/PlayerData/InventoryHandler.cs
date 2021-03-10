@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using EventManagement;
+using Items;
 using Newtonsoft.Json;
 using Saving;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace PlayerData
         private IInventory inventory;
         private void Start()
         {
-            inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()));
+            inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()), FindObjectOfType<EventsBroker>());
             LoadInventory();
             PrintInventoryContent();
         }

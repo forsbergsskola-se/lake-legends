@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using EventManagement;
 using Items;
 using Saving;
 
@@ -13,9 +14,14 @@ namespace PlayerData
         private const string InventoryKey = "Inventory";
         public int TotalSizeOfInventory => items.Sum(item => item.Value);
 
-        public Inventory(IInventorySaver saver)
+        public Inventory(IInventorySaver saver, IMessageHandler messageHandler)
         {
             this.saver = saver;
+            messageHandler?.SubscribeTo<EndFishOMeterEvent>(eve =>
+            {
+                if (eve.fishItem != null)
+                    AddItem(eve.fishItem);
+            });
         }
 
         public bool AddItem(IItem iItem)
