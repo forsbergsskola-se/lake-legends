@@ -10,6 +10,8 @@ namespace Player
     public class FishOMeter : MonoBehaviour
     {
         [SerializeField] private float fishingTime = 10;
+        [SerializeField] private float targetBarSpeedModifier;
+        [SerializeField] private float fishPositionSpeedModifier;
         [SerializeField] private Factory factory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
@@ -36,8 +38,8 @@ namespace Player
         private float captureZoneWidth;
         private float fishPercentMod;
 
-        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + captureZoneWidth &&
-                                     fishPositionCenterPoint >= captureZonePosition - captureZoneWidth;
+        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + captureZoneWidth / 2 &&
+                                     fishPositionCenterPoint >= captureZonePosition - captureZoneWidth / 2;
         
         private void Awake()
         {
@@ -59,8 +61,7 @@ namespace Player
                 UpdateCaptureZonePosition();
                 if (successMeter <= 0) FishEscape();
                 else if (successMeter >= fishingTime) FishCatch();
-
-                // TODO: Change this from Space to Touch Input
+                
                 if(Input.GetMouseButton(0)) isMoving = true;
                 else isMoving = false;
             }
@@ -76,7 +77,7 @@ namespace Player
             captureZoneWidth = 0.2f;
             
             fishPercentMod = Mathf.Abs((fish.fishStrength / 100));
-            fishSpeedMagnitudeValue = fish.fishSpeed;
+            fishSpeedMagnitudeValue = fish.fishSpeed * targetBarSpeedModifier;
 
             captureZoneWidth = (captureZoneWidth / (1 + fishPercentMod));
             
@@ -101,12 +102,12 @@ namespace Player
         
         private void InitializeCaptureZone()
         {
-            captureZonePosition = 0;
+            captureZonePosition = Random.Range(0f, 1f);
         }
 
         private void InitializeFishSpawnPoint()
         {
-            fishPositionCenterPoint = 0f;
+            fishPositionCenterPoint = 0.5f;
         }
 
         private void ChangeSuccessMeterValue()
@@ -128,7 +129,7 @@ namespace Player
             if (isMoving) directionMod = 1; 
             else directionMod = -1;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * Time.deltaTime),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime * fishPositionSpeedModifier)),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -156,7 +157,6 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             EndGame();
-            Debug.Log($"Wohoo! You caught a {fish.name}!");
             fish = null;
         }
         
@@ -165,7 +165,6 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             fish = null;
-            Debug.Log("Oh no! The fish got away!");
             EndGame();
         }
 

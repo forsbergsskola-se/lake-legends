@@ -761,6 +761,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingTime: 10
+  targetBarSpeedModifier: 0
+  fishPositionSpeedModifier: 0
   factory: {fileID: 11400000, guid: 73a2811e4cbf86c478c040a52f57e2ea, type: 2}
   fishOMeterUI: {fileID: 0}
   gameEndUI: {fileID: 0}
@@ -2044,6 +2046,14 @@ PrefabInstance:
       propertyPath: gameEndUI
       value: 
       objectReference: {fileID: 1600444470}
+    - target: {fileID: 5908813462344715873, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
+      propertyPath: targetBarSpeedModifier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908813462344715873, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
+      propertyPath: fishPositionSpeedModifier
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5908813462344715878, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

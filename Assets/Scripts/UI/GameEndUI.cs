@@ -29,7 +29,6 @@ namespace UI
             if (fish)
             {
                 resultText.text = "You caught something!";
-                // TODO: Add image of caught fish sprite here
                 image.gameObject.SetActive(true);
                 image.sprite = fish.type.sprite;
                 fishNameText.text = fish.Name;
