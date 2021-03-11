@@ -25,7 +25,7 @@ namespace Player
         
         private void Start()
         {
-            statusText.text = "Press SPACE to cast your rod";
+            statusText.text = "Tap the screen to cast your rod";
             
             eventsBroker = FindObjectOfType<EventsBroker>();
             
@@ -36,14 +36,13 @@ namespace Player
             isTimerSet = false;
             
             eventsBroker.SubscribeTo<FishAgainEvent>(ReturnFromMinigame);
+            eventsBroker.SubscribeTo<EndFishOMeterEvent>(BlankOut);
         }
         
         private void Update()
         {
-            // TODO: Change this from Space to Touch Input
-            if(Input.GetKeyDown(KeyCode.Space) &&!isRodCast) CastRod();
-            
-            
+            if (Input.GetMouseButtonDown(0) && !isRodCast) CastRod();
+
             if (isTimerSet)
             {
                 if(timeRemaining <= 0)
@@ -86,7 +85,7 @@ namespace Player
             }
             else
             {
-                statusText.text = "Got a fish on the hook!";
+                statusText.text = "Got a fish on the hook!\n Tap to reel it in!";
                 ActivateMinigame();
             }
         }
@@ -103,11 +102,18 @@ namespace Player
 
         private void ReturnFromMinigame(FishAgainEvent eventRef)
         {
-            floatNoBite.gameObject.SetActive(true);
-            floatNibbleOrBite.gameObject.SetActive(false);
+            // floatNoBite.gameObject.SetActive(true);
+            // floatNibbleOrBite.gameObject.SetActive(false);
             
-            statusText.text = "Press SPACE to cast your rod";
+            statusText.text = "Tap the screen to cast your rod";
             isRodCast = false;
+        }
+
+        private void BlankOut(EndFishOMeterEvent eventRef)
+        {
+            floatNoBite.gameObject.SetActive(false);
+            floatNibbleOrBite.gameObject.SetActive(false);
+            statusText.text = "";
         }
 
         private void ResetValues()

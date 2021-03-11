@@ -61,7 +61,7 @@ namespace Player
                 else if (successMeter >= fishingTime) FishCatch();
 
                 // TODO: Change this from Space to Touch Input
-                if (Input.GetKey(KeyCode.Space)) isMoving = true;
+                if(Input.GetMouseButton(0)) isMoving = true;
                 else isMoving = false;
             }
         }
