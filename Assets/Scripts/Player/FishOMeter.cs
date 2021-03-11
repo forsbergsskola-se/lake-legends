@@ -10,16 +10,16 @@ namespace Player
     public class FishOMeter : MonoBehaviour
     {
         [SerializeField] private float fishingTime = 10;
-        [SerializeField] private float targetBarSpeedModifier;
-        [SerializeField] private float fishPositionSpeedModifier;
+        [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
+        [SerializeField] private float fishPositionSpeedMultiplier = 0.3f;
+        [SerializeField] private float directionModifier = 1.0f;
         [SerializeField] private Factory factory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
-        
-        private int directionMod;
+
+        private float directionMod;
         private float successMeter;
-        private float captureZoneTime = 3;
         private float currentCaptureZoneTime;
         private float captureZonePosition;
         private float fishPositionCenterPoint;
@@ -77,7 +77,7 @@ namespace Player
             captureZoneWidth = 0.2f;
             
             fishPercentMod = Mathf.Abs((fish.fishStrength / 100));
-            fishSpeedMagnitudeValue = fish.fishSpeed * targetBarSpeedModifier;
+            fishSpeedMagnitudeValue = fish.fishSpeed * targetBarSpeedMultiplier;
 
             captureZoneWidth = (captureZoneWidth / (1 + fishPercentMod));
             
@@ -126,10 +126,10 @@ namespace Player
 
         private void UpdateFishPosition()
         {
-            if (isMoving) directionMod = 1; 
+            if (isMoving) directionMod = 1 + directionModifier; 
             else directionMod = -1;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime * fishPositionSpeedModifier)),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime * fishPositionSpeedMultiplier)),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -138,7 +138,7 @@ namespace Player
         
         private void UpdateCaptureZonePosition()
         {
-            currentCaptureZoneTime += (Time.deltaTime * fishSpeedMagnitudeValue) / captureZoneTime;
+            currentCaptureZoneTime += (Time.deltaTime * fishSpeedMagnitudeValue);
             captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
 
             eventsBroker.Publish(new UpdateCaptureZoneUIPositionEvent(captureZonePosition));

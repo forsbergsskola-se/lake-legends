@@ -481,7 +481,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5908813462344715879}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -524,6 +524,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingTime: 10
+  targetBarSpeedMultiplier: 0.2
+  fishPositionSpeedMultiplier: 0.3
+  directionModifier: 1
   factory: {fileID: 11400000, guid: 73a2811e4cbf86c478c040a52f57e2ea, type: 2}
   fishOMeterUI: {fileID: 5908813462344715872}
   gameEndUI: {fileID: 0}
@@ -624,7 +627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5908813462586481304
 RectTransform:
   m_ObjectHideFlags: 0

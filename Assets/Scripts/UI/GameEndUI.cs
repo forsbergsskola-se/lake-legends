@@ -31,7 +31,7 @@ namespace UI
                 image.gameObject.SetActive(true);
                 image.sprite = fish.type.sprite;
                 fishNameText.text = fish.Name;
-                fishWorth.text = $"It's worth {fish.goldValue} !";
+                fishWorth.text = $"It's worth {fish.goldValue}!";
             }
             else
             {
