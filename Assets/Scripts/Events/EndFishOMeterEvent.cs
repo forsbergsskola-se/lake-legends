@@ -8,38 +8,3 @@ public class EndFishOMeterEvent
         this.fishItem = fishItem;
     }
 }
-
-public class UpdateCaptureZoneUIPositionEvent
-{
-    public float positionX;
-
-    public UpdateCaptureZoneUIPositionEvent(float positionX) => this.positionX = positionX;
-}
-
-public class UpdateFishUIPositionEvent
-{
-    public float positionX;
-
-    public UpdateFishUIPositionEvent(float positionX) => this.positionX = positionX;
-}
-
-public class UpdateCaptureZoneUISizeEvent
-{
-    public float percentage;
-    public float width;
-
-    public UpdateCaptureZoneUISizeEvent(float percentage, float width)
-    {
-        this.percentage = percentage;
-        this.width = width;
-    }
-}
-
-public class UpdateFishZoneUISizeEvent
-{
-    public float width;
-
-    public UpdateFishZoneUISizeEvent(float width) => this.width = width;
-}
-
-public class FishAgainEvent { }
