@@ -12,6 +12,7 @@ namespace Player
         [SerializeField] private float fishingTime = 10;
         [SerializeField] private Factory factory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
+        [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
         
         private int directionMod;
@@ -59,6 +60,7 @@ namespace Player
                 if (successMeter <= 0) FishEscape();
                 else if (successMeter >= fishingTime) FishCatch();
 
+                // TODO: Change this from Space to Touch Input
                 if (Input.GetKey(KeyCode.Space)) isMoving = true;
                 else isMoving = false;
             }
@@ -177,7 +179,17 @@ namespace Player
             maximumFishZone = 0;
             successMeter = 3f;
 
+            ShowEndGameUI();
+        }
+
+        private void ShowEndGameUI()
+        {
+            gameEndUI.gameObject.SetActive(true);
+            gameEndUI.eventsBroker = this.eventsBroker;
+            gameEndUI.fish = this.fish;
+            
             eventsBroker.Publish(new EndFishOMeterEvent(fish));
+            fishOMeterMinigamePanel.SetActive(false);
         }
     }
 }
