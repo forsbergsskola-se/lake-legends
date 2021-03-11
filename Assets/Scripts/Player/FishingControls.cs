@@ -35,11 +35,12 @@ namespace Player
             isRodCast = false;
             isTimerSet = false;
             
-            eventsBroker.SubscribeTo<EndFishOMeterEvent>(ReturnFromMinigame);
+            eventsBroker.SubscribeTo<FishAgainEvent>(ReturnFromMinigame);
         }
         
         private void Update()
         {
+            // TODO: Change this from Space to Touch Input
             if(Input.GetKeyDown(KeyCode.Space) &&!isRodCast) CastRod();
             
             
@@ -100,7 +101,7 @@ namespace Player
             eventsBroker.Publish(new StartFishOMeterEvent());
         }
 
-        private void ReturnFromMinigame(EndFishOMeterEvent eventRef)
+        private void ReturnFromMinigame(FishAgainEvent eventRef)
         {
             floatNoBite.gameObject.SetActive(true);
             floatNibbleOrBite.gameObject.SetActive(false);

@@ -41,3 +41,5 @@ public class UpdateFishZoneUISizeEvent
 
     public UpdateFishZoneUISizeEvent(float width) => this.width = width;
 }
+
+public class FishAgainEvent { }
