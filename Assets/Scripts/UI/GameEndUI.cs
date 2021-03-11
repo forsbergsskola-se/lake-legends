@@ -1,3 +1,4 @@
+using System;
 using EventManagement;
 using Items;
 using UnityEngine;
@@ -17,10 +18,15 @@ namespace UI
         {
             UpdateUI();
         }
-        
+
+        private void Update()
+        {
+            UpdateUI();
+        }
+
         private void UpdateUI()
         {
-            if (fish != null)
+            if (fish)
             {
                 resultText.text = "You caught something!";
                 // TODO: Add image of caught fish sprite here
