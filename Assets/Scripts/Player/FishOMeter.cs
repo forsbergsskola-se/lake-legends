@@ -61,8 +61,7 @@ namespace Player
                 UpdateCaptureZonePosition();
                 if (successMeter <= 0) FishEscape();
                 else if (successMeter >= fishingTime) FishCatch();
-
-                // TODO: Change this from Space to Touch Input
+                
                 if(Input.GetMouseButton(0)) isMoving = true;
                 else isMoving = false;
             }
@@ -158,7 +157,6 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             EndGame();
-            Debug.Log($"Wohoo! You caught a {fish.name}!");
             fish = null;
         }
         
@@ -167,7 +165,6 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             fish = null;
-            Debug.Log("Oh no! The fish got away!");
             EndGame();
         }
 
