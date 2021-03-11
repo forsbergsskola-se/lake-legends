@@ -23,12 +23,17 @@ namespace UI
             if (fish != null)
             {
                 resultText.text = "You caught something!";
+                // TODO: Add image of caught fish sprite here
+                //image.sprite = fish.type.sprite;
                 fishNameText.text = fish.Name;
                 fishWorth.text = $"It's worth {fish.goldValue} !";
             }
             else
             {
                 resultText.text = "Oh no! It got away!";
+                image.gameObject.SetActive(false);
+                fishNameText.text = "";
+                fishWorth.text = "";
             }
         }
 
@@ -40,7 +45,6 @@ namespace UI
 
         public void BackToHub()
         {
-            // TODO: Switch out for reference to the main Hub scene
             SceneManager.LoadScene("MainUI");
             this.gameObject.SetActive(false);
         }
@@ -50,6 +54,8 @@ namespace UI
             eventsBroker = null;
             if (fish != null) fish = null; 
             resultText.text = "";
+            fishNameText.text = "";
+            fishWorth.text = "";
         }
     }
 }
