@@ -1,6 +1,6 @@
 ﻿namespace Saving
 {
-    public readonly struct CurrencySave
+    public class CurrencySave
     {
         public readonly int Silver;
         public readonly int Gold;
