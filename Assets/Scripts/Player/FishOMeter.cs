@@ -5,6 +5,7 @@ using Fish;
 using Items;
 using UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -18,8 +19,6 @@ namespace Player
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
-        [SerializeField] private Vector2 randomStopTimeRange = new Vector2(0.5f, 2f);
-        [SerializeField] private Vector2 randomMoveTimeRange = new Vector2(1f, 5f);
 
         private float directionMod;
         private float successMeter;
@@ -107,7 +106,7 @@ namespace Player
         private void InitializeCaptureZone()
         {
             captureZonePosition = Random.Range(0f, 1f);
-            StartCoroutine(ChooseRandomDirection(Random.Range(randomMoveTimeRange.x, randomMoveTimeRange.y)));
+            StartCoroutine(ChooseRandomDirection(fish.randomMoveTimeRange.Randomize()));
         }
 
         private void InitializeFishSpawnPoint()
@@ -203,7 +202,7 @@ namespace Player
         {
             captureZoneStopped = true;
             yield return new WaitForSeconds(time);
-            StartCoroutine(ChooseRandomDirection(Random.Range(randomMoveTimeRange.x, randomMoveTimeRange.y)));
+            StartCoroutine(ChooseRandomDirection(fish.randomMoveTimeRange.Randomize()));
         }
 
         private IEnumerator ChooseRandomDirection(float time)
@@ -217,7 +216,7 @@ namespace Player
                 currentCaptureZoneTime = Mathf.Lerp(1, 0, currentCaptureZoneTime);
             }
             yield return new WaitForSeconds(time);
-            StartCoroutine(Stop(Random.Range(randomStopTimeRange.x, randomStopTimeRange.y)));
+            StartCoroutine(Stop(fish.randomStopTimeRange.Randomize()));
         }
     }
 }
