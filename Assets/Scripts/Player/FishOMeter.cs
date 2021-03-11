@@ -1,3 +1,4 @@
+using System.Collections;
 using EventManagement;
 using Events;
 using Fish;
@@ -12,11 +13,13 @@ namespace Player
         [SerializeField] private float fishingTime = 10;
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
         [SerializeField] private float fishPositionSpeedMultiplier = 0.3f;
-        [SerializeField] private float directionModifier = 1.0f;
+        [SerializeField] private float upwardDirectionMultiplier = 1.5f;
         [SerializeField] private Factory factory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
+        [SerializeField] private Vector2 randomStopTimeRange = new Vector2(0.5f, 2f);
+        [SerializeField] private Vector2 randomMoveTimeRange = new Vector2(1f, 5f);
 
         private float directionMod;
         private float successMeter;
@@ -30,6 +33,7 @@ namespace Player
         
         private bool isMoving;
         private bool gameRunning;
+        private bool captureZoneStopped;
 
         private FishItem fish;
         private IMessageHandler eventsBroker;
@@ -103,6 +107,7 @@ namespace Player
         private void InitializeCaptureZone()
         {
             captureZonePosition = Random.Range(0f, 1f);
+            StartCoroutine(ChooseRandomDirection(Random.Range(randomMoveTimeRange.x, randomMoveTimeRange.y)));
         }
 
         private void InitializeFishSpawnPoint()
@@ -126,10 +131,10 @@ namespace Player
 
         private void UpdateFishPosition()
         {
-            if (isMoving) directionMod = 1 + directionModifier; 
-            else directionMod = -1;
+            if (isMoving) directionMod = fishPositionSpeedMultiplier + upwardDirectionMultiplier; 
+            else directionMod = -fishPositionSpeedMultiplier;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime * fishPositionSpeedMultiplier)),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime)),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -138,6 +143,8 @@ namespace Player
         
         private void UpdateCaptureZonePosition()
         {
+            if (captureZoneStopped) 
+                return;
             currentCaptureZoneTime += (Time.deltaTime * fishSpeedMagnitudeValue);
             captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
 
@@ -178,6 +185,7 @@ namespace Player
             maximumFishZone = 0;
             successMeter = 3f;
 
+            StopAllCoroutines();
             ShowEndGameUI();
         }
 
@@ -189,6 +197,27 @@ namespace Player
             
             eventsBroker.Publish(new EndFishOMeterEvent(fish));
             fishOMeterMinigamePanel.SetActive(false);
+        }
+
+        private IEnumerator Stop(float time)
+        {
+            captureZoneStopped = true;
+            yield return new WaitForSeconds(time);
+            StartCoroutine(ChooseRandomDirection(Random.Range(randomMoveTimeRange.x, randomMoveTimeRange.y)));
+        }
+
+        private IEnumerator ChooseRandomDirection(float time)
+        {
+            captureZoneStopped = false;
+            if (Random.Range(0, 2) == 0)
+            {
+                var temp = maximumZone;
+                maximumZone = minimumZone;
+                minimumZone = temp;
+                currentCaptureZoneTime = Mathf.Lerp(1, 0, currentCaptureZoneTime);
+            }
+            yield return new WaitForSeconds(time);
+            StartCoroutine(Stop(Random.Range(randomStopTimeRange.x, randomStopTimeRange.y)));
         }
     }
 }
