@@ -27,6 +27,7 @@ namespace UI
             var sizeDelta = gameObject.GetComponent<RectTransform>().sizeDelta;
             sizeDelta.x = size;
             gameObject.GetComponent<RectTransform>().sizeDelta = sizeDelta;
+            parentRectTransform.GetComponent<RectTransform>().sizeDelta = sizeDelta;
             
             minimum = 0;
             maximum = captureAreaParentPanel.sizeDelta.x;
