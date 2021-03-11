@@ -74,12 +74,12 @@ namespace Player
             fish = factory.GenerateFish();
             
             // TODO: Replace this base value with the corresponding RodStat base value
-            captureZoneWidth = 0.2f;
+            captureZoneWidth = 1f;
             
             fishPercentMod = Mathf.Abs((fish.fishStrength / 100));
             fishSpeedMagnitudeValue = fish.fishSpeed * targetBarSpeedMultiplier;
 
-            captureZoneWidth = (captureZoneWidth / (1 + fishPercentMod));
+            captureZoneWidth = captureZoneWidth * fishPercentMod;
             
             minimumZone = 0 + captureZoneWidth  / 2;
             maximumZone = 1 - captureZoneWidth  / 2;
