@@ -7,6 +7,7 @@ namespace Fish
     [CreateAssetMenu(menuName = "ScriptableObjects/FishType")]
     public class FishType : ScriptableObject
     {
+        public Sprite sprite;
         private string TypeID;
 
         [ContextMenu("GenerateFishItems")]
