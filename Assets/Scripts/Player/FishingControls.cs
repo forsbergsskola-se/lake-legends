@@ -1,7 +1,9 @@
+using System;
 using EventManagement;
 using Events;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -59,6 +61,7 @@ namespace Player
 
         private void CastRod()
         {
+            eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
             isRodCast = true;
             floatNoBite.gameObject.SetActive(true);
             
