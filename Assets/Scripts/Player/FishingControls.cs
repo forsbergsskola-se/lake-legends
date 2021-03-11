@@ -9,11 +9,15 @@ namespace Player
 {
     public class FishingControls : MonoBehaviour
     {
-
         [SerializeField] private int hookChance;
         [SerializeField] private int minimumTimer;
         [SerializeField] private int maximumTimer;
 
+        [SerializeField] private string castRodText = "Tap the screen to cast your rod";
+        [SerializeField] private string waitingForBiteText = "Waiting for a bite...";
+        [SerializeField] private string nibbleText = "Just a nibble... Waiting  for a bite...";
+        [SerializeField] private string biteText = "Got a fish on the hook! Tap to reel it in!";
+        
         private float timeRemaining;
         private bool isRodCast;
         private bool isTimerSet;
@@ -24,16 +28,21 @@ namespace Player
         [SerializeField] private Image floatNoBite;
         [SerializeField] private Image floatNibbleOrBite;
         [SerializeField] private Text statusText;
+
+        private bool UsesFloat => floatNoBite != null && floatNibbleOrBite != null;
         
         private void Start()
         {
-            statusText.text = "Tap the screen to cast your rod";
+            statusText.text = castRodText;
             
             eventsBroker = FindObjectOfType<EventsBroker>();
-            
-            floatNoBite.gameObject.SetActive(false);
-            floatNibbleOrBite.gameObject.SetActive(false);
-            
+
+            if (UsesFloat)
+            {
+                floatNoBite.gameObject.SetActive(false);
+                floatNibbleOrBite.gameObject.SetActive(false);    
+            }
+
             isRodCast = false;
             isTimerSet = false;
             
@@ -63,9 +72,9 @@ namespace Player
         {
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
             isRodCast = true;
-            floatNoBite.gameObject.SetActive(true);
-            
-            statusText.text = "Waiting for a bite...";
+            if (UsesFloat) floatNoBite.gameObject.SetActive(true);
+
+            statusText.text = waitingForBiteText;
             RandomizeTimer();
         }
         
@@ -83,12 +92,12 @@ namespace Player
             
             if (!fishBite)
             {
-                statusText.text = "Just a nibble... Waiting  for a bite...";
+                statusText.text = nibbleText;
                 RandomizeTimer();
             }
             else
             {
-                statusText.text = "Got a fish on the hook!\n Tap to reel it in!";
+                statusText.text = biteText;
                 ActivateMinigame();
             }
         }
@@ -96,26 +105,30 @@ namespace Player
         private void ActivateMinigame()
         {
             ResetValues();
-         
-            floatNoBite.gameObject.SetActive(false);
-            floatNibbleOrBite.gameObject.SetActive(true);
+
+            if (UsesFloat)
+            {
+                floatNoBite.gameObject.SetActive(false);
+                floatNibbleOrBite.gameObject.SetActive(true);    
+            }
             
             eventsBroker.Publish(new StartFishOMeterEvent());
         }
 
         private void ReturnFromMinigame(FishAgainEvent eventRef)
         {
-            // floatNoBite.gameObject.SetActive(true);
-            // floatNibbleOrBite.gameObject.SetActive(false);
-            
-            statusText.text = "Tap the screen to cast your rod";
+            statusText.text = castRodText;
             isRodCast = false;
         }
 
         private void BlankOut(EndFishOMeterEvent eventRef)
         {
-            floatNoBite.gameObject.SetActive(false);
-            floatNibbleOrBite.gameObject.SetActive(false);
+            if (UsesFloat)
+            {
+                floatNoBite.gameObject.SetActive(false);
+                floatNibbleOrBite.gameObject.SetActive(false);    
+            }
+            
             statusText.text = "";
         }
 
