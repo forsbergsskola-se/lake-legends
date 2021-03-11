@@ -17,18 +17,28 @@ namespace UI
         {
             UpdateUI();
         }
-        
+
+        private void Update()
+        {
+            UpdateUI();
+        }
+
         private void UpdateUI()
         {
-            if (fish != null)
+            if (fish)
             {
                 resultText.text = "You caught something!";
+                image.gameObject.SetActive(true);
+                image.sprite = fish.type.sprite;
                 fishNameText.text = fish.Name;
-                fishWorth.text = $"It's worth {fish.goldValue} !";
+                fishWorth.text = $"It's worth {fish.goldValue}!";
             }
             else
             {
                 resultText.text = "Oh no! It got away!";
+                image.gameObject.SetActive(false);
+                fishNameText.text = "";
+                fishWorth.text = "";
             }
         }
 
@@ -40,7 +50,6 @@ namespace UI
 
         public void BackToHub()
         {
-            // TODO: Switch out for reference to the main Hub scene
             SceneManager.LoadScene("MainUI");
             this.gameObject.SetActive(false);
         }
@@ -50,6 +59,8 @@ namespace UI
             eventsBroker = null;
             if (fish != null) fish = null; 
             resultText.text = "";
+            fishNameText.text = "";
+            fishWorth.text = "";
         }
     }
 }
