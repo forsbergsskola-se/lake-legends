@@ -12,27 +12,38 @@ namespace PlayerData
     public class InventoryHandler : MonoBehaviour
     {
         private IInventory inventory;
+        private ICurrency currency;
+        private IMessageHandler eventBroker;
 
         public IInventory CurrentInventory => inventory;
         private void Start()
         {
-            inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()), FindObjectOfType<EventsBroker>());
+            eventBroker = FindObjectOfType<EventsBroker>();
+            inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
+            currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
             LoadInventory();
             PrintInventoryContent();
-            var eventBroker = FindObjectOfType<EventsBroker>();
-            if (eventBroker != null)
-                FindObjectOfType<EventsBroker>().SubscribeTo<EndFishOMeterEvent>(fishCaught => PrintInventoryContent());
-            eventBroker.Publish(new EnableInventoryEvent(CurrentInventory));
+            eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
+            eventBroker?.Publish(new EnableInventoryEvent(CurrentInventory));
+        }
+
+        private void OnEndFishing(EndFishOMeterEvent obj)
+        {
+            if (obj.fishItem == null) return;
+            PrintInventoryContent();
+            eventBroker.Publish(new IncreaseSilverEvent(obj.fishItem.goldValue));
         }
 
         private void OnDestroy()
         {
             inventory.Serialize();
+            currency.Serialize();
         }
 
         private void LoadInventory()
         {
             inventory.Deserialize();
+            currency.Deserialize();
         }
 
         public void AddItemToInventory(IItem item)

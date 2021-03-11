@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
@@ -8,12 +9,14 @@ namespace PlayerData
 {
     public class Inventory : IInventory
     {
-        private Dictionary<string, int> items = new Dictionary<string, int>();
-        private IInventorySaver saver;
-        private const string InventoryKey = "Inventory";
         public int MaxSize => 50;
         public int TotalSizeOfInventory => items.Sum(item => item.Value);
-
+        private Dictionary<string, int> items = new Dictionary<string, int>();
+        private readonly IInventorySaver saver;
+        private const string InventoryKey = "Inventory";
+        private const string CurrencyKey = "Currency";
+        
+        
         public Inventory(IInventorySaver saver, IMessageHandler messageHandler)
         {
             this.saver = saver;
