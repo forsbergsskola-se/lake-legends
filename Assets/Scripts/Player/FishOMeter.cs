@@ -1,9 +1,11 @@
+using System.Collections;
 using EventManagement;
 using Events;
 using Fish;
 using Items;
 using UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -30,6 +32,7 @@ namespace Player
         
         private bool isMoving;
         private bool gameRunning;
+        private bool captureZoneStopped;
 
         private FishItem fish;
         private IMessageHandler eventsBroker;
@@ -103,6 +106,7 @@ namespace Player
         private void InitializeCaptureZone()
         {
             captureZonePosition = Random.Range(0f, 1f);
+            StartCoroutine(ChooseRandomDirection(fish.randomMoveTimeRange.Randomize()));
         }
 
         private void InitializeFishSpawnPoint()
@@ -126,10 +130,10 @@ namespace Player
 
         private void UpdateFishPosition()
         {
-            if (isMoving) directionMod = fishPositionSpeedMultiplier * upwardDirectionMultiplier;
+            if (isMoving) directionMod = fishPositionSpeedMultiplier + upwardDirectionMultiplier; 
             else directionMod = -fishPositionSpeedMultiplier;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * Time.deltaTime),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime)),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -138,11 +142,13 @@ namespace Player
         
         private void UpdateCaptureZonePosition()
         {
+            if (captureZoneStopped) 
+                return;
             currentCaptureZoneTime += (Time.deltaTime * fishSpeedMagnitudeValue);
             captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
 
             eventsBroker.Publish(new UpdateCaptureZoneUIPositionEvent(captureZonePosition));
-            
+
             if (currentCaptureZoneTime >= 1)
             {
                 var temp = maximumZone;
@@ -151,7 +157,7 @@ namespace Player
                 currentCaptureZoneTime = 0;
             }
         }
-        
+
         private void FishCatch()
         {
             fishOMeterMinigamePanel.gameObject.SetActive(false);
@@ -178,6 +184,7 @@ namespace Player
             maximumFishZone = 0;
             successMeter = 3f;
 
+            StopAllCoroutines();
             ShowEndGameUI();
         }
 
@@ -189,6 +196,27 @@ namespace Player
             
             eventsBroker.Publish(new EndFishOMeterEvent(fish));
             fishOMeterMinigamePanel.SetActive(false);
+        }
+
+        private IEnumerator Stop(float time)
+        {
+            captureZoneStopped = true;
+            yield return new WaitForSeconds(time);
+            StartCoroutine(ChooseRandomDirection(fish.randomMoveTimeRange.Randomize()));
+        }
+
+        private IEnumerator ChooseRandomDirection(float time)
+        {
+            captureZoneStopped = false;
+            if (Random.Range(0, 2) == 0)
+            {
+                var temp = maximumZone;
+                maximumZone = minimumZone;
+                minimumZone = temp;
+                currentCaptureZoneTime = Mathf.Lerp(1, 0, currentCaptureZoneTime);
+            }
+            yield return new WaitForSeconds(time);
+            StartCoroutine(Stop(fish.randomStopTimeRange.Randomize()));
         }
     }
 }

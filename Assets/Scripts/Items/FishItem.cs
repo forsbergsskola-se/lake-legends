@@ -1,5 +1,6 @@
 using System;
 using Fish;
+using Player;
 using UnityEngine;
 
 namespace Items
@@ -13,6 +14,8 @@ namespace Items
         public Rarity rarity;
         public float rarityWeight = 100;
         public GameObject model;
+        public FloatRange randomStopTimeRange = new FloatRange(0.5f, 2);
+        public FloatRange randomMoveTimeRange = new FloatRange(1f, 3f);
 
         public float fishSpeed = 1;
         public float fishStrength = 1;
@@ -36,6 +39,8 @@ namespace Items
             {
                 ItemID = Guid.NewGuid().ToString();
             }
+            randomMoveTimeRange.Validate();
+            randomStopTimeRange.Validate();
         }
 
         public string ID
