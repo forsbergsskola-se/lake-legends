@@ -40,10 +40,8 @@ namespace Player
         
         private void Update()
         {
-            // TODO: Change this from Space to Touch Input
-            if(Input.GetKeyDown(KeyCode.Space) &&!isRodCast) CastRod();
-            
-            
+            if (Input.GetMouseButtonDown(0) && !isRodCast) CastRod();
+
             if (isTimerSet)
             {
                 if(timeRemaining <= 0)

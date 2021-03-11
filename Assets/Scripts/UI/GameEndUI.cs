@@ -30,7 +30,8 @@ namespace UI
             {
                 resultText.text = "You caught something!";
                 // TODO: Add image of caught fish sprite here
-                //image.sprite = fish.type.sprite;
+                image.gameObject.SetActive(true);
+                image.sprite = fish.type.sprite;
                 fishNameText.text = fish.Name;
                 fishWorth.text = $"It's worth {fish.goldValue} !";
             }

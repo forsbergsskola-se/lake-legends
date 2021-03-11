@@ -341,7 +341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5908813462163660606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -443,7 +443,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5908813462163660600}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UI.GameEndUI, Assembly-CSharp
+        m_MethodName: BackToHub
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5908813462344715879
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +526,7 @@ MonoBehaviour:
   fishingTime: 10
   factory: {fileID: 11400000, guid: 73a2811e4cbf86c478c040a52f57e2ea, type: 2}
   fishOMeterUI: {fileID: 5908813462344715872}
+  gameEndUI: {fileID: 0}
   fishOMeterMinigamePanel: {fileID: 5908813462586481305}
 --- !u!1 &5908813462441943406
 GameObject:
