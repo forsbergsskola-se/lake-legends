@@ -12,7 +12,7 @@ namespace Player
         [SerializeField] private float fishingTime = 10;
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
         [SerializeField] private float fishPositionSpeedMultiplier = 0.3f;
-        [SerializeField] private float directionModifier = 1.0f;
+        [SerializeField] private float upwardDirectionMultiplier = 1.5f;
         [SerializeField] private Factory factory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
@@ -126,10 +126,10 @@ namespace Player
 
         private void UpdateFishPosition()
         {
-            if (isMoving) directionMod = 1 + directionModifier; 
-            else directionMod = -1;
+            if (isMoving) directionMod = fishPositionSpeedMultiplier * upwardDirectionMultiplier;
+            else directionMod = -fishPositionSpeedMultiplier;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime * fishPositionSpeedMultiplier)),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * Time.deltaTime),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -142,7 +142,7 @@ namespace Player
             captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
 
             eventsBroker.Publish(new UpdateCaptureZoneUIPositionEvent(captureZonePosition));
-
+            
             if (currentCaptureZoneTime >= 1)
             {
                 var temp = maximumZone;
@@ -151,7 +151,7 @@ namespace Player
                 currentCaptureZoneTime = 0;
             }
         }
-
+        
         private void FishCatch()
         {
             fishOMeterMinigamePanel.gameObject.SetActive(false);
