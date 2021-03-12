@@ -1,6 +1,9 @@
-public class UpdateFishZoneUISizeEvent
+namespace Events
 {
-    public float width;
+    public class UpdateFishZoneUISizeEvent
+    {
+        public float width;
 
-    public UpdateFishZoneUISizeEvent(float width) => this.width = width;
+        public UpdateFishZoneUISizeEvent(float width) => this.width = width;
+    }
 }

@@ -9,13 +9,18 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
    public AudioMixer audioMixer;
+   [Space]
    public AudioMixerGroup AmbGroup;
    public AudioMixerGroup MusicTrackGroup;
    public AudioMixerGroup SfxGroup;
+   [Space] 
+   public AudioSource AmbienceAudioSource;
+   public AudioSource SfxAudioSource;
+   public AudioSource MusicAudioSource;
    
-   public List<AudioClip> ambianceSounds;
-   public List<AudioClip> musicTracks;
-   public List<AudioClip> sfxSounds;
+   public List<AudioClipSettings> ambiantSounds;
+   public List<AudioClipSettings> musicTracks;
+   public List<AudioClipSettings> sfxSounds;
 
    private EventsBroker eventsBroker;
    
@@ -23,6 +28,8 @@ public class AudioManager : MonoBehaviour
    {
       eventsBroker = FindObjectOfType<EventsBroker>();
       eventsBroker.SubscribeTo<PlaySoundEvent>(PlaySound);
+      PlaySoundsOnStart();
+      
    }
 
    void PlaySound(PlaySoundEvent playSoundEvent)
@@ -43,48 +50,80 @@ public class AudioManager : MonoBehaviour
       }
    }
    
+   private AudioSource SetupAudio(string audioClipName, List<AudioClipSettings> audioClipSetupList)
+   {
+      var audioClipSetup = audioClipSetupList.FirstOrDefault(music => music.audioClip.name == audioClipName);
+      if(audioClipSetup == null) throw new Exception($"Audio clip {audioClipName} is missing.");
+      var audioSource = audioClipSetup.outputAudioSource;
+      audioSource.clip = audioClipSetup.audioClip;
+      audioSource.loop = audioClipSetup.loop;
+      audioSource.playOnAwake = audioClipSetup.playOnAwake;
+      audioSource.volume = 0.5f;
+      return audioSource;
+   }
+   
    /*  TODO setup wait time coroutine?
    IEnumerator PlayAndWait(string audioClipName)
    {
-      
       yield return new WaitWhile( () => audioSource.isPlaying);
    }*/
    
    void PlayAmbianceSound(string audioClipName)
    {
-      var audioSource = SetupAudioSource(audioClipName, ambianceSounds);
-      audioSource.outputAudioMixerGroup = AmbGroup;
-      audioSource.loop = true;
-      audioSource.playOnAwake = false;
-      audioSource.Play();
+      AmbienceAudioSource = SetupAudio(audioClipName, ambiantSounds);
+      AmbienceAudioSource.Play();
    }
 
    void PlaySfxSound(string audioClipName)
    {
-      //TODO fix values
-      var audioSource = SetupAudioSource(audioClipName, sfxSounds);
-      audioSource.outputAudioMixerGroup = SfxGroup;
-      audioSource.loop = false;
-      audioSource.playOnAwake = false;
-      audioSource.Play();
+      SfxAudioSource = SetupAudio(audioClipName, sfxSounds);
+      SfxAudioSource.Play();
    }
 
    void PlayMusicSound(string audioClipName)
    {
-      var audioSource = SetupAudioSource(audioClipName, musicTracks);
-      audioSource.outputAudioMixerGroup = MusicTrackGroup;
-      audioSource.loop = true;
-      audioSource.playOnAwake = false;
-      audioSource.Play();
+      MusicAudioSource = SetupAudio(audioClipName, musicTracks);
+      MusicAudioSource.Play();
    }
 
-   private AudioSource SetupAudioSource(string audioClipName, List<AudioClip> soundTypeList)
+   void PlaySoundsOnStart()
    {
-      var audioSource = gameObject.AddComponent<AudioSource>();
-      var audioClip = soundTypeList.FirstOrDefault(music => music.name == audioClipName);
-      if(audioClip == null) throw new Exception("Could not find audio clip with name: " + audioClipName);
-      audioSource.clip = audioClip;
-      audioSource.volume = 0.5f;
-      return audioSource;
+      foreach (var ambSound in ambiantSounds)
+      {
+         if (ambSound.playOnAwake)
+         {
+            AmbienceAudioSource.clip = ambSound.audioClip;
+            AmbienceAudioSource.Play();
+         }
+      }
+      
+      foreach (var musicTrack in musicTracks)
+      {
+         if (musicTrack.playOnAwake)
+         {
+            MusicAudioSource.clip = musicTrack.audioClip;
+            MusicAudioSource.Play();
+         }
+      }
+
+      foreach (var sfxSound in sfxSounds)
+      {
+         if (sfxSound.playOnAwake)
+         {
+            SfxAudioSource.clip = sfxSound.audioClip;
+            SfxAudioSource.Play();
+         }
+      }
+   }
+   
+   [Serializable]
+   public class AudioClipSettings
+   {
+      public AudioClip audioClip;
+      public AudioSource outputAudioSource;
+      [Range(0.0f,1.0f)]
+      public float volume;
+      public bool loop;
+      public bool playOnAwake;
    }
 }

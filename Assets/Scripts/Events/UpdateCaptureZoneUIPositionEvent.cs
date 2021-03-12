@@ -1,6 +1,9 @@
-public class UpdateCaptureZoneUIPositionEvent
+namespace Events
 {
-    public float positionX;
+    public class UpdateCaptureZoneUIPositionEvent
+    {
+        public float positionX;
 
-    public UpdateCaptureZoneUIPositionEvent(float positionX) => this.positionX = positionX;
+        public UpdateCaptureZoneUIPositionEvent(float positionX) => this.positionX = positionX;
+    }
 }

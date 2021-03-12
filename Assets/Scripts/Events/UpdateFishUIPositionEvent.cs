@@ -1,6 +1,9 @@
-public class UpdateFishUIPositionEvent
+namespace Events
 {
-    public float positionX;
+    public class UpdateFishUIPositionEvent
+    {
+        public float positionX;
 
-    public UpdateFishUIPositionEvent(float positionX) => this.positionX = positionX;
+        public UpdateFishUIPositionEvent(float positionX) => this.positionX = positionX;
+    }
 }

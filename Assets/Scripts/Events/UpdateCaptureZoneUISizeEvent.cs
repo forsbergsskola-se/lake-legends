@@ -1,11 +1,14 @@
-public class UpdateCaptureZoneUISizeEvent
+namespace Events
 {
-    public float percentage;
-    public float width;
-
-    public UpdateCaptureZoneUISizeEvent(float percentage, float width)
+    public class UpdateCaptureZoneUISizeEvent
     {
-        this.percentage = percentage;
-        this.width = width;
+        public float percentage;
+        public float width;
+
+        public UpdateCaptureZoneUISizeEvent(float percentage, float width)
+        {
+            this.percentage = percentage;
+            this.width = width;
+        }
     }
 }
