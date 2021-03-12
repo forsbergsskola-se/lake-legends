@@ -44,7 +44,7 @@ namespace PlayerData
 
         public void Deserialize()
         {
-            var currencies = saver.LoadCurrencies(CurrencyKey);
+            var currencies = saver.LoadCurrencies(CurrencyKey) ?? new CurrencySave(0 ,0);
             Silver = currencies.Silver;
             Gold = currencies.Gold;
         }

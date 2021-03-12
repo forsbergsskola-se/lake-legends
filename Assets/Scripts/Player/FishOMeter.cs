@@ -13,8 +13,8 @@ namespace Player
     {
         [SerializeField] private float fishingTime = 10;
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
-        [SerializeField] private float fishPositionSpeedMultiplier = 0.3f;
-        [SerializeField] private float upwardDirectionMultiplier = 1.5f;
+        [SerializeField] private float fishLeftSpeed = 0.3f;
+        [SerializeField] private float fishRightSpeed = 1.3f;
         [SerializeField] private Factory factory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
@@ -130,14 +130,15 @@ namespace Player
 
         private void UpdateFishPosition()
         {
-            if (isMoving) directionMod = fishPositionSpeedMultiplier + upwardDirectionMultiplier; 
-            else directionMod = -fishPositionSpeedMultiplier;
+            if (isMoving) directionMod = fishRightSpeed; 
+            else directionMod = -fishLeftSpeed;
 
             fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime)),
                 minimumFishZone,
                 maximumFishZone);
             
             eventsBroker.Publish(new UpdateFishUIPositionEvent(fishPositionCenterPoint));
+            Debug.Log(Input.touchPressureSupported);
         }
         
         private void UpdateCaptureZonePosition()
