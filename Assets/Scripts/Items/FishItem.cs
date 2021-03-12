@@ -8,7 +8,7 @@ namespace Items
     [CreateAssetMenu(menuName = "ScriptableObjects/FishItem")]
     public class FishItem : ScriptableObject, IItem
     {
-        public int goldValue = 10;
+        public int silverValue = 10;
         [SerializeField] private string ItemID;
         public FishType type;
         public Rarity rarity;

@@ -31,7 +31,7 @@ namespace PlayerData
         {
             if (obj.fishItem == null) return;
             PrintInventoryContent();
-            eventBroker.Publish(new IncreaseSilverEvent(obj.fishItem.goldValue));
+            eventBroker.Publish(new IncreaseSilverEvent(obj.fishItem.silverValue));
         }
 
         private void OnDestroy()

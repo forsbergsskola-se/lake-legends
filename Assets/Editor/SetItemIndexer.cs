@@ -6,28 +6,22 @@ using UnityEngine;
 
 namespace Editor
 {
-    [CustomEditor(typeof(ItemIndexer))]
-    public class ItemIndexerInspector : UnityEditor.Editor
+    public class SetItemIndexer : AssetPostprocessor
     {
-        public override void OnInspectorGUI()
+        public static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets,
+            string[] movedFromAssetPaths)
         {
-            base.OnInspectorGUI();
-            var itemIndexer = serializedObject.targetObject as ItemIndexer;
-            if (GUILayout.Button("Populate List"))
+            var itemIndexer = AllItems.ItemIndexer;
+            if (itemIndexer == null)
             {
-                PopulateItemIndexer(itemIndexer);
+                itemIndexer = ScriptableObject.CreateInstance<ItemIndexer>();
+                AssetDatabase.CreateAsset(itemIndexer, "Assets/Resources/Global Item Index.asset");
             }
+            PopulateItemIndexer(itemIndexer);
         }
-
-        private void PopulateItemIndexer(ItemIndexer itemIndexer)
+        
+        private static void PopulateItemIndexer(ItemIndexer itemIndexer)
         {
-            /*var dictionary = new StringSoDictionary();
-            foreach (var pairs in itemIndexer.indexer.Where(pairs => pairs.Value != null))
-            {
-                dictionary.Add(pairs.Key, pairs.Value);
-            }
-
-            itemIndexer.indexer = dictionary;*/
             ClearDictionary(itemIndexer);
             var items = FindAllItems();
             foreach (var item in items)
@@ -35,9 +29,10 @@ namespace Editor
                 if (!itemIndexer.indexer.ContainsKey(item.ID))
                     itemIndexer.indexer.Add(item.ID, item as ScriptableObject);
             }
+            EditorUtility.SetDirty(itemIndexer);
         }
 
-        private void ClearDictionary(ItemIndexer itemIndexer)
+        private static void ClearDictionary(ItemIndexer itemIndexer)
         {
             itemIndexer.indexer.Clear();
         }
