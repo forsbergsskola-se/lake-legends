@@ -1,1 +1,4 @@
-public class FishAgainEvent { }
+namespace Events
+{
+    public class FishAgainEvent { }
+}

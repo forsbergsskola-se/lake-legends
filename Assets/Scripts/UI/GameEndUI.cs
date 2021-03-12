@@ -1,4 +1,5 @@
 using EventManagement;
+using Events;
 using Items;
 using UnityEngine;
 using UnityEngine.SceneManagement;
