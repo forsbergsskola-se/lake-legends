@@ -18,7 +18,7 @@ namespace Items
                 instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as FishItem);
                 inventorySlots.Add(instance);
             }
-            ToggleSort();
+            SortAscended();
             for (var i = 0; i < AllItems.ItemIndexer.indexer.Count - items.Count; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
@@ -27,24 +27,27 @@ namespace Items
 
         public override void SortAscended()
         {
-            var groupedSlots = inventorySlots.GroupBy(slot => (slot.Item as FishItem).type).OrderBy(slots => slots.Key.name);
+            var groupedSlots = inventorySlots
+                .OrderBy(slot => ((FishItem) slot.Item).type.name);
             Sort(groupedSlots);
         }
 
         public override void SortDescended()
         {
-            var groupedSlots = inventorySlots.GroupBy(slot => (slot.Item as FishItem).type).OrderByDescending(slots => slots.Key.name);
+            var groupedSlots = inventorySlots
+                .OrderByDescending(slot => ((FishItem) slot.Item).type.name);
             Sort(groupedSlots);
         }
 
-        private void Sort(IOrderedEnumerable<IGrouping<FishType, Slot>> groupedSlots)
+        private void Sort(IOrderedEnumerable<Slot> groupedSlots)
         {
-            var orderedList = groupedSlots.Select(groups => groups.OrderByDescending(slot => (slot.Item as FishItem).rarity.starAmount));
-            var slotsOrdered = orderedList.SelectMany(order => order).ToArray();
+            var orderedList = groupedSlots
+                    .ThenByDescending(slot => ((FishItem) slot.Item).rarity.starAmount)
+                    .ToArray();
 
-            for (var i = 0; i < slotsOrdered.Length; i++)
+            for (var i = 0; i < orderedList.Length; i++)
             {
-                slotsOrdered[i].transform.SetSiblingIndex(i);
+                orderedList[i].transform.SetSiblingIndex(i);
             }
         }
     }
