@@ -5,6 +5,7 @@ using EventManagement;
 using Events;
 using Items;
 using Saving;
+using UnityEngine;
 
 namespace PlayerData
 {
@@ -20,8 +21,21 @@ namespace PlayerData
         public Inventory(IInventorySaver saver, IMessageHandler messageHandler)
         {
             this.saver = saver;
+            
+            messageHandler.SubscribeTo<AddItemToInventoryEvent>(GetItemToAdd);
+            messageHandler.SubscribeTo<RemoveItemFromInventoryEvent>(GetItemToRemove);
         }
 
+        private void GetItemToAdd(AddItemToInventoryEvent obj)
+        {
+            AddItem(obj.Item);
+        }
+        
+        private void GetItemToRemove(RemoveItemFromInventoryEvent obj)
+        {
+            RemoveItem(obj.Item);
+        }
+        
         public virtual bool AddItem(IItem iItem)
         {
             if (TotalSizeOfInventory >= MaxSize)
