@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233b23d7fc4694c40aa68beb6ac2e378, type: 3}
   m_Name: New TreasureFactory
   m_EditorClassIdentifier: 
-  treasureChests: []
-  weights: []
+  treasureChests:
+  - {fileID: 0}
+  - {fileID: 0}
+  weights:
+  - 10
+  - 20
+  itemID: dfe2234a-74be-41aa-91dc-23282f3a9c3b

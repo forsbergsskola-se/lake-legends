@@ -9,7 +9,7 @@ namespace Treasure
     {
         public ScriptableObject[] treasureChests;
         public float[] weights;
-
+        [SerializeField] private string itemID;
         public IItem GenerateTreasure()
         {
             var randomNum = Random.Range(0f, weights.Sum());
@@ -27,8 +27,21 @@ namespace Treasure
             
             throw new System.Exception("TreasureFactory with name " + this.name + " Is Empty");
         }
+        
+        public string ID
+        {
+            get
+            
+            {
+                if (string.IsNullOrEmpty(itemID)) itemID = System.Guid.NewGuid().ToString();
+                    return itemID;
+                
+                Debug.LogError("Item IDs Aren't Set Up Correctly!");
+                throw new System.Exception("Item IDs Aren't Set Up Correctly!");
+            }
+        }
 
-        public string ID { get; }
+        
         public string Name => name;
         public int Rarity => 0;
     }
