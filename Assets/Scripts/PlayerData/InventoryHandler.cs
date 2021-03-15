@@ -28,7 +28,7 @@ namespace PlayerData
             LoadInventory();
             PrintInventoryContent();
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
-            eventBroker?.Publish(new EnableInventoryEvent(CurrentInventory));
+            eventBroker?.Publish(new EnableInventoryEvent(FisherDexData));
         }
 
         private void OnEndFishing(EndFishOMeterEvent obj)
