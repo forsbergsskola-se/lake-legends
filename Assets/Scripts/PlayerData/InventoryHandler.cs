@@ -14,13 +14,17 @@ namespace PlayerData
         private IInventory inventory;
         private ICurrency currency;
         private IMessageHandler eventBroker;
+        private FisherDexData fisherDexData;
 
         public IInventory CurrentInventory => inventory;
+        public FisherDexData FisherDexData => fisherDexData;
         private void Start()
         {
             eventBroker = FindObjectOfType<EventsBroker>();
-            inventory = new Inventory(new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
+            var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
+            inventory = new Inventory(inventorySaver, eventBroker);
             currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
+            fisherDexData = new FisherDexData(inventorySaver, eventBroker);
             LoadInventory();
             PrintInventoryContent();
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
@@ -38,12 +42,14 @@ namespace PlayerData
         {
             inventory.Serialize();
             currency.Serialize();
+            fisherDexData.Serialize();
         }
 
         private void LoadInventory()
         {
             inventory.Deserialize();
             currency.Deserialize();
+            fisherDexData.Deserialize();
         }
 
         public void AddItemToInventory(IItem item)

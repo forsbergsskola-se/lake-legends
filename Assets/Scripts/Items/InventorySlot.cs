@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Items
 {
-    public class InventorySlot : MonoBehaviour
+    public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         public void Setup(IItem item)
         {
@@ -12,5 +13,9 @@ namespace Items
         }
 
         public IItem Item { get; private set; }
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Item?.Use();
+        }
     }
 }

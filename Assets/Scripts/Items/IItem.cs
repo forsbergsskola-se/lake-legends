@@ -11,5 +11,7 @@ namespace Items
         string Name { get; }
         
         int Rarity { get; }
+
+        void Use();
     }
 }
