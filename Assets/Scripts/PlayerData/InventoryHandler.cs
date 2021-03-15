@@ -36,9 +36,9 @@ namespace PlayerData
             }
             else
             {
-                var inventorySaver = new InventorySaver(new DataBaseSaver(), new JsonSerializer());
+                var inventorySaver = new InventorySaver(new DataBaseSaver(obj.User), new JsonSerializer());
                 inventory = new Inventory(inventorySaver, eventBroker);
-                currency = new Currency(new CurrencySaver(new DataBaseSaver(), new JsonSerializer()), eventBroker);
+                currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
             }
             LoadInventory();

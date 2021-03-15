@@ -1,5 +1,6 @@
 using System.Collections;
 using EventManagement;
+using Firebase;
 using UnityEngine;
 
 namespace Auth
@@ -21,7 +22,8 @@ namespace Auth
 
             CurrentUser = userTask.Result;
             Debug.Log($"User {CurrentUser.ID} Logged In");
-            FindObjectOfType<EventsBroker>().Publish(new LoginEvent(CurrentUser, debug));
+            var fireBaseInstance = FirebaseApp.GetInstance("https://lakelegends-ebdcd-default-rtdb.europe-west1.firebasedatabase.app/");
+            FindObjectOfType<EventsBroker>().Publish(new LoginEvent(fireBaseInstance, CurrentUser, debug));
         }
 
         private void OnDestroy()
@@ -32,11 +34,13 @@ namespace Auth
 
     public class LoginEvent
     {
+        public readonly FirebaseApp FirebaseApp;
         public readonly IUser User;
         public readonly bool Debug;
 
-        public LoginEvent(IUser authorizer, bool debug)
+        public LoginEvent(FirebaseApp firebaseApp, IUser authorizer, bool debug)
         {
+            FirebaseApp = firebaseApp;
             User = authorizer;
             Debug = debug;
         }
