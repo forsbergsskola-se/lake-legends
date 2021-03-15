@@ -1,4 +1,5 @@
 using System.Collections;
+using EventManagement;
 using UnityEngine;
 
 namespace Auth
@@ -20,11 +21,24 @@ namespace Auth
 
             CurrentUser = userTask.Result;
             Debug.Log($"User {CurrentUser.ID} Logged In");
+            FindObjectOfType<EventsBroker>().Publish(new LoginEvent(CurrentUser, debug));
         }
 
         private void OnDestroy()
         {
             authorizer.LogOut();
+        }
+    }
+
+    public class LoginEvent
+    {
+        public readonly IUser User;
+        public readonly bool Debug;
+
+        public LoginEvent(IUser authorizer, bool debug)
+        {
+            User = authorizer;
+            Debug = debug;
         }
     }
 }

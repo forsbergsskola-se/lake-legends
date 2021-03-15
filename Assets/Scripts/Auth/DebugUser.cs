@@ -6,7 +6,7 @@
 
         public DebugUser()
         {
-            ID = System.Guid.NewGuid().ToString();
+            ID = "User";
         }
     }
 }

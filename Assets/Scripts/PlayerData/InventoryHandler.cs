@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Auth;
 using EventManagement;
 using Events;
 using Items;
@@ -21,13 +21,27 @@ namespace PlayerData
         private void Start()
         {
             eventBroker = FindObjectOfType<EventsBroker>();
-            var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
-            inventory = new Inventory(inventorySaver, eventBroker);
-            currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
-            fisherDexData = new FisherDexData(inventorySaver, eventBroker);
-            LoadInventory();
-            PrintInventoryContent();
+            eventBroker?.SubscribeTo<LoginEvent>(OnLogin);
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
+        }
+
+        private void OnLogin(LoginEvent obj)
+        {
+            if (obj.Debug)
+            {
+                var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
+                inventory = new Inventory(inventorySaver, eventBroker);
+                currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
+                fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+            }
+            else
+            {
+                var inventorySaver = new InventorySaver(new DataBaseSaver(), new JsonSerializer());
+                inventory = new Inventory(inventorySaver, eventBroker);
+                currency = new Currency(new CurrencySaver(new DataBaseSaver(), new JsonSerializer()), eventBroker);
+                fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+            }
+            LoadInventory();
             eventBroker?.Publish(new EnableInventoryEvent(FisherDexData));
         }
 
