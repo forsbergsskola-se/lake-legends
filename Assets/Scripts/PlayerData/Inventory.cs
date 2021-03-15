@@ -49,9 +49,9 @@ namespace PlayerData
             return items;
         }
 
-        public virtual void Deserialize()
+        public virtual async void Deserialize()
         {
-            var savedInventory = saver.LoadInventory(InventoryKey);
+            var savedInventory = await saver.LoadInventory(InventoryKey);
             if (savedInventory == null)
                 return;
             items = savedInventory;

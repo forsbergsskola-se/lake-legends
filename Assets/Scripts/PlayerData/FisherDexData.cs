@@ -15,7 +15,10 @@ namespace PlayerData
             {
                 Debug.Log(eve.fishItem);
                 if (eve.fishItem != null)
+                {
                     AddItem(eve.fishItem);
+                    Serialize();
+                }
             });
         }
 

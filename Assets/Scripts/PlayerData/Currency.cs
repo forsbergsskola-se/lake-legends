@@ -28,6 +28,7 @@ namespace PlayerData
                 silver = value; 
                 Debug.Log($"Current Silver {silver}");
                 messageHandler.Publish(new UpdateSilverUIEvent(silver));
+                Serialize();
             }
         }
 
@@ -42,9 +43,9 @@ namespace PlayerData
             saver.SaveCurrencies(CurrencyKey, this);
         }
 
-        public void Deserialize()
+        public async void Deserialize()
         {
-            var currencies = saver.LoadCurrencies(CurrencyKey) ?? new CurrencySave(0 ,0);
+            var currencies = await saver.LoadCurrencies(CurrencyKey);
             Silver = currencies.Silver;
             Gold = currencies.Gold;
         }

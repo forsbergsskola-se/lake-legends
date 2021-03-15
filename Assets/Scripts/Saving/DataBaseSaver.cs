@@ -15,14 +15,12 @@ namespace Saving
         {
             this.user = user;
         }
-        public string Load(string key, string defaultValue)
+        public async Task<string> Load(string key, string defaultValue)
         {
             var database =
                 FirebaseDatabase.GetInstance("https://lakelegends-ebdcd-default-rtdb.europe-west1.firebasedatabase.app/");
-            var reference = database.GetReference($"{user.ID}{key}");
-            var refe = database.GetReference($"{user.ID}{key}");
-            var value = refe.GetValueAsync();
-            return value.Result.Value as string;
+            var dataSnapshot = await database.GetReference($"{user.ID}/{key}").GetValueAsync();
+            return dataSnapshot.Exists ? dataSnapshot.GetRawJsonValue() : defaultValue;
         }
 
         private async Task<string> LoadAsync(DatabaseReference reference)
@@ -36,7 +34,7 @@ namespace Saving
             var database =
                 FirebaseDatabase.GetInstance(
                     "https://lakelegends-ebdcd-default-rtdb.europe-west1.firebasedatabase.app/");
-            var refe = database.GetReference($"{user.ID}{key}");
+            var refe = database.GetReference($"{user.ID}/{key}");
             refe.SetRawJsonValueAsync(value);
         }
     }
