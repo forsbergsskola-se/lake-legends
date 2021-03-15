@@ -55,6 +55,7 @@ namespace Items
 
         public string Name => name;
         public int Rarity => rarity.starAmount;
+        public string Bio => type.bio;
         public void Use()
         {
             Debug.Log($"Use {Name}");

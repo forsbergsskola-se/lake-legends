@@ -10,9 +10,9 @@ namespace Items
 {
     public class InventoryUI : MonoBehaviour
     {
-        public InventorySlot slotPrefab;
+        public Slot slotPrefab;
         public Transform gridParent;
-        public List<InventorySlot> inventorySlots;
+        public List<Slot> inventorySlots;
         private bool decended;
 
         protected virtual void OnEnable()

@@ -8,6 +8,8 @@ namespace Fish
     public class FishType : ScriptableObject
     {
         public Sprite sprite;
+        [TextArea]
+        public string bio;
         private string TypeID;
 
         [ContextMenu("GenerateFishItems")]
