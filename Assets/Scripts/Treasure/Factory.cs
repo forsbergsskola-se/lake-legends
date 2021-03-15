@@ -7,11 +7,7 @@ namespace Treasure
     [CreateAssetMenu(menuName = "ScriptableObjects/TreasureFactory", fileName = "New TreasureFactory")]
     public class Factory : ScriptableObject, IItem
     {
-        public string ID { get; }
-        public string Name => name;
-        public int Rarity => 0;
-
-        IItem[] treasures;
+        public ScriptableObject[] treasureChests;
         public float[] weights;
 
         public IItem GenerateTreasure()
@@ -19,11 +15,11 @@ namespace Treasure
             var randomNum = Random.Range(0f, weights.Sum());
             Debug.Log(randomNum);
 
-            for (var i = 0; i < treasures.Length; i++)
+            for (var i = 0; i < treasureChests.Length; i++)
             {
                 if (randomNum < weights[i])
                 {
-                    return treasures[i];
+                    return (IItem)treasureChests[i];
                 }
 
                 randomNum -= weights[i];
@@ -31,5 +27,9 @@ namespace Treasure
             
             throw new System.Exception("TreasureFactory with name " + this.name + " Is Empty");
         }
+
+        public string ID { get; }
+        public string Name => name;
+        public int Rarity => 0;
     }
 }
