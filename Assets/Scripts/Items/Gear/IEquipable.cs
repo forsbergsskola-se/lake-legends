@@ -1,6 +1,9 @@
-public interface IEquipable
+namespace Items.Gear
 {
-    public void Equip();
+    public interface IEquipable
+    {
+        public void Equip();
 
-    public void UnEquip();
+        public void UnEquip();
+    }
 }

@@ -1,4 +1,7 @@
-public interface IGear
+namespace Items.Gear
 {
-    public void Use();
+    public interface IGear
+    {
+        public void Use();
+    }
 }
