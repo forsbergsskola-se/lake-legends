@@ -12,10 +12,9 @@ namespace PlayerData
     {
         public int MaxSize => 50;
         public int TotalSizeOfInventory => items.Sum(item => item.Value);
-        private Dictionary<string, int> items = new Dictionary<string, int>();
+        protected Dictionary<string, int> items = new Dictionary<string, int>();
         private readonly IInventorySaver saver;
-        private const string InventoryKey = "Inventory";
-        private const string CurrencyKey = "Currency";
+        protected virtual string InventoryKey => "Inventory";
         
         
         public Inventory(IInventorySaver saver, IMessageHandler messageHandler)
@@ -28,7 +27,7 @@ namespace PlayerData
             });
         }
 
-        public bool AddItem(IItem iItem)
+        public virtual bool AddItem(IItem iItem)
         {
             if (TotalSizeOfInventory >= MaxSize)
                 return false;
@@ -39,7 +38,7 @@ namespace PlayerData
             return true;
         }
 
-        public bool RemoveItem(IItem iItem)
+        public virtual bool RemoveItem(IItem iItem)
         {
             if (!items.ContainsKey(iItem.ID))
                 return false;
@@ -50,12 +49,12 @@ namespace PlayerData
             return true;
         }
 
-        public Dictionary<string, int> GetAllItems()
+        public virtual Dictionary<string, int> GetAllItems()
         {
             return items;
         }
 
-        public void Deserialize()
+        public virtual void Deserialize()
         {
             var savedInventory = saver.LoadInventory(InventoryKey);
             if (savedInventory == null)
@@ -63,7 +62,7 @@ namespace PlayerData
             items = savedInventory;
         }
 
-        public void Serialize()
+        public virtual void Serialize()
         {
             saver.SaveInventory(InventoryKey, this);
         }

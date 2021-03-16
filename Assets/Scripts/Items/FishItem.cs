@@ -59,5 +59,10 @@ namespace Items
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;
         public float CatchableSpeed => fishSpeed;
         public float CatchableStrength => fishStrength;
+        public string Bio => type.bio;
+        public void Use()
+        {
+            Debug.Log($"Use {Name}");
+        }
     }
 }

@@ -10,18 +10,18 @@ namespace Items
 {
     public class InventoryUI : MonoBehaviour
     {
-        public InventorySlot slotPrefab;
+        public Slot slotPrefab;
         public Transform gridParent;
-        public List<InventorySlot> inventorySlots;
+        public List<Slot> inventorySlots;
         private bool decended;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         { 
             Clear();
             FindObjectOfType<EventsBroker>().SubscribeTo<EnableInventoryEvent>(Setup);
         }
 
-        private void Clear()
+        protected virtual void Clear()
         {
             foreach (var inventorySlot in inventorySlots)
             {
@@ -29,12 +29,12 @@ namespace Items
             }
         }
 
-        private void Setup(EnableInventoryEvent inventoryEvent)
+        protected virtual void Setup(EnableInventoryEvent inventoryEvent)
         {
             Setup(inventoryEvent.Inventory);
         }
 
-        private void Setup(IInventory inventory)
+        protected virtual void Setup(IInventory inventory)
         {
             var items = inventory.GetAllItems();
             foreach (var item in items)
@@ -53,7 +53,7 @@ namespace Items
             }
         }
 
-        public void ToggleSort()
+        public virtual void ToggleSort()
         {
             if (decended)
                 SortAscended();
@@ -62,7 +62,7 @@ namespace Items
             decended = !decended;
         }
 
-        public void SortDescended()
+        public virtual void SortDescended()
         {
             var nameSortedList = inventorySlots.OrderBy(slot => slot.Item.Name);
             var raritySortedList = nameSortedList.OrderByDescending(slot => slot.Item.Rarity).ToArray();
@@ -72,7 +72,7 @@ namespace Items
             }
         }
         
-        public void SortAscended()
+        public virtual void SortAscended()
         {
             var nameSortedList = inventorySlots.OrderBy(slot => slot.Item.Name);
             var raritySortedList = nameSortedList.OrderBy(slot => slot.Item.Rarity).ToArray();
