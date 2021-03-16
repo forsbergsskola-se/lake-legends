@@ -30,6 +30,7 @@ namespace PlayerData
                 items[iItem.ID]++;
             else
                 items.Add(iItem.ID, 1);
+            Serialize();
             return true;
         }
 
@@ -41,6 +42,7 @@ namespace PlayerData
                 items[iItem.ID]--;
             if (items[iItem.ID] <= 0)
                 items.Remove(iItem.ID);
+            Serialize();
             return true;
         }
 

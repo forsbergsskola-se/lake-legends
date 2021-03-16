@@ -35,7 +35,12 @@ namespace PlayerData
         public int Gold
         {
             get => gold;
-            private set => gold = value;
+            private set
+            { 
+                gold = value;
+                Debug.Log($"Current Gold {gold}");
+                Serialize();
+            }
         }
 
         public void Serialize()

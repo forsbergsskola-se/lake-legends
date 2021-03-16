@@ -17,7 +17,6 @@ namespace PlayerData
                 if (eve.fishItem != null)
                 {
                     AddItem(eve.fishItem);
-                    Serialize();
                 }
             });
         }
@@ -28,6 +27,7 @@ namespace PlayerData
                 items[iItem.ID]++;
             else
                 items.Add(iItem.ID, 1);
+            Serialize();
             return true;
         }
 

@@ -52,13 +52,6 @@ namespace PlayerData
             eventBroker.Publish(new IncreaseSilverEvent(obj.fishItem.silverValue));
         }
 
-        private void OnDestroy()
-        {
-            inventory.Serialize();
-            currency.Serialize();
-            fisherDexData.Serialize();
-        }
-
         private void LoadInventory()
         {
             inventory.Deserialize();
