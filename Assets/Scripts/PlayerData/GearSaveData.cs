@@ -13,6 +13,8 @@ namespace PlayerData
         public readonly float Accuracy;
         public readonly int Level = 1;
         public readonly float Experience = 0;
+
+        private string instanceID;
         
         public string equipID;
 

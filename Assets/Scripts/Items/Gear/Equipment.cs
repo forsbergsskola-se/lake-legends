@@ -1,6 +1,4 @@
 using System;
-using EventManagement;
-using Events;
 using UnityEngine;
 
 namespace Items.Gear
@@ -26,8 +24,10 @@ namespace Items.Gear
             }
         }
 
+        public EquipmentType EquipmentType => equipmentVariant.EquipmentType;
+
         public string Name => name;
-        public int Rarity { get; }
+        public int Rarity => rarity.starAmount;
         
         public override string ToString()
         {
@@ -55,11 +55,7 @@ namespace Items.Gear
         
         public void Use()
         {
-            var broker = FindObjectOfType<EventsBroker>();
-            
-            // Need to publish to showcase UI here in stead of event directly
-            Debug.Log("Firing use-event");
-            broker.Publish(new CheckAndDoEquipEvent(this));
+
         }
     }
 }

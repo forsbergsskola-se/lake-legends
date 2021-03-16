@@ -21,15 +21,19 @@ namespace Items
         public void DoEquip(CheckAndDoEquipEvent eventRef)
         {
             var itemToEquip = eventRef.Item;
-            if (itemToEquip.equipmentVariant.EquipmentType == myPreferredEquipment)
+            if (itemToEquip.EquipmentType == myPreferredEquipment)
             {
-                if (equippedItem == null) UnEquipAndEquip(itemToEquip);
+                if (equippedItem == null)
+                {
+                    UnEquipAndEquip(itemToEquip);
+                    return;
+                }
                 if (itemToEquip.ID == equippedItem.ID) return;
                 UnEquipAndEquip(itemToEquip);
             }
         }
-
-        private void UnEquipAndEquip(Equipment itemToEquip)
+  
+        private void UnEquipAndEquip(IEquippable itemToEquip)
         {
             equippedItem = null;
             equippedItem = itemToEquip;

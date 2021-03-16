@@ -4,8 +4,8 @@ namespace Events
 {
     public class CheckAndDoEquipEvent
     {
-        public Equipment Item;
+        public IEquippable Item;
 
-        public CheckAndDoEquipEvent(Equipment item) => this.Item = item;
+        public CheckAndDoEquipEvent(IEquippable item) => this.Item = item;
     }
 }

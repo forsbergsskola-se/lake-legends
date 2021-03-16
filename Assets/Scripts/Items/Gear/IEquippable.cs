@@ -4,5 +4,7 @@ namespace Items.Gear
     {
         string Name { get; }
         string ID { get; }
+        
+        EquipmentType EquipmentType { get; }
     }
 }
