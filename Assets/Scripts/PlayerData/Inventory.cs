@@ -20,6 +20,11 @@ namespace PlayerData
         public Inventory(IInventorySaver saver, IMessageHandler messageHandler)
         {
             this.saver = saver;
+            messageHandler?.SubscribeTo<EndFishOMeterEvent>(eve =>
+            {
+                if (eve.catchItem != null && eve.catchItem is IItem item)
+                    AddItem(item);
+            });
         }
 
         public virtual bool AddItem(IItem iItem)

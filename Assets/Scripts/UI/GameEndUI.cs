@@ -11,7 +11,7 @@ namespace UI
     {
         [SerializeField] private Text resultText, fishNameText, fishWorth;
         [SerializeField] private Image image;
-        public FishItem fish;
+        public ICatchable catchable;
         public IMessageHandler eventsBroker;
         
         void OnEnable()
@@ -26,13 +26,20 @@ namespace UI
 
         private void UpdateUI()
         {
-            if (fish)
+            if (catchable != null)
             {
                 resultText.text = "You caught something!";
                 image.gameObject.SetActive(true);
-                image.sprite = fish.type.sprite;
-                fishNameText.text = fish.Name;
-                fishWorth.text = $"It's worth {fish.silverValue}!";
+                if (catchable is FishItem fishItem)
+                {
+                    image.sprite = fishItem.type.sprite;
+                    fishNameText.text = fishItem.Name;
+                    fishWorth.text = $"It's worth {fishItem.silverValue}!";   
+                }
+                else
+                {
+                    fishNameText.text = catchable.Name;
+                }
             }
             else
             {
@@ -58,7 +65,7 @@ namespace UI
         private void OnDisable()
         {
             eventsBroker = null;
-            if (fish != null) fish = null; 
+            catchable = null; 
             resultText.text = "";
             fishNameText.text = "";
             fishWorth.text = "";
