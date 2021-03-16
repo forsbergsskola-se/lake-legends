@@ -10,8 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d0d29d39a6021b418475c169d89a6b5, type: 3}
-  m_Name: DebugRod
+  m_Name: Rod2
   m_EditorClassIdentifier: 
-  ItemID: b9ac9882-a175-439f-a3e6-4466386f9044
-  equipmentType: {fileID: 11400000, guid: 209e187ffcdf5d545987b59224fd1959, type: 2}
-  rarity: {fileID: 11400000, guid: 82ad7896271fb9741805d898dd41b840, type: 2}
+  ItemID: 3fe48758-2204-409f-a40b-802b376b75d3
+  equipmentVariant: {fileID: 11400000, guid: d834859a2d225314b9acc023afff901b, type: 2}
+  rarity: {fileID: 11400000, guid: f5d0f8625b1dd954e92a886638d3ec48, type: 2}
+  lineStrength:
+    min: 1
+    max: 11
+  attraction:
+    min: 1
+    max: 11
+  accuracy:
+    min: 1
+    max: 11

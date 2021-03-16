@@ -9,9 +9,13 @@ namespace Items.Gear
     public class Equipment : ScriptableObject, IItem, IEquippable
     {
         [SerializeField] private string ItemID;
-        
-        [SerializeField] public EquipmentType equipmentType;
+
+        [SerializeField] public EquipmentVariant equipmentVariant;
         [SerializeField] private Rarity rarity;
+        
+        [SerializeField] public FloatRange lineStrength = new FloatRange(22,28);
+        [SerializeField] public FloatRange attraction = new FloatRange(22,28);
+        [SerializeField] public FloatRange accuracy = new FloatRange(22,28);
         
         public string ID {
             get
@@ -44,6 +48,9 @@ namespace Items.Gear
             {
                 ItemID = Guid.NewGuid().ToString();
             }
+            lineStrength.Validate();
+            attraction.Validate();
+            accuracy.Validate();
         }
         
         public void Use()

@@ -21,7 +21,7 @@ namespace Items
         public void DoEquip(CheckAndDoEquipEvent eventRef)
         {
             var itemToEquip = eventRef.Item;
-            if (itemToEquip.equipmentType.name.Equals(myPreferredEquipment.name))
+            if (itemToEquip.equipmentVariant.EquipmentType == myPreferredEquipment)
             {
                 if (equippedItem == null) UnEquipAndEquip(itemToEquip);
                 if (itemToEquip.ID == equippedItem.ID) return;
