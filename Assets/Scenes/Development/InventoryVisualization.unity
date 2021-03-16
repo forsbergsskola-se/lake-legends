@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 438976675}
   - component: {fileID: 438976674}
   - component: {fileID: 438976678}
+  - component: {fileID: 438976679}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -237,6 +238,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0435ad92ea7052f46a91fc0181795f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &438976679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438976673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b103c8cf8b9c848bcc243a37294b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  treasureFactory: {fileID: 11400000, guid: f356ca445c91ca94cbb2c77c3fac5ecd, type: 2}
 --- !u!1 &990557363
 GameObject:
   m_ObjectHideFlags: 0
