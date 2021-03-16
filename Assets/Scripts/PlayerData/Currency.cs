@@ -1,4 +1,5 @@
-﻿using EventManagement;
+﻿using System.Threading.Tasks;
+using EventManagement;
 using Events;
 using Saving;
 using UnityEngine;
@@ -28,13 +29,19 @@ namespace PlayerData
                 silver = value; 
                 Debug.Log($"Current Silver {silver}");
                 messageHandler.Publish(new UpdateSilverUIEvent(silver));
+                Serialize();
             }
         }
 
         public int Gold
         {
             get => gold;
-            private set => gold = value;
+            private set
+            { 
+                gold = value;
+                Debug.Log($"Current Gold {gold}");
+                Serialize();
+            }
         }
 
         public void Serialize()
@@ -42,11 +49,12 @@ namespace PlayerData
             saver.SaveCurrencies(CurrencyKey, this);
         }
 
-        public void Deserialize()
+        public async Task Deserialize()
         {
-            var currencies = saver.LoadCurrencies(CurrencyKey) ?? new CurrencySave(0 ,0);
-            Silver = currencies.Silver;
-            Gold = currencies.Gold;
+            var currencies = await saver.LoadCurrencies(CurrencyKey);
+            silver = currencies.Silver;
+            messageHandler.Publish(new UpdateSilverUIEvent(silver));
+            gold = currencies.Gold;
         }
     }
 }

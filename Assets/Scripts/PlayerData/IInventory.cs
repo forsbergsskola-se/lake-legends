@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Items;
 
 namespace PlayerData
@@ -10,7 +11,8 @@ namespace PlayerData
         bool AddItem(IItem iItem);
         bool RemoveItem(IItem iItem);
         Dictionary<string, int> GetAllItems();
-        void Deserialize();
+        Dictionary<string, GearInstance> GetGear();
+        Task Deserialize();
         void Serialize();
     }
 }

@@ -1,8 +1,7 @@
-﻿using System;
+using System.Threading.Tasks;
 using EventManagement;
 using Events;
 using Items;
-using Newtonsoft.Json;
 using Saving;
 using UnityEngine;
 using JsonSerializer = Saving.JsonSerializer;
@@ -15,56 +14,61 @@ namespace PlayerData
         private ICurrency currency;
         private IMessageHandler eventBroker;
         private FisherDexData fisherDexData;
+        private GearInventory gearInventory;
 
         public IInventory CurrentInventory => inventory;
+        public GearInventory GearInventory => gearInventory;
         public FisherDexData FisherDexData => fisherDexData;
         private void Start()
         {
             eventBroker = FindObjectOfType<EventsBroker>();
-            var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
-            inventory = new Inventory(inventorySaver, eventBroker);
-            currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
-            fisherDexData = new FisherDexData(inventorySaver, eventBroker);
-            LoadInventory();
-            PrintInventoryContent();
+            eventBroker?.SubscribeTo<LoginEvent>(OnLogin);
+        }
+
+        private async void OnLogin(LoginEvent obj)
+        {
+            if (obj.Debug)
+            {
+                var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
+                gearInventory = new GearInventory(new GearSaver(new PlayerPrefsSaver(), new JsonSerializer()));
+                inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
+                currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
+                fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+            }
+            else
+            {
+                var inventorySaver = new InventorySaver(new DataBaseSaver(obj.User), new JsonSerializer());
+                gearInventory = new GearInventory(new GearSaver(new DataBaseSaver(obj.User), new JsonSerializer()));
+                inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
+                currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
+                fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+            }
+            
+            await LoadInventory();
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
-            eventBroker?.Publish(new EnableInventoryEvent(FisherDexData));
+            eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
+            eventBroker?.Publish(new EnableInventoryEvent(inventory));
         }
 
         private void OnEndFishing(EndFishOMeterEvent obj)
         {
             if (obj.catchItem == null) return;
-            PrintInventoryContent();
             if (obj.catchItem is FishItem fishItem)
             {
                 eventBroker.Publish(new IncreaseSilverEvent(fishItem.silverValue));
             }
         }
-
-        private void OnDestroy()
+        
+        private async Task LoadInventory()
         {
-            inventory.Serialize();
-            currency.Serialize();
-            fisherDexData.Serialize();
-        }
-
-        private void LoadInventory()
-        {
-            inventory.Deserialize();
-            currency.Deserialize();
-            fisherDexData.Deserialize();
+            await inventory.Deserialize();
+            await currency.Deserialize();
+            await fisherDexData.Deserialize();
         }
 
         public void AddItemToInventory(IItem item)
         {
             inventory.AddItem(item);
-            PrintInventoryContent();
-        }
-
-        private void PrintInventoryContent()
-        {
-            var content = JsonConvert.SerializeObject(inventory.GetAllItems(), Formatting.Indented);
-            Debug.Log($"List Of Inventory Items {content}");
         }
     }
 }

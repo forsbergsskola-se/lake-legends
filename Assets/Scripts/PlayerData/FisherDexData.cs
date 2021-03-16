@@ -1,4 +1,5 @@
-﻿using EventManagement;
+﻿using System.Threading.Tasks;
+using EventManagement;
 using Events;
 using Items;
 using Saving;
@@ -25,12 +26,26 @@ namespace PlayerData
                 items[iItem.ID]++;
             else
                 items.Add(iItem.ID, 1);
+            Serialize();
             return true;
         }
 
         public override bool RemoveItem(IItem iItem)
         {
             return false;
+        }
+        
+        public override async Task Deserialize()
+        {
+            var savedInventory = await saver.LoadInventory(InventoryKey);
+            if (savedInventory == null)
+                return;
+            items = savedInventory;
+        }
+
+        public override void Serialize()
+        {
+            saver.SaveInventory(InventoryKey, this);
         }
     }
 }

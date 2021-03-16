@@ -1,4 +1,7 @@
 using System.Collections;
+using EventManagement;
+using Events;
+using Firebase;
 using UnityEngine;
 
 namespace Auth
@@ -20,11 +23,7 @@ namespace Auth
 
             CurrentUser = userTask.Result;
             Debug.Log($"User {CurrentUser.ID} Logged In");
-        }
-
-        private void OnDestroy()
-        {
-            authorizer.LogOut();
+            FindObjectOfType<EventsBroker>().Publish(new LoginEvent(CurrentUser, debug));
         }
     }
 }

@@ -42,7 +42,13 @@ namespace Items
                 for (var i = 0; i < item.Value; i++)
                 {
                     var instance = Instantiate(slotPrefab, gridParent);
-                    instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as IItem);
+                    if (AllItems.ItemIndexer.indexer.ContainsKey(item.Key))
+                        instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as IItem);
+                    else
+                    {
+                        var gearItem = inventory.GetGear()[item.Key];
+                        instance.Setup(gearItem);
+                    }
                     inventorySlots.Add(instance);
                 }
             }
