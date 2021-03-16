@@ -4,10 +4,10 @@ namespace Events
 {
     public class EndFishOMeterEvent
     {
-        public FishItem fishItem;
+        public readonly ICatchable catchItem;
 
-        public EndFishOMeterEvent(FishItem fishItem) {
-            this.fishItem = fishItem;
+        public EndFishOMeterEvent(ICatchable catchItem) {
+            this.catchItem = catchItem;
         }
     }
 }

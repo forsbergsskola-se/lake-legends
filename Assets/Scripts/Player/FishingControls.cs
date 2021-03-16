@@ -16,7 +16,7 @@ namespace Player
         [SerializeField] private string castRodText = "Tap the screen to cast your rod";
         [SerializeField] private string waitingForBiteText = "Waiting for a bite...";
         [SerializeField] private string nibbleText = "Just a nibble... Waiting  for a bite...";
-        [SerializeField] private string biteText = "Got a fish on the hook! Tap to reel it in!";
+        [SerializeField] private string biteText = "Got a catchable on the hook! Tap to reel it in!";
         
         private float timeRemaining;
         private bool isRodCast;

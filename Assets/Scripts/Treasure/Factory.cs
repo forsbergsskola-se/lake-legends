@@ -41,13 +41,8 @@ namespace Treasure
             {
                 if (string.IsNullOrEmpty(itemID)) itemID = System.Guid.NewGuid().ToString();
                     return itemID;
-                
-                Debug.LogError("Item IDs Aren't Set Up Correctly!");
-                throw new System.Exception("Item IDs Aren't Set Up Correctly!");
             }
         }
-
-        
         public string Name => name;
         public int Rarity => 0;
         public FloatRange RandomStopTimeRange => randomStopTimeRange;

@@ -23,8 +23,8 @@ namespace PlayerData
             this.saver = saver;
             messageHandler?.SubscribeTo<EndFishOMeterEvent>(eve =>
             {
-                if (eve.fishItem != null)
-                    AddItem(eve.fishItem);
+                if (eve.catchItem != null && eve.catchItem is IItem item)
+                    AddItem(item);
             });
         }
 
