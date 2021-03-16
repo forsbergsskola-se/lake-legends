@@ -19,7 +19,7 @@ namespace Items
                 inventorySlots.Add(instance);
             }
             SortAscended();
-            for (var i = 0; i < AllItems.ItemIndexer.indexer.Count - items.Count; i++)
+            for (var i = 0; i < AllItems.ItemIndexer.indexer.Count(item => item.Value is FishItem) - items.Count; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
             }
