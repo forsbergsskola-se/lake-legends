@@ -585,6 +585,10 @@ MonoBehaviour:
   hookChance: 100
   minimumTimer: 1
   maximumTimer: 6
+  castRodText: Tap the screen to cast your rod
+  waitingForBiteText: Waiting for a bite...
+  nibbleText: Just a nibble... Waiting  for a bite...
+  biteText: Got a fish on the hook! Tap to reel it in!
   floatNoBite: {fileID: 2123959104}
   floatNibbleOrBite: {fileID: 137161782}
   statusText: {fileID: 999321389}
@@ -762,8 +766,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishingTime: 10
   targetBarSpeedMultiplier: 0.5
-  fishPositionSpeedMultiplier: 0.3
-  directionModifier: 1
+  fishLeftSpeed: 0.3
+  fishRightSpeed: 1.3
   factory: {fileID: 11400000, guid: 73a2811e4cbf86c478c040a52f57e2ea, type: 2}
   fishOMeterUI: {fileID: 0}
   gameEndUI: {fileID: 0}
@@ -2043,6 +2047,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1640428976}
     m_Modifications:
+    - target: {fileID: 5908813462344715873, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
+      propertyPath: factory
+      value: 
+      objectReference: {fileID: 11400000, guid: 53827b0cf7d020248bc5ea00fb42a239, type: 2}
     - target: {fileID: 5908813462344715873, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
       propertyPath: gameEndUI
       value: 

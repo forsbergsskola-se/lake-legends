@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Items
 {    
     [CreateAssetMenu(menuName = "ScriptableObjects/FishItem")]
-    public class FishItem : ScriptableObject, IItem
+    public class FishItem : ScriptableObject, IItem, ICatchable
     {
         public int silverValue = 10;
         [SerializeField] private string ItemID;
@@ -55,6 +55,11 @@ namespace Items
 
         public string Name => name;
         public int Rarity => rarity.starAmount;
+        public FloatRange RandomStopTimeRange => randomStopTimeRange;
+        public FloatRange RandomMoveTimeRange => randomMoveTimeRange;
+        public float CatchableSpeed => fishSpeed;
+        public float CatchableStrength => fishStrength;
+        public string Bio => type.bio;
         public void Use()
         {
             Debug.Log($"Use {Name}");

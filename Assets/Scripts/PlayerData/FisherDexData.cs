@@ -2,6 +2,7 @@
 using Events;
 using Items;
 using Saving;
+using UnityEngine;
 
 namespace PlayerData
 {
@@ -12,11 +13,12 @@ namespace PlayerData
         {
             messageHandler?.SubscribeTo<EndFishOMeterEvent>(eve =>
             {
-                if (eve.fishItem != null)
-                    AddItem(eve.fishItem);
+                Debug.Log(eve.catchItem);
+                if (eve.catchItem != null && eve.catchItem is FishItem fishItem)
+                    AddItem(fishItem);
             });
         }
-
+        
         public override bool AddItem(IItem iItem)
         {
             if (items.ContainsKey(iItem.ID))

@@ -34,7 +34,7 @@ namespace Player
         private bool gameRunning;
         private bool captureZoneStopped;
 
-        private FishItem fish;
+        private ICatchable catchable;
         private IMessageHandler eventsBroker;
         private float fishSpeedMagnitudeValue;
 
@@ -74,13 +74,13 @@ namespace Player
         {
             successMeter = 3.0f;
             
-            fish = factory.GenerateFish();
+            catchable = factory.GenerateFish();
             
             // TODO: Replace this base value with the corresponding RodStat base value
             captureZoneWidth = 1f;
             
-            fishPercentMod = Mathf.Abs((fish.fishStrength / 100));
-            fishSpeedMagnitudeValue = fish.fishSpeed * targetBarSpeedMultiplier;
+            fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
+            fishSpeedMagnitudeValue = catchable.CatchableSpeed * targetBarSpeedMultiplier;
 
             
             // TODO: Include the AccuracyModifier from the equipped Fishing rod
@@ -108,7 +108,7 @@ namespace Player
         private void InitializeCaptureZone()
         {
             captureZonePosition = Random.Range(0f, 1f);
-            StartCoroutine(ChooseRandomDirection(fish.randomMoveTimeRange.Randomize()));
+            StartCoroutine(ChooseRandomDirection(catchable.RandomMoveTimeRange.Randomize()));
         }
 
         private void InitializeFishSpawnPoint()
@@ -166,14 +166,14 @@ namespace Player
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             EndGame();
-            fish = null;
+            catchable = null;
         }
         
         private void FishEscape()
         {
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
-            fish = null;
+            catchable = null;
             EndGame();
         }
 
@@ -195,9 +195,9 @@ namespace Player
         {
             gameEndUI.gameObject.SetActive(true);
             gameEndUI.eventsBroker = this.eventsBroker;
-            gameEndUI.fish = this.fish;
+            gameEndUI.catchable = this.catchable;
             
-            eventsBroker.Publish(new EndFishOMeterEvent(fish));
+            eventsBroker.Publish(new EndFishOMeterEvent(catchable));
             fishOMeterMinigamePanel.SetActive(false);
         }
 
@@ -205,7 +205,7 @@ namespace Player
         {
             captureZoneStopped = true;
             yield return new WaitForSeconds(time);
-            StartCoroutine(ChooseRandomDirection(fish.randomMoveTimeRange.Randomize()));
+            StartCoroutine(ChooseRandomDirection(catchable.RandomMoveTimeRange.Randomize()));
         }
 
         private IEnumerator ChooseRandomDirection(float time)
@@ -219,7 +219,7 @@ namespace Player
                 currentCaptureZoneTime = Mathf.Lerp(1, 0, currentCaptureZoneTime);
             }
             yield return new WaitForSeconds(time);
-            StartCoroutine(Stop(fish.randomStopTimeRange.Randomize()));
+            StartCoroutine(Stop(catchable.RandomStopTimeRange.Randomize()));
         }
     }
 }

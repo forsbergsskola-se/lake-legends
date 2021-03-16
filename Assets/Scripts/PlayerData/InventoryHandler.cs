@@ -28,14 +28,17 @@ namespace PlayerData
             LoadInventory();
             PrintInventoryContent();
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
-            eventBroker?.Publish(new EnableInventoryEvent(CurrentInventory));
+            eventBroker?.Publish(new EnableInventoryEvent(FisherDexData));
         }
 
         private void OnEndFishing(EndFishOMeterEvent obj)
         {
-            if (obj.fishItem == null) return;
+            if (obj.catchItem == null) return;
             PrintInventoryContent();
-            eventBroker.Publish(new IncreaseSilverEvent(obj.fishItem.silverValue));
+            if (obj.catchItem is FishItem fishItem)
+            {
+                eventBroker.Publish(new IncreaseSilverEvent(fishItem.silverValue));
+            }
         }
 
         private void OnDestroy()
