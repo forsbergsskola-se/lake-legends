@@ -7,19 +7,19 @@ namespace Treasure
 {
     public class TreasureGenerator : MonoBehaviour
     {
-        public Factory treasureFactory;
+        public TreasureFactory treasureTreasureFactory;
 
 
         public void GenerateTreasure()
 
         {
-            var treasure = treasureFactory.GenerateTreasure();
+            var treasure = treasureTreasureFactory.GenerateTreasure();
             FindObjectOfType<InventoryHandler>().AddItemToInventory(treasure);
         }
 
         public void AddTreasure()
         {
-            FindObjectOfType<InventoryHandler>().AddItemToInventory(treasureFactory);
+            FindObjectOfType<InventoryHandler>().AddItemToInventory(treasureTreasureFactory);
             
         }
 

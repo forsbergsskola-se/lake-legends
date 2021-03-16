@@ -11,7 +11,7 @@ namespace Fish
     {
         public FishItem[] fishItems;
 
-        public FishItem GenerateFish()
+        public ICatchable GenerateFish()
         {
             var randomNum = Random.Range(0f, fishItems.Sum(item => item.rarityWeight));
             Debug.Log(randomNum);

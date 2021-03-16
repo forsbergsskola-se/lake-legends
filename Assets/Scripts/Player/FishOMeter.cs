@@ -3,6 +3,7 @@ using EventManagement;
 using Events;
 using Fish;
 using Items;
+using Treasure;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,9 +17,13 @@ namespace Player
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
         [SerializeField] private Factory factory;
+        [SerializeField] private TreasureFactory treasureFactory;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
+
+        const int treasureChanceMaxValue = 101;
+        [SerializeField] [Range(0,100)] private int treasureChance;
 
         private float directionMod;
         private float successMeter;
@@ -70,11 +75,16 @@ namespace Player
             }
         }
 
+        private bool IsTreasureCatch()
+        {
+            return Random.Range(0, treasureChanceMaxValue) < treasureChance;
+        }
+
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
             successMeter = 3.0f;
-            
-            catchable = factory.GenerateFish();
+
+            catchable = IsTreasureCatch() ? treasureFactory : factory.GenerateFish();
             
             // TODO: Replace this base value with the corresponding RodStat base value
             captureZoneWidth = 1f;
