@@ -16,11 +16,6 @@ namespace Items
             FindObjectOfType<EventsBroker>().SubscribeTo<EnableFisherDexEvent>(Setup);
         }
         
-        protected override void Setup(EnableInventoryEvent inventoryEvent)
-        {
-            
-        }
-
         private void Setup(EnableFisherDexEvent inventoryEvent)
         {
             Setup(inventoryEvent.Inventory);
@@ -29,6 +24,10 @@ namespace Items
         protected override void Setup(IInventory inventory)
         {
             var items = inventory.GetAllItems();
+            foreach (var pair in items)
+            {
+                Debug.Log(pair.Key);
+            }
             foreach (var item in items)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
@@ -37,7 +36,7 @@ namespace Items
                 inventorySlots.Add(instance);
             }
             if (inventorySlots != null && inventorySlots.Count != 0)
-                ToggleSort();
+                SortAscended();
             for (var i = 0; i < AllItems.ItemIndexer.indexer.Count(item => item.Value is FishItem) - items.Count; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);

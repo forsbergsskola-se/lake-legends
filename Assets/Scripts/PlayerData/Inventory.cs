@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EventManagement;
 using Events;
 using Items;
@@ -40,14 +41,16 @@ namespace PlayerData
         {
             if (obj.Item is GearInstance item)
                 gearInventory.AddItem(item);
-            AddItem(obj.Item);
+            if (!(obj.Item is FishItem))
+                AddItem(obj.Item);
         }
         
         private void GetItemToRemove(RemoveItemFromInventoryEvent obj)
         {
             if (obj.Item is GearInstance item)
                 gearInventory.RemoveItem(item);
-            RemoveItem(obj.Item);
+            if (!(obj.Item is FishItem))
+                RemoveItem(obj.Item);
         }
         
         public virtual bool AddItem(IItem iItem)
@@ -84,9 +87,9 @@ namespace PlayerData
             return gearInventory.GeneratedGear;
         }
 
-        public virtual async void Deserialize()
+        public virtual async Task Deserialize()
         {
-            gearInventory.Deserialize();
+            await gearInventory.Deserialize();
             var savedInventory = await saver.LoadInventory(InventoryKey);
             if (savedInventory == null)
                 return;

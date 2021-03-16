@@ -6,7 +6,7 @@
 
         public DebugUser()
         {
-            ID = "User";
+            ID = "Debug User";
         }
     }
 }

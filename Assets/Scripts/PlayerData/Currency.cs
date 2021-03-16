@@ -1,4 +1,5 @@
-﻿using EventManagement;
+﻿using System.Threading.Tasks;
+using EventManagement;
 using Events;
 using Saving;
 using UnityEngine;
@@ -48,11 +49,12 @@ namespace PlayerData
             saver.SaveCurrencies(CurrencyKey, this);
         }
 
-        public async void Deserialize()
+        public async Task Deserialize()
         {
             var currencies = await saver.LoadCurrencies(CurrencyKey);
-            Silver = currencies.Silver;
-            Gold = currencies.Gold;
+            silver = currencies.Silver;
+            messageHandler.Publish(new UpdateSilverUIEvent(silver));
+            gold = currencies.Gold;
         }
     }
 }

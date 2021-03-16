@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PlayerData;
 
 namespace Saving
@@ -6,6 +7,6 @@ namespace Saving
     public interface IGearSaver
     {
         void SaveGear(string key, GearInventory inventory);
-        Dictionary<string, GearInstance> LoadGear(string key);
+        Task<Dictionary<string, GearInstance>> LoadGear(string key);
     }
 }

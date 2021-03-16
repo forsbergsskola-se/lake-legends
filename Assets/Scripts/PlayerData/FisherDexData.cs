@@ -1,4 +1,5 @@
-﻿using EventManagement;
+﻿using System.Threading.Tasks;
+using EventManagement;
 using Events;
 using Items;
 using Saving;
@@ -34,9 +35,9 @@ namespace PlayerData
             return false;
         }
         
-        public override void Deserialize()
+        public override async Task Deserialize()
         {
-            var savedInventory = saver.LoadInventory(InventoryKey);
+            var savedInventory = await saver.LoadInventory(InventoryKey);
             if (savedInventory == null)
                 return;
             items = savedInventory;

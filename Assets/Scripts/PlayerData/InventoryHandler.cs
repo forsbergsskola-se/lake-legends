@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using EventManagement;
 using Events;
 using Items;
@@ -24,7 +25,7 @@ namespace PlayerData
             eventBroker?.SubscribeTo<LoginEvent>(OnLogin);
         }
 
-        private void OnLogin(LoginEvent obj)
+        private async void OnLogin(LoginEvent obj)
         {
             if (obj.Debug)
             {
@@ -42,7 +43,8 @@ namespace PlayerData
                 currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
             }
-            LoadInventory();
+            
+            await LoadInventory();
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
@@ -57,11 +59,11 @@ namespace PlayerData
             }
         }
         
-        private void LoadInventory()
+        private async Task LoadInventory()
         {
-            inventory.Deserialize();
-            currency.Deserialize();
-            fisherDexData.Deserialize();
+            await inventory.Deserialize();
+            await currency.Deserialize();
+            await fisherDexData.Deserialize();
         }
 
         public void AddItemToInventory(IItem item)

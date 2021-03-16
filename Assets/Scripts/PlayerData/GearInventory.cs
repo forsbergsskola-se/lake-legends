@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Saving;
 using UnityEngine;
 
@@ -32,9 +33,9 @@ namespace PlayerData
             Debug.Log(new JsonSerializer().SerializeObject(generatedGear));
         }
         
-        public void Deserialize()
+        public async Task Deserialize()
         {
-            var savedInventory = saver.LoadGear(GearKey);
+            var savedInventory = await saver.LoadGear(GearKey);
             if (savedInventory == null)
                 return;
             generatedGear = savedInventory;
