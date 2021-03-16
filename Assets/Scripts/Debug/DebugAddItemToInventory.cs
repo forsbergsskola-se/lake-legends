@@ -1,6 +1,7 @@
 using EventManagement;
 using Events;
 using Items.Gear;
+using PlayerData;
 using UnityEngine;
 
 public class DebugAddItemToInventory : MonoBehaviour
@@ -17,6 +18,6 @@ public class DebugAddItemToInventory : MonoBehaviour
     public void DebugAddItemButton()
     {
         Debug.Log($"Item to add is {itemToAdd}");
-        eventsBroker.Publish(new AddItemToInventoryEvent(itemToAdd));
+        eventsBroker.Publish(new AddItemToInventoryEvent(new GearInstance(new GearSaveData(itemToAdd))));
     }
 }

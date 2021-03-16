@@ -32,5 +32,18 @@ namespace PlayerData
         {
             return false;
         }
+        
+        public override void Deserialize()
+        {
+            var savedInventory = saver.LoadInventory(InventoryKey);
+            if (savedInventory == null)
+                return;
+            items = savedInventory;
+        }
+
+        public override void Serialize()
+        {
+            saver.SaveInventory(InventoryKey, this);
+        }
     }
 }
