@@ -25,10 +25,5 @@ namespace Auth
             Debug.Log($"User {CurrentUser.ID} Logged In");
             FindObjectOfType<EventsBroker>().Publish(new LoginEvent(CurrentUser, debug));
         }
-
-        private void OnDestroy()
-        {
-            authorizer.LogOut();
-        }
     }
 }
