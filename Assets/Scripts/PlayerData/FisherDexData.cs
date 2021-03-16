@@ -13,14 +13,12 @@ namespace PlayerData
         {
             messageHandler?.SubscribeTo<EndFishOMeterEvent>(eve =>
             {
-                Debug.Log(eve.fishItem);
-                if (eve.fishItem != null)
-                {
-                    AddItem(eve.fishItem);
-                }
+                Debug.Log(eve.catchItem);
+                if (eve.catchItem != null && eve.catchItem is FishItem fishItem)
+                    AddItem(fishItem);
             });
         }
-
+        
         public override bool AddItem(IItem iItem)
         {
             if (items.ContainsKey(iItem.ID))

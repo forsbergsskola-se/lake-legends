@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hookChance: 100
-  minimumTimer: 1
+  minimumTimer: 4
   maximumTimer: 6
   floatNoBite: {fileID: 2123959104}
   floatNibbleOrBite: {fileID: 137161782}
@@ -761,8 +761,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingTime: 10
-  targetBarSpeedModifier: 0
-  fishPositionSpeedModifier: 0
+  targetBarSpeedMultiplier: 0.2
+  fishPositionSpeedMultiplier: 0.3
+  upwardDirectionMultiplier: 1.5
   factory: {fileID: 11400000, guid: 73a2811e4cbf86c478c040a52f57e2ea, type: 2}
   fishOMeterUI: {fileID: 0}
   gameEndUI: {fileID: 0}
