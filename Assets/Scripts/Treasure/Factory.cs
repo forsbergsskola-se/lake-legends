@@ -33,7 +33,10 @@ namespace Treasure
             
             throw new System.Exception("TreasureFactory with name " + this.name + " Is Empty");
         }
-        
+        public void Use()
+        {
+            throw new System.NotImplementedException();
+        }
         public string ID
         {
             get
@@ -45,6 +48,7 @@ namespace Treasure
         }
         public string Name => name;
         public int Rarity => 0;
+
         public FloatRange RandomStopTimeRange => randomStopTimeRange;
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;
         public float CatchableSpeed => catchableSpeed;
