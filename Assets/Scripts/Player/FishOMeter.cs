@@ -82,6 +82,8 @@ namespace Player
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
             fishSpeedMagnitudeValue = catchable.CatchableSpeed * targetBarSpeedMultiplier;
 
+            
+            // TODO: Include the AccuracyModifier from the equipped Fishing rod
             captureZoneWidth = captureZoneWidth * fishPercentMod;
             
             minimumZone = 0 + captureZoneWidth  / 2;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace UI
 {
@@ -10,7 +11,8 @@ namespace UI
     
         private void OnMouseUp()
         {
-            onRelease.Invoke();
+            if(!EventSystem.current.IsPointerOverGameObject())
+                onRelease.Invoke();
         }
     }
 }
