@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EventManagement;
 using Events;
 using Fish;
 using PlayerData;
@@ -9,16 +10,34 @@ namespace Items
 {
     public class FisherDexUI : InventoryUI
     {
+        protected override void OnEnable()
+        { 
+            Clear();
+            FindObjectOfType<EventsBroker>().SubscribeTo<EnableFisherDexEvent>(Setup);
+        }
+        
+        protected override void Setup(EnableInventoryEvent inventoryEvent)
+        {
+            
+        }
+
+        private void Setup(EnableFisherDexEvent inventoryEvent)
+        {
+            Setup(inventoryEvent.Inventory);
+        }
+        
         protected override void Setup(IInventory inventory)
         {
             var items = inventory.GetAllItems();
             foreach (var item in items)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
-                instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as FishItem);
+                if (AllItems.ItemIndexer.indexer.ContainsKey(item.Key))
+                    instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as FishItem);
                 inventorySlots.Add(instance);
             }
-            SortAscended();
+            if (inventorySlots != null && inventorySlots.Count != 0)
+                ToggleSort();
             for (var i = 0; i < AllItems.ItemIndexer.indexer.Count(item => item.Value is FishItem) - items.Count; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);

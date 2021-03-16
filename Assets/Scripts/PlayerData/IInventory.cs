@@ -10,6 +10,7 @@ namespace PlayerData
         bool AddItem(IItem iItem);
         bool RemoveItem(IItem iItem);
         Dictionary<string, int> GetAllItems();
+        Dictionary<string, GearInstance> GetGear();
         void Deserialize();
         void Serialize();
     }
