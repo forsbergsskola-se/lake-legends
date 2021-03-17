@@ -104,8 +104,8 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - depthDistance: 1.6
-    - depthStrength: 9
+    - depthDistance: 1.25
+    - depthStrength: 0
     - displaceStrength: 0.5
     - normalStrength: 0.069
     - normalTiling: 100
@@ -118,7 +118,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - bottomColor: {r: 0, g: 0, b: 0, a: 1}
+    - bottomColor: {r: 0, g: 0, b: 0, a: 0.98039216}
     - topColor: {r: 0.05852458, g: 0.17139344, b: 0.255, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8287981977321839083
