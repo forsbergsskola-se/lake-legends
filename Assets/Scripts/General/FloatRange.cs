@@ -13,6 +13,10 @@ public class FloatRange
     [SerializeField] private float min = 0;
     [SerializeField] private float max = 1;
 
+    public float Min => min;
+
+    public float Max => max;
+
     public void Validate()
     {
         min = Mathf.Clamp(min, float.MinValue, max);
