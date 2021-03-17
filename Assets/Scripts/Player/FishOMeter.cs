@@ -52,6 +52,36 @@ namespace Player
         private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + DivideByTwo(captureZoneWidth) &&
                                      fishPositionCenterPoint >= captureZonePosition - DivideByTwo(captureZoneWidth);
 
+        private float Attraction
+        {
+            get
+            {
+                if (playerBody != null)
+                    return playerBody.TotalAttraction;
+                return 0;
+            }
+        }
+        
+        private float Accuracy
+        {
+            get
+            {
+                if (playerBody != null)
+                    return playerBody.TotalAccuracy;
+                return 0;
+            }
+        }
+        
+        private float LineStrength
+        {
+            get
+            {
+                if (playerBody != null)
+                    return playerBody.TotalLineStrength;
+                return 0;
+            }
+        }
+
         private float DivideByTwo(float value)
         {
             return value / 2; 
@@ -88,11 +118,11 @@ namespace Player
         {
             successMeter = startingSuccessMeter;
             
-            catchable = factory.GenerateFish(playerBody.TotalAttraction);
+            catchable = factory.GenerateFish(Attraction);
             captureZoneWidth = 1;
             
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
-            accuracyPercentMod = (playerBody.TotalAccuracy * 0.001f);
+            accuracyPercentMod = (Accuracy * 0.001f);
             
             fishSpeedMagnitudeValue = catchable.CatchableSpeed * targetBarSpeedMultiplier;
             
@@ -135,7 +165,7 @@ namespace Player
             }
             else
             {
-                var multiplier = Mathf.Lerp(1,0,playerBody.TotalLineStrength * 0.001f);
+                var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
                 var successMeterProgress = Time.deltaTime * multiplier;
                 successMeter -= successMeterProgress;
             }
