@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Events
+﻿namespace Events
 {
     public class PlaySoundEvent
     {
