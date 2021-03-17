@@ -55,7 +55,7 @@ namespace PlayerData
         
         public void Equip()
         {
-            Debug.Log("Equipped");
+            Use();
         }
         
         public void Sell()
