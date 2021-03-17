@@ -1,4 +1,3 @@
-using System;
 using EventManagement;
 using Events;
 using Items;
@@ -9,7 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace PlayerData
 {
-    public class GearInstance : IItem, IEquippable
+    public class GearInstance : IItem, IEquippable, ISellable
     {
         public GearSaveData GearSaveData;
         private Equipment equipment;
@@ -41,7 +40,7 @@ namespace PlayerData
 
         public string ID => GearSaveData.instanceID;
         [JsonIgnore] public EquipmentType EquipmentType => Equipment.equipmentVariant.EquipmentType;
-        [JsonIgnore] public string Name => Equipment.Name;
+        [JsonIgnore] public string Name => Equipment.equipmentVariant.name;
         [JsonIgnore] public int Rarity => Equipment.Rarity;
         public void Use()
         {
@@ -50,6 +49,26 @@ namespace PlayerData
             // Need to publish to showcase UI here in stead of event directly
             Debug.Log("Firing use-event");
             broker.Publish(new CheckAndDoEquipEvent(this));
+        }
+        
+        public void Equip()
+        {
+            Debug.Log("Equipped");
+        }
+        
+        public void Sell()
+        {
+            Debug.Log("Sold");
+        }
+
+        public override string ToString()
+        {
+            return
+                $"Rarity: {Equipment.RarityName} \n" +
+                $"Accuracy: {CalculatedAccuracy} \n" +
+                $"Attraction: {CalculatedAttraction} \n" +
+                $"Line Strength: {CalculatedLineStrength} \n" +
+                $"Level: {GearSaveData.level}";
         }
     }
 }
