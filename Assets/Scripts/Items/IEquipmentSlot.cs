@@ -5,7 +5,7 @@ namespace Items
 {
     public interface IEquipmentSlot
     {
-        public IEquippable equippedItem { get; }
+        public IEquippable EquippedItem { get; }
 
         public void DoEquip(CheckAndDoEquipEvent eventRef);
     }

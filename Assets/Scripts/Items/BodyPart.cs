@@ -2,46 +2,48 @@ using System;
 using EventManagement;
 using Events;
 using Items.Gear;
+using PlayerData;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Items
 {
     [Serializable]
-    public class BodyPart : IEquipmentSlot
+    public class BodyPart : MonoBehaviour, IEquipmentSlot
     {
         [SerializeField] private string bodyPartName;
         [SerializeField] private EquipmentType myPreferredEquipment;        
         
         public IMessageHandler eventsBroker;
-        public IEquippable equippedItem { get; private set; }
+        public IEquippable EquippedItem { get; private set; }
 
         private void Start()
         {
-            eventsBroker = Object.FindObjectOfType<EventsBroker>();
+            eventsBroker = FindObjectOfType<EventsBroker>();
             eventsBroker.SubscribeTo<CheckAndDoEquipEvent>(DoEquip);
         }
 
         public void DoEquip(CheckAndDoEquipEvent eventRef)
         {
             var itemToEquip = eventRef.Item;
-            if (itemToEquip.EquipmentType == myPreferredEquipment)
-            {
-                if (equippedItem == null)
+            
+                if (itemToEquip.Equipment.equipmentVariant.EquipmentType == myPreferredEquipment)
                 {
+                    if (EquippedItem == null)
+                    {
+                        UnEquipAndEquip(itemToEquip);
+                        return;
+                    }
+
+                    if (itemToEquip.ID == EquippedItem.ID) return;
                     UnEquipAndEquip(itemToEquip);
-                    return;
                 }
-                if (itemToEquip.ID == equippedItem.ID) return;
-                UnEquipAndEquip(itemToEquip);
-            }
         }
-  
-        private void UnEquipAndEquip(IEquippable itemToEquip)
+
+        private void UnEquipAndEquip(GearInstance itemToEquip)
         {
-            equippedItem = null;
-            equippedItem = itemToEquip;
-            Debug.Log($"Equipped {equippedItem.Name}!");
+            EquippedItem = null;
+            EquippedItem = itemToEquip;
+            Debug.Log($"{bodyPartName} equipped with {EquippedItem.Name}!");
         }
     }
 }

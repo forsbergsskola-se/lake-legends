@@ -18,7 +18,7 @@ namespace PlayerData
         [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction);
         [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy);
 
-        private Equipment Equipment
+        public Equipment Equipment
         {
             get
             {

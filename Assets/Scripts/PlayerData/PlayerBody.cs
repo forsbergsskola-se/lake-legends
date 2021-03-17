@@ -15,10 +15,10 @@ namespace PlayerData
         {
             get
             {
-                totalLineStrength = 0;
-                foreach (var equipment in bodyParts)
+                totalLineStrength = 0f;
+                foreach (var bodyPart in bodyParts)
                 {
-                    if(equipment.equippedItem is GearInstance reference) 
+                    if(bodyPart.EquippedItem is GearInstance reference) 
                         totalLineStrength += reference.CalculatedLineStrength;
                 }
 
@@ -30,10 +30,10 @@ namespace PlayerData
         {
             get
             {
-                totalAttraction = 0;
-                foreach (var equipment in bodyParts)
+                totalAttraction = 0f;
+                foreach (var bodyPart in bodyParts)
                 {
-                    if(equipment.equippedItem is GearInstance reference) 
+                    if(bodyPart.EquippedItem is GearInstance reference) 
                         totalAttraction += reference.CalculatedAttraction;
                 }
 
@@ -45,13 +45,12 @@ namespace PlayerData
         {
             get
             {
-                totalAccuracy = 0;
-                foreach (var equipment in bodyParts)
+                totalAccuracy = 0f;
+                foreach (var bodyPart in bodyParts)
                 {
-                    if(equipment.equippedItem is GearInstance reference) 
+                    if(bodyPart.EquippedItem is GearInstance reference) 
                         totalAccuracy += reference.CalculatedAccuracy;
                 }
-
                 return totalAccuracy;
             }   
         }
