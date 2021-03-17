@@ -17,7 +17,7 @@ namespace PlayerData
         [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction);
         [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy);
 
-        private Equipment Equipment
+        public Equipment Equipment
         {
             get
             {
@@ -48,6 +48,8 @@ namespace PlayerData
             
             // Need to publish to showcase UI here in stead of event directly
             Debug.Log("Firing use-event");
+            
+            //TODO: Send event for opening a ViewItemInfoUI, that has a button that then fires CheckAndDoEquipEvent
             broker.Publish(new CheckAndDoEquipEvent(this));
         }
         
