@@ -769,7 +769,7 @@ MonoBehaviour:
   fishLeftSpeed: 0.3
   fishRightSpeed: 1.3
   factory: {fileID: 0}
-  treasureFactory: {fileID: 0}
+  treasureChest: {fileID: 0}
   fishOMeterUI: {fileID: 0}
   gameEndUI: {fileID: 0}
   fishOMeterMinigamePanel: {fileID: 0}
@@ -2147,6 +2147,10 @@ PrefabInstance:
       propertyPath: gameEndUI
       value: 
       objectReference: {fileID: 1600444470}
+    - target: {fileID: 5908813462344715873, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
+      propertyPath: treasureChest
+      value: 
+      objectReference: {fileID: 11400000, guid: 10cb1cbd72435d14d8fe7bb00679a84b, type: 2}
     - target: {fileID: 5908813462344715873, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
       propertyPath: treasureChance
       value: 100

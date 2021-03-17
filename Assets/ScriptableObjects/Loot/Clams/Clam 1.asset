@@ -10,21 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 233b23d7fc4694c40aa68beb6ac2e378, type: 3}
-  m_Name: TreasureFactory
+  m_Name: Clam 1
   m_EditorClassIdentifier: 
-  itemID: 5f320a62-7bb8-484b-976e-134f58d81784
-  treasureChests:
-  - {fileID: 11400000, guid: 07de1b0dc0e696a459679dc54ce96932, type: 2}
-  - {fileID: 11400000, guid: d45affc8472ff054790586873088e82f, type: 2}
-  - {fileID: 11400000, guid: d45affc8472ff054790586873088e82f, type: 2}
-  weights:
-  - 25
-  - 100
+  itemID: 
+  treasureChests: []
+  weights: []
   randomStopTimeRange:
     min: 0.5
     max: 2
   randomMoveTimeRange:
     min: 1
     max: 3
-  catchableSpeed: 0.5
-  catchableStrength: 75
+  catchableSpeed: 1
+  catchableStrength: 1

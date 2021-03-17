@@ -7,13 +7,13 @@ namespace Treasure
 {
     public class TreasureGenerator : MonoBehaviour
     {
-        public TreasureFactory treasureTreasureFactory;
+        public LootBox treasureLootBox;
 
 
         public void GenerateTreasure()
 
         {
-            var treasure = treasureTreasureFactory.GenerateTreasure();
+            var treasure = treasureLootBox.GenerateTreasure();
             FindObjectOfType<InventoryHandler>().AddItemToInventory(treasure);
         }
 

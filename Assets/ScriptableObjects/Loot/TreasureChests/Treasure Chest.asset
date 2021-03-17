@@ -9,12 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70455a30f3067954f9c28f6783740188, type: 3}
-  m_Name: Chest 2
+  m_Script: {fileID: 11500000, guid: 233b23d7fc4694c40aa68beb6ac2e378, type: 3}
+  m_Name: Treasure Chest
   m_EditorClassIdentifier: 
-  content:
+  itemID: 5f320a62-7bb8-484b-976e-134f58d81784
+  treasureChests:
   - {fileID: 11400000, guid: dac6e2472c0161b43982771585711730, type: 2}
   - {fileID: 11400000, guid: e800d7296001f2a419857e3d6ff993af, type: 2}
-  silverAmount: 300
-  ItemID: e78a4f94-ff60-4b0d-94c3-9cfb7ebc76d6
-  model: {fileID: 0}
+  - {fileID: 11400000, guid: bd481769751712e4ab42caebb5e52781, type: 2}
+  weights:
+  - 10
+  - 30
+  - 60
+  randomStopTimeRange:
+    min: 0.5
+    max: 2
+  randomMoveTimeRange:
+    min: 1
+    max: 3
+  catchableSpeed: 0.5
+  catchableStrength: 75

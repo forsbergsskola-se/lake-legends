@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Items.Gear
 {
     [CreateAssetMenu(fileName = "New Equipment", menuName =  "ScriptableObjects/Equipment")]
-    public class Equipment : ScriptableObject
+    public class Equipment : ScriptableObject, IItem
     {
         [SerializeField] private string ItemID;
 

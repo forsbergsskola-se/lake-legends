@@ -1,12 +1,15 @@
 using System.Linq;
+using EventManagement;
+using Events;
 using Items;
+using Items.Gear;
 using PlayerData;
 using UnityEngine;
 
 namespace Treasure
 {
-    [CreateAssetMenu(menuName = "ScriptableObjects/TreasureFactory", fileName = "New TreasureFactory")]
-    public class TreasureFactory : ScriptableObject, IItem, ICatchable
+    [CreateAssetMenu(menuName = "ScriptableObjects/LootBox", fileName = "New LootBox")]
+    public class LootBox : ScriptableObject, IItem, ICatchable
     {
         [SerializeField] private string itemID;
         public ScriptableObject[] treasureChests;
@@ -25,11 +28,12 @@ namespace Treasure
             {
                 if (randomNum < weights[i])
                 {
+                    Debug.Log(treasureChests[i].name);
                     return treasureChests[i] as IItem;
                 }
                 randomNum -= weights[i];
             }
-            throw new System.Exception("TreasureFactory with name " + this.name + " Is Empty");
+            throw new System.Exception("LootBox with name " + this.name + " Is Empty");
         }
         public void Use()
         {
@@ -38,9 +42,23 @@ namespace Treasure
 
         void OpenTreasure()
         {
-            var x = GenerateTreasure();
-            Debug.Log("Generating treasure" + x.Name);
-            FindObjectOfType<InventoryHandler>().AddItemToInventory(x);
+            var treasure = GenerateTreasure();
+            if (treasure is Equipment equipment)
+            {
+                var gearInstance = new GearInstance(new GearSaveData(equipment));
+                FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(gearInstance));
+            }
+            else
+            {
+                FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(treasure));
+            }
+            Debug.Log("Generating treasure" + treasure.Name);
+            RemoveChest();
+        }
+
+        void RemoveChest()
+        {
+            FindObjectOfType<EventsBroker>().Publish(new RemoveItemFromInventoryEvent(this));
         }
         
         public string ID

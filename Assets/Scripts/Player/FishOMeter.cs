@@ -18,7 +18,7 @@ namespace Player
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
         [SerializeField] private Factory factory;
-        [SerializeField] private TreasureFactory treasureFactory;
+        [SerializeField] private LootBox lootBox;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
@@ -79,14 +79,14 @@ namespace Player
 
         private bool IsTreasureCatch()
         {
-            return Random.Range(0, treasureChanceMaxValue) < treasureChance;
+            return Random.Range(0, treasureChanceMaxValue) <= treasureChance;
         }
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
             successMeter = 3.0f;
 
-            catchable = IsTreasureCatch() ?  treasureFactory: factory.GenerateFish();
+            catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish();
             
             // TODO: Replace this base value with the corresponding RodStat base value
             captureZoneWidth = 1f;
