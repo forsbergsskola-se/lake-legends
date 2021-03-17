@@ -86,7 +86,7 @@ namespace Player
         {
             successMeter = 3.0f;
 
-            catchable = IsTreasureCatch() ? treasureFactory : factory.GenerateFish();
+            catchable = IsTreasureCatch() ?  treasureFactory: factory.GenerateFish();
             
             // TODO: Replace this base value with the corresponding RodStat base value
             captureZoneWidth = 1f;

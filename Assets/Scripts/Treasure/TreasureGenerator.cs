@@ -19,7 +19,6 @@ namespace Treasure
 
         public void AddTreasure()
         {
-            FindObjectOfType<InventoryHandler>().AddItemToInventory(treasureTreasureFactory);
             
         }
 

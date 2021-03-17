@@ -1,5 +1,6 @@
 using System.Linq;
 using Items;
+using PlayerData;
 using UnityEngine;
 
 namespace Treasure
@@ -32,8 +33,16 @@ namespace Treasure
         }
         public void Use()
         {
-            throw new System.NotImplementedException();
+            OpenTreasure();
         }
+
+        void OpenTreasure()
+        {
+            var x = GenerateTreasure();
+            Debug.Log("Generating treasure" + x.Name);
+            FindObjectOfType<InventoryHandler>().AddItemToInventory(x);
+        }
+        
         public string ID
         {
             get
