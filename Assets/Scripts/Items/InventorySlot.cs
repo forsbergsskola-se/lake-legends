@@ -1,3 +1,6 @@
+using Items.Gear;
+using PlayerData;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -14,7 +17,12 @@ namespace Items
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            Item?.Use();
+            if (Item != null)
+            {
+                var gearInfoPanel = FindObjectOfType<GearInfoPanel>();
+                gearInfoPanel.panel.SetActive(true);
+                gearInfoPanel.Setup(Item as GearInstance);
+            }
         }
     }
 }
