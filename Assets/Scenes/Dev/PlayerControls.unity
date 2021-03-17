@@ -769,7 +769,7 @@ MonoBehaviour:
   fishLeftSpeed: 0.3
   fishRightSpeed: 1.3
   factory: {fileID: 0}
-  treasureChest: {fileID: 0}
+  lootBox: {fileID: 0}
   fishOMeterUI: {fileID: 0}
   gameEndUI: {fileID: 0}
   fishOMeterMinigamePanel: {fileID: 0}
@@ -2273,3 +2273,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
+--- !u!1001 &8733856291336822863
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222524528648575307, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
+      propertyPath: m_Name
+      value: FishingRod
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
