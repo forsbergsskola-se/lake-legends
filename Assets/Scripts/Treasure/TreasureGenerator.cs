@@ -13,7 +13,7 @@ namespace Treasure
         public void GenerateTreasure()
 
         {
-            var treasure = treasureLootBox.GenerateTreasure();
+            var treasure = treasureLootBox.GenerateLoot();
             FindObjectOfType<InventoryHandler>().AddItemToInventory(treasure);
         }
 

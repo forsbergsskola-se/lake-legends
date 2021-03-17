@@ -12,37 +12,40 @@ namespace Treasure
     public class LootBox : ScriptableObject, IItem, ICatchable
     {
         [SerializeField] private string itemID;
-        public ScriptableObject[] treasureChests;
+        public ScriptableObject[] loot;
         public float[] weights;
+        
         public FloatRange randomStopTimeRange = new FloatRange(0.5f, 2);
         public FloatRange randomMoveTimeRange = new FloatRange(1f, 3f);
         public float catchableSpeed = 1;
         public float catchableStrength = 1;
-        public IItem GenerateTreasure()
+        
+        public IItem GenerateLoot()
         {
             Debug.Log("Generating Treasure");
             var randomNum = Random.Range(0f, weights.Sum());
             Debug.Log(randomNum);
 
-            for (var i = 0; i < treasureChests.Length; i++)
+            for (var i = 0; i < loot.Length; i++)
             {
                 if (randomNum < weights[i])
                 {
-                    Debug.Log(treasureChests[i].name);
-                    return treasureChests[i] as IItem;
+                    Debug.Log(loot[i].name);
+                    return loot[i] as IItem;
                 }
                 randomNum -= weights[i];
             }
             throw new System.Exception("LootBox with name " + this.name + " Is Empty");
         }
+        
         public void Use()
         {
-            OpenTreasure();
+            OpenLootBox();
         }
 
-        void OpenTreasure()
+        void OpenLootBox()
         {
-            var treasure = GenerateTreasure();
+            var treasure = GenerateLoot();
             if (treasure is Equipment equipment)
             {
                 var gearInstance = new GearInstance(new GearSaveData(equipment));
@@ -53,10 +56,10 @@ namespace Treasure
                 FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(treasure));
             }
             Debug.Log("Generating treasure" + treasure.Name);
-            RemoveChest();
+            RemoveLootBox();
         }
 
-        void RemoveChest()
+        void RemoveLootBox()
         {
             FindObjectOfType<EventsBroker>().Publish(new RemoveItemFromInventoryEvent(this));
         }
