@@ -72,34 +72,26 @@ namespace PlayerData
                 bodypart.WakeUp(eventsBroker, this);
             }
             
-            eventsBroker.SubscribeTo<LoginEvent>(Initialize);
+            eventsBroker.SubscribeTo<LoadedInventoryEvent>(Initialize);
         }
         
-        async void Initialize(LoginEvent eventRef)
+        async void Initialize(LoadedInventoryEvent eventRef)
         {
-            ISaver saver;
-            
-            if (eventRef.Debug)
-            {
-                saver = new PlayerPrefsSaver();
-            }
-            else
-            {
-                saver = new DataBaseSaver(eventRef.User);
-            }
-            
+            var saver = eventRef.Saver;
+
             equipmentSaver = new EquipmentSaver(saver, new JsonSerializer());
             var loadedEquipment = await equipmentSaver.LoadEquipment(SaveKey);
 
             if (loadedEquipment == null || loadedEquipment.Length == 0) 
                 return;
             
-            var allGear = FindObjectOfType<InventoryHandler>().CurrentInventory.GetGear();
+            var allGear = eventRef.Inventory.GetGear();
             
-            for (int i = 0; i < allGear.Count; i++)
+            foreach (var t in loadedEquipment)
             {
-                var item = allGear[loadedEquipment[i]];
-                eventsBroker.Publish(new CheckAndDoEquipEvent(item));    
+                Debug.Log(t);
+                var item = allGear[t];
+                eventsBroker.Publish(new CheckAndDoEquipEvent(item));
             }
         }
         
