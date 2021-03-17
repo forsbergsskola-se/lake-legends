@@ -49,6 +49,8 @@ namespace PlayerData
             
             // Need to publish to showcase UI here in stead of event directly
             Debug.Log("Firing use-event");
+            
+            //TODO: Send event for opening a ViewItemInfoUI, that has a button that then fires CheckAndDoEquipEvent
             broker.Publish(new CheckAndDoEquipEvent(this));
         }
     }

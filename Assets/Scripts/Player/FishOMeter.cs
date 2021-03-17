@@ -4,6 +4,7 @@ using EventManagement;
 using Events;
 using Fish;
 using Items;
+using PlayerData;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,6 +14,7 @@ namespace Player
     public class FishOMeter : MonoBehaviour
     {
         [SerializeField] private float fishingTime = 10;
+        [SerializeField] private float startingSuccessMeter = 3.0f;
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
@@ -21,6 +23,8 @@ namespace Player
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
 
+
+        private const float OriginalValue = 1f;
         private float directionMod;
         private float successMeter;
         private float currentCaptureZoneTime;
@@ -36,6 +40,7 @@ namespace Player
         private bool captureZoneStopped;
 
         private ICatchable catchable;
+        private PlayerBody playerBody;
         private IMessageHandler eventsBroker;
         private float fishSpeedMagnitudeValue;
 
@@ -54,6 +59,7 @@ namespace Player
         private void Start()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
+            playerBody = FindObjectOfType<PlayerBody>();
             eventsBroker.SubscribeTo<StartFishOMeterEvent>(SetupGameplayArea);
         }
         
@@ -74,18 +80,16 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
-            successMeter = 3.0f;
+            successMeter = startingSuccessMeter;
             
             catchable = factory.GenerateFish();
-            
-            // TODO: Replace this base value with the corresponding RodStat base value
-            captureZoneWidth = 1f;
+            captureZoneWidth = OriginalValue;
             
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
             fishSpeedMagnitudeValue = catchable.CatchableSpeed * targetBarSpeedMultiplier;
 
             
-            // TODO: Include the AccuracyModifier from the equipped Fishing rod
+            // TODO: Include a modifier from the TotalPlayerAccuracyStat value
             captureZoneWidth = captureZoneWidth * fishPercentMod;
             
             minimumZone = 0 + captureZoneWidth  / 2;
@@ -126,6 +130,7 @@ namespace Player
             }
             else
             {
+                //TODO: LineStrength has impact on how quickly the bar depletes
                 successMeter -= Time.deltaTime;    
             }
             successMeter = Mathf.Clamp(successMeter, 0 ,fishingTime);

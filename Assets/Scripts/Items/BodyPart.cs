@@ -1,20 +1,24 @@
+using System;
 using EventManagement;
 using Events;
 using Items.Gear;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Items
 {
-    public class Hands : MonoBehaviour, IEquipmentSlot
+    [Serializable]
+    public class BodyPart : IEquipmentSlot
     {
-        public IEquippable equippedItem { get; private set; }
-        [SerializeField] private EquipmentType myPreferredEquipment;
-
-        public IMessageHandler eventsBroker;
+        [SerializeField] private string bodyPartName;
+        [SerializeField] private EquipmentType myPreferredEquipment;        
         
+        public IMessageHandler eventsBroker;
+        public IEquippable equippedItem { get; private set; }
+
         private void Start()
         {
-            eventsBroker = FindObjectOfType<EventsBroker>();
+            eventsBroker = Object.FindObjectOfType<EventsBroker>();
             eventsBroker.SubscribeTo<CheckAndDoEquipEvent>(DoEquip);
         }
 
