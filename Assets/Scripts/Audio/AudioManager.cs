@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
@@ -29,7 +30,6 @@ public class AudioManager : MonoBehaviour
       eventsBroker = FindObjectOfType<EventsBroker>();
       eventsBroker.SubscribeTo<PlaySoundEvent>(PlaySound);
       PlaySoundsOnStart();
-      
    }
 
    void PlaySound(PlaySoundEvent playSoundEvent)
@@ -44,6 +44,9 @@ public class AudioManager : MonoBehaviour
             break;
          case SoundType.Music:
             PlayMusicSound(playSoundEvent._audioClipName);
+            break;
+         case SoundType.PlayAndWait:
+            StartCoroutine(PlayAndWait(playSoundEvent._audioClipName));
             break;
          default:
             throw new ArgumentOutOfRangeException();
@@ -62,11 +65,24 @@ public class AudioManager : MonoBehaviour
       return audioSource;
    }
    
-   /*  TODO setup wait time coroutine?
+   // TODO setup wait time coroutine?
    IEnumerator PlayAndWait(string audioClipName)
    {
+      var audioClipSetting = sfxSounds.FirstOrDefault(music => music.audioClip.name == audioClipName);
+      
+      if (audioClipSetting == null) 
+      {
+         audioClipSetting = musicTracks.FirstOrDefault(music => music.audioClip.name == audioClipName);
+         
+         if (audioClipSetting == null)
+         {
+            audioClipSetting = ambiantSounds.FirstOrDefault(music => music.audioClip.name == audioClipName);
+         }
+      }
+      var audioSource = audioClipSetting.outputAudioSource;
+      audioSource.Play();
       yield return new WaitWhile( () => audioSource.isPlaying);
-   }*/
+   }
    
    void PlayAmbianceSound(string audioClipName)
    {
@@ -92,6 +108,10 @@ public class AudioManager : MonoBehaviour
       {
          if (ambSound.playOnAwake)
          {
+            if (ambSound.loop) 
+               AmbienceAudioSource.loop = true;
+            else
+               AmbienceAudioSource.loop = false;
             AmbienceAudioSource.clip = ambSound.audioClip;
             AmbienceAudioSource.Play();
          }
@@ -101,6 +121,10 @@ public class AudioManager : MonoBehaviour
       {
          if (musicTrack.playOnAwake)
          {
+            if (musicTrack.loop)
+               MusicAudioSource.loop = true;
+            else
+               MusicAudioSource.loop = false;
             MusicAudioSource.clip = musicTrack.audioClip;
             MusicAudioSource.Play();
          }
@@ -110,6 +134,10 @@ public class AudioManager : MonoBehaviour
       {
          if (sfxSound.playOnAwake)
          {
+            if (sfxSound.loop)
+               SfxAudioSource.loop = true;
+            else
+               SfxAudioSource.loop = false;
             SfxAudioSource.clip = sfxSound.audioClip;
             SfxAudioSource.Play();
          }
