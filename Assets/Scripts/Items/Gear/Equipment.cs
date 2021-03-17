@@ -1,10 +1,11 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace Items.Gear
 {
     [CreateAssetMenu(fileName = "New Equipment", menuName =  "ScriptableObjects/Equipment")]
-    public class Equipment : ScriptableObject
+    public class Equipment : ScriptableObject, IItem
     {
         [SerializeField] private string ItemID;
 
@@ -26,6 +27,7 @@ namespace Items.Gear
 
         public EquipmentType EquipmentType => equipmentVariant.EquipmentType;
 
+        public string RarityName => rarity.name;
         public string Name => name;
         public int Rarity => rarity.starAmount;
         

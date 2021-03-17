@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Threading.Tasks;
 using EventManagement;
 using Events;
@@ -22,10 +24,15 @@ namespace PlayerData
         private void Start()
         {
             eventBroker = FindObjectOfType<EventsBroker>();
-            eventBroker?.SubscribeTo<LoginEvent>(OnLogin);
+            eventBroker?.SubscribeTo<LoginEvent>(LoginListener);
         }
 
-        private async void OnLogin(LoginEvent obj)
+        private void LoginListener(LoginEvent obj)
+        {
+            StartCoroutine(OnLogin(obj));
+        }
+
+        private IEnumerator OnLogin(LoginEvent obj)
         {
             if (obj.Debug)
             {
@@ -43,8 +50,12 @@ namespace PlayerData
                 currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
             }
-            
-            await LoadInventory();
+
+            var task = LoadInventory();
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));

@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
 using Events;
+using Items;
 using PlayerData;
 using UnityEngine;
 
-namespace Items
+namespace UI
 {
     public class InventoryUI : MonoBehaviour
     {

@@ -3,20 +3,23 @@ using Events;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SilverUI : MonoBehaviour
+namespace UI
 {
-    private IMessageHandler eventsBroker;
-    [SerializeField] private Text silverUIText;
+    public class SilverUI : MonoBehaviour
+    {
+        private IMessageHandler eventsBroker;
+        [SerializeField] private Text silverUIText;
     
-    void Start()
-    {
-        eventsBroker = FindObjectOfType<EventsBroker>();
+        void Start()
+        {
+            eventsBroker = FindObjectOfType<EventsBroker>();
         
-        eventsBroker.SubscribeTo<UpdateSilverUIEvent>(UpdateUI);
-    }
+            eventsBroker.SubscribeTo<UpdateSilverUIEvent>(UpdateUI);
+        }
 
-    private void UpdateUI(UpdateSilverUIEvent eventRef)
-    {
-        silverUIText.text = eventRef.Silver.ToString();
+        private void UpdateUI(UpdateSilverUIEvent eventRef)
+        {
+            silverUIText.text = eventRef.Silver.ToString();
+        }
     }
 }

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Items;
+using UnityEngine;
 
-namespace Items
+namespace UI
 {
     public abstract class Slot : MonoBehaviour
     {
