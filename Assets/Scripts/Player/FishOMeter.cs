@@ -88,7 +88,7 @@ namespace Player
         {
             successMeter = startingSuccessMeter;
             
-            catchable = factory.GenerateFish();
+            catchable = factory.GenerateFish(playerBody.TotalAttraction);
             captureZoneWidth = 1;
             
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
