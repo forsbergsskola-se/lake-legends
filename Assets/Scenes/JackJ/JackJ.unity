@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: urpfish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ac7edf8cf75752e429b52fbd2a734b22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac7edf8cf75752e429b52fbd2a734b22, type: 3}
 --- !u!1 &337013387
@@ -605,12 +609,12 @@ GameObject:
   m_Component:
   - component: {fileID: 626999236}
   m_Layer: 0
-  m_Name: Water
+  m_Name: WaterBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &626999236
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290791885078656729, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5290791885078656729, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1142,7 +1146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1754633851}
   m_Layer: 0
-  m_Name: Water (1)
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1165,7 @@ Transform:
   m_Children:
   - {fileID: 1510135662}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810842506
 GameObject:
