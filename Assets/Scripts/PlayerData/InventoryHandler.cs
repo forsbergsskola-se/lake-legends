@@ -1,4 +1,5 @@
-﻿using EventManagement;
+using System.Threading.Tasks;
+using EventManagement;
 using Events;
 using Items;
 using Saving;
@@ -21,12 +22,29 @@ namespace PlayerData
         private void Start()
         {
             eventBroker = FindObjectOfType<EventsBroker>();
-            var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
-            gearInventory = new GearInventory(new GearSaver(new PlayerPrefsSaver(), new JsonSerializer()));
-            inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
-            currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
-            fisherDexData = new FisherDexData(inventorySaver, eventBroker);
-            LoadInventory();
+            eventBroker?.SubscribeTo<LoginEvent>(OnLogin);
+        }
+
+        private async void OnLogin(LoginEvent obj)
+        {
+            if (obj.Debug)
+            {
+                var inventorySaver = new InventorySaver(new PlayerPrefsSaver(), new JsonSerializer());
+                gearInventory = new GearInventory(new GearSaver(new PlayerPrefsSaver(), new JsonSerializer()));
+                inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
+                currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
+                fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+            }
+            else
+            {
+                var inventorySaver = new InventorySaver(new DataBaseSaver(obj.User), new JsonSerializer());
+                gearInventory = new GearInventory(new GearSaver(new DataBaseSaver(obj.User), new JsonSerializer()));
+                inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
+                currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
+                fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+            }
+            
+            await LoadInventory();
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
@@ -40,20 +58,12 @@ namespace PlayerData
                 eventBroker.Publish(new IncreaseSilverEvent(fishItem.silverValue));
             }
         }
-
-        private void OnDestroy()
+        
+        private async Task LoadInventory()
         {
-            inventory.Serialize();
-            currency.Serialize();
-            fisherDexData.Serialize();
-            gearInventory.PrintInventory();
-        }
-
-        private void LoadInventory()
-        {
-            inventory.Deserialize();
-            currency.Deserialize();
-            fisherDexData.Deserialize();
+            await inventory.Deserialize();
+            await currency.Deserialize();
+            await fisherDexData.Deserialize();
         }
 
         public void AddItemToInventory(IItem item)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PlayerData;
 
 namespace Saving
@@ -20,9 +21,9 @@ namespace Saving
             saver.Save(key, serializeObject);
         }
 
-        public Dictionary<string, GearInstance> LoadGear(string key)
+        public async Task<Dictionary<string, GearInstance>> LoadGear(string key)
         {
-            var value = saver.Load(key, serializer.SerializeObject(new Dictionary<string, GearInstance>()));
+            var value = await saver.Load(key, serializer.SerializeObject(new Dictionary<string, GearInstance>()));
             return serializer.DeserializeObject<Dictionary<string, GearInstance>>(value);
         }
     }

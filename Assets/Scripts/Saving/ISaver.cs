@@ -1,8 +1,10 @@
-﻿namespace Saving
+﻿using System.Threading.Tasks;
+
+namespace Saving
 {
     public interface ISaver
     {
-        string Load(string key, string defaultValue);
+        Task<string> Load(string key, string defaultValue);
         void Save(string key, string value);
     }
 }

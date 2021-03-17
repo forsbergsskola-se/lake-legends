@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EventManagement;
 using Events;
 using Items;
 using Saving;
-using UnityEngine;
 
 namespace PlayerData
 {
@@ -32,7 +32,7 @@ namespace PlayerData
             messageHandler.SubscribeTo<RemoveItemFromInventoryEvent>(GetItemToRemove);
             messageHandler.SubscribeTo<EndFishOMeterEvent>(eve =>
             {
-                if (eve.catchItem != null && eve.catchItem is IItem item)
+                if (eve.catchItem != null && eve.catchItem is IItem item && !(eve.catchItem is FishItem))
                     AddItem(item);
             });
         }
@@ -41,14 +41,16 @@ namespace PlayerData
         {
             if (obj.Item is GearInstance item)
                 gearInventory.AddItem(item);
-            AddItem(obj.Item);
+            if (!(obj.Item is FishItem))
+                AddItem(obj.Item);
         }
         
         private void GetItemToRemove(RemoveItemFromInventoryEvent obj)
         {
             if (obj.Item is GearInstance item)
                 gearInventory.RemoveItem(item);
-            RemoveItem(obj.Item);
+            if (!(obj.Item is FishItem))
+                RemoveItem(obj.Item);
         }
         
         public virtual bool AddItem(IItem iItem)
@@ -59,6 +61,7 @@ namespace PlayerData
                 items[iItem.ID]++;
             else
                 items.Add(iItem.ID, 1);
+            Serialize();
             return true;
         }
 
@@ -70,6 +73,7 @@ namespace PlayerData
                 items[iItem.ID]--;
             if (items[iItem.ID] <= 0)
                 items.Remove(iItem.ID);
+            Serialize();
             return true;
         }
 
@@ -77,17 +81,16 @@ namespace PlayerData
         {
             return items;
         }
-
+        
         public Dictionary<string, GearInstance> GetGear()
         {
             return gearInventory.GeneratedGear;
         }
 
-        public virtual void Deserialize()
+        public virtual async Task Deserialize()
         {
-            gearInventory.Deserialize();
-            gearInventory.PrintInventory();
-            var savedInventory = saver.LoadInventory(InventoryKey);
+            await gearInventory.Deserialize();
+            var savedInventory = await saver.LoadInventory(InventoryKey);
             if (savedInventory == null)
                 return;
             items = savedInventory;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using EventManagement;
 using Events;
@@ -43,6 +44,7 @@ namespace Player
 
         private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + captureZoneWidth / 2 &&
                                      fishPositionCenterPoint >= captureZonePosition - captureZoneWidth / 2;
+
         
         private void Awake()
         {
@@ -163,6 +165,8 @@ namespace Player
 
         private void FishCatch()
         {
+            PlayerPrefs.SetInt("Debug-CaughtFish", PlayerPrefs.GetInt("Debug-CaughtFish", 0) + 1);
+            DebugCaughtLost();
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             EndGame();
@@ -171,10 +175,18 @@ namespace Player
         
         private void FishEscape()
         {
+            PlayerPrefs.SetInt("Debug-EscapedFish", PlayerPrefs.GetInt("Debug-EscapedFish", 0) + 1);
+            DebugCaughtLost();
             fishOMeterMinigamePanel.gameObject.SetActive(false);
             gameRunning = false;
             catchable = null;
             EndGame();
+        }
+
+        public void DebugCaughtLost()
+        {
+            Debug.Log("Caught: " + PlayerPrefs.GetInt("Debug-CaughtFish"));
+            Debug.Log("Lost: " + PlayerPrefs.GetInt("Debug-EscapedFish"));
         }
 
         private void EndGame()

@@ -19,7 +19,7 @@ namespace Auth
                 if (task.Result == DependencyStatus.Available)
                 {
                     InitializeAuthorization();
-                    Debug.Log($"Analytics Init");
+                    Debug.Log($"Auth Init");
                 } 
                 else {
                     Debug.LogError(
@@ -44,7 +44,6 @@ namespace Auth
         private void InitializeAuthorization()
         {
             firebaseAuth = FirebaseAuth.DefaultInstance;
-            FirebaseApp.LogLevel = LogLevel.Debug;
         }
     }
 }

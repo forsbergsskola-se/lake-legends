@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PlayerData;
 
 namespace Saving
@@ -6,6 +7,6 @@ namespace Saving
     public interface IInventorySaver
     {
         void SaveInventory(string key, IInventory inventory);
-        Dictionary<string, int> LoadInventory(string key);
+        Task<Dictionary<string, int>> LoadInventory(string key);
     }
 }

@@ -1,4 +1,5 @@
-﻿using PlayerData;
+﻿using System.Threading.Tasks;
+using PlayerData;
 
 namespace Saving
 {
@@ -19,9 +20,9 @@ namespace Saving
             saver.Save(key, save);
         }
 
-        public CurrencySave LoadCurrencies(string key)
+        public async Task<CurrencySave> LoadCurrencies(string key)
         {
-            var save = saver.Load(key, null);
+            var save = await saver.Load(key, serializer.SerializeObject(new CurrencySave(0, 0)));
             return serializer.DeserializeObject<CurrencySave>(save);
         }
     }
