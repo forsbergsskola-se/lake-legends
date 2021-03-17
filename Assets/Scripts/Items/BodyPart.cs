@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Items
 {
     [Serializable]
-    public class BodyPart : MonoBehaviour, IEquipmentSlot
+    public class BodyPart : IEquipmentSlot
     {
         [SerializeField] private string bodyPartName;
         [SerializeField] private EquipmentType myPreferredEquipment;        
@@ -16,9 +16,9 @@ namespace Items
         public IMessageHandler eventsBroker;
         public IEquippable EquippedItem { get; private set; }
 
-        private void Start()
+        public void WakeUp(IMessageHandler messageHandler)
         {
-            eventsBroker = FindObjectOfType<EventsBroker>();
+            eventsBroker = messageHandler;
             eventsBroker.SubscribeTo<CheckAndDoEquipEvent>(DoEquip);
         }
 

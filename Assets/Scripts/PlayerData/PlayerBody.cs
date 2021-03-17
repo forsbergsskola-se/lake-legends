@@ -1,3 +1,5 @@
+using System;
+using EventManagement;
 using Items;
 using UnityEngine;
 
@@ -53,6 +55,15 @@ namespace PlayerData
                 }
                 return totalAccuracy;
             }   
+        }
+
+        private void Start()
+        {
+            var messageHandler = FindObjectOfType<EventsBroker>();
+            foreach (var bodypart in bodyParts)
+            {
+                bodypart.WakeUp(messageHandler);
+            }
         }
     }
 }

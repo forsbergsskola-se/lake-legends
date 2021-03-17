@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyParts:
+  - bodyPartName: Jacket
+    myPreferredEquipment: {fileID: 11400000, guid: 22c2747b5a26eb64e8f921503df52c3b, type: 2}
   - bodyPartName: Grip
     myPreferredEquipment: {fileID: 11400000, guid: 209e187ffcdf5d545987b59224fd1959, type: 2}
   - bodyPartName: Legs
