@@ -12,7 +12,6 @@ namespace UI
 {
     public class InventorySlot : Slot, IPointerClickHandler
     {
-        public GameObject button;
         public bool opened;
         private Color defaultColor = Color.white;
 
@@ -118,6 +117,20 @@ namespace UI
                 .GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public)
                 .Where(info => info.GetCustomAttributes(typeof(InteractAttribute)).Any()).ToList();
             itemInspectionArea.CreateButtons(Item, interactMethods);*/
+        }
+
+        private void OnDestroy()
+        {
+            if (Item is IEquippable equippable)
+            {
+                equippable.Equipped -= OnEquippedItem;
+                equippable.UnEquipped -= OnUnEquippedItem;
+            }
+
+            if (Item is ISellable sellable)
+            {
+                sellable.Sold -= OnItemSold;
+            }
         }
     }
 }

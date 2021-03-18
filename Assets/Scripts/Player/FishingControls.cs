@@ -137,5 +137,11 @@ namespace Player
             isTimerSet = false;
             timeRemaining = 0;
         }
+
+        private void OnDestroy()
+        {
+            eventsBroker?.UnsubscribeFrom<EndFishOMeterEvent>(BlankOut);
+            eventsBroker?.UnsubscribeFrom<FishAgainEvent>(ReturnFromMinigame);
+        }
     }
 }

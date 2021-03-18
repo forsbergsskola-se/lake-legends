@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Threading.Tasks;
 using EventManagement;
@@ -17,6 +16,7 @@ namespace PlayerData
         private IMessageHandler eventBroker;
         private FisherDexData fisherDexData;
         private GearInventory gearInventory;
+        private ISaver saver;
 
         public IInventory CurrentInventory => inventory;
         public GearInventory GearInventory => gearInventory;
@@ -56,12 +56,15 @@ namespace PlayerData
             {
                 yield return null;
             }
+
+            saver = obj.Debug ? (ISaver) new PlayerPrefsSaver() : new DataBaseSaver(obj.User);
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
             eventBroker?.SubscribeTo<RequestFisherDexData>(OnFisherDexDataRequest);
             eventBroker?.SubscribeTo<RequestInventoryData>(OnInventoryDataRequest);
+            eventBroker?.SubscribeTo<RequestSilverData>(OnSilverDataRequest);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
-            eventBroker?.Publish(new LoadedInventoryEvent(obj.Debug ? (ISaver) new PlayerPrefsSaver() : new DataBaseSaver(obj.User), inventory));
+            eventBroker?.Publish(new LoadedInventoryEvent(saver, inventory));
         }
 
         private void OnInventoryDataRequest(RequestInventoryData obj)
@@ -72,6 +75,11 @@ namespace PlayerData
         private void OnFisherDexDataRequest(RequestFisherDexData obj)
         {
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
+        }
+
+        private void OnSilverDataRequest(RequestSilverData request)
+        {
+            eventBroker?.Publish(new UpdateSilverUIEvent(currency.Silver));
         }
 
         private void OnEndFishing(EndFishOMeterEvent obj)
@@ -88,11 +96,6 @@ namespace PlayerData
             await Task.Run(() => inventory.Deserialize());
             await Task.Run(() => currency.Deserialize());
             await Task.Run(() => fisherDexData.Deserialize());
-        }
-
-        public void UpdateInventory()
-        {
-            eventBroker?.Publish(new EnableInventoryEvent(inventory));
         }
 
         public void AddItemToInventory(IItem item)

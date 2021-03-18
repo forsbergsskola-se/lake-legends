@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace EventManagement
@@ -7,7 +8,7 @@ namespace EventManagement
     public class EventsBroker : MonoBehaviour, IMessageHandler
     {
         readonly Dictionary<Type, object> subscribers = new Dictionary<Type, object>();
-
+        
         public void SubscribeTo<TMessage>(Action<TMessage> callback)
         {
             if (this.subscribers.TryGetValue(typeof(TMessage), out var subscribers))
@@ -38,7 +39,7 @@ namespace EventManagement
         {
             if (this.subscribers.TryGetValue(typeof(TMessage), out var subscribers))
             {
-                (subscribers as Action<TMessage>).Invoke(message);
+                (subscribers as Action<TMessage>)?.Invoke(message);
             }
         }
     }

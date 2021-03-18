@@ -27,10 +27,15 @@ namespace UI
 
         protected virtual void Clear()
         {
-            foreach (var inventorySlot in inventorySlots)
+            foreach (var child in transform.GetComponentsInChildren<Transform>())
             {
-                Destroy(inventorySlot.gameObject);
+                if (child != transform)
+                {
+                    Destroy(child.gameObject);
+                }
             }
+
+            inventorySlots = new List<Slot>();
         }
 
         protected virtual void Setup(EnableInventoryEvent inventoryEvent)
@@ -93,7 +98,7 @@ namespace UI
                     inventorySlots.Add(instance);
                 }
             }
-            ToggleSort();
+            SortDescended();
             for (var i = inventorySlots.Count; i < inventory.MaxSize; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
@@ -141,6 +146,10 @@ namespace UI
 
         private void OnDisable()
         {
+            var inspectionArea = FindObjectOfType<ItemInspectionArea>(true);
+            inspectionArea.Clear();
+            inspectionArea.gameObject.SetActive(false);
+            FindObjectOfType<EventsBroker>()?.UnsubscribeFrom<EnableInventoryEvent>(Setup);
             FindObjectOfType<EventsBroker>()?.UnsubscribeFrom<UpdateInventoryEvent>(OnUpdateInventoryUI);
         }
     }

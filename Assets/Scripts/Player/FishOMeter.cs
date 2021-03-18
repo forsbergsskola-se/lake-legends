@@ -286,6 +286,11 @@ namespace Player
             yield return new WaitForSeconds(time);
             StartCoroutine(Stop(catchable.RandomStopTimeRange.Randomize()));
         }
+
+        private void OnDestroy()
+        {
+            eventsBroker?.UnsubscribeFrom<StartFishOMeterEvent>(SetupGameplayArea);
+        }
     }
 
 
