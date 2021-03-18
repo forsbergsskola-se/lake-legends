@@ -55,7 +55,6 @@ namespace UI
             else
             {
                 var removedItem = inventorySlots.Find(slot => slot.Item == item);
-                Destroy(removedItem.gameObject);
                 inventorySlots.Remove(removedItem);
             }
             Resort();

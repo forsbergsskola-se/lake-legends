@@ -81,17 +81,18 @@ namespace PlayerData
 
             equipmentSaver = new EquipmentSaver(saver, new JsonSerializer());
             var loadedEquipment = await equipmentSaver.LoadEquipment(SaveKey);
-
+            
             if (loadedEquipment == null || loadedEquipment.Length == 0) 
                 return;
-            
+
             var allGear = eventRef.Inventory.GetGear();
-            
+            if (allGear == null || allGear.Count == 0)
+                return;
             foreach (var t in loadedEquipment)
             {
                 Debug.Log(t);
                 var item = allGear[t];
-                eventsBroker.Publish(new CheckAndDoEquipEvent(item));
+                eventsBroker.Publish(new CheckAndDoEquipEvent(item, true));
             }
         }
         

@@ -1,3 +1,4 @@
+using System;
 using EventManagement;
 using Events;
 using Items;
@@ -12,12 +13,13 @@ namespace PlayerData
     {
         public GearSaveData GearSaveData;
         private Equipment equipment;
+        private bool isEquipped;
 
         [JsonIgnore] public float CalculatedLineStrength => Mathf.Lerp(Equipment.lineStrength.Min, Equipment.lineStrength.Max, GearSaveData.lineStrength);
         [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction);
         [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy);
 
-        public Equipment Equipment
+        [JsonIgnore] public Equipment Equipment
         {
             get
             {
@@ -40,9 +42,35 @@ namespace PlayerData
 
         public string ID => GearSaveData.instanceID;
         [JsonIgnore] public EquipmentType EquipmentType => Equipment.equipmentVariant.EquipmentType;
+
+        public bool IsEquipped
+        {
+            get => isEquipped;
+            set
+            {
+                if (value)
+                {
+                    Equipped?.Invoke();
+                }
+                else
+                {
+                    UnEquipped?.Invoke();
+                }
+                isEquipped = value;
+            }
+        }
+
+        public event Action Equipped;
+        public event Action UnEquipped;
+        public event Action Sold;
         [JsonIgnore] public string Name => Equipment.equipmentVariant.name;
         [JsonIgnore] public int Rarity => Equipment.Rarity;
         public void Use()
+        {
+            
+        }
+        
+        public void Equip()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
             
@@ -51,16 +79,17 @@ namespace PlayerData
             
             //TODO: Send event for opening a ViewItemInfoUI, that has a button that then fires CheckAndDoEquipEvent
             broker.Publish(new CheckAndDoEquipEvent(this));
-        }
-        
-        public void Equip()
-        {
-            Use();
+            IsEquipped = true;
         }
         
         public void Sell()
         {
             Debug.Log("Sold");
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new RemoveItemFromInventoryEvent(this));
+            broker.Publish(new UnEquipEvent(this));
+            UnEquipped?.Invoke();
+            Sold?.Invoke();
         }
 
         public override string ToString()

@@ -22,6 +22,18 @@ namespace Items
             eventsBroker = messageHandler;
             this.playerBody = playerBody;
             eventsBroker.SubscribeTo<CheckAndDoEquipEvent>(DoEquip);
+            eventsBroker.SubscribeTo<UnEquipEvent>(UnEquip);
+        }
+
+        private void UnEquip(UnEquipEvent eventRef)
+        {
+            var itemToEquip = eventRef.Equippable;
+            
+            if (itemToEquip.Equipment.equipmentVariant.EquipmentType == myPreferredEquipment)
+            {
+                EquippedItem = null;
+                playerBody.SaveEquipment();
+            }
         }
 
         public void DoEquip(CheckAndDoEquipEvent eventRef)
@@ -32,22 +44,25 @@ namespace Items
                 {
                     if (EquippedItem == null)
                     {
-                        UnEquipAndEquip(itemToEquip);
+                        UnEquipAndEquip(itemToEquip, eventRef.Startup);
                         return;
                     }
 
                     if (itemToEquip.ID == EquippedItem.ID) return;
-                    UnEquipAndEquip(itemToEquip);
+                    UnEquipAndEquip(itemToEquip, eventRef.Startup);
                 }
         }
 
-        private void UnEquipAndEquip(GearInstance itemToEquip)
+        private void UnEquipAndEquip(GearInstance itemToEquip, bool startUp)
         {
-            var havePreviousEquipment = EquippedItem != null;
+            if (EquippedItem != null)
+                EquippedItem.IsEquipped = false;
             EquippedItem = null;
             EquippedItem = itemToEquip;
+            if (startUp)
+                EquippedItem.IsEquipped = true;
 
-            if(havePreviousEquipment)
+            if (!startUp)
                 playerBody.SaveEquipment();
             
             Debug.Log($"{bodyPartName} equipped with {EquippedItem.Name}!");

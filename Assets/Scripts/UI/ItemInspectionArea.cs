@@ -37,10 +37,12 @@ namespace UI
             }
         }*/
 
-        private void Clear()
+        public void Clear()
         {
             var children = transform.GetComponentsInChildren<Transform>()
                 .Select(transform1 => transform1.gameObject).Where(o => o != gameObject);
+            this.title.text = "";
+            this.description.text = "";
             foreach (var child in children)
             { 
                 Destroy(child);
