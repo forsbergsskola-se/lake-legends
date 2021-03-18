@@ -101,7 +101,7 @@ namespace UI
                 callBacks.Add("Open", new Callback(openable.Open, OnOpened));
             }
             var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
-            itemInspectionArea.transform.parent.gameObject.SetActive(true);
+            itemInspectionArea.gameObject.SetActive(true);
             if (Item is GearInstance gear)
             {
                 var stats = gear.GetStats();
