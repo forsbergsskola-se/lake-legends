@@ -19,10 +19,21 @@ namespace Treasure
         public FloatRange randomMoveTimeRange = new FloatRange(1f, 3f);
         public float catchableSpeed = 1;
         public float catchableStrength = 1;
+
+        public bool isLootStealer = false;
         
         public IItem GenerateLoot()
         {
-            Debug.Log("Generating Treasure");
+            if(weights.Length == 0)
+            {
+                var i = Random.Range(0, weights.Length);
+
+                if (isLootStealer && loot[i] is LootBox lootBox)
+                {
+                    return lootBox.GenerateLoot();
+                }
+                return loot[i] as IItem;
+            }
             var randomNum = Random.Range(0f, weights.Sum());
             Debug.Log(randomNum);
 
@@ -30,7 +41,10 @@ namespace Treasure
             {
                 if (randomNum < weights[i])
                 {
-                    Debug.Log(loot[i].name);
+                    if (isLootStealer && loot[i] is LootBox lootBox)
+                    {
+                        return lootBox.GenerateLoot();
+                    }
                     return loot[i] as IItem;
                 }
                 randomNum -= weights[i];
