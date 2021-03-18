@@ -25,23 +25,31 @@ namespace UI
         protected override void Setup(IInventory inventory)
         {
             var items = inventory.GetAllItems();
-            foreach (var pair in items)
+            var allItems = AllItems.ItemIndexer.indexer;
+            var allFishes = allItems.Where(fish => fish.Value is FishItem);
+            foreach (var fish in allFishes)
             {
-                Debug.Log(pair.Key);
+                var fishItem = fish.Value as FishItem;
+                if (fishItem.type == null || fishItem.rarity == null)
+                    continue;
+                var instance = Instantiate(slotPrefab, gridParent);
+                var hasCaught = items.ContainsKey(fish.Key);
+                instance.Setup(fishItem, hasCaught);
+                inventorySlots.Add(instance);
             }
+            /*
             foreach (var item in items)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
                 if (AllItems.ItemIndexer.indexer.ContainsKey(item.Key))
                     instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as FishItem);
                 inventorySlots.Add(instance);
-            }
-            if (inventorySlots != null && inventorySlots.Count != 0)
-                SortAscended();
-            for (var i = 0; i < AllItems.ItemIndexer.indexer.Count(item => item.Value is FishItem) - items.Count; i++)
+            }*/
+            SortAscended();
+            /*for (var i = 0; i < AllItems.ItemIndexer.indexer.Count(item => item.Value is FishItem) - items.Count; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
-            }
+            }*/
         }
 
         public override void SortAscended()
