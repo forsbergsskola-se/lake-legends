@@ -57,9 +57,21 @@ namespace PlayerData
                 yield return null;
             }
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
+            eventBroker?.SubscribeTo<RequestFisherDexData>(OnFisherDexDataRequest);
+            eventBroker?.SubscribeTo<RequestInventoryData>(OnInventoryDataRequest);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
             eventBroker?.Publish(new LoadedInventoryEvent(obj.Debug ? (ISaver) new PlayerPrefsSaver() : new DataBaseSaver(obj.User), inventory));
+        }
+
+        private void OnInventoryDataRequest(RequestInventoryData obj)
+        {
+            eventBroker?.Publish(new EnableInventoryEvent(inventory));
+        }
+
+        private void OnFisherDexDataRequest(RequestFisherDexData obj)
+        {
+            eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
         }
 
         private void OnEndFishing(EndFishOMeterEvent obj)
