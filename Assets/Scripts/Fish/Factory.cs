@@ -11,7 +11,7 @@ namespace Fish
     {
         public FishItem[] fishItems;
 
-        public FishItem GenerateFish(float attractionValue)
+        public ICatchable GenerateFish(float attractionValue)
         {
             var multiplier = attractionValue * 0.001f + 1;
             var commonSum = fishItems.Where(fishItem => fishItem.Rarity == 0).Sum(fishItem => fishItem.rarityWeight);
