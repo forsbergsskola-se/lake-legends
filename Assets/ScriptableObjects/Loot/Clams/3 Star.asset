@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233b23d7fc4694c40aa68beb6ac2e378, type: 3}
+  m_Name: 3 Star
+  m_EditorClassIdentifier: 
+  itemID: 
+  loot:
+  - {fileID: 11400000, guid: 412bb993e6a8b9b408c391de7425e773, type: 2}
+  - {fileID: 11400000, guid: 8a3cedf3544c0ec4d974f7c44ee4d521, type: 2}
+  - {fileID: 11400000, guid: 7953241dccdfe3f448d41a1f752d11fd, type: 2}
+  - {fileID: 11400000, guid: 9fdb4a575f9dbea46895ff21e8243de7, type: 2}
+  - {fileID: 11400000, guid: ad403794a63539b49b597bcdfa4cb5bb, type: 2}
+  - {fileID: 11400000, guid: a30c4ee696b81f147b2c1d0a7a2ae38a, type: 2}
+  - {fileID: 11400000, guid: cfb5926a2af5c684d9d98dd2491dd094, type: 2}
+  - {fileID: 11400000, guid: 50407bac3412f3f419d45e02a3be4d13, type: 2}
+  - {fileID: 11400000, guid: 2872f0edd2fb5224080e1a527442540a, type: 2}
+  - {fileID: 11400000, guid: 10e47b81032e47f4494704c2af50fffc, type: 2}
+  - {fileID: 11400000, guid: 13031e6fe2b5ffd4e886992123b79332, type: 2}
+  - {fileID: 11400000, guid: 8bc1d3bd8e1eb5b46a0541e5aad44b68, type: 2}
+  - {fileID: 11400000, guid: e79fdbdfa1a3a094981447c822ce2bb7, type: 2}
+  - {fileID: 11400000, guid: 4daa84536965dea4db19f8b793e1cccd, type: 2}
+  - {fileID: 11400000, guid: 420d94bfc09f3294b9e9613e05d12ede, type: 2}
+  - {fileID: 11400000, guid: 317863f911a6ca84387b7942c31b801c, type: 2}
+  - {fileID: 11400000, guid: eec4023fb7b49f84087036d3e15ccb18, type: 2}
+  - {fileID: 11400000, guid: e24c81d5aa028d1498fcb6c63b86dbbe, type: 2}
+  weights: []
+  randomStopTimeRange:
+    min: 0.5
+    max: 2
+  randomMoveTimeRange:
+    min: 1
+    max: 3
+  catchableSpeed: 1
+  catchableStrength: 1
