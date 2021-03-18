@@ -1,11 +1,11 @@
-using Items.Gear;
+using PlayerData;
 
 namespace Events
 {
     public class CheckAndDoEquipEvent
     {
-        public IEquippable Item;
+        public GearInstance Item;
 
-        public CheckAndDoEquipEvent(IEquippable item) => this.Item = item;
+        public CheckAndDoEquipEvent(GearInstance item) => this.Item = item;
     }
 }

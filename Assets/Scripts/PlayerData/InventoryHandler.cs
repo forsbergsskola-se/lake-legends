@@ -59,6 +59,7 @@ namespace PlayerData
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
+            eventBroker?.Publish(new LoadedInventoryEvent(obj.Debug ? (ISaver) new PlayerPrefsSaver() : new DataBaseSaver(obj.User), inventory));
         }
 
         private void OnEndFishing(EndFishOMeterEvent obj)

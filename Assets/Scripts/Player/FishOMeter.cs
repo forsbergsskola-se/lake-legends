@@ -4,6 +4,7 @@ using EventManagement;
 using Events;
 using Fish;
 using Items;
+using PlayerData;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,6 +14,7 @@ namespace Player
     public class FishOMeter : MonoBehaviour
     {
         [SerializeField] private float fishingTime = 10;
+        [SerializeField] private float startingSuccessMeter = 3.0f;
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
@@ -21,6 +23,9 @@ namespace Player
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
 
+        [SerializeField, Tooltip("Maximum area that a Fish+Accuracy should be able to take up")] private float maximumCaptureZoneWidth = 0.5f;
+        [SerializeField, Tooltip("Minimum area that a Fish+Accuracy should be able to take up")] private float minimumCaptureZoneWidth = 0.01f;
+        
         private float directionMod;
         private float successMeter;
         private float currentCaptureZoneTime;
@@ -36,15 +41,51 @@ namespace Player
         private bool captureZoneStopped;
 
         private ICatchable catchable;
+        private PlayerBody playerBody;
         private IMessageHandler eventsBroker;
         private float fishSpeedMagnitudeValue;
 
         private float captureZoneWidth;
         private float fishPercentMod;
+        private float accuracyPercentMod;
 
-        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + captureZoneWidth / 2 &&
-                                     fishPositionCenterPoint >= captureZonePosition - captureZoneWidth / 2;
+        private bool FishIsInZone => fishPositionCenterPoint <= captureZonePosition + DivideByTwo(captureZoneWidth) &&
+                                     fishPositionCenterPoint >= captureZonePosition - DivideByTwo(captureZoneWidth);
 
+        private float Attraction
+        {
+            get
+            {
+                if (playerBody != null)
+                    return playerBody.TotalAttraction;
+                return 0;
+            }
+        }
+        
+        private float Accuracy
+        {
+            get
+            {
+                if (playerBody != null)
+                    return playerBody.TotalAccuracy;
+                return 0;
+            }
+        }
+        
+        private float LineStrength
+        {
+            get
+            {
+                if (playerBody != null)
+                    return playerBody.TotalLineStrength;
+                return 0;
+            }
+        }
+
+        private float DivideByTwo(float value)
+        {
+            return value / 2; 
+        }
         
         private void Awake()
         {
@@ -54,6 +95,7 @@ namespace Player
         private void Start()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
+            playerBody = FindObjectOfType<PlayerBody>();
             eventsBroker.SubscribeTo<StartFishOMeterEvent>(SetupGameplayArea);
         }
         
@@ -74,29 +116,26 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
-            successMeter = 3.0f;
+            successMeter = startingSuccessMeter;
             
-            catchable = factory.GenerateFish();
-            
-            // TODO: Replace this base value with the corresponding RodStat base value
-            captureZoneWidth = 1f;
+            catchable = factory.GenerateFish(Attraction);
+            captureZoneWidth = 1;
             
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
+            accuracyPercentMod = (Accuracy * 0.001f);
+            
             fishSpeedMagnitudeValue = catchable.CatchableSpeed * targetBarSpeedMultiplier;
+            
+            captureZoneWidth *= Mathf.Clamp(fishPercentMod * (1 + accuracyPercentMod), minimumCaptureZoneWidth, maximumCaptureZoneWidth);
 
-            
-            // TODO: Include the AccuracyModifier from the equipped Fishing rod
-            captureZoneWidth = captureZoneWidth * fishPercentMod;
-            
-            minimumZone = 0 + captureZoneWidth  / 2;
-            maximumZone = 1 - captureZoneWidth  / 2;
-            
-            
+            minimumZone = 0 + captureZoneWidth / 2;
+            maximumZone = 1 - captureZoneWidth / 2;
+
             // TODO: Replace this base value with the FishItem icon width
             var fishWidth = (1f / 30f) * 2f;
-            
-            minimumFishZone = 0 + ((fishWidth / 2));
-            maximumFishZone = 1 - ((fishWidth / 2));
+
+            minimumFishZone = 0 + fishWidth / 2;
+            maximumFishZone = 1 - fishWidth / 2;
 
             InitializeCaptureZone();
             InitializeFishSpawnPoint();
@@ -126,7 +165,9 @@ namespace Player
             }
             else
             {
-                successMeter -= Time.deltaTime;    
+                var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
+                var successMeterProgress = Time.deltaTime * multiplier;
+                successMeter -= successMeterProgress;
             }
             successMeter = Mathf.Clamp(successMeter, 0 ,fishingTime);
             fishOMeterUI.successBar.fillAmount = successMeter / fishingTime;
@@ -197,7 +238,7 @@ namespace Player
             maximumZone = 0;
             minimumFishZone = 0;
             maximumFishZone = 0;
-            successMeter = 3f;
+            successMeter = startingSuccessMeter;
 
             StopAllCoroutines();
             ShowEndGameUI();
@@ -232,6 +273,15 @@ namespace Player
             }
             yield return new WaitForSeconds(time);
             StartCoroutine(Stop(catchable.RandomStopTimeRange.Randomize()));
+        }
+    }
+
+
+    public static class FloatExtension
+    {
+        public static float DivideByTwo(this float value)
+        {
+            return value / 2;
         }
     }
 }
