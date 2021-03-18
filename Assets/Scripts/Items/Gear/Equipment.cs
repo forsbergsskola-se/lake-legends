@@ -10,6 +10,7 @@ namespace Items.Gear
         [SerializeField] private string ItemID;
 
         [SerializeField] public EquipmentVariant equipmentVariant;
+        [SerializeField] public EquipmentType equipmentType;
         [SerializeField] private Rarity rarity;
         
         [SerializeField] public FloatRange lineStrength = new FloatRange(22,28);
@@ -25,7 +26,7 @@ namespace Items.Gear
             }
         }
 
-        public EquipmentType EquipmentType => equipmentVariant.EquipmentType;
+        public EquipmentType EquipmentType => equipmentType;
 
         public string RarityName => rarity.name;
         public string Name => name;
