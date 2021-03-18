@@ -29,6 +29,11 @@ namespace Items.Gear
         public EquipmentType EquipmentType => equipmentType;
 
         public string RarityName => rarity.name;
+        public void GenerateNewGuid()
+        {
+            ItemID = Guid.NewGuid().ToString();
+        }
+
         public string Name => name;
         public int Rarity => rarity.starAmount;
         
@@ -36,15 +41,7 @@ namespace Items.Gear
         {
             return rarity.name + " " + this.name;
         }
-        
-        private void Awake()
-        {
-            if (string.IsNullOrEmpty(ItemID))
-            {
-                ItemID = Guid.NewGuid().ToString();
-            }
-        }
-        
+
         private void OnValidate()
         {
             if (string.IsNullOrEmpty(ItemID))

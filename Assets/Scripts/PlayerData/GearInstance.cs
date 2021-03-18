@@ -63,6 +63,11 @@ namespace PlayerData
         public event Action Equipped;
         public event Action UnEquipped;
         public event Action Sold;
+        public void GenerateNewGuid()
+        {
+            GearSaveData.instanceID = Guid.NewGuid().ToString();
+        }
+
         [JsonIgnore] public string Name => Equipment.equipmentVariant.name;
         [JsonIgnore] public int Rarity => Equipment.Rarity;
         public void Use()
@@ -100,6 +105,16 @@ namespace PlayerData
                 $"Attraction: {CalculatedAttraction} \n" +
                 $"Line Strength: {CalculatedLineStrength} \n" +
                 $"Level: {GearSaveData.level}";
+        }
+
+        public string[] GetStats()
+        {
+            return new[]
+            {
+                $"Accuracy: {CalculatedAccuracy:F0}",
+                $"Attraction: {CalculatedAttraction:F0}",
+                $"Line Strength: {CalculatedLineStrength:F0}"
+            };
         }
     }
 }
