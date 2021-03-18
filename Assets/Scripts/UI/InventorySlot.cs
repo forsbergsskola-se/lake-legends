@@ -107,8 +107,8 @@ namespace UI
                 var stats = gear.GetStats();
                 itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, stats);
             }
-                
-            itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name);
+            else
+                itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name);
             
             // Reflection
             /*
