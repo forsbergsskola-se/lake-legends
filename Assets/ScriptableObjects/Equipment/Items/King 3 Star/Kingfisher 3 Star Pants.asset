@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0d29d39a6021b418475c169d89a6b5, type: 3}
+  m_Name: Kingfisher 3 Star Pants
+  m_EditorClassIdentifier: 
+  ItemID: 8bf65ff9-307b-45a3-92f3-b48a0ddb7115
+  equipmentVariant: {fileID: 11400000, guid: d834859a2d225314b9acc023afff901b, type: 2}
+  equipmentType: {fileID: 11400000, guid: 789ac0eecd6ee3c4a9f171d4bb4800a3, type: 2}
+  rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
+  lineStrength:
+    min: 43
+    max: 46
+  attraction:
+    min: 22
+    max: 28
+  accuracy:
+    min: 22
+    max: 28
