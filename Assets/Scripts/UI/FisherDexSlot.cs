@@ -6,15 +6,18 @@ namespace UI
 {
     public class FisherDexSlot : Slot, IPointerClickHandler
     {
-        public override void Setup(IItem item)
+        private bool hasCaught;
+        public override void Setup(IItem item, bool hasCaught = true)
         {
+            this.hasCaught = hasCaught;
             Item = item;
-            GetComponentInChildren<Text>().text = item.Name;
+            if (hasCaught)
+                GetComponentInChildren<Text>().text = item.Name;
         }
         
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (Item != null)
+            if (hasCaught)
                 FindObjectOfType<BioArea>().Setup(Item as FishItem);
         }
     }

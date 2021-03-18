@@ -13,7 +13,7 @@ namespace UI
     {
         public Slot slotPrefab;
         public Transform gridParent;
-        public List<Slot> inventorySlots;
+        public List<Slot> inventorySlots = new List<Slot>();
         private bool decended;
         private int inventorySize;
 

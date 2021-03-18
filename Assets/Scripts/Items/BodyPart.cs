@@ -29,7 +29,7 @@ namespace Items
         {
             var itemToEquip = eventRef.Equippable;
             
-            if (itemToEquip.Equipment.equipmentVariant.EquipmentType == myPreferredEquipment)
+            if (itemToEquip.Equipment.EquipmentType == myPreferredEquipment)
             {
                 EquippedItem = null;
                 playerBody.SaveEquipment();
@@ -40,7 +40,7 @@ namespace Items
         {
             var itemToEquip = eventRef.Item;
             
-                if (itemToEquip.Equipment.equipmentVariant.EquipmentType == myPreferredEquipment)
+                if (itemToEquip.Equipment.EquipmentType == myPreferredEquipment)
                 {
                     if (EquippedItem == null)
                     {
