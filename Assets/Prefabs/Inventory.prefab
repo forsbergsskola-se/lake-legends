@@ -91,49 +91,6 @@ MonoBehaviour:
   slotPrefab: {fileID: 269773137703170691, guid: 8bf48fb0f759198468412701056eb883, type: 3}
   gridParent: {fileID: 3137990099046195390}
   inventorySlots: []
---- !u!1 &3137990099222185543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3137990099222185541}
-  - component: {fileID: 3137990099222185540}
-  m_Layer: 0
-  m_Name: PlayerInventory
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3137990099222185541
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3137990099222185543}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -501.44043, y: 2.6608837, z: -168.97752}
-  m_LocalScale: {x: 0.54458827, y: 0.54458827, z: 0.54458827}
-  m_Children: []
-  m_Father: {fileID: 3137990100218954654}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3137990099222185540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3137990099222185543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d012a3fd854349a0ade2046a2011b556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3137990099287353155
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +523,6 @@ RectTransform:
   m_Children:
   - {fileID: 3137990099938049790}
   - {fileID: 3137990100668849655}
-  - {fileID: 3137990099222185541}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

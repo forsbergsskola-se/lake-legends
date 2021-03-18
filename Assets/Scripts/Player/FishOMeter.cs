@@ -4,7 +4,7 @@ using EventManagement;
 using Events;
 using Fish;
 using Items;
-using Treasure;
+using LootBoxes;
 using PlayerData;
 using UI;
 using UnityEngine;
@@ -126,6 +126,7 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
+            Debug.Log(playerBody.TotalAccuracy);
             successMeter = startingSuccessMeter;
 
             catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish(Attraction);

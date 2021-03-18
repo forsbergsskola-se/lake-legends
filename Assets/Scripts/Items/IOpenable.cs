@@ -1,7 +1,9 @@
-﻿namespace Items
+﻿using System;
+
+namespace Items
 {
     public interface IOpenable
     {
-        void Open();
+        void Open(Action openListener);
     }
 }

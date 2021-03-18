@@ -3,7 +3,7 @@ using PlayerData;
 using UnityEngine;
 
 
-namespace Treasure 
+namespace LootBoxes 
 {
     public class TreasureGenerator : MonoBehaviour
     {

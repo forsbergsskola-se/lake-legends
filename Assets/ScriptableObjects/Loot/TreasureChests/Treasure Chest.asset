@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: Treasure Chest
   m_EditorClassIdentifier: 
   itemID: 5f320a62-7bb8-484b-976e-134f58d81784
-  treasureChests:
-  - {fileID: 11400000, guid: dac6e2472c0161b43982771585711730, type: 2}
-  - {fileID: 11400000, guid: e800d7296001f2a419857e3d6ff993af, type: 2}
-  - {fileID: 11400000, guid: bd481769751712e4ab42caebb5e52781, type: 2}
+  loot:
+  - {fileID: 11400000, guid: 6e6a9609c0544ad4680eb0519933fe3e, type: 2}
   weights:
   - 10
-  - 30
-  - 60
   randomStopTimeRange:
     min: 0.5
     max: 2
