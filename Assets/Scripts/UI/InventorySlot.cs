@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Events;
 using Items;
 using Items.Gear;
+using PlayerData;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -101,7 +102,13 @@ namespace UI
             }
             var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
             itemInspectionArea.transform.parent.gameObject.SetActive(true);
-            itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, Item.ToString());
+            if (Item is GearInstance gear)
+            {
+                var stats = gear.GetStats();
+                itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, stats);
+            }
+                
+            itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name);
             
             // Reflection
             /*
