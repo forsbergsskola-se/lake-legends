@@ -3944,7 +3944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3137990099938049790, guid: 4bc40a609de0e2a4581570d76ba1eac2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -56.50122
+      value: -56.50128
       objectReference: {fileID: 0}
     - target: {fileID: 3137990100113433734, guid: 4bc40a609de0e2a4581570d76ba1eac2, type: 3}
       propertyPath: m_IsActive
@@ -4589,7 +4589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 670, y: 0.000030517578}
+  m_AnchoredPosition: {x: 670, y: 0.00012207031}
   m_SizeDelta: {x: -1668.2844, y: -558.85645}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289039642
@@ -7233,7 +7233,7 @@ GameObject:
   - component: {fileID: 2053303847}
   - component: {fileID: 2053303846}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Purchasables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7255,8 +7255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -149.99043}
-  m_SizeDelta: {x: 0, y: -299.981}
+  m_AnchoredPosition: {x: 0, y: -135.8453}
+  m_SizeDelta: {x: 0, y: -271.6908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2053303846
 MonoBehaviour:

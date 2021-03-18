@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233b23d7fc4694c40aa68beb6ac2e378, type: 3}
   m_Name: 2 Star
   m_EditorClassIdentifier: 
-  itemID: fed15733-f603-4dc1-8a46-b797583cb496
+  itemID: bfed15733-f603-4dc1-8a46-b797583cb496
   loot:
   - {fileID: 11400000, guid: 1c64d49aabb08a74cb196c176d15879e, type: 2}
   - {fileID: 11400000, guid: 8bf04a069f7ba1f4d852313d87fd7da3, type: 2}
@@ -41,3 +41,4 @@ MonoBehaviour:
     max: 3
   catchableSpeed: 1
   catchableStrength: 1
+  isLootStealer: 0
