@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Items;
+using LootBoxes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ namespace Fish
     public class Factory : ScriptableObject
     {
         public FishItem[] fishItems;
-        public Treasure.LootBox treasureChest;
+        public LootBox treasureChest;
         public float treasureChestWeight;
 
         public ICatchable GenerateFish(float attractionValue)

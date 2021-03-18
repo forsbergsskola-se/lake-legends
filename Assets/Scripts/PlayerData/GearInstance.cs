@@ -43,7 +43,7 @@ namespace PlayerData
         public string ID => GearSaveData.instanceID;
         [JsonIgnore] public EquipmentType EquipmentType => Equipment.equipmentVariant.EquipmentType;
 
-        public bool IsEquipped
+        [JsonIgnore] public bool IsEquipped
         {
             get => isEquipped;
             set

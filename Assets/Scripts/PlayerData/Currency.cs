@@ -53,8 +53,8 @@ namespace PlayerData
         {
             var currencies = await saver.LoadCurrencies(CurrencyKey);
             silver = currencies.Silver;
-            messageHandler.Publish(new UpdateSilverUIEvent(silver));
             gold = currencies.Gold;
+            messageHandler.Publish(new UpdateSilverUIEvent(silver));
         }
     }
 }

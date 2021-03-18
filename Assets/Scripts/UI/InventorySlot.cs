@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+using Events;
 using Items;
 using Items.Gear;
 using UnityEngine;
@@ -13,6 +12,7 @@ namespace UI
     public class InventorySlot : Slot, IPointerClickHandler
     {
         public GameObject button;
+        public bool opened;
         private Color defaultColor = Color.white;
 
         public override void Setup(IItem item)
@@ -32,6 +32,14 @@ namespace UI
             {
                 sellable.Sold += OnItemSold;
             }
+        }
+
+        private void OnOpened()
+        {
+            GetComponentInChildren<Text>().text = "{Empty}";
+            ClearInspectionArea();
+            opened = true;
+            Item = null;
         }
 
         private void OnItemSold()
@@ -70,14 +78,15 @@ namespace UI
 
         private void ClearInspectionArea()
         {
-            var itemInspectionArea = FindObjectOfType<ItemInspectionArea>();
+            var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
             itemInspectionArea.Clear();
         }
-
+        
         public void GenerateButtons()
         {
             // Interfaces
             var delegates = new Dictionary<string, Action>();
+            var callBacks = new Dictionary<string, Callback>();
             if (Item is IEquippable equippable)
             {
                 delegates.Add("Equip", equippable.Equip);
@@ -88,10 +97,11 @@ namespace UI
             }
             if (Item is IOpenable openable)
             {
-                delegates.Add("Open", openable.Open);
+                callBacks.Add("Open", new Callback(openable.Open, OnOpened));
             }
-            var itemInspectionArea = FindObjectOfType<ItemInspectionArea>();
-            itemInspectionArea.CreateButtons(delegates, Item.Name, Item.ToString());
+            var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
+            itemInspectionArea.transform.parent.gameObject.SetActive(true);
+            itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, Item.ToString());
             
             // Reflection
             /*

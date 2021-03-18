@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using EventManagement;
 using Events;
@@ -5,11 +6,12 @@ using Items;
 using Items.Gear;
 using PlayerData;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Treasure
+namespace LootBoxes
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/LootBox", fileName = "New LootBox")]
-    public class LootBox : ScriptableObject, IItem, ICatchable
+    public class LootBox : ScriptableObject, IItem, ICatchable, IOpenable
     {
         [SerializeField] private string itemID;
         public ScriptableObject[] loot;
@@ -54,12 +56,13 @@ namespace Treasure
         
         public void Use()
         {
-            OpenLootBox();
+            
         }
 
         void OpenLootBox()
         {
             var treasure = GenerateLoot();
+            RemoveLootBox();
             if (treasure is Equipment equipment)
             {
                 var gearInstance = new GearInstance(new GearSaveData(equipment));
@@ -70,7 +73,6 @@ namespace Treasure
                 FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(treasure));
             }
             Debug.Log("Generating treasure" + treasure.Name);
-            RemoveLootBox();
         }
 
         void RemoveLootBox()
@@ -92,5 +94,16 @@ namespace Treasure
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;
         public float CatchableSpeed => catchableSpeed;
         public float CatchableStrength => catchableStrength;
+
+        public override string ToString()
+        {
+            return name;
+        }
+
+        public void Open(Action openListener)
+        {
+            openListener?.Invoke();
+            OpenLootBox();
+        }
     }
 }

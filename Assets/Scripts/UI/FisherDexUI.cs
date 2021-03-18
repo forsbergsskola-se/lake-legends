@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using EventManagement;
 using Events;
 using Items;
@@ -13,6 +14,7 @@ namespace UI
         { 
             Clear();
             FindObjectOfType<EventsBroker>().SubscribeTo<EnableFisherDexEvent>(Setup);
+            FindObjectOfType<EventsBroker>().Publish(new RequestFisherDexData());
         }
         
         private void Setup(EnableFisherDexEvent inventoryEvent)
@@ -59,13 +61,18 @@ namespace UI
         private void Sort(IOrderedEnumerable<Slot> groupedSlots)
         {
             var orderedList = groupedSlots
-                    .ThenByDescending(slot => ((FishItem) slot.Item).rarity.starAmount)
+                    .ThenBy(slot => ((FishItem) slot.Item).rarity.starAmount)
                     .ToArray();
 
             for (var i = 0; i < orderedList.Length; i++)
             {
                 orderedList[i].transform.SetSiblingIndex(i);
             }
+        }
+
+        private void OnDisable()
+        {
+            FindObjectOfType<EventsBroker>()?.UnsubscribeFrom<EnableFisherDexEvent>(Setup);
         }
     }
 }
