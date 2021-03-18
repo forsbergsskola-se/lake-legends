@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
@@ -21,6 +22,7 @@ namespace UI
             Clear();
             FindObjectOfType<EventsBroker>().SubscribeTo<EnableInventoryEvent>(Setup);
             FindObjectOfType<EventsBroker>().SubscribeTo<UpdateInventoryEvent>(OnUpdateInventoryUI);
+            FindObjectOfType<EventsBroker>().Publish(new RequestInventoryData());
         }
 
         protected virtual void Clear()
@@ -54,8 +56,21 @@ namespace UI
             }
             else
             {
-                var removedItem = inventorySlots.Find(slot => slot.Item == item);
-                inventorySlots.Remove(removedItem);
+                if (item is IOpenable openeable)
+                {
+                    var removedItems = inventorySlots.Find(slot =>
+                    {
+                        var inventorySlot = slot as InventorySlot;
+                        Debug.Log(inventorySlot.opened);
+                        return inventorySlot.opened;
+                    });
+                    inventorySlots.Remove(removedItems);
+                }
+                else
+                {
+                    var removedItem = inventorySlots.Find(slot => slot.Item == updateInventoryEvent.Item);
+                    inventorySlots.Remove(removedItem);
+                }
             }
             Resort();
         }
@@ -122,6 +137,11 @@ namespace UI
             {
                 raritySortedList[i].transform.SetSiblingIndex(i);
             }
+        }
+
+        private void OnDisable()
+        {
+            FindObjectOfType<EventsBroker>()?.UnsubscribeFrom<UpdateInventoryEvent>(OnUpdateInventoryUI);
         }
     }
 }
