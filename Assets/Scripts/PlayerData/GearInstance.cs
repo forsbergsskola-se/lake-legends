@@ -63,6 +63,11 @@ namespace PlayerData
         public event Action Equipped;
         public event Action UnEquipped;
         public event Action Sold;
+        public void GenerateNewGuid()
+        {
+            GearSaveData.instanceID = Guid.NewGuid().ToString();
+        }
+
         [JsonIgnore] public string Name => Equipment.equipmentVariant.name;
         [JsonIgnore] public int Rarity => Equipment.Rarity;
         public void Use()

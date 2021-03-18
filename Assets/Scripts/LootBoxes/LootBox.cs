@@ -54,6 +54,11 @@ namespace LootBoxes
             throw new System.Exception("LootBox with name " + this.name + " Is Empty");
         }
         
+        public void GenerateNewGuid()
+        {
+            itemID = Guid.NewGuid().ToString();
+        }
+        
         public void Use()
         {
             

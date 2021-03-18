@@ -53,6 +53,11 @@ namespace Items
             }
         }
 
+        public void GenerateNewGuid()
+        {
+            ItemID = Guid.NewGuid().ToString();
+        }
+
         public string Name => name;
         public int Rarity => rarity.starAmount;
         public FloatRange RandomStopTimeRange => randomStopTimeRange;

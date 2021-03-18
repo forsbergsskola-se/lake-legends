@@ -48,6 +48,9 @@ namespace Editor
             ClearDictionary(itemIndexer);
             foreach (var item in enumerable)
             {
+                /*if (itemIndexer.indexer.ContainsKey(item.ID))
+                    item.GenerateNewGuid();
+                EditorUtility.SetDirty(item as ScriptableObject);*/
                 itemIndexer.indexer.Add(item.ID, item as ScriptableObject);
             }
 
