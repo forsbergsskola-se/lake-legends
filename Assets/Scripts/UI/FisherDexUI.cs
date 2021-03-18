@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using EventManagement;
 using Events;
-using Fish;
+using Items;
 using PlayerData;
 using UnityEngine;
 
-namespace Items
+namespace UI
 {
     public class FisherDexUI : InventoryUI
     {

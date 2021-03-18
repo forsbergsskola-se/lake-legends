@@ -16,13 +16,13 @@ MonoBehaviour:
   ItemID: bcacb2a9-57e5-44bb-b2e3-1f0f84977b60
   type: {fileID: 11400000, guid: 7e735e2268c9b754e97a5d96f0e093df, type: 2}
   rarity: {fileID: 11400000, guid: 82ad7896271fb9741805d898dd41b840, type: 2}
-  rarityWeight: 4
+  rarityWeight: 3
   model: {fileID: 0}
   randomStopTimeRange:
-    min: 0.5
-    max: 1
+    min: 0
+    max: 0.5
   randomMoveTimeRange:
     min: 0.1
     max: 2.5
   fishSpeed: 2
-  fishStrength: 17
+  fishStrength: 15

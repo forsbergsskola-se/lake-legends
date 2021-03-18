@@ -11,13 +11,25 @@ namespace Fish
     {
         public FishItem[] fishItems;
 
-        public ICatchable GenerateFish()
+        public ICatchable GenerateFish(float attractionValue)
         {
-            var randomNum = Random.Range(0f, fishItems.Sum(item => item.rarityWeight));
+            var multiplier = attractionValue * 0.001f + 1;
+            var commonSum = fishItems.Where(fishItem => fishItem.Rarity == 0).Sum(fishItem => fishItem.rarityWeight);
+            var unCommonSum = fishItems.Where(fishItem => fishItem.Rarity != 0).Sum(fishItem => fishItem.rarityWeight * multiplier);
+            
+            var randomNum = Random.Range(0f, commonSum + unCommonSum);
+            
             Debug.Log(randomNum);
             foreach (var t in fishItems)
             {
-                if (randomNum < t.rarityWeight)
+                if (t.Rarity != 0)
+                {
+                    if (randomNum < t.rarityWeight * multiplier)
+                    {
+                        return t;
+                    }
+                }
+                else if (randomNum < t.rarityWeight)
                 {
                     return t;
                 }

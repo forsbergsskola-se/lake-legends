@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace Items.Gear
@@ -26,6 +27,7 @@ namespace Items.Gear
 
         public EquipmentType EquipmentType => equipmentVariant.EquipmentType;
 
+        public string RarityName => rarity.name;
         public string Name => name;
         public int Rarity => rarity.starAmount;
         

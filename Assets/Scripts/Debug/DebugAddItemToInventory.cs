@@ -8,6 +8,9 @@ public class DebugAddItemToInventory : MonoBehaviour
 {
     [SerializeField] private Equipment itemToAdd;
 
+    private GearInstance debugGearInstance;
+    
+    
     private IMessageHandler eventsBroker;
     
     private void Start()
@@ -19,5 +22,11 @@ public class DebugAddItemToInventory : MonoBehaviour
     {
         Debug.Log($"Item to add is {itemToAdd}");
         eventsBroker.Publish(new AddItemToInventoryEvent(new GearInstance(new GearSaveData(itemToAdd))));
+    }
+
+    public void EquipItem()
+    {
+        debugGearInstance = new GearInstance(new GearSaveData(itemToAdd));
+        debugGearInstance.Use();
     }
 }

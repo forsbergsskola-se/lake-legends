@@ -15,6 +15,7 @@ namespace PlayerData
         protected Dictionary<string, int> items = new Dictionary<string, int>();
         protected readonly IInventorySaver saver;
         private readonly GearInventory gearInventory;
+        private IMessageHandler messageHandler;
         protected virtual string InventoryKey => "Inventory";
 
         protected Inventory(IInventorySaver saver, IMessageHandler messageHandler)
@@ -27,34 +28,34 @@ namespace PlayerData
         {
             this.saver = saver;
             this.gearInventory = gearInventory;
-
-            messageHandler.SubscribeTo<AddItemToInventoryEvent>(GetItemToAdd);
-            messageHandler.SubscribeTo<RemoveItemFromInventoryEvent>(GetItemToRemove);
-            messageHandler.SubscribeTo<EndFishOMeterEvent>(eve =>
+            this.messageHandler = messageHandler;
+            this.messageHandler.SubscribeTo<AddItemToInventoryEvent>(OnAddItem);
+            this.messageHandler.SubscribeTo<RemoveItemFromInventoryEvent>(OnRemoveItem);
+            this.messageHandler.SubscribeTo<EndFishOMeterEvent>(eve =>
             {
                 if (eve.catchItem != null && eve.catchItem is IItem item && !(eve.catchItem is FishItem))
                     AddItem(item);
             });
         }
 
-        private void GetItemToAdd(AddItemToInventoryEvent obj)
+        private void OnAddItem(AddItemToInventoryEvent obj)
         {
-            if (obj.Item is GearInstance item)
-                gearInventory.AddItem(item);
             if (!(obj.Item is FishItem))
                 AddItem(obj.Item);
+            messageHandler.Publish(new UpdateInventoryEvent(true, obj.Item, gearInventory));
         }
         
-        private void GetItemToRemove(RemoveItemFromInventoryEvent obj)
+        private void OnRemoveItem(RemoveItemFromInventoryEvent obj)
         {
-            if (obj.Item is GearInstance item)
-                gearInventory.RemoveItem(item);
             if (!(obj.Item is FishItem))
                 RemoveItem(obj.Item);
+            messageHandler.Publish(new UpdateInventoryEvent(false, obj.Item, gearInventory));
         }
         
         public virtual bool AddItem(IItem iItem)
         {
+            if (iItem is GearInstance item)
+                gearInventory.AddItem(item);
             if (TotalSizeOfInventory >= MaxSize)
                 return false;
             if (items.ContainsKey(iItem.ID))
@@ -67,6 +68,8 @@ namespace PlayerData
 
         public virtual bool RemoveItem(IItem iItem)
         {
+            if (iItem is GearInstance item)
+                gearInventory.RemoveItem(item);
             if (!items.ContainsKey(iItem.ID))
                 return false;
             if (items.ContainsKey(iItem.ID))

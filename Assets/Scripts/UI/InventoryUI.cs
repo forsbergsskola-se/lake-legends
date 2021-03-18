@@ -1,12 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
 using Events;
+using Items;
 using PlayerData;
 using UnityEngine;
 
-namespace Items
+namespace UI
 {
     public class InventoryUI : MonoBehaviour
     {
@@ -14,11 +14,13 @@ namespace Items
         public Transform gridParent;
         public List<Slot> inventorySlots;
         private bool decended;
+        private int inventorySize;
 
         protected virtual void OnEnable()
         { 
             Clear();
             FindObjectOfType<EventsBroker>().SubscribeTo<EnableInventoryEvent>(Setup);
+            FindObjectOfType<EventsBroker>().SubscribeTo<UpdateInventoryEvent>(OnUpdateInventoryUI);
         }
 
         protected virtual void Clear()
@@ -32,6 +34,31 @@ namespace Items
         protected virtual void Setup(EnableInventoryEvent inventoryEvent)
         {
             Setup(inventoryEvent.Inventory);
+        }
+
+        protected virtual void OnUpdateInventoryUI(UpdateInventoryEvent updateInventoryEvent)
+        {
+            var item = updateInventoryEvent.Item;
+            if (updateInventoryEvent.Added)
+            {
+                var instance = Instantiate(slotPrefab, gridParent);
+                if (AllItems.ItemIndexer.indexer.ContainsKey(item.ID))
+                    instance.Setup(AllItems.ItemIndexer.indexer[item.ID] as IItem);
+                else
+                {
+                    var gearItem = updateInventoryEvent.GearInventory.GeneratedGear[item.ID];
+                    instance.Setup(gearItem);
+                }
+                inventorySlots.Add(instance); 
+                Destroy(transform.GetChild(inventorySize - 1).gameObject);
+            }
+            else
+            {
+                var removedItem = inventorySlots.Find(slot => slot.Item == item);
+                Destroy(removedItem.gameObject);
+                inventorySlots.Remove(removedItem);
+            }
+            Resort();
         }
 
         protected virtual void Setup(IInventory inventory)
@@ -57,6 +84,8 @@ namespace Items
             {
                 var instance = Instantiate(slotPrefab, gridParent);
             }
+
+            inventorySize = inventory.MaxSize;
         }
 
         public virtual void ToggleSort()
@@ -66,6 +95,14 @@ namespace Items
             else
                 SortDescended();
             decended = !decended;
+        }
+
+        public virtual void Resort()
+        {
+            if (decended)
+                SortDescended();
+            else
+                SortDescended();
         }
 
         public virtual void SortDescended()

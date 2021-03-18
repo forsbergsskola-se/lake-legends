@@ -6,5 +6,7 @@ namespace Items.Gear
         string ID { get; }
         
         EquipmentType EquipmentType { get; }
+
+        void Equip();
     }
 }

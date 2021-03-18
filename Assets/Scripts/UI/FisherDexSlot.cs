@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using Items;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Items
+namespace UI
 {
     public class FisherDexSlot : Slot, IPointerClickHandler
     {
