@@ -10,14 +10,16 @@ namespace Fish
     public class Factory : ScriptableObject
     {
         public FishItem[] fishItems;
+        public Treasure.LootBox treasureChest;
+        public float treasureChestWeight;
 
-        public FishItem GenerateFish(float attractionValue)
+        public ICatchable GenerateFish(float attractionValue)
         {
             var multiplier = attractionValue * 0.001f + 1;
             var commonSum = fishItems.Where(fishItem => fishItem.Rarity == 0).Sum(fishItem => fishItem.rarityWeight);
             var unCommonSum = fishItems.Where(fishItem => fishItem.Rarity != 0).Sum(fishItem => fishItem.rarityWeight * multiplier);
             
-            var randomNum = Random.Range(0f, commonSum + unCommonSum);
+            var randomNum = Random.Range(0f, commonSum + unCommonSum + treasureChestWeight);
             
             Debug.Log(randomNum);
             foreach (var t in fishItems)
@@ -35,6 +37,8 @@ namespace Fish
                 }
                 randomNum -= t.rarityWeight;
             }
+            if(treasureChest != null)
+                return treasureChest;
             throw new Exception("FishFactory With Name " + name + " Is Empty");
         }
     }

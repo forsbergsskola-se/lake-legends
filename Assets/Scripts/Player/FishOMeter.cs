@@ -4,6 +4,7 @@ using EventManagement;
 using Events;
 using Fish;
 using Items;
+using Treasure;
 using PlayerData;
 using UI;
 using UnityEngine;
@@ -19,9 +20,13 @@ namespace Player
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
         [SerializeField] private Factory factory;
+        [SerializeField] private LootBox lootBox;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
+
+        const int treasureChanceMaxValue = 101;
+        [SerializeField] [Range(0,100)] private int treasureChance;
 
         [SerializeField, Tooltip("Maximum area that a Fish+Accuracy should be able to take up")] private float maximumCaptureZoneWidth = 0.5f;
         [SerializeField, Tooltip("Minimum area that a Fish+Accuracy should be able to take up")] private float minimumCaptureZoneWidth = 0.01f;
@@ -114,11 +119,17 @@ namespace Player
             }
         }
 
+        private bool IsTreasureCatch()
+        {
+            return Random.Range(0, treasureChanceMaxValue) <= treasureChance;
+        }
+
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
             successMeter = startingSuccessMeter;
+
+            catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish(Attraction);
             
-            catchable = factory.GenerateFish(Attraction);
             captureZoneWidth = 1;
             
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
