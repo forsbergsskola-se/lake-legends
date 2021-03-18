@@ -128,9 +128,8 @@ namespace Player
         {
             successMeter = startingSuccessMeter;
 
-            catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish();
-
-            catchable = factory.GenerateFish(Attraction);
+            catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish(Attraction);
+            
             captureZoneWidth = 1;
             
             fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));

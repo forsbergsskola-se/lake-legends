@@ -10,6 +10,6 @@ public class FishGenerator : MonoBehaviour
     public void GenerateFish()
     {
         var fish = fishFactory.GenerateFish(0);
-        FindObjectOfType<InventoryHandler>().AddItemToInventory(fish);
+        FindObjectOfType<InventoryHandler>().AddItemToInventory(fish as IItem);
     }
 }
