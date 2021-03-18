@@ -14,7 +14,11 @@ namespace Auth
         private IEnumerator Start()
         {
             authorizer = debug ? (IAuthorizer) new DebugAuth() : new FirebaseAuthAdapter();
-            yield return authorizer.Initialize();
+            var initTask = authorizer.Initialize();
+            while (!initTask.IsCompleted)
+            {
+                yield return null;
+            }
             var userTask = authorizer.LoginAnonymously();
             while (!userTask.IsCompleted)
             {
