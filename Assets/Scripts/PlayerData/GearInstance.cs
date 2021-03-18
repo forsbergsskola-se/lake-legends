@@ -106,5 +106,15 @@ namespace PlayerData
                 $"Line Strength: {CalculatedLineStrength} \n" +
                 $"Level: {GearSaveData.level}";
         }
+
+        public string[] GetStats()
+        {
+            return new[]
+            {
+                $"Accuracy: {CalculatedAccuracy:F0}",
+                $"Attraction: {CalculatedAttraction:F0}",
+                $"Line Strength: {CalculatedLineStrength:F0}"
+            };
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace UI
 {
     public class ItemInspectionArea : MonoBehaviour
     {
+        public Transform buttonsParent;
         public GameObject button;
         public Transform statsParent;
         public Text title;
@@ -24,13 +25,13 @@ namespace UI
             }
             foreach (var action in actions)
             {
-                var instance = Instantiate(button, transform);
+                var instance = Instantiate(button, buttonsParent);
                 instance.GetComponentInChildren<Text>().text = action.Key;
                 instance.GetComponent<Button>().onClick.AddListener(() => action.Value?.Invoke());
             }
             foreach (var action in callbacks)
             {
-                var instance = Instantiate(button, transform);
+                var instance = Instantiate(button, buttonsParent);
                 instance.GetComponentInChildren<Text>().text = action.Key;
                 instance.GetComponent<Button>().onClick.AddListener(() => action.Value?.Method?.Invoke(action.Value.CallbackMethod));
             }
@@ -52,7 +53,7 @@ namespace UI
         public void Clear()
         {
             var children = transform.GetComponentsInChildren<Transform>()
-                .Select(transform1 => transform1.gameObject).Where(o => o != gameObject && o != statsParent.gameObject);
+                .Select(transform1 => transform1.gameObject).Where(o => o != gameObject && o != statsParent.gameObject && o != buttonsParent.gameObject && o != title.gameObject);
             this.title.text = "";
             foreach (var child in children)
             { 
