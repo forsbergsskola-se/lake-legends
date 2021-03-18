@@ -126,7 +126,7 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
-            Debug.Log(playerBody.TotalAccuracy);
+            Debug.Log(Accuracy);
             successMeter = startingSuccessMeter;
 
             catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish(Attraction);

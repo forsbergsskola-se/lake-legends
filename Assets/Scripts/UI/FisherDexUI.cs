@@ -61,7 +61,7 @@ namespace UI
         private void Sort(IOrderedEnumerable<Slot> groupedSlots)
         {
             var orderedList = groupedSlots
-                    .ThenByDescending(slot => ((FishItem) slot.Item).rarity.starAmount)
+                    .ThenBy(slot => ((FishItem) slot.Item).rarity.starAmount)
                     .ToArray();
 
             for (var i = 0; i < orderedList.Length; i++)
