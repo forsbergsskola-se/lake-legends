@@ -53,7 +53,7 @@ namespace UI
         public void Clear()
         {
             var children = transform.GetComponentsInChildren<Transform>()
-                .Select(transform1 => transform1.gameObject).Where(o => o != gameObject && o != statsParent.gameObject);
+                .Select(transform1 => transform1.gameObject).Where(o => o != gameObject && o != statsParent.gameObject && o != buttonsParent.gameObject && o != title.gameObject);
             this.title.text = "";
             foreach (var child in children)
             { 
