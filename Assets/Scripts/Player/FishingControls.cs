@@ -25,8 +25,8 @@ namespace Player
 
         private IMessageHandler eventsBroker;
 
-        [SerializeField] private Image floatNoBite;
-        [SerializeField] private Image floatNibbleOrBite;
+        [SerializeField] private Transform floatNoBite;
+        [SerializeField] private Transform floatNibbleOrBite;
         [SerializeField] private Text statusText;
 
         private bool UsesFloat => floatNoBite != null && floatNibbleOrBite != null;
