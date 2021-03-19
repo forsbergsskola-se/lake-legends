@@ -6,7 +6,7 @@ using Items;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace EditorExtensions
 {
     [InitializeOnLoad]
     public class SetItemIndexer : AssetPostprocessor
@@ -61,12 +61,10 @@ namespace Editor
         {
             itemIndexer.indexer.Clear();
         }
-        
-        public static IEnumerable<IItem> FindAllItems()
+
+        private static IEnumerable<IItem> FindAllItems()
         {
-            var guids = AssetDatabase.FindAssets($"t:{typeof(ScriptableObject)}");
-            var iItems = guids.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<ScriptableObject>).Where(asset => asset != null).OfType<IItem>();
-            return iItems;
+            return AssetQuerying.FindAssetsByType<ScriptableObject>().OfType<IItem>();
         }
     }
 }

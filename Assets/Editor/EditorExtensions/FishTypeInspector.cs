@@ -6,10 +6,10 @@ using Items;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace EditorExtensions
 {
     [CustomEditor(typeof(FishType))]
-    public class FishTypeInspector : UnityEditor.Editor
+    public class FishTypeInspector : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -29,7 +29,7 @@ namespace Editor
 
         private void CreateAll(FishType fishType)
         {
-            var rarities = FindAssetsByType<Rarity>();
+            var rarities = AssetQuerying.FindAssetsByType<Rarity>();
             foreach (var rarity in rarities)
             {
                 var instance = CreateInstance<FishItem>();
@@ -44,12 +44,6 @@ namespace Editor
                     return;
                 AssetDatabase.CreateAsset(instance, fullPath);
             }
-        }
-        
-        public static IEnumerable<T> FindAssetsByType<T>() where T : UnityEngine.Object
-        {
-            var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
-            return guids.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<T>).Where(asset => asset != null).ToList();
         }
     }
 }
