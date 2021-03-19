@@ -126,7 +126,6 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
-            Debug.Log(Accuracy);
             successMeter = startingSuccessMeter;
 
             catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish(Attraction);
@@ -195,7 +194,6 @@ namespace Player
                 maximumFishZone);
             
             eventsBroker.Publish(new UpdateFishUIPositionEvent(fishPositionCenterPoint));
-            Debug.Log(Input.touchPressureSupported);
         }
         
         private void UpdateCaptureZonePosition()
@@ -235,11 +233,13 @@ namespace Player
             catchable = null;
             EndGame();
         }
-
+        
         public void DebugCaughtLost()
         {
+            #if UNITY_EDITOR
             Debug.Log("Caught: " + PlayerPrefs.GetInt("Debug-CaughtFish"));
             Debug.Log("Lost: " + PlayerPrefs.GetInt("Debug-EscapedFish"));
+            #endif
         }
 
         private void EndGame()

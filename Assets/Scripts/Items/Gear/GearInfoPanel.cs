@@ -37,7 +37,6 @@ namespace Items.Gear
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new CheckAndDoEquipEvent(gearInstance));
-            Debug.Log("Fire CheckAndDoEquipEvent with this gear: " + gearInstance.Name);
         }
     }
 }

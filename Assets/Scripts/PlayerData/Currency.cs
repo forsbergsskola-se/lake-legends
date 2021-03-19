@@ -26,8 +26,7 @@ namespace PlayerData
             get => silver;
             private set 
             { 
-                silver = value; 
-                Debug.Log($"Current Silver {silver}");
+                silver = value;
                 messageHandler.Publish(new UpdateSilverUIEvent(silver));
                 Serialize();
             }
@@ -39,7 +38,6 @@ namespace PlayerData
             private set
             { 
                 gold = value;
-                Debug.Log($"Current Gold {gold}");
                 Serialize();
             }
         }

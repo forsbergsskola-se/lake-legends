@@ -37,7 +37,6 @@ namespace LootBoxes
                 return loot[i] as IItem;
             }
             var randomNum = Random.Range(0f, weights.Sum());
-            Debug.Log(randomNum);
 
             for (var i = 0; i < loot.Length; i++)
             {
@@ -77,7 +76,6 @@ namespace LootBoxes
             {
                 FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(treasure));
             }
-            Debug.Log("Generating treasure" + treasure.Name);
         }
 
         void RemoveLootBox()

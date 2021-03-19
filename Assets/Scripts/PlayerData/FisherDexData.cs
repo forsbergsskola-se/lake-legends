@@ -14,7 +14,6 @@ namespace PlayerData
         {
             messageHandler?.SubscribeTo<EndFishOMeterEvent>(eve =>
             {
-                Debug.Log(eve.catchItem);
                 if (eve.catchItem != null && eve.catchItem is FishItem fishItem)
                     AddItem(fishItem);
             });

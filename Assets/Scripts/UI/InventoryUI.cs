@@ -66,7 +66,6 @@ namespace UI
                     var removedItems = inventorySlots.Find(slot =>
                     {
                         var inventorySlot = slot as InventorySlot;
-                        Debug.Log(inventorySlot.opened);
                         return inventorySlot.opened;
                     });
                     inventorySlots.Remove(removedItems);
