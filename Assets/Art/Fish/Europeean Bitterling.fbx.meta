@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: f5dda9ee9a1343a48bae8a4a8caf8a35
+guid: 05010243d1ebc4c46b83b4daad81b1b5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EuBitter
+    second: {fileID: 2100000, guid: adcf9d67cf94a2b4e927d8622cc4a9bf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
