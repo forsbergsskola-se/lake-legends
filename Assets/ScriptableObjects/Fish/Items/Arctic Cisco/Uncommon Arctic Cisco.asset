@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1df658d08a65cc84597c919e8c81f5e1, type: 3}
-  m_Name: EpicEuropean Eel
+  m_Name: Uncommon Arctic Cisco
   m_EditorClassIdentifier: 
-  silverValue: 89
-  ItemID: 7a6b7454-ae7e-4969-9908-2104bebf38a9
-  type: {fileID: 11400000, guid: 5d0c7f9863b752d4f8621173c562a76f, type: 2}
-  rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
-  rarityWeight: 1
+  silverValue: 13
+  ItemID: 3e538b64-c17c-4e24-b443-4386009cc509
+  type: {fileID: 11400000, guid: 148188373b77c8a4483a5fcc7620ce23, type: 2}
+  rarity: {fileID: 11400000, guid: 5b3f4a1547683cb40aebff8ce4d898ca, type: 2}
+  rarityWeight: 6
   model: {fileID: 0}
   randomStopTimeRange:
-    min: 0
-    max: 0
+    min: 0.5
+    max: 2
   randomMoveTimeRange:
     min: 0.1
-    max: 1.5
+    max: 3
   fishSpeed: 2
-  fishStrength: 13
+  fishStrength: 20

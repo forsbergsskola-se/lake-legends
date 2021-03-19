@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1df658d08a65cc84597c919e8c81f5e1, type: 3}
-  m_Name: LegendaryEuropean Eel
+  m_Name: Epic Silver Bream
   m_EditorClassIdentifier: 
-  silverValue: 10
-  ItemID: a7e5939b-5563-4f7d-9145-c702297fb4e7
-  type: {fileID: 11400000, guid: 5d0c7f9863b752d4f8621173c562a76f, type: 2}
-  rarity: {fileID: 11400000, guid: d13c14358ecff484dbafa1049cd818b4, type: 2}
-  rarityWeight: 0.5
+  silverValue: 89
+  ItemID: 44bd5c89-44ae-4ccd-a9a3-e954e4aa1f41
+  type: {fileID: 11400000, guid: 7e735e2268c9b754e97a5d96f0e093df, type: 2}
+  rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
+  rarityWeight: 1
   model: {fileID: 0}
   randomStopTimeRange:
-    min: 0.5
-    max: 2
+    min: 0
+    max: 0
   randomMoveTimeRange:
     min: 0.1
-    max: 1
+    max: 1.5
   fishSpeed: 2
-  fishStrength: 10
+  fishStrength: 13
