@@ -1,9 +1,34 @@
 fileFormatVersion: 2
-guid: f5dda9ee9a1343a48bae8a4a8caf8a35
+guid: 4f663e528d34d9e4f8d44ac8a253d48c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: 2e4b1f115988a9d42a1142fe8aa0a38a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EyeWhite
+    second: {fileID: 2100000, guid: 25b1a99335058644e994743eab4c463a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: 8c6746b08b1afd145bbbc7570c977cd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fena
+    second: {fileID: 2100000, guid: 11414e77bc934004686d239da8432d7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pupil
+    second: {fileID: 2100000, guid: 64ef62d74b43f364893e0daa08a42669, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
