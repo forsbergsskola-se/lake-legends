@@ -93,9 +93,9 @@ namespace PlayerData
         
         private async Task LoadInventory()
         {
-            await Task.Run(() => inventory.Deserialize());
-            await Task.Run(() => currency.Deserialize());
-            await Task.Run(() => fisherDexData.Deserialize());
+            await inventory.Deserialize();
+            await currency.Deserialize();
+            await fisherDexData.Deserialize();
         }
 
         public void AddItemToInventory(IItem item)

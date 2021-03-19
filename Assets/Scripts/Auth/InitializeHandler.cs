@@ -1,3 +1,4 @@
+using System.Collections;
 using EventManagement;
 using Events;
 using UnityEngine;
@@ -17,6 +18,12 @@ namespace Auth
 
         private void OnLoadedInventory(LoadedInventoryEvent obj)
         {
+            StartCoroutine(LoadSceneWithDelay(5));
+        }
+
+        private IEnumerator LoadSceneWithDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
             SceneManager.LoadScene(sceneToLoad);
         }
 
