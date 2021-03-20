@@ -17,7 +17,6 @@ namespace EditorExtensions
         [SerializeField] private Object assetShortCut1;
         [SerializeField] private Object assetShortCut2;
         [SerializeField] private Object assetShortCut3;
-        private GUIStyle guiStyle;
 
         private void Awake()
         {
@@ -59,7 +58,7 @@ namespace EditorExtensions
             get
             {
                 var playButtonColored =
-                    AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/PlayButtonColored.png");;
+                    AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/PlayButtonColored.png");
                 if (playButtonColored == null)
                 {
                     var playButtonColor = TextureCreator.BlendColors((Texture2D) PlayButton, ButtonOrTextColor);
@@ -76,20 +75,22 @@ namespace EditorExtensions
         {
             get
             {
-                if (guiStyle != null) 
-                    return guiStyle;
-                var style = ToolbarStyles.commandButtonStyle;
-                style.normal.background =
-                    TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), BackGroundColor);
-                style.hover.background =
-                    TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), HighlightedColor);
-                style.imagePosition = ImagePosition.ImageLeft;
-                style.normal.textColor = ButtonOrTextColor;
-                guiStyle = style;
-
+                var guiStyle = new GUIStyle(ToolbarStyles.commandButtonStyle)
+                {
+                    normal =
+                    {
+                        background = TextureCreator.GetTextureOfColor(new Vector2Int(1, 1), BackGroundColor),
+                        textColor = ButtonOrTextColor
+                    },
+                    hover =
+                    {
+                        background = TextureCreator.GetTextureOfColor(new Vector2Int(1, 1), HighlightedColor),
+                        textColor = ButtonOrTextColor
+                    },
+                    imagePosition = ImagePosition.ImageLeft
+                };
                 return guiStyle;
             }
-            private set => guiStyle = value;
         }
 
         public Dictionary<Object, int> ObjectShortCuts
@@ -136,7 +137,6 @@ namespace EditorExtensions
 
         public void UpdateSettings()
         {
-            GuiStyle = null;
             AssetQuerying.DeleteFileAtRelativePath("Editor/Images/SettingsWheelColored.png");
             AssetQuerying.DeleteFileAtRelativePath("Editor/Images/PlayButtonColored.png");
         }

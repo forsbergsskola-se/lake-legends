@@ -17,7 +17,7 @@ namespace EditorExtensions
         {
             var bytes = texture2D.EncodeToPNG();
             File.WriteAllBytes($"{Application.dataPath}/{path}", bytes);
-            return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            return AssetQuerying.FindAssetAtPath<Texture2D>(path);
         }
 
         public static Texture BlendColors(Texture2D texture2D, Color color)
