@@ -29,7 +29,8 @@ namespace EditorExtensions
             style.hover.background = TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), new Color(0f, 0.8f, 0));
             //style.hover.background = GetTextureFromGreyScale(0.3f);
             style.imagePosition = ImagePosition.ImageLeft;
-            if (GUILayout.Button(new GUIContent(PlayButton, "Starts From PreLoadScene"), style))
+            var playButtonWithColor = TextureCreator.ReplaceNonTransparentPixels((Texture2D) PlayButton, Color.red);
+            if (GUILayout.Button(new GUIContent(playButtonWithColor, "Starts From PreLoadScene"), style))
             {
                 PlayFromPreLaunchScene();
             }

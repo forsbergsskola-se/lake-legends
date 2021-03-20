@@ -10,6 +10,24 @@ namespace EditorExtensions
         {
             return GetTextureOfColor(dimensions, new Color(greyAmount, greyAmount, greyAmount, 1));
         }
+        
+        public static Texture ReplaceNonTransparentPixels(Texture2D texture2D, Color color)
+        {
+            var texture = new Texture2D(texture2D.width, texture2D.height);
+            Graphics.CopyTexture(texture2D, texture);
+            for (var i = 0; i < texture.width; i++)
+            {
+                for (var j = 0; j < texture.height; j++)
+                {
+                    if (texture.GetPixel(i, j).a != 0)
+                    {
+                        texture.SetPixel(i, j, color);
+                    }
+                }   
+            }
+            texture.Apply();
+            return texture;
+        }
 
         public static Texture2D GetTextureOfColor(Vector2Int dimensions, Color color)
         {
