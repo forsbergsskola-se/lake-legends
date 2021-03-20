@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace EditorExtensions
@@ -10,9 +11,97 @@ namespace EditorExtensions
         [SerializeField] private Color buttonOrTextColor = Color.white;
         [SerializeField] private Color backGroundColor = new Color(0f, 0.6f, 0);
         [SerializeField] private Color highlightedColor = new Color(0f, 0.8f, 0);
-        [SerializeField] private ScenePathRef favouriteScene1 = new ScenePathRef("Assets/Scenes/JackJ/MainScreen.unity");
-        [SerializeField] private ScenePathRef favouriteScene2 = new ScenePathRef("Assets/Scenes/JackJ/JackJ.unity");
-        [SerializeField] private ScenePathRef favouriteScene3 = new ScenePathRef("Assets/Scenes/PreloadScene.unity");
+        [SerializeField] private ScenePathRef favouriteScene1 = new ScenePathRef("Scenes/JackJ/MainScreen.unity");
+        [SerializeField] private ScenePathRef favouriteScene2 = new ScenePathRef("Scenes/JackJ/JackJ.unity");
+        [SerializeField] private ScenePathRef favouriteScene3 = new ScenePathRef("Scenes/PreloadScene.unity");
+        [SerializeField] private Object assetShortCut1;
+        [SerializeField] private Object assetShortCut2;
+        [SerializeField] private Object assetShortCut3;
+        private GUIStyle guiStyle;
+
+        private static Texture PlayButton =>
+            AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/PlayButton.png");
+        
+        private static Texture SettingsWheel =>
+            AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/SettingsWheel.png");
+
+        public Texture SettingsWheelColored
+        {
+            get
+            {
+                var settingsWheelColored =
+                    AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/SettingsWheelColored.png");
+                if (settingsWheelColored == null)
+                {
+                    var settingsWheel =
+                        TextureCreator.ReplaceNonTransparentPixels((Texture2D) SettingsWheel, ButtonOrTextColor);
+                    TextureCreator.EncodeAndCreateAsset(settingsWheel as Texture2D,
+                        "Editor/Images/SettingsWheelColored.png");
+                    return settingsWheel;
+                }
+
+                return settingsWheelColored;
+            }
+        }
+
+        public Texture PlayButtonColored
+        {
+            get
+            {
+                var playButtonColored =
+                    AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/PlayButtonColored.png");;
+                if (playButtonColored == null)
+                {
+                    var playButtonColor = TextureCreator.BlendColors((Texture2D) PlayButton, ButtonOrTextColor);
+                    TextureCreator.EncodeAndCreateAsset(playButtonColor as Texture2D,
+                        "Editor/Images/PlayButtonColored.png");
+                    return playButtonColor;
+                }
+
+                return playButtonColored;
+            }
+        }
+
+        public GUIStyle GuiStyle
+        {
+            get
+            {
+                if (guiStyle != null) 
+                    return guiStyle;
+                var style = ToolbarStyles.commandButtonStyle;
+                style.normal.background =
+                    TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), BackGroundColor);
+                style.hover.background =
+                    TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), HighlightedColor);
+                style.imagePosition = ImagePosition.ImageLeft;
+                style.normal.textColor = ButtonOrTextColor;
+                guiStyle = style;
+
+                return guiStyle;
+            }
+            private set => guiStyle = value;
+        }
+
+        public Dictionary<Object, int> ObjectShortCuts
+        {
+            get
+            {
+                var shortcutObjects = new Dictionary<Object, int>();
+                if (assetShortCut1 != null)
+                {
+                    shortcutObjects.Add(assetShortCut1, 1);
+                }
+                if (assetShortCut2 != null)
+                {
+                    shortcutObjects.Add(assetShortCut2, 2);
+                }
+                if (assetShortCut3 != null)
+                {
+                    shortcutObjects.Add(assetShortCut3, 3);
+                }
+                return shortcutObjects;
+            }
+        }
 
         public Dictionary<string, int> FavouriteScenes
         {
@@ -35,11 +124,18 @@ namespace EditorExtensions
             }
         }
 
-        public Color HighlightedColor => highlightedColor;
-        
-        public Color BackGroundColor => backGroundColor;
+        public void UpdateSettings()
+        {
+            GuiStyle = null;
+            AssetQuerying.DeleteFileAtRelativePath("Editor/Images/SettingsWheelColored.png");
+            AssetQuerying.DeleteFileAtRelativePath("Editor/Images/PlayButtonColored.png");
+        }
 
-        public Color ButtonOrTextColor => buttonOrTextColor;
+        private Color HighlightedColor => highlightedColor;
+
+        private Color BackGroundColor => backGroundColor;
+
+        private Color ButtonOrTextColor => buttonOrTextColor;
 
         public bool Enabled => enabled;
 

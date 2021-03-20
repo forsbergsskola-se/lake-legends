@@ -21,17 +21,11 @@ namespace EditorExtensions
 
         private const string PreloadPath = "Assets/Scenes/PreloadScene.unity";
 
-        private static Texture PlayButton =>
-            AssetDatabase.LoadAssetAtPath<Texture>("Assets/Editor/Images/PlayButton.png");
-        
-        private static Texture SettingsWheel =>
-            AssetDatabase.LoadAssetAtPath<Texture>("Assets/Editor/Images/SettingsWheel.png");
-
-        private static IEnumerable<string> ValidPaths => _validPaths ??= AssetQuerying.FindPathsForAllAssetsWithFileExtension(".unity");
+        private static IEnumerable<string> ValidPaths => _validPaths ??= AssetQuerying.FindPathsForAllScenes("Scenes");
 
         public static IEnumerable<string> UpdateValidPaths()
         {
-            return _validPaths = AssetQuerying.FindPathsForAllAssetsWithFileExtension(".unity");
+            return _validPaths = AssetQuerying.FindPathsForAllScenes("Scenes");
         }
 
         private static bool IsValidPath(string path)
@@ -56,43 +50,38 @@ namespace EditorExtensions
 
         private static void AddToolBar()
         {
-            ToolbarExtender.RightToolbarGUI.Add(ShowSettings);
-            ToolbarExtender.LeftToolbarGUI.Add(OpenPreloadSceneButton);
+            ToolbarExtender.RightToolbarGUI.Add(RightButtons);
+            ToolbarExtender.LeftToolbarGUI.Add(LeftButtons);
         }
 
-        private static void ShowSettings()
+        private static void RightButtons()
         {
-            var style = ToolbarStyles.commandButtonStyle;
-            style.normal.background = TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), Settings.BackGroundColor);
-            style.hover.background = TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), Settings.HighlightedColor);
-            style.imagePosition = ImagePosition.ImageLeft;
-            style.normal.textColor = Settings.ButtonOrTextColor;
-            var settingsTexture = TextureCreator.ReplaceNonTransparentPixels((Texture2D) SettingsWheel, Settings.ButtonOrTextColor);
-            if (GUILayout.Button(new GUIContent(settingsTexture, "Open Settings"), style))
+            if (GUILayout.Button(new GUIContent(Settings.SettingsWheelColored, "Open Settings"), Settings.GuiStyle))
             {
                 Selection.objects = new Object[] {Settings};
+            }
+            if (!Settings.Enabled)
+                return;
+            foreach (var favouriteScene in Settings.ObjectShortCuts)
+            {
+                if (GUILayout.Button(new GUIContent($"{favouriteScene.Value}", $"Shortcut For {favouriteScene.Key.name}"), Settings.GuiStyle))
+                    Selection.objects = new Object[] {favouriteScene.Key};
             }
             GUILayout.FlexibleSpace();
         }
 
-        private static void OpenPreloadSceneButton()
+        private static void LeftButtons()
         {
             if (!Settings.Enabled)
                 return;
             GUILayout.FlexibleSpace();
-            var style = ToolbarStyles.commandButtonStyle;
-            style.normal.background = TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), Settings.BackGroundColor);
-            style.hover.background = TextureCreator.GetTextureOfColor(new Vector2Int(30, 20), Settings.HighlightedColor);
-            style.imagePosition = ImagePosition.ImageLeft;
-            style.normal.textColor = Settings.ButtonOrTextColor;
-            var playButtonWithColor = TextureCreator.BlendColors((Texture2D) PlayButton, Settings.ButtonOrTextColor);
             foreach (var favouriteScene in Settings.FavouriteScenes.Where(favouriteScene => IsValidPath(favouriteScene.Key)))
             {
-                if (GUILayout.Button(new GUIContent($"{favouriteScene.Value}", $"Opens {Path.GetFileNameWithoutExtension(favouriteScene.Key)}"), style))
+                if (GUILayout.Button(new GUIContent($"{favouriteScene.Value}", $"Opens {Path.GetFileNameWithoutExtension(favouriteScene.Key)}"), Settings.GuiStyle))
                     LoadSceneNamed(favouriteScene.Key);
             }
             
-            if (GUILayout.Button(new GUIContent(playButtonWithColor, "Starts From PreLoadScene"), style))
+            if (GUILayout.Button(new GUIContent(Settings.PlayButtonColored, "Starts From PreLoadScene"), Settings.GuiStyle))
             {
                 PlayFromPreLaunchScene();
             }
@@ -113,7 +102,7 @@ namespace EditorExtensions
             }
             
             UnityEditor.SceneManagement.EditorSceneManager.SaveModifiedScenesIfUserWantsTo(new [] {SceneManager.GetActiveScene()});
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(path);
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Assets/"+path);
         }
 
         private static void PlayFromPreLaunchScene()

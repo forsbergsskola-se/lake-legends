@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EditorExtensions
 {
     [CustomEditor(typeof(ToolbarCustomization))]
-    public class PlayButtonCustomInspector : Editor
+    public class ToolbarCustomizationInspector : Editor
     {
         public override void OnInspectorGUI()
         {
@@ -13,6 +13,11 @@ namespace EditorExtensions
             {
                 var buttonColors = serializedObject.targetObject as ToolbarCustomization;
                 buttonColors.Validate();
+            }
+            if (GUILayout.Button("Update Settings"))
+            {
+                var buttonColors = serializedObject.targetObject as ToolbarCustomization;
+                buttonColors.UpdateSettings();
             }
         }
     }
