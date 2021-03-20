@@ -11,5 +11,10 @@ namespace EditorExtensions
             var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
             return guids.Select(AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<T>).Where(asset => asset != null);
         }
+        
+        public static T FindAssetAtPath<T>(string path) where T : UnityEngine.Object
+        {
+            return AssetDatabase.LoadAssetAtPath<T>(path);
+        }
     }
 }
