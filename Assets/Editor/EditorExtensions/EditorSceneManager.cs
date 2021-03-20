@@ -37,11 +37,11 @@ namespace EditorExtensions
         {
             get
             {
-                var settings = AssetDatabase.LoadAssetAtPath<ToolbarCustomization>("Assets/Editor/Customization/PlayButtonSetting.asset");
+                var settings = AssetDatabase.LoadAssetAtPath<ToolbarCustomization>("Assets/Editor/Customization/ToolbarSettings.asset");
                 if (settings == null)
                 {
                     settings = ScriptableObject.CreateInstance<ToolbarCustomization>();
-                    AssetDatabase.CreateAsset(settings, "Assets/Editor/Customization/PlayButtonSetting.asset");
+                    AssetDatabase.CreateAsset(settings, "Assets/Editor/Customization/ToolbarSettings.asset");
                 }
 
                 return settings;

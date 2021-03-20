@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace EditorExtensions
 {
@@ -11,13 +11,23 @@ namespace EditorExtensions
         [SerializeField] private Color buttonOrTextColor = Color.white;
         [SerializeField] private Color backGroundColor = new Color(0f, 0.6f, 0);
         [SerializeField] private Color highlightedColor = new Color(0f, 0.8f, 0);
-        [SerializeField] private ScenePathRef favouriteScene1 = new ScenePathRef("Scenes/JackJ/MainScreen.unity");
-        [SerializeField] private ScenePathRef favouriteScene2 = new ScenePathRef("Scenes/JackJ/JackJ.unity");
-        [SerializeField] private ScenePathRef favouriteScene3 = new ScenePathRef("Scenes/PreloadScene.unity");
+        [SerializeField] private ScenePathRef favouriteScene1 = new ScenePathRef(@"Scenes\JackJ\MainScreen.unity");
+        [SerializeField] private ScenePathRef favouriteScene2 = new ScenePathRef(@"Scenes\JackJ\JackJ.unity");
+        [SerializeField] private ScenePathRef favouriteScene3 = new ScenePathRef(@"Scenes\PreloadScene.unity");
         [SerializeField] private Object assetShortCut1;
         [SerializeField] private Object assetShortCut2;
         [SerializeField] private Object assetShortCut3;
         private GUIStyle guiStyle;
+
+        private void Awake()
+        {
+            if (assetShortCut1 == null)
+                assetShortCut1 = AssetQuerying.FindAssetAtPath<Object>("Resources/Global Item Index.asset");
+            if (assetShortCut2 == null)
+                assetShortCut2 = AssetQuerying.FindAssetAtPath<Object>("ScriptableObjects");
+            if (assetShortCut3 == null)
+                assetShortCut3 = AssetQuerying.FindAssetAtPath<Object>("Scripts");
+        }
 
         private static Texture PlayButton =>
             AssetQuerying.FindAssetAtPath<Texture>("Editor/Images/PlayButton.png");
