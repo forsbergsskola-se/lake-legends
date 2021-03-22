@@ -10,6 +10,7 @@ namespace PlayerData
         private readonly ICurrencySaver saver;
         private int silver;
         private int gold;
+        private int bait;
         private const string CurrencyKey = "Currency";
         private IMessageHandler messageHandler;
         public Currency(ICurrencySaver saver, IMessageHandler messageHandler)
@@ -17,9 +18,11 @@ namespace PlayerData
             this.saver = saver;
             this.messageHandler = messageHandler;
             this.messageHandler.SubscribeTo<IncreaseSilverEvent>(silverEvent => Silver += silverEvent.Silver);
-            this.messageHandler.SubscribeTo<IncreaseGoldEvent>(goldEvent => Gold += goldEvent.Gold);
             this.messageHandler.SubscribeTo<DecreaseSilverEvent>(silverEvent => Silver -= silverEvent.Silver);
+            this.messageHandler.SubscribeTo<IncreaseGoldEvent>(goldEvent => Gold += goldEvent.Gold);
             this.messageHandler.SubscribeTo<DecreaseGoldEvent>(goldEvent => Gold -= goldEvent.Gold);
+            this.messageHandler.SubscribeTo<IncreaseBaitEvent>(baitEvent => Bait += baitEvent.Bait);
+            this.messageHandler.SubscribeTo<DecreaseBaitEvent>(baitEvent => Bait -= baitEvent.Bait);
         }
 
         public int Silver
@@ -44,6 +47,17 @@ namespace PlayerData
             }
         }
 
+        public int Bait
+        {
+            get => bait;
+            private set
+            {
+                bait = value;
+                messageHandler.Publish(new UpdateBaitUIEvent(bait));
+                Serialize();
+            }
+        }
+
         public void Serialize()
         {
             saver.SaveCurrencies(CurrencyKey, this);
@@ -54,6 +68,7 @@ namespace PlayerData
             var currencies = await saver.LoadCurrencies(CurrencyKey);
             silver = currencies.Silver;
             gold = currencies.Gold;
+            bait = currencies.Bait;
             messageHandler.Publish(new UpdateSilverUIEvent(silver));
             messageHandler.Publish(new UpdateGoldUIEvent(gold));
         }
