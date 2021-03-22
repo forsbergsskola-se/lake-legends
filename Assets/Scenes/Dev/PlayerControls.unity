@@ -646,8 +646,8 @@ MonoBehaviour:
   waitingForBiteText: Waiting for a bite...
   nibbleText: Just a nibble... Waiting  for a bite...
   biteText: Got a fish on the hook! Tap to reel it in!
-  floatNoBite: {fileID: 2123959104}
-  floatNibbleOrBite: {fileID: 137161782}
+  floatNoBite: {fileID: 0}
+  floatNibbleOrBite: {fileID: 0}
   statusText: {fileID: 999321389}
 --- !u!1 &723146607
 GameObject:
@@ -2333,7 +2333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5908813462586481305, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dabfca5c9c1e6c41b6ffe481c1a3f9e, type: 3}
