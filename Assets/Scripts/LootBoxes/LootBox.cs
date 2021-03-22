@@ -28,7 +28,7 @@ namespace LootBoxes
         {
             if(weights.Length == 0)
             {
-                var i = Random.Range(0, weights.Length);
+                var i = Random.Range(0, loot.Length);
 
                 if (isLootStealer && loot[i] is LootBox lootBox)
                 {
