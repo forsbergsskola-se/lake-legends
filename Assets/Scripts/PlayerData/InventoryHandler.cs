@@ -80,7 +80,7 @@ namespace PlayerData
 
         private void OnGoldDataRequest(RequestGoldData request)
         {
-            eventBroker?.Publish(new UpdateGoldUIEvent(currency.Silver));
+            eventBroker?.Publish(new UpdateGoldUIEvent(currency.Gold));
         }
 
         

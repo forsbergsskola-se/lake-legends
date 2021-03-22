@@ -27,7 +27,7 @@ namespace Items
 
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
         {
-            affordable = price == 0;
+            affordable = price <= eventRef.Gold;
         }
 
         private void ComparePriceAndOwnedSilver(UpdateSilverUIEvent eventRef)
@@ -37,7 +37,11 @@ namespace Items
 
         public void Buy()
         {
-            if (clamToBuy == null) return;
+            if (clamToBuy == null)
+            {
+                Debug.Log("Clam is null");
+                return;
+            }
             if (!costsGold)
             {
                 eventsBroker.Publish(new RequestSilverData());    
@@ -48,6 +52,7 @@ namespace Items
                     Debug.Log("You cannot afford it");
                     return;
                 }
+                Debug.Log("You bought the clam");
                 eventsBroker.Publish(new DecreaseSilverEvent(price));
                 eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
             }
@@ -61,6 +66,7 @@ namespace Items
                     Debug.Log("You cannot afford it");
                     return;
                 }
+                Debug.Log("You bought the clam");
                 eventsBroker.Publish(new DecreaseGoldEvent(price));
                 eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
             }
