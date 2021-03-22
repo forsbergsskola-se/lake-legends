@@ -78,12 +78,6 @@ namespace PlayerData
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
         }
 
-        /*
-         *    private int OnCurrencyAmountRequest(RequestCurrencyAmountEvent request)
-         *    int currentAmount = currency.Silver/currency.Gold
-         *    return currentAmount
-         */
-        
         private void OnGoldDataRequest(RequestGoldData request)
         {
             eventBroker?.Publish(new UpdateGoldUIEvent(currency.Silver));
