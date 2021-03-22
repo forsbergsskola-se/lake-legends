@@ -61,6 +61,7 @@ namespace PlayerData
             eventBroker?.SubscribeTo<EndFishOMeterEvent>(OnEndFishing);
             eventBroker?.SubscribeTo<RequestFisherDexData>(OnFisherDexDataRequest);
             eventBroker?.SubscribeTo<RequestInventoryData>(OnInventoryDataRequest);
+            eventBroker?.SubscribeTo<RequestGoldData>(OnGoldDataRequest);
             eventBroker?.SubscribeTo<RequestSilverData>(OnSilverDataRequest);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
@@ -77,6 +78,12 @@ namespace PlayerData
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
         }
 
+        private void OnGoldDataRequest(RequestGoldData request)
+        {
+            eventBroker?.Publish(new UpdateGoldUIEvent(currency.Silver));
+        }
+
+        
         private void OnSilverDataRequest(RequestSilverData request)
         {
             eventBroker?.Publish(new UpdateSilverUIEvent(currency.Silver));

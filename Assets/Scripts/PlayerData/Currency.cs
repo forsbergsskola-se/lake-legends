@@ -2,7 +2,6 @@
 using EventManagement;
 using Events;
 using Saving;
-using UnityEngine;
 
 namespace PlayerData
 {
@@ -19,6 +18,8 @@ namespace PlayerData
             this.messageHandler = messageHandler;
             this.messageHandler.SubscribeTo<IncreaseSilverEvent>(silverEvent => Silver += silverEvent.Silver);
             this.messageHandler.SubscribeTo<IncreaseGoldEvent>(goldEvent => Gold += goldEvent.Gold);
+            this.messageHandler.SubscribeTo<DecreaseSilverEvent>(silverEvent => Silver -= silverEvent.Silver);
+            this.messageHandler.SubscribeTo<DecreaseGoldEvent>(goldEvent => Gold -= goldEvent.Gold);
         }
 
         public int Silver
@@ -38,6 +39,7 @@ namespace PlayerData
             private set
             { 
                 gold = value;
+                messageHandler.Publish(new UpdateGoldUIEvent(gold));
                 Serialize();
             }
         }
@@ -53,6 +55,7 @@ namespace PlayerData
             silver = currencies.Silver;
             gold = currencies.Gold;
             messageHandler.Publish(new UpdateSilverUIEvent(silver));
+            messageHandler.Publish(new UpdateGoldUIEvent(gold));
         }
     }
 }
