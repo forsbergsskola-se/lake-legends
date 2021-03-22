@@ -132,7 +132,7 @@ namespace Player
             
             captureZoneWidth = 1;
             
-            fishPercentMod = Mathf.Abs((catchable.CatchableStrength / 100));
+            fishPercentMod = catchable.CatchableStrength / 100;
             accuracyPercentMod = (Accuracy * 0.001f);
             
             fishSpeedMagnitudeValue = catchable.CatchableSpeed * targetBarSpeedMultiplier;
