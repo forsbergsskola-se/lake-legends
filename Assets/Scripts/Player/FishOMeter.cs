@@ -128,7 +128,7 @@ namespace Player
         {
             successMeter = startingSuccessMeter;
 
-            catchable = IsTreasureCatch() ?  lootBox : factory.GenerateFish(Attraction);
+            catchable = /*IsTreasureCatch() ?  lootBox :*/ factory.GenerateFish(Attraction);
             
             captureZoneWidth = 1;
             
