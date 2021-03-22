@@ -4,6 +4,7 @@ using Events;
 using Items;
 using Items.Gear;
 using PlayerData;
+using Sacrifice;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace UI
     {
         public bool opened;
         private Color defaultColor = Color.white;
+        Sacrificer sacrificer;
 
         public override void Setup(IItem item, bool hasCaught = true)
         {
@@ -27,6 +29,7 @@ namespace UI
                 {
                     OnEquippedItem();
                 }
+                sacrificer = FindObjectOfType<Sacrificer>(true);
             }
             if (Item is ISellable sellable)
             {
@@ -90,6 +93,7 @@ namespace UI
             if (Item is IEquippable equippable)
             {
                 delegates.Add("Equip", equippable.Equip);
+                delegates.Add("Upgrade", sacrificer.TogglePanelOn);
             }
             if (Item is ISellable sellable)
             {
