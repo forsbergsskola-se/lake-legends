@@ -17,11 +17,11 @@ MonoBehaviour:
   equipmentType: {fileID: 11400000, guid: 209e187ffcdf5d545987b59224fd1959, type: 2}
   rarity: {fileID: 11400000, guid: 82ad7896271fb9741805d898dd41b840, type: 2}
   lineStrength:
-    min: 22
-    max: 28
+    min: 10
+    max: 18
   attraction:
     min: 20
-    max: 25
-  accuracy:
-    min: 22
     max: 28
+  accuracy:
+    min: 10
+    max: 18

@@ -80,8 +80,7 @@ namespace PlayerData
             var broker = Object.FindObjectOfType<EventsBroker>();
             
             // Need to publish to showcase UI here in stead of event directly
-            Debug.Log("Firing use-event");
-            
+
             //TODO: Send event for opening a ViewItemInfoUI, that has a button that then fires CheckAndDoEquipEvent
             broker.Publish(new CheckAndDoEquipEvent(this));
             IsEquipped = true;
@@ -89,7 +88,6 @@ namespace PlayerData
         
         public void Sell()
         {
-            Debug.Log("Sold");
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new RemoveItemFromInventoryEvent(this));
             broker.Publish(new UnEquipEvent(this));

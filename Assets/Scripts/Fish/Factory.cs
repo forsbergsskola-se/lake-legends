@@ -22,7 +22,6 @@ namespace Fish
             
             var randomNum = Random.Range(0f, commonSum + unCommonSum + treasureChestWeight);
             
-            Debug.Log(randomNum);
             foreach (var t in fishItems)
             {
                 if (t.Rarity != 0)

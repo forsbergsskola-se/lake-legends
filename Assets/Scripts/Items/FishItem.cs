@@ -67,7 +67,7 @@ namespace Items
         public string Bio => type.bio;
         public void Use()
         {
-            Debug.Log($"Use {Name}");
+            
         }
     }
 }

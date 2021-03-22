@@ -19,11 +19,6 @@ namespace Auth
                 if (task.Result == DependencyStatus.Available)
                 {
                     InitializeAuthorization();
-                    Debug.Log($"Auth Init");
-                } 
-                else {
-                    Debug.LogError(
-                        "Could not resolve all Firebase dependencies: " + task.Result); ;
                 }
             });
         }
@@ -36,8 +31,6 @@ namespace Auth
         
         public void LogOut()
         {
-            if (IsDebug)
-                Debug.Log($"{firebaseAuth.CurrentUser} Logged Out");
             firebaseAuth.SignOut();
         }
 

@@ -18,7 +18,8 @@ namespace Auth
 
         private void OnLoadedInventory(LoadedInventoryEvent obj)
         {
-            StartCoroutine(LoadSceneWithDelay(5));
+            SceneManager.LoadScene(sceneToLoad);
+            //StartCoroutine(LoadSceneWithDelay(5));
         }
 
         private IEnumerator LoadSceneWithDelay(float delay)

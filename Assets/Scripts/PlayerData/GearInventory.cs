@@ -28,11 +28,6 @@ namespace PlayerData
             GeneratedGear.Remove(gearInstance.ID);
         }
 
-        public void PrintInventory()
-        {
-            Debug.Log(new JsonSerializer().SerializeObject(generatedGear));
-        }
-        
         public async Task Deserialize()
         {
             var savedInventory = await saver.LoadGear(GearKey);

@@ -64,8 +64,6 @@ namespace Items
 
             if (!startUp)
                 playerBody.SaveEquipment();
-            
-            Debug.Log($"{bodyPartName} equipped with {EquippedItem.Name}!");
         }
     }
 }
