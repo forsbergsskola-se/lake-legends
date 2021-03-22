@@ -18,6 +18,7 @@ namespace Auth
 
         private void OnLoadedInventory(LoadedInventoryEvent obj)
         {
+            Application.targetFrameRate = 60;
             SceneManager.LoadScene(sceneToLoad);
             //StartCoroutine(LoadSceneWithDelay(5));
         }
