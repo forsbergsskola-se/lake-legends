@@ -6737,6 +6737,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1501926231}
     m_Modifications:
+    - target: {fileID: 1171008318482307959, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: price
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 1682919017835079068, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6824,6 +6828,114 @@ PrefabInstance:
     - target: {fileID: 1682919017835079069, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
       propertyPath: m_Name
       value: Market
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602488303379618699, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: price
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602488303379618699, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: clamToBuy
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a2f2964a0aa0104e96c4d06a3cf465e, type: 2}
+    - target: {fileID: 2602488303379618699, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: costsGold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2607749582473534583, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_Text
+      value: "Buy 3 Star Clam \nfor 100 Gold"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144093973590621029, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_Text
+      value: "Buy 1 Star Clam \nfor 400 Silver"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310574428188288948, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: price
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310574428188288948, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: clamToBuy
+      value: 
+      objectReference: {fileID: 11400000, guid: 84532174f97006648b580cf0c56740cc, type: 2}
+    - target: {fileID: 5310574428188288948, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: costsGold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557359319901313257, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557359319901313257, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557359319901313257, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557359319901313257, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557359319901313257, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557359319901313257, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061921845849107678, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_Text
+      value: "Buy 2 Star Clam \nfor 40 Gold"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
