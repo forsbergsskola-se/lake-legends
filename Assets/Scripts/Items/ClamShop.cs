@@ -8,10 +8,13 @@ namespace Items
 {
     public class ClamShop : MonoBehaviour, IShop
     {
+        [SerializeField] private bool costsGold;
+        
         public LootBox clamToBuy;
         public int price = 10;
         
         private bool affordable;
+        
         
         private IMessageHandler eventsBroker;
 
@@ -19,13 +22,17 @@ namespace Items
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
             eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
+            eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+        }
+
+        private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
+        {
+            affordable = price <= eventRef.Gold;
         }
 
         private void ComparePriceAndOwnedSilver(UpdateSilverUIEvent eventRef)
         {
-            Debug.Log(eventRef.Silver);
             affordable = price <= eventRef.Silver;
-            Debug.Log(affordable);
         }
 
         public void Buy()
