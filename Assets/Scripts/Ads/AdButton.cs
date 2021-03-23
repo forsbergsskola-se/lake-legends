@@ -8,6 +8,7 @@ namespace Ads
 {
     public class AdButton : MonoBehaviour
     {
+        public int adCooldownInSeconds = 120;
         private EventsBroker eventsBroker;
         void Awake()
         {
@@ -21,7 +22,7 @@ namespace Ads
         }
         private void OnAdWatchTime(GetAdWatchTimeEvent obj)
         {
-            GetComponent<Button>().interactable = (DateTime.UtcNow - obj.latestAdWatchTime).TotalSeconds > 120;
+            GetComponent<Button>().interactable = (DateTime.UtcNow - obj.latestAdWatchTime).TotalSeconds > adCooldownInSeconds;
         }
 
     }
