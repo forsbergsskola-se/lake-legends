@@ -28,7 +28,6 @@ namespace UI
             {
                 equippable.Equipped += OnEquippedItem;
                 equippable.UnEquipped += OnUnEquippedItem;
-                equippable.PlaceInUpgrade += OnPlaceInUpgradeItem;
                 if (equippable.IsEquipped)
                 {
                     OnEquippedItem();
@@ -55,7 +54,6 @@ namespace UI
             {
                 equippable.Equipped -= OnEquippedItem;
                 equippable.UnEquipped -= OnUnEquippedItem;
-                equippable.PlaceInUpgrade -= OnPlaceInUpgradeItem;
             }
             GetComponentInChildren<Text>().text = "{Empty}";
 
@@ -116,7 +114,6 @@ namespace UI
             if (Item is IEquippable equippable)
             {
                 delegates.Add("Equip", equippable.Equip);
-                delegates.Add("Upgrade", sacrificer.TogglePanelOn);
             }
             if (Item is ISellable sellable)
             {
@@ -130,6 +127,7 @@ namespace UI
             itemInspectionArea.gameObject.SetActive(true);
             if (Item is GearInstance gear)
             {
+                delegates.Add("Upgrade", gear.OpenUpgradeArea);
                 var stats = gear.GetStats();
                 itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, stats);
             }

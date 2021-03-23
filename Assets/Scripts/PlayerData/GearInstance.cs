@@ -87,7 +87,7 @@ namespace PlayerData
             IsEquipped = true;
         }
 
-        public void Upgrade()
+        public void OpenUpgradeArea()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new PlaceInUpgradeSlotEvent(this));

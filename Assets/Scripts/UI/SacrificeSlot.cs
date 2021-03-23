@@ -1,10 +1,4 @@
 ﻿using Items;
-using Items.Gear;
-using PlayerData;
-using Sacrifice;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI
 {

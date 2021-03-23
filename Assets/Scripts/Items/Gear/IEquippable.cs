@@ -8,8 +8,6 @@ namespace Items.Gear
 
         event Action UnEquipped;
 
-        event Action PlaceInUpgrade;
-
         string Name { get; }
         string ID { get; }
         

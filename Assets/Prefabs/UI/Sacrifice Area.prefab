@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 3951591022563355413}
   - component: {fileID: 3951591022563355411}
   - component: {fileID: 3951591022563355412}
-  - component: {fileID: 3951591022563355410}
+  - component: {fileID: 7794374820403466046}
   m_Layer: 5
   m_Name: UpgradeSlot
   m_TagString: Untagged
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3951591022563355410
+--- !u!114 &7794374820403466046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -468,10 +468,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3951591022563355414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597ebf9ec48ff0c4baaf83c8f9c596b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9800a4893ad347268a750496ef5052d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opened: 0
 --- !u!1 &4539193725373640364
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +550,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Gear Experience
+--- !u!114 &1354059618965494195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722590364898947580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82b148b0fa894727aa91566f37bcf5e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7594974627280631770
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.15686275}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.23921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -935,8 +946,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SacrificeSlot
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 269773137703170691, guid: 81bde179796ae6a49ba3209eacc45103, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 81bde179796ae6a49ba3209eacc45103, type: 3}
+--- !u!1 &4722590364898947580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 269773137703170695, guid: 81bde179796ae6a49ba3209eacc45103, type: 3}
+  m_PrefabInstance: {fileID: 4770560874866180987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4722590364898947583 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 269773137703170692, guid: 81bde179796ae6a49ba3209eacc45103, type: 3}
