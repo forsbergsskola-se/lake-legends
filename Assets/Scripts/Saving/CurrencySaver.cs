@@ -16,13 +16,13 @@ namespace Saving
 
         public void SaveCurrencies(string key, ICurrency currencies)
         {
-            var save = serializer.SerializeObject(new CurrencySave(currencies.Silver, currencies.Gold));
+            var save = serializer.SerializeObject(new CurrencySave(currencies.Silver, currencies.Gold, currencies.Bait));
             saver.Save(key, save);
         }
 
         public async Task<CurrencySave> LoadCurrencies(string key)
         {
-            var save = await saver.Load(key, serializer.SerializeObject(new CurrencySave(0, 0)));
+            var save = await saver.Load(key, serializer.SerializeObject(new CurrencySave(0, 0, 0)));
             return serializer.DeserializeObject<CurrencySave>(save);
         }
     }
