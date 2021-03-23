@@ -57,6 +57,7 @@ namespace UI
                 {
                     var gearItem = updateInventoryEvent.GearInventory.GeneratedGear[item.ID];
                     instance.Setup(gearItem);
+                    
                 }
                 inventorySlots.Add(instance); 
                 Destroy(transform.GetChild(inventorySize - 1).gameObject);

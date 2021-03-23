@@ -87,18 +87,35 @@ namespace PlayerData
             IsEquipped = true;
         }
 
-        public void OpenUpgradeArea()
+        public void AddToSacrificeArea()
+        {
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new PlaceInSacrificeSlotEvent(this));
+        }
+        
+        public void Sacrifice()
+        {
+            DestroyItem();
+        }
+
+        public bool OpenUpgradeArea()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new PlaceInUpgradeSlotEvent(this));
+            return true;
         }
-        
-        public void Sell()
+
+        private void DestroyItem()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new RemoveItemFromInventoryEvent(this));
             broker.Publish(new UnEquipEvent(this));
             UnEquipped?.Invoke();
+        }
+        
+        public void Sell()
+        {
+            DestroyItem();
             Sold?.Invoke();
         }
 

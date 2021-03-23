@@ -1,19 +1,31 @@
-﻿using Items;
+﻿using System;
+using Items;
+using PlayerData;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
     public class UpgradeSlot : Slot
     {
-        string currentGearInstance;
-        public string CurrentGearInstance
+        public GearInstance gearInstance;
+
+        private Text gearNameText;
+
+        private void Start()
         {
-            get => currentGearInstance;
-            set
-            {
-                currentGearInstance = value;
-                GetComponentInChildren<Text>().text = currentGearInstance;
-            }
+            gearNameText = gameObject.GetComponentInChildren<Text>();
+            gearNameText.text = string.Empty;
+        }
+
+        private void FixedUpdate()
+        {
+            gearNameText.text = gearInstance != null ? gearInstance.Name : string.Empty;
+        }
+
+        public void ClearName()
+        {
+            gearNameText.text = string.Empty;
         }
         
         public override void Setup(IItem item, bool hasCaught = true)

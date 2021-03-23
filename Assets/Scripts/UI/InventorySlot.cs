@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EventManagement;
 using Events;
 using Items;
 using Items.Gear;
@@ -18,7 +19,11 @@ namespace UI
         [SerializeField] Image slotImage;
         [SerializeField] Image highlightImage;
         Sacrificer sacrificer;
-        
+
+        private GearInstance gear;
+        private static bool _sacrificeIsOpen;
+
+        private IMessageHandler eventBroker;
 
         public override void Setup(IItem item, bool hasCaught = true)
         {
@@ -127,7 +132,16 @@ namespace UI
             itemInspectionArea.gameObject.SetActive(true);
             if (Item is GearInstance gear)
             {
-                delegates.Add("Upgrade", gear.OpenUpgradeArea);
+                this.gear = gear;
+                if (_sacrificeIsOpen)
+                {
+                    Debug.Log("test");
+                    delegates.Add("Sacrifice", gear.AddToSacrificeArea);
+                }
+                else
+                {
+                    delegates.Add("Upgrade", DoOpenUpgradeArea);
+                }
                 var stats = gear.GetStats();
                 itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, stats);
             }
@@ -142,6 +156,21 @@ namespace UI
                 .GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public)
                 .Where(info => info.GetCustomAttributes(typeof(InteractAttribute)).Any()).ToList();
             itemInspectionArea.CreateButtons(Item, interactMethods);*/
+        }
+
+        private void ResetSacrificeIsOpen(SacrificeCloseEvent eventRef)
+        {
+            _sacrificeIsOpen = false;
+            eventBroker.UnsubscribeFrom<SacrificeCloseEvent>(ResetSacrificeIsOpen);
+            eventBroker = null;
+        }
+        
+        private void DoOpenUpgradeArea()
+        {
+            _sacrificeIsOpen = gear.OpenUpgradeArea();
+            
+            eventBroker = FindObjectOfType<EventsBroker>();
+            eventBroker.SubscribeTo<SacrificeCloseEvent>(ResetSacrificeIsOpen);
         }
 
         private void OnDestroy()

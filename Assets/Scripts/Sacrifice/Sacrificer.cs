@@ -1,26 +1,37 @@
-using System;
 using EventManagement;
 using Events;
-using PlayerData;
 using UI;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace Sacrifice
 {
     public class Sacrificer : MonoBehaviour
     {
-        GearInstance gearInstance;
         UpgradeSlot upgradeSlot;
         SacrificeSlot sacrificeSlot;
         IMessageHandler eventBroker;
+
+        private Button sacrificeButton;
+
+        private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && sacrificeSlot.gearInstance != null;
 
         void Start()
         {
             upgradeSlot = gameObject.GetComponentInChildren<UpgradeSlot>();
             sacrificeSlot = gameObject.GetComponentInChildren<SacrificeSlot>();
+            sacrificeButton = gameObject.GetComponentInChildren<Button>();
+            
             eventBroker = FindObjectOfType<EventsBroker>();
             eventBroker.SubscribeTo<PlaceInUpgradeSlotEvent>(OnPlaceInUpgradeItem);
+            eventBroker.SubscribeTo<PlaceInSacrificeSlotEvent>(OnPlaceInSacrificeItem);
+
             this.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            sacrificeButton.interactable = SlotsAreOccupied;
         }
 
         public void Initialize()
@@ -28,17 +39,50 @@ namespace Sacrifice
             
         }
 
+        private void OnPlaceInSacrificeItem(PlaceInSacrificeSlotEvent eventRef)
+        {
+            sacrificeSlot.gearInstance = eventRef.gearInstance;
+        }
+        
         private void OnPlaceInUpgradeItem(PlaceInUpgradeSlotEvent eventRef)
         {
             this.gameObject.SetActive(true);
-            Debug.Log(eventRef.gearInstance);
-            this.gearInstance = eventRef.gearInstance;
-            upgradeSlot.CurrentGearInstance = gearInstance.Name;
+            upgradeSlot.gearInstance = eventRef.gearInstance;
         }
 
+        public void DoSacrifice()
+        {
+            //TODO: Make math calculation of Amount of XP given to item
+            
+            upgradeSlot.gearInstance.GearSaveData.level++;
+            
+            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Level {upgradeSlot.gearInstance.GearSaveData.level}!");
+            sacrificeSlot.gearInstance.Sacrifice();
+            
+            ClearSacrificeSlot();
+        }
+
+        public void Close()
+        {
+            // TODO: Unsubscribe from any events here?
+
+            ClearUpgradeSlot();
+            ClearSacrificeSlot();
+            
+            eventBroker.Publish(new SacrificeCloseEvent());
+            this.gameObject.SetActive(false);
+        }
+
+        public void ClearUpgradeSlot()
+        {
+            upgradeSlot.gearInstance = null;
+            upgradeSlot.ClearName();
+        }
+        
         public void ClearSacrificeSlot()
         {
-            
+            sacrificeSlot.gearInstance = null;
+            sacrificeSlot.ClearName();
         }
     }
 }
