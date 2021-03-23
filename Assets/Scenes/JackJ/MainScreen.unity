@@ -6845,6 +6845,18 @@ PrefabInstance:
       propertyPath: m_Text
       value: "Buy 3 Star Clam \nfor 100 Gold"
       objectReference: {fileID: 0}
+    - target: {fileID: 3235356650107237200, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1682919019083936326}
+    - target: {fileID: 3235356650107237200, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235356650107237200, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Items.Shop.ClamShop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6866,6 +6878,66 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3716873975894499047, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850330088226485557, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850330088226485557, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850330088226485557, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850330088226485557, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850330088226485557, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850330088226485557, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921384854632614577, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1682919019083936324}
+    - target: {fileID: 3921384854632614577, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3921384854632614577, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Items.Shop.ClamShop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086560840001866543, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086560840001866543, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086560840001866543, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086560840001866543, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086560840001866543, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086560840001866543, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -6909,6 +6981,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6407020647376765296, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1682919019083936325}
+    - target: {fileID: 6407020647376765296, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407020647376765296, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Items.Shop.ClamShop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7344937332665694685, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6933,12 +7017,69 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8456067238559360269, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456067238559360269, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456067238559360269, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456067238559360269, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456067238559360269, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456067238559360269, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9061921845849107678, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
       propertyPath: m_Text
       value: "Buy 2 Star Clam \nfor 40 Gold"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+--- !u!114 &1682919019083936324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5310574428188288948, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+  m_PrefabInstance: {fileID: 1682919019083936323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36102774d16f6424c894f07b5a072109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1682919019083936325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2602488303379618699, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+  m_PrefabInstance: {fileID: 1682919019083936323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36102774d16f6424c894f07b5a072109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1682919019083936326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1171008318482307959, guid: 0090f982977093e4b8f4bdff64a7d513, type: 3}
+  m_PrefabInstance: {fileID: 1682919019083936323}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36102774d16f6424c894f07b5a072109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &3137990099086835778
 CanvasRenderer:
   m_ObjectHideFlags: 0

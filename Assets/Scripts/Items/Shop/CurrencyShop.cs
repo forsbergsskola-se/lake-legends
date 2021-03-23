@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace Items.Shop
 {
-    public class BaitShop : MonoBehaviour
+    public class CurrencyShop : MonoBehaviour, IShop
     {
+        [SerializeField] private int amount = 10;
+
+        [SerializeField] private bool givesSilver;
         [SerializeField] private bool costsGold;
+        //TODO: IAP: Introduce bool "requiresApprovedPurchase" for when IAP is implemented 
         
-        public int baitToBuy = 1;
-        public int price = 10;
-        
+        [SerializeField] int price = 10;
         private bool affordable;
         
         private IMessageHandler eventsBroker;
@@ -18,10 +20,11 @@ namespace Items.Shop
         private void Start()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
+            
             eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
             eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
         }
-
+        
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
         {
             affordable = price <= eventRef.Gold;
@@ -34,31 +37,24 @@ namespace Items.Shop
 
         public void Buy()
         {
-            if (baitToBuy == 0)
-            {
-                Debug.Log("Bait is zero");
-                return;
-            }
             if (!costsGold)
             {
                 eventsBroker.Publish(new RequestSilverData());    
                 
                 if (CheckAffordability()) return;
-                
                 eventsBroker.Publish(new DecreaseSilverEvent(price));
-                eventsBroker.Publish(new IncreaseBaitEvent(baitToBuy));
+                GiveCurrency();
             }
             else
             {
                 eventsBroker.Publish(new RequestGoldData());    
                 
                 if (CheckAffordability()) return;
-                
                 eventsBroker.Publish(new DecreaseGoldEvent(price));
-                eventsBroker.Publish(new IncreaseBaitEvent(baitToBuy));
+                GiveCurrency();
             }
         }
-        
+
         private bool CheckAffordability()
         {
             if (!affordable)
@@ -69,6 +65,18 @@ namespace Items.Shop
             }
 
             return false;
+        }
+
+        private void GiveCurrency()
+        {
+            if (givesSilver)
+            {
+                eventsBroker.Publish(new IncreaseSilverEvent(amount));
+            }
+            else
+            {
+                eventsBroker.Publish(new IncreaseGoldEvent(amount));
+            }
         }
     }
 }

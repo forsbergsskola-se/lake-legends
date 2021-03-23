@@ -3,8 +3,7 @@ using Events;
 using LootBoxes;
 using UnityEngine;
 
-
-namespace Items
+namespace Items.Shop
 {
     public class ClamShop : MonoBehaviour, IShop
     {
@@ -46,13 +45,8 @@ namespace Items
             {
                 eventsBroker.Publish(new RequestSilverData());    
                 
-                if (!affordable)
-                {
-                    //TODO: Show "You cannot afford it UI"
-                    Debug.Log("You cannot afford it");
-                    return;
-                }
-                Debug.Log("You bought the clam");
+                if (CheckAffordability()) return;
+                
                 eventsBroker.Publish(new DecreaseSilverEvent(price));
                 eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
             }
@@ -60,16 +54,23 @@ namespace Items
             {
                 eventsBroker.Publish(new RequestGoldData());    
                 
-                if (!affordable)
-                {
-                    //TODO: Show "You cannot afford it UI"
-                    Debug.Log("You cannot afford it");
-                    return;
-                }
-                Debug.Log("You bought the clam");
+                if (CheckAffordability()) return;
+                
                 eventsBroker.Publish(new DecreaseGoldEvent(price));
                 eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
             }
+        }
+        
+        private bool CheckAffordability()
+        {
+            if (!affordable)
+            {
+                //TODO: Show "You cannot afford it UI"
+                Debug.Log("You cannot afford it");
+                return true;
+            }
+
+            return false;
         }
     }
 }
