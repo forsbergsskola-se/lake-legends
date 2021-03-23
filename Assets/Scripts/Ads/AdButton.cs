@@ -25,5 +25,9 @@ namespace Ads
             GetComponent<Button>().interactable = (DateTime.UtcNow - obj.latestAdWatchTime).TotalSeconds > adCooldownInSeconds;
         }
 
+        private void OnDisable()
+        {
+            eventsBroker.UnsubscribeFrom<GetAdWatchTimeEvent>(OnAdWatchTime);
+        }
     }
 }
