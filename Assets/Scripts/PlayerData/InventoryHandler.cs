@@ -17,6 +17,7 @@ namespace PlayerData
         private FisherDexData fisherDexData;
         private GearInventory gearInventory;
         private ISaver saver;
+        private AdWatchTimeSaver adWatchTimeSaver;
 
         public IInventory CurrentInventory => inventory;
         public GearInventory GearInventory => gearInventory;
@@ -41,6 +42,7 @@ namespace PlayerData
                 inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
                 currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+                adWatchTimeSaver = new AdWatchTimeSaver(new PlayerPrefsSaver(), new JsonSerializer(), eventBroker);
             }
             else
             {
@@ -49,6 +51,7 @@ namespace PlayerData
                 inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
                 currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+                adWatchTimeSaver = new AdWatchTimeSaver(new DataBaseSaver(obj.User), new JsonSerializer(), eventBroker);
             }
 
             var task = LoadInventory();
@@ -109,6 +112,7 @@ namespace PlayerData
             await inventory.Deserialize();
             await currency.Deserialize();
             await fisherDexData.Deserialize();
+            await adWatchTimeSaver.Load();
         }
 
         public void AddItemToInventory(IItem item)

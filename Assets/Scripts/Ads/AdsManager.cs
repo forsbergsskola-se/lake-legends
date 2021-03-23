@@ -1,44 +1,77 @@
+using System;
+using EventManagement;
+using Events;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.UI;
 
 namespace Ads
 {
     public class AdsManager : MonoBehaviour, IUnityAdsListener
     {
-        private string gameId = "4059145";
-        private bool testMode = true;
+        public string gameId = "4059145";
+        public bool testMode = true;
+        public string placementId = "marketAd";
+
+        public int rewardAmount = 100;
         
+        private IMessageHandler eventsBroker;
         void Start()
         {
+            Advertisement.AddListener(this);
             Advertisement.Initialize(gameId, testMode);
+            eventsBroker = FindObjectOfType<EventsBroker>();
         }
-
         public void ShowAd()
         {
-            Advertisement.Show();
-                
+            Advertisement.Show(placementId);
         }
 
+        public void GiveSilverReward()
+        {
+            eventsBroker.Publish(new IncreaseSilverEvent(rewardAmount)); 
+            eventsBroker.Publish(new SaveAdWatchTimeEvent());
+        }
+
+        public void WatchAdLimit()
+        {
+            var currentTime = DateTime.UtcNow;
+            // 1. limit how many times you can watch the ad// 2. limit how much silver user can get from ads// 3. check time enable button on/off, timestamp
+            //display time left on button perhaps, countdown.
+        }
+        
+        public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+        {
+            if (showResult == ShowResult.Finished)
+            {
+                Debug.Log("ad finished");
+                GiveSilverReward();
+                
+                
+                
+            }
+            else if (showResult == ShowResult.Failed)
+            {
+                Debug.Log("damn");
+            }
+        }
 
         public void OnUnityAdsReady(string placementId)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void OnUnityAdsDidError(string message)
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void OnUnityAdsDidStart(string placementId)
         {
-            throw new System.NotImplementedException();
+            
         }
 
-        public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
-        {
-            throw new System.NotImplementedException();
-        }
+       
     }
 
 }

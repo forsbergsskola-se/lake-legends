@@ -1,4 +1,7 @@
 namespace Events
 {
-    public class StartFishOMeterEvent { }
+    public class StartFishOMeterEvent
+    {
+        
+    }
 }
