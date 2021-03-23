@@ -17,6 +17,8 @@ namespace UI
         private bool decended;
         private int inventorySize;
 
+        public InventorySlot selectedSlot;
+
         protected virtual void OnEnable()
         { 
             Clear();

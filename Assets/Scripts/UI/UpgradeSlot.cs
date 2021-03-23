@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Events;
-using Items;
+﻿using Items;
 using Items.Gear;
-using PlayerData;
-using Sacrifice;
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -30,7 +24,7 @@ namespace UI
 
         private void OnPlaceInUpgradeItem()
         {
-            
+            GetComponent<Text>().text = Item.Name;
         }
     }
 }

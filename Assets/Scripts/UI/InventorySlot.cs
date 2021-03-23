@@ -14,8 +14,11 @@ namespace UI
     public class InventorySlot : Slot, IPointerClickHandler
     {
         public bool opened;
-        private Color defaultColor = Color.white;
+        Color defaultColor = Color.white;
+        [SerializeField] Image slotImage;
+        [SerializeField] Image highlightImage;
         Sacrificer sacrificer;
+        
 
         public override void Setup(IItem item, bool hasCaught = true)
         {
@@ -63,27 +66,40 @@ namespace UI
 
         private void OnUnEquippedItem()
         {
-            var image = GetComponent<Image>();
-            image.color = defaultColor;
+            slotImage.color = defaultColor;
         }
 
         private void OnEquippedItem()
         {
-            var image = GetComponent<Image>();
-            image.color = Color.green;
+            slotImage.color = Color.green;
         }
         
         private void OnPlaceInUpgradeItem()
         {
-            var image = GetComponent<Image>();
-            image.color = Color.green;
+            /*var image = GetComponent<Image>();
+            image.color = Color.green;*/
         }
         
         public void OnPointerClick(PointerEventData eventData)
         {
             //Item?.Use();
-            if (Item != null)
-                GenerateButtons();
+
+            var inventoryUI = FindObjectOfType<InventoryUI>();
+            if (inventoryUI.selectedSlot != null)
+            {
+                inventoryUI.selectedSlot.UnSelect();
+            }
+            
+            inventoryUI.selectedSlot = this;
+            highlightImage.gameObject.SetActive(true);
+
+            if (Item == null) return;
+            GenerateButtons();
+        }
+
+        void UnSelect()
+        {
+            highlightImage.gameObject.SetActive(false);
         }
 
         private void ClearInspectionArea()
