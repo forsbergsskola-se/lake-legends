@@ -356,6 +356,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 177980811, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1888766051}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UI.ToggleActive, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374667452911692552, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3691571700945000914, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -446,6 +478,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+--- !u!1 &1888766050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 177980811, guid: 6b0c419bb6fd38b42979bdf0445f4f86, type: 3}
+  m_PrefabInstance: {fileID: 1888766049}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1888766051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888766050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c294d1fea8dd86468ceab3a937bf1fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &2011624753
 GameObject:
   m_ObjectHideFlags: 0
