@@ -25,6 +25,7 @@ namespace UI
             {
                 equippable.Equipped += OnEquippedItem;
                 equippable.UnEquipped += OnUnEquippedItem;
+                equippable.PlaceInUpgrade += OnPlaceInUpgradeItem;
                 if (equippable.IsEquipped)
                 {
                     OnEquippedItem();
@@ -51,6 +52,7 @@ namespace UI
             {
                 equippable.Equipped -= OnEquippedItem;
                 equippable.UnEquipped -= OnUnEquippedItem;
+                equippable.PlaceInUpgrade -= OnPlaceInUpgradeItem;
             }
             GetComponentInChildren<Text>().text = "{Empty}";
 
@@ -70,8 +72,13 @@ namespace UI
             var image = GetComponent<Image>();
             image.color = Color.green;
         }
-
-
+        
+        private void OnPlaceInUpgradeItem()
+        {
+            var image = GetComponent<Image>();
+            image.color = Color.green;
+        }
+        
         public void OnPointerClick(PointerEventData eventData)
         {
             //Item?.Use();

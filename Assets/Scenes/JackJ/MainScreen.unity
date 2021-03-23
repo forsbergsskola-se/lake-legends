@@ -5844,6 +5844,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sacrifice Area
       objectReference: {fileID: 0}
+    - target: {fileID: 1493329635689969976, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6270916431898010505, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5926,6 +5930,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6270916431898010505, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594974627280631768, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594974627280631768, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e188dcd391617614c8a046d64168a846, type: 3}
+    - target: {fileID: 7594974627280631768, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_Color.a
+      value: 0.23921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594974627280631768, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594974627280631768, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7594974627280631768, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

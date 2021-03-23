@@ -62,6 +62,7 @@ namespace PlayerData
 
         public event Action Equipped;
         public event Action UnEquipped;
+        public event Action PlaceInUpgrade;
         public event Action Sold;
         public void GenerateNewGuid()
         {
@@ -84,6 +85,12 @@ namespace PlayerData
             //TODO: Send event for opening a ViewItemInfoUI, that has a button that then fires CheckAndDoEquipEvent
             broker.Publish(new CheckAndDoEquipEvent(this));
             IsEquipped = true;
+        }
+
+        public void Upgrade()
+        {
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new PlaceInUpgradeSlotEvent(this));
         }
         
         public void Sell()
