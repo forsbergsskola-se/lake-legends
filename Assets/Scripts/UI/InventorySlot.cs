@@ -22,6 +22,8 @@ namespace UI
 
         private GearInstance gear;
         private static bool _sacrificeIsOpen;
+        private static bool _fusionIsOpen;
+        private static bool _panelIsOpen;
 
         private IMessageHandler eventBroker;
 
@@ -133,15 +135,24 @@ namespace UI
             if (Item is GearInstance gear)
             {
                 this.gear = gear;
-                if (_sacrificeIsOpen)
+
+                if (_panelIsOpen)
                 {
-                    Debug.Log("test");
-                    delegates.Add("Sacrifice", gear.AddToSacrificeArea);
+                    if (_sacrificeIsOpen)
+                    {
+                        delegates.Add("Sacrifice", gear.AddToSacrificeArea);
+                    }
+                    else if (_fusionIsOpen)
+                    {
+                        delegates.Add("Add", gear.AddToFuseSlotArea);
+                    }
                 }
                 else
                 {
                     delegates.Add("Upgrade", DoOpenUpgradeArea);
+                    delegates.Add("Fusion", DoOpenFusionArea);
                 }
+               
                 var stats = gear.GetStats();
                 itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, stats);
             }
@@ -161,13 +172,32 @@ namespace UI
         private void ResetSacrificeIsOpen(SacrificeCloseEvent eventRef)
         {
             _sacrificeIsOpen = false;
+            _panelIsOpen = false;
             eventBroker.UnsubscribeFrom<SacrificeCloseEvent>(ResetSacrificeIsOpen);
             eventBroker = null;
+        }
+        
+        private void ResetFusionIsOpen(FusionCloseEvent eventRef)
+        {
+            _fusionIsOpen = false;
+            _panelIsOpen = false;
+            eventBroker.UnsubscribeFrom<FusionCloseEvent>(ResetFusionIsOpen);
+            eventBroker = null;
+        }
+        
+        private void DoOpenFusionArea()
+        {
+            _fusionIsOpen = gear.OpenFusionArea();
+            _panelIsOpen = _fusionIsOpen;
+            
+            eventBroker = FindObjectOfType<EventsBroker>();
+            eventBroker.SubscribeTo<FusionCloseEvent>(ResetFusionIsOpen);
         }
         
         private void DoOpenUpgradeArea()
         {
             _sacrificeIsOpen = gear.OpenUpgradeArea();
+            _panelIsOpen = _sacrificeIsOpen;
             
             eventBroker = FindObjectOfType<EventsBroker>();
             eventBroker.SubscribeTo<SacrificeCloseEvent>(ResetSacrificeIsOpen);

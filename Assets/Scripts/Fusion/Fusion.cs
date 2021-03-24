@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using EventManagement;
 using Events;
+using Items;
+using Items.Gear;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,29 +14,72 @@ namespace Fusion
         // Copy of Sacrificer.cs
         
         UpgradeSlot upgradeSlot;
-        SacrificeSlot sacrificeSlot;
+        [SerializeField] FuseSlot[] fuseSlots;
+        private List<string> currentGearInstanceIDs = new List<string>();
+        private List<bool> TypeMatchList = new List<bool>();
+        private List<bool> RarityMatchList = new List<bool>();
+        private List<EquipmentType> currentGearInstanceEquipmentTypes = new List<EquipmentType>();
         IMessageHandler eventBroker;
 
-        private Button sacrificeButton;
 
-        private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && sacrificeSlot.gearInstance != null;
+        private int currentNumberOfItems;
+        private Button fuseButton;
+
+        private EquipmentType fusionSlotEquipmentType;
+
+        private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && currentNumberOfItems == fuseSlots.Length;
+        private bool AllSlotsMatchType => IsTypeMatch();
+        private bool AllSlotsMatchRarity => IsRarityMatch();
+
 
         void Start()
         {
             upgradeSlot = gameObject.GetComponentInChildren<UpgradeSlot>();
-            sacrificeSlot = gameObject.GetComponentInChildren<SacrificeSlot>();
-            sacrificeButton = gameObject.GetComponentInChildren<Button>();
+            fuseSlots = gameObject.GetComponentsInChildren<FuseSlot>();
+            fuseButton = gameObject.GetComponentInChildren<Button>();
             
             eventBroker = FindObjectOfType<EventsBroker>();
-            eventBroker.SubscribeTo<PlaceInUpgradeSlotEvent>(OnPlaceInUpgradeItem);
-            eventBroker.SubscribeTo<PlaceInSacrificeSlotEvent>(OnPlaceInSacrificeItem);
+            eventBroker.SubscribeTo<PlaceInFuseSlotEvent>(OnPlaceInFusionSacrificeItem);
+            eventBroker.SubscribeTo<PlaceInFusionUpgradeSlotEvent>(OnPlaceInUpgradeItem);
 
+            currentNumberOfItems = 0;
+            
+            
+            
             this.gameObject.SetActive(false);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            sacrificeButton.interactable = SlotsAreOccupied;
+            fuseButton.interactable = SlotsAreOccupied && AllSlotsMatchType && AllSlotsMatchRarity;
+        }
+
+        private bool IsTypeMatch()
+        {
+            foreach (var type in fuseSlots)
+            {
+                bool result = upgradeSlot.gearInstance.EquipmentType == type.gearInstance.EquipmentType;
+                TypeMatchList.Add(result);
+            }
+
+            if (TypeMatchList.Contains(false)) return false;
+            return true;
+        }
+        
+        private bool IsRarityMatch()
+        {
+            // TODO: Add Rarity identifiers to match for if is Legendary
+            // If upgradeSlot.gearInstance.Rarity == Legendary => return false;
+            
+            foreach (var type in fuseSlots)
+            {
+                
+                bool result = upgradeSlot.gearInstance.Rarity == type.gearInstance.Rarity;
+                RarityMatchList.Add(result);
+            }
+
+            if (RarityMatchList.Contains(false)) return false;
+            return true;
         }
 
         public void Initialize()
@@ -41,26 +87,55 @@ namespace Fusion
             
         }
 
-        private void OnPlaceInSacrificeItem(PlaceInSacrificeSlotEvent eventRef)
+        private void OnPlaceInFusionSacrificeItem(PlaceInFuseSlotEvent eventRef)
         {
-            sacrificeSlot.gearInstance = eventRef.gearInstance;
+            if (currentNumberOfItems == fuseSlots.Length)
+            {
+                Debug.Log(currentNumberOfItems);
+                return;
+            }
+            
+            foreach (var item in fuseSlots)
+            {
+                if (item.gearInstance == null)
+                {
+                    if (currentGearInstanceIDs.Contains(eventRef.gearInstance.ID))
+                    {
+                        Debug.Log("That item is already selected");
+                        break;
+                    }
+                    currentGearInstanceIDs.Add(eventRef.gearInstance.ID);
+                    currentGearInstanceEquipmentTypes.Add(eventRef.gearInstance.EquipmentType);
+                    
+                    item.gearInstance = eventRef.gearInstance;
+                    currentNumberOfItems++;
+                    break;
+                }
+            }
         }
         
-        private void OnPlaceInUpgradeItem(PlaceInUpgradeSlotEvent eventRef)
+        private void OnPlaceInUpgradeItem(PlaceInFusionUpgradeSlotEvent eventRef)
         {
             this.gameObject.SetActive(true);
+            currentGearInstanceIDs.Add(eventRef.gearInstance.ID);
             upgradeSlot.gearInstance = eventRef.gearInstance;
         }
 
         public void DoSacrifice()
         {
             //TODO: Make math calculation of Amount of XP given to item
+            //upgradeSlot.gearInstance.Rarity needs to be improved;
             
             upgradeSlot.gearInstance.GearSaveData.level++;
             
-            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Level {upgradeSlot.gearInstance.GearSaveData.level}!");
-            sacrificeSlot.gearInstance.Sacrifice();
-            
+            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Rarity {upgradeSlot.gearInstance.Rarity}!");
+
+            foreach (var item in fuseSlots)
+            {
+                item.gearInstance.Sacrifice();
+            }
+
+            ClearLists();
             ClearSacrificeSlot();
         }
 
@@ -70,9 +145,17 @@ namespace Fusion
 
             ClearUpgradeSlot();
             ClearSacrificeSlot();
+            ClearLists();
             
-            eventBroker.Publish(new SacrificeCloseEvent());
+            eventBroker.Publish(new FusionCloseEvent());
             this.gameObject.SetActive(false);
+        }
+
+        private void ClearLists()
+        {
+            currentGearInstanceIDs.Clear();
+            TypeMatchList.Clear();
+            RarityMatchList.Clear();
         }
 
         public void ClearUpgradeSlot()
@@ -83,8 +166,15 @@ namespace Fusion
         
         public void ClearSacrificeSlot()
         {
-            sacrificeSlot.gearInstance = null;
-            sacrificeSlot.ClearName();
+            foreach (var item in fuseSlots)
+            {
+                if (currentGearInstanceIDs.Contains(item.gearInstance.ID))
+                    currentGearInstanceIDs.Remove(item.gearInstance.ID);
+                item.gearInstance = null;
+                item.ClearName();
+            }
+            
+            currentNumberOfItems = 0;
         }
     }
 }

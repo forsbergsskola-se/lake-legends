@@ -2,7 +2,7 @@ using PlayerData;
 
 namespace Events
 {
-    internal class PlaceInSacrificeSlotEvent
+    public class PlaceInSacrificeSlotEvent
     {
         public GearInstance gearInstance;
 

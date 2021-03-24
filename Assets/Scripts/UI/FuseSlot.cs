@@ -9,6 +9,7 @@ namespace UI
         // Copy of SacrificeSlot.cs
         
         string currentGearInstance;
+        private string currentGearInstanceID;
         public GearInstance gearInstance;
         
         private Text gearNameText;

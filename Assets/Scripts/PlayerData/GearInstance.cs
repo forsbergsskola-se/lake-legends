@@ -86,6 +86,12 @@ namespace PlayerData
             broker.Publish(new CheckAndDoEquipEvent(this));
             IsEquipped = true;
         }
+        
+        public void AddToFuseSlotArea()
+        {
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new PlaceInFuseSlotEvent(this));
+        }
 
         public void AddToSacrificeArea()
         {
@@ -98,6 +104,13 @@ namespace PlayerData
             DestroyItem();
         }
 
+        public bool OpenFusionArea()
+        {
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new PlaceInFusionUpgradeSlotEvent(this));
+            return true;
+        }
+        
         public bool OpenUpgradeArea()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
