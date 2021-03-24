@@ -6,6 +6,7 @@ namespace PlayerData
     {
         int Silver { get; }
         int Gold { get; }
+        int Bait { get; }
         void Serialize();
         Task Deserialize();
     }

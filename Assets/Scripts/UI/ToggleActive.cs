@@ -9,9 +9,9 @@ namespace UI
         public void Toggle()
         {
             if(target == null)
-                gameObject.SetActive(gameObject.activeSelf);
+                gameObject.SetActive(!gameObject.activeSelf);
             else
-                target.SetActive(target.activeSelf);
+                target.SetActive(!target.activeSelf);
         }
     }
 }

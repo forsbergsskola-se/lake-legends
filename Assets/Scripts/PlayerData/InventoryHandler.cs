@@ -17,6 +17,7 @@ namespace PlayerData
         private FisherDexData fisherDexData;
         private GearInventory gearInventory;
         private ISaver saver;
+        private AdWatchTimeSaver adWatchTimeSaver;
 
         public IInventory CurrentInventory => inventory;
         public GearInventory GearInventory => gearInventory;
@@ -41,6 +42,7 @@ namespace PlayerData
                 inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
                 currency = new Currency(new CurrencySaver(new PlayerPrefsSaver(), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+                adWatchTimeSaver = new AdWatchTimeSaver(new PlayerPrefsSaver(), new JsonSerializer(), eventBroker);
             }
             else
             {
@@ -49,6 +51,7 @@ namespace PlayerData
                 inventory = new Inventory(inventorySaver, eventBroker, gearInventory);
                 currency = new Currency(new CurrencySaver(new DataBaseSaver(obj.User), new JsonSerializer()), eventBroker);
                 fisherDexData = new FisherDexData(inventorySaver, eventBroker);
+                adWatchTimeSaver = new AdWatchTimeSaver(new DataBaseSaver(obj.User), new JsonSerializer(), eventBroker);
             }
 
             var task = LoadInventory();
@@ -63,6 +66,7 @@ namespace PlayerData
             eventBroker?.SubscribeTo<RequestInventoryData>(OnInventoryDataRequest);
             eventBroker?.SubscribeTo<RequestGoldData>(OnGoldDataRequest);
             eventBroker?.SubscribeTo<RequestSilverData>(OnSilverDataRequest);
+            eventBroker?.SubscribeTo<RequestBaitData>(OnBaitDataRequest);
             eventBroker?.Publish(new EnableFisherDexEvent(FisherDexData));
             eventBroker?.Publish(new EnableInventoryEvent(inventory));
             eventBroker?.Publish(new LoadedInventoryEvent(saver, inventory));
@@ -80,7 +84,7 @@ namespace PlayerData
 
         private void OnGoldDataRequest(RequestGoldData request)
         {
-            eventBroker?.Publish(new UpdateGoldUIEvent(currency.Silver));
+            eventBroker?.Publish(new UpdateGoldUIEvent(currency.Gold));
         }
 
         
@@ -89,6 +93,11 @@ namespace PlayerData
             eventBroker?.Publish(new UpdateSilverUIEvent(currency.Silver));
         }
 
+        private void OnBaitDataRequest(RequestBaitData request)
+        {
+            eventBroker?.Publish(new UpdateBaitUIEvent(currency.Bait));
+        }
+        
         private void OnEndFishing(EndFishOMeterEvent obj)
         {
             if (obj.catchItem == null) return;
@@ -103,6 +112,7 @@ namespace PlayerData
             await inventory.Deserialize();
             await currency.Deserialize();
             await fisherDexData.Deserialize();
+            await adWatchTimeSaver.Load();
         }
 
         public void AddItemToInventory(IItem item)

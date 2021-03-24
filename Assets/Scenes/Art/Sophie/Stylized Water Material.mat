@@ -24,7 +24,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 785e580cda78b1a4e82b21aad2ecfade, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -89,14 +89,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_1c105d99ee7e4a66a90640a195cffc12: 4.5
-    - Vector1_29da572dbc714ff49fd67673ce45863d: 0.82
-    - Vector1_38cba5b992694e23b15ff398cb5b7a22: 1
+    - Vector1_1c105d99ee7e4a66a90640a195cffc12: 4.69
+    - Vector1_29da572dbc714ff49fd67673ce45863d: 2.73
+    - Vector1_38cba5b992694e23b15ff398cb5b7a22: 1.7
     - Vector1_612f3e2f33d34c4586a3b66bed3708bf: 100
     - Vector1_65427fe945ac4818ba5534e6b7706c30: 2
     - Vector1_75917b96ba0b47d48478120ca60e5d2d: 1
-    - Vector1_9c1d5f57e82d40ce86438d7aedb638d3: 0.05
-    - Vector1_d172150bba2c413a9bae2019611ff260: 0.94
+    - Vector1_9c1d5f57e82d40ce86438d7aedb638d3: 0.08
+    - Vector1_d172150bba2c413a9bae2019611ff260: 0.66
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -124,8 +124,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_59a6a4b9c1fe4db19ba4fc68f75d041e: {r: 0.22614807, g: 0.6226415, b: 0.59132457, a: 0.2901961}
-    - Color_bde0714e41b6468b83d548e958a07a9d: {r: 0.113296546, g: 0.3176249, b: 0.3584906, a: 0.59607846}
+    - Color_59a6a4b9c1fe4db19ba4fc68f75d041e: {r: 0, g: 1, b: 0.9170985, a: 0.5254902}
+    - Color_bde0714e41b6468b83d548e958a07a9d: {r: 0, g: 0.5694983, b: 0.6792453, a: 0.7529412}
     - Color_c8d87572ae9e4799830f60d78123886c: {r: 0.894, g: 0.98410004, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

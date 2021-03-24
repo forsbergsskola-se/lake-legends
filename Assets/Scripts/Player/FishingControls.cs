@@ -56,7 +56,7 @@ namespace Player
 
             if (isTimerSet)
             {
-                if(timeRemaining <= 0)
+                if (timeRemaining <= 0)
                 {
                     CheckFishBite();    
                 }
