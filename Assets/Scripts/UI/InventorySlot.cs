@@ -127,7 +127,13 @@ namespace UI
             }
             if (Item is ISellable sellable)
             {
-                delegates.Add("Sell", sellable.Sell);
+                var canSell = true; 
+                if (Item is GearInstance gearInstance)
+                {
+                    canSell = !(_fusionInformation != null && gearInstance == _fusionInformation.GearInstance);
+                }
+                if (canSell)
+                    delegates.Add("Sell", sellable.Sell);
             }
             if (Item is IOpenable openable)
             {
@@ -141,20 +147,26 @@ namespace UI
 
                 if (_panelIsOpen)
                 {
-                    if (_sacrificeIsOpen)
+                    if (_sacrificeIsOpen && _fusionInformation?.GearInstance != gear)
                     {
                         delegates.Add("Sacrifice", gear.AddToSacrificeArea);
                     }
-                    else if (_fusionInformation.FusionIsOpen && gear.EquipmentType == _fusionInformation.EquipmentType && gear.Rarity == _fusionInformation.RarityValue) 
+                    else if (_fusionInformation != null && _fusionInformation.FusionIsOpen 
+                                                        && gear.EquipmentType == _fusionInformation.EquipmentType
+                                                        && gear.Rarity == _fusionInformation.RarityValue 
+                                                        && gear != _fusionInformation.GearInstance) 
                     {
                         delegates.Add("Add", gear.AddToFuseSlotArea);
                     }
                 }
                 else
                 {
-                    delegates.Add("Upgrade", DoOpenUpgradeArea);
-                    if (gear.Rarity != 3)
-                        delegates.Add("Fusion", DoOpenFusionArea);
+                    if (_fusionInformation?.GearInstance != gear || _fusionInformation == null)
+                    {
+                        delegates.Add("Upgrade", DoOpenUpgradeArea);
+                        if (gear.Rarity != 3)
+                            delegates.Add("Fusion", DoOpenFusionArea);
+                    }
                 }
                
                 var stats = gear.GetStats();
@@ -175,6 +187,7 @@ namespace UI
 
         private void ResetSacrificeIsOpen(SacrificeCloseEvent eventRef)
         {
+            _fusionInformation = new FusionInformation(false);
             _sacrificeIsOpen = false;
             _panelIsOpen = false;
             eventBroker.UnsubscribeFrom<SacrificeCloseEvent>(ResetSacrificeIsOpen);
@@ -194,7 +207,7 @@ namespace UI
             var fusionWasOpened = gear.OpenFusionArea();
             if (fusionWasOpened)
             {
-                _fusionInformation = new FusionInformation(true, gear.Rarity, gear.EquipmentType);
+                _fusionInformation = new FusionInformation(true, gear, gear.Rarity, gear.EquipmentType);
             }
             _panelIsOpen = fusionWasOpened;
             
@@ -205,6 +218,10 @@ namespace UI
         private void DoOpenUpgradeArea()
         {
             _sacrificeIsOpen = gear.OpenUpgradeArea();
+            if (_sacrificeIsOpen)
+            {
+                _fusionInformation = new FusionInformation(false, gear);
+            }
             _panelIsOpen = _sacrificeIsOpen;
             
             eventBroker = FindObjectOfType<EventsBroker>();
