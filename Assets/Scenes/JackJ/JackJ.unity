@@ -1091,7 +1091,6 @@ GameObject:
   - component: {fileID: 1329754258}
   - component: {fileID: 1329754257}
   - component: {fileID: 1329754256}
-  - component: {fileID: 1329754255}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1099,19 +1098,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4
   m_IsActive: 1
---- !u!135 &1329754255
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329754254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1329754256
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1389,6 +1375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1538528893}
   - component: {fileID: 1538528892}
+  - component: {fileID: 1538528891}
   m_Layer: 0
   m_Name: Player Terrain
   m_TagString: Untagged
@@ -1396,6 +1383,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967294
   m_IsActive: 1
+--- !u!154 &1538528891
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538528890}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: 736a824ee21625848b93206545f3785b, type: 2}
+  m_EnableTreeColliders: 1
 --- !u!218 &1538528892
 Terrain:
   m_ObjectHideFlags: 0
@@ -2237,5 +2235,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2863046899984056059, guid: 0a43336c63003f04b87845350ccf0d91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0a43336c63003f04b87845350ccf0d91, type: 3}
