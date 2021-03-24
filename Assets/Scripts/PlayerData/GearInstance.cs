@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using EventManagement;
 using Events;
 using Items;
@@ -15,9 +16,9 @@ namespace PlayerData
         private Equipment equipment;
         private bool isEquipped;
 
-        [JsonIgnore] public float CalculatedLineStrength => Mathf.Lerp(Equipment.lineStrength.Min, Equipment.lineStrength.Max, GearSaveData.lineStrength);
-        [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction);
-        [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy);
+        [JsonIgnore] public float CalculatedLineStrength => Mathf.Lerp(Equipment.lineStrength.Min, Equipment.lineStrength.Max, GearSaveData.lineStrength) + GearSaveData.GearLevel.Level;
+        [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction) + GearSaveData.GearLevel.Level;
+        [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy) + GearSaveData.GearLevel.Level;
 
         [JsonIgnore] public Equipment Equipment
         {
@@ -62,8 +63,16 @@ namespace PlayerData
 
         public event Action Equipped;
         public event Action UnEquipped;
-        public event Action PlaceInUpgrade;
         public event Action Sold;
+
+        public int GetSacrificeValue()
+        {
+            return Equipment.RaritySacrificeValue;
+        }
+        public int GetFusionCost()
+        {
+            return Equipment.FusionCost;
+        }
         public void GenerateNewGuid()
         {
             GearSaveData.instanceID = Guid.NewGuid().ToString();
@@ -71,10 +80,31 @@ namespace PlayerData
 
         [JsonIgnore] public string Name => Equipment.Name;
         [JsonIgnore] public int Rarity => Equipment.Rarity;
+
+        public void UpgradeRarity()
+        {
+            var itemsOfSameType = AllItems.ItemIndexer.indexer.Values
+                .Where(item => item is Equipment)
+                .Cast<Equipment>()
+                .Where(gear => gear.equipmentType == EquipmentType && gear.equipmentVariant == Equipment.equipmentVariant);
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            DestroyItem();
+            var gearSaveData = GearSaveData;
+            var upgradedItem = itemsOfSameType.Where(gear => gear.Rarity > Rarity).OrderBy(gear => gear.Rarity).First();
+            gearSaveData.equipID = upgradedItem.ID;
+            broker.Publish(new AddItemToInventoryEvent(new GearInstance(gearSaveData)));
+        }
         public void Use()
         {
             
         }
+
+        public GearLevel IncreaseExp(int amount)
+        {
+            return GearSaveData.GearLevel += amount;
+        }
+
+        public GearLevel GetLevelInfoAfterIncrease(int amount) => GearSaveData.GearLevel + amount;
         
         public void Equip()
         {
@@ -123,13 +153,13 @@ namespace PlayerData
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new RemoveItemFromInventoryEvent(this));
             broker.Publish(new UnEquipEvent(this));
+            Sold?.Invoke();
             UnEquipped?.Invoke();
         }
         
         public void Sell()
         {
             DestroyItem();
-            Sold?.Invoke();
         }
 
         public override string ToString()
@@ -139,7 +169,7 @@ namespace PlayerData
                 $"Accuracy: {CalculatedAccuracy} \n" +
                 $"Attraction: {CalculatedAttraction} \n" +
                 $"Line Strength: {CalculatedLineStrength} \n" +
-                $"Level: {GearSaveData.level}";
+                $"Level: {GearSaveData.GearLevel.Level}";
         }
 
         public string[] GetStats()

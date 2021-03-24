@@ -22,7 +22,7 @@ namespace UI
 
         private GearInstance gear;
         private static bool _sacrificeIsOpen;
-        private static bool _fusionIsOpen;
+        private static FusionInformation _fusionInformation;
         private static bool _panelIsOpen;
 
         private IMessageHandler eventBroker;
@@ -46,7 +46,7 @@ namespace UI
                 sellable.Sold += OnItemSold;
             }
         }
-
+        
         private void OnOpened()
         {
             GetComponentInChildren<Text>().text = "{Empty}";
@@ -65,6 +65,7 @@ namespace UI
             GetComponentInChildren<Text>().text = "{Empty}";
 
             var sellable = Item as ISellable;
+            Item = null;
             sellable.Sold -= OnItemSold;
             ClearInspectionArea();
         }
@@ -88,7 +89,9 @@ namespace UI
         public void OnPointerClick(PointerEventData eventData)
         {
             //Item?.Use();
-
+            if (Item == null) 
+                return;
+            
             var inventoryUI = FindObjectOfType<InventoryUI>();
             if (inventoryUI.selectedSlot != null)
             {
@@ -97,8 +100,7 @@ namespace UI
             
             inventoryUI.selectedSlot = this;
             highlightImage.gameObject.SetActive(true);
-
-            if (Item == null) return;
+            
             GenerateButtons();
         }
 
@@ -110,6 +112,7 @@ namespace UI
         private void ClearInspectionArea()
         {
             var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
+            itemInspectionArea.gameObject.SetActive(false);
             itemInspectionArea.Clear();
         }
         
@@ -142,7 +145,7 @@ namespace UI
                     {
                         delegates.Add("Sacrifice", gear.AddToSacrificeArea);
                     }
-                    else if (_fusionIsOpen)
+                    else if (_fusionInformation.FusionIsOpen && gear.EquipmentType == _fusionInformation.EquipmentType && gear.Rarity == _fusionInformation.RarityValue) 
                     {
                         delegates.Add("Add", gear.AddToFuseSlotArea);
                     }
@@ -150,7 +153,8 @@ namespace UI
                 else
                 {
                     delegates.Add("Upgrade", DoOpenUpgradeArea);
-                    delegates.Add("Fusion", DoOpenFusionArea);
+                    if (gear.Rarity != 3)
+                        delegates.Add("Fusion", DoOpenFusionArea);
                 }
                
                 var stats = gear.GetStats();
@@ -179,7 +183,7 @@ namespace UI
         
         private void ResetFusionIsOpen(FusionCloseEvent eventRef)
         {
-            _fusionIsOpen = false;
+            _fusionInformation = new FusionInformation(false);
             _panelIsOpen = false;
             eventBroker.UnsubscribeFrom<FusionCloseEvent>(ResetFusionIsOpen);
             eventBroker = null;
@@ -187,8 +191,12 @@ namespace UI
         
         private void DoOpenFusionArea()
         {
-            _fusionIsOpen = gear.OpenFusionArea();
-            _panelIsOpen = _fusionIsOpen;
+            var fusionWasOpened = gear.OpenFusionArea();
+            if (fusionWasOpened)
+            {
+                _fusionInformation = new FusionInformation(true, gear.Rarity, gear.EquipmentType);
+            }
+            _panelIsOpen = fusionWasOpened;
             
             eventBroker = FindObjectOfType<EventsBroker>();
             eventBroker.SubscribeTo<FusionCloseEvent>(ResetFusionIsOpen);

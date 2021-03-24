@@ -11,10 +11,12 @@ namespace Sacrifice
         UpgradeSlot upgradeSlot;
         SacrificeSlot sacrificeSlot;
         IMessageHandler eventBroker;
+        public Image bar;
+        public Text levelText;
 
         private Button sacrificeButton;
 
-        private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && sacrificeSlot.gearInstance != null;
+        private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && sacrificeSlot.gearInstance != null && !upgradeSlot.gearInstance.GearSaveData.GearLevel.IsMaxLevel;
 
         void Start()
         {
@@ -41,24 +43,50 @@ namespace Sacrifice
 
         private void OnPlaceInSacrificeItem(PlaceInSacrificeSlotEvent eventRef)
         {
+            if (eventRef.gearInstance == upgradeSlot.gearInstance)
+                return;
             sacrificeSlot.gearInstance = eventRef.gearInstance;
+            var currentLevelInfo = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(0);
+            var levelInfo = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(sacrificeSlot.gearInstance.GetSacrificeValue());
+            if (levelInfo.IsMaxLevel)
+                bar.fillAmount = 1;
+            else
+                bar.fillAmount = levelInfo.DifferenceToNextLevel;
+            levelText.text = $"Level {currentLevelInfo.Level} > {levelInfo.Level}";
+            FindObjectOfType<ItemInspectionArea>().gameObject.SetActive(false);
         }
         
         private void OnPlaceInUpgradeItem(PlaceInUpgradeSlotEvent eventRef)
         {
             this.gameObject.SetActive(true);
             upgradeSlot.gearInstance = eventRef.gearInstance;
+            var currentLevelInfo = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(0);
+            if (currentLevelInfo.IsMaxLevel)
+                bar.fillAmount = 1;
+            else
+                bar.fillAmount = currentLevelInfo.DifferenceToNextLevel;
+            levelText.text = $"Level: {currentLevelInfo.Level}";
+            if (upgradeSlot.gearInstance.GearSaveData.GearLevel.IsMaxLevel)
+            {
+                levelText.text = "Max Level";
+            }
+            FindObjectOfType<ItemInspectionArea>().gameObject.SetActive(false);
         }
 
         public void DoSacrifice()
         {
-            //TODO: Make math calculation of Amount of XP given to item
-            
-            upgradeSlot.gearInstance.GearSaveData.level++;
-            
-            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Level {upgradeSlot.gearInstance.GearSaveData.level}!");
+            //TODO: Get Exp Value Of Item In SacrificeSlot
+            var newLevel = upgradeSlot.gearInstance.IncreaseExp(sacrificeSlot.gearInstance.GetSacrificeValue());
+
+            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Level {upgradeSlot.gearInstance.GearSaveData.GearLevel.Level}!");
             sacrificeSlot.gearInstance.Sacrifice();
-            
+            levelText.text = $"Level: {newLevel.Level}";
+            if (newLevel.IsMaxLevel)
+            {
+                levelText.text = "Max Level";
+            }
+
+
             ClearSacrificeSlot();
         }
 
@@ -68,7 +96,7 @@ namespace Sacrifice
 
             ClearUpgradeSlot();
             ClearSacrificeSlot();
-            
+            FindObjectOfType<ItemInspectionArea>(true).gameObject.SetActive(false);
             eventBroker.Publish(new SacrificeCloseEvent());
             this.gameObject.SetActive(false);
         }

@@ -27,7 +27,8 @@ namespace Items.Gear
         }
 
         public EquipmentType EquipmentType => equipmentType;
-
+        public int RaritySacrificeValue => rarity.sacrificeValue;
+        public int FusionCost => rarity.fusionCost;
         public string RarityName => rarity.name;
         public void GenerateNewGuid()
         {

@@ -3840,7 +3840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1131030066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4848,10 +4848,6 @@ PrefabInstance:
     - target: {fileID: 785754494778968681, guid: c3cdf58e3ef177f45810617091af7123, type: 3}
       propertyPath: m_Name
       value: Fusion Area
-      objectReference: {fileID: 0}
-    - target: {fileID: 785754494778968681, guid: c3cdf58e3ef177f45810617091af7123, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5284997998266962136, guid: c3cdf58e3ef177f45810617091af7123, type: 3}
       propertyPath: m_Pivot.x
@@ -5952,46 +5948,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sacrifice Area
       objectReference: {fileID: 0}
-    - target: {fileID: 1493329635689969976, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722590364898947580, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1831138175}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DoSacrifice
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Sacrifice.Sacrificer, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6003803995385511912, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6270916431898010505, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6083,17 +6039,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6270916431898010505, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
   m_PrefabInstance: {fileID: 1831138173}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1831138175 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1831138176, guid: 13cb4f5af2717734ea903f7fe22fa972, type: 3}
-  m_PrefabInstance: {fileID: 1831138173}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33d28f334e630b419b4e8d7b1b03f2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1846960290
 GameObject:
   m_ObjectHideFlags: 0

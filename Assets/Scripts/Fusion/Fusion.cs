@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using EventManagement;
 using Events;
 using Items;
@@ -15,6 +16,7 @@ namespace Fusion
         
         UpgradeSlot upgradeSlot;
         [SerializeField] FuseSlot[] fuseSlots;
+        [SerializeField] private Text costText;
         private List<string> currentGearInstanceIDs = new List<string>();
         private List<bool> TypeMatchList = new List<bool>();
         private List<bool> RarityMatchList = new List<bool>();
@@ -26,6 +28,7 @@ namespace Fusion
         private Button fuseButton;
 
         private EquipmentType fusionSlotEquipmentType;
+        private bool affordAble;
 
         private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && currentNumberOfItems == fuseSlots.Length;
         private bool AllSlotsMatchType => IsTypeMatch();
@@ -49,9 +52,9 @@ namespace Fusion
             this.gameObject.SetActive(false);
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            fuseButton.interactable = SlotsAreOccupied && AllSlotsMatchType && AllSlotsMatchRarity;
+            fuseButton.interactable = SlotsAreOccupied && AllSlotsMatchType && AllSlotsMatchRarity && affordAble;
         }
 
         private bool IsTypeMatch()
@@ -112,6 +115,7 @@ namespace Fusion
                     break;
                 }
             }
+            FindObjectOfType<ItemInspectionArea>().gameObject.SetActive(false);
         }
         
         private void OnPlaceInUpgradeItem(PlaceInFusionUpgradeSlotEvent eventRef)
@@ -119,24 +123,29 @@ namespace Fusion
             this.gameObject.SetActive(true);
             currentGearInstanceIDs.Add(eventRef.gearInstance.ID);
             upgradeSlot.gearInstance = eventRef.gearInstance;
+            costText.text = costText.text.Replace("[Cost]", upgradeSlot.gearInstance.GetFusionCost().ToString());
+            FindObjectOfType<ItemInspectionArea>(true).gameObject.SetActive(false);
+            eventBroker.SubscribeTo<UpdateSilverUIEvent>(OnSilverUpdate);
+            eventBroker.Publish(new RequestSilverData());
+        }
+
+        private void OnSilverUpdate(UpdateSilverUIEvent eventRef)
+        {
+            affordAble = eventRef.Silver >= upgradeSlot.gearInstance.GetFusionCost();
         }
 
         public void DoSacrifice()
         {
-            //TODO: Make math calculation of Amount of XP given to item
-            //upgradeSlot.gearInstance.Rarity needs to be improved;
-            
-            upgradeSlot.gearInstance.GearSaveData.level++;
-            
-            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Rarity {upgradeSlot.gearInstance.Rarity}!");
+            upgradeSlot.gearInstance.UpgradeRarity();
 
             foreach (var item in fuseSlots)
             {
                 item.gearInstance.Sacrifice();
             }
+            
+            eventBroker.Publish(new DecreaseSilverEvent(upgradeSlot.gearInstance.GetFusionCost()));
 
-            ClearLists();
-            ClearSacrificeSlot();
+            Close();
         }
 
         public void Close()
@@ -148,6 +157,7 @@ namespace Fusion
             ClearLists();
             
             eventBroker.Publish(new FusionCloseEvent());
+            FindObjectOfType<ItemInspectionArea>(true).gameObject.SetActive(false);
             this.gameObject.SetActive(false);
         }
 
@@ -168,6 +178,8 @@ namespace Fusion
         {
             foreach (var item in fuseSlots)
             {
+                if (item.gearInstance == null)
+                    continue;
                 if (currentGearInstanceIDs.Contains(item.gearInstance.ID))
                     currentGearInstanceIDs.Remove(item.gearInstance.ID);
                 item.gearInstance = null;
