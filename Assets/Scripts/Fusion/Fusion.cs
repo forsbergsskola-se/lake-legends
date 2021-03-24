@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
@@ -35,7 +36,7 @@ namespace Fusion
         private bool AllSlotsMatchRarity => IsRarityMatch();
 
 
-        void Start()
+        void Awake()
         {
             upgradeSlot = gameObject.GetComponentInChildren<UpgradeSlot>();
             fuseSlots = gameObject.GetComponentsInChildren<FuseSlot>();
@@ -50,6 +51,11 @@ namespace Fusion
             
             
             this.gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            eventBroker.SubscribeTo<UpdateSilverUIEvent>(OnSilverUpdate);
         }
 
         private void Update()
@@ -125,7 +131,6 @@ namespace Fusion
             upgradeSlot.gearInstance = eventRef.gearInstance;
             costText.text = costText.text.Replace("[Cost]", upgradeSlot.gearInstance.GetFusionCost().ToString());
             FindObjectOfType<ItemInspectionArea>(true).gameObject.SetActive(false);
-            eventBroker.SubscribeTo<UpdateSilverUIEvent>(OnSilverUpdate);
             eventBroker.Publish(new RequestSilverData());
         }
 
@@ -187,6 +192,11 @@ namespace Fusion
             }
             
             currentNumberOfItems = 0;
+        }
+
+        private void OnDisable()
+        {
+            eventBroker.UnsubscribeFrom<UpdateSilverUIEvent>(OnSilverUpdate);
         }
     }
 }
