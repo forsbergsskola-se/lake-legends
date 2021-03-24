@@ -17,6 +17,8 @@ namespace UI
         private bool decended;
         private int inventorySize;
 
+        public InventorySlot selectedSlot;
+
         protected virtual void OnEnable()
         { 
             Clear();
@@ -55,6 +57,7 @@ namespace UI
                 {
                     var gearItem = updateInventoryEvent.GearInventory.GeneratedGear[item.ID];
                     instance.Setup(gearItem);
+                    
                 }
                 inventorySlots.Add(instance); 
                 Destroy(transform.GetChild(inventorySize - 1).gameObject);

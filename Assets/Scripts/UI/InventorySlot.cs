@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using EventManagement;
 using Events;
 using Items;
 using Items.Gear;
 using PlayerData;
+using Sacrifice;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,7 +15,17 @@ namespace UI
     public class InventorySlot : Slot, IPointerClickHandler
     {
         public bool opened;
-        private Color defaultColor = Color.white;
+        Color defaultColor = Color.white;
+        [SerializeField] Image slotImage;
+        [SerializeField] Image highlightImage;
+        Sacrificer sacrificer;
+
+        private GearInstance gear;
+        private static bool _sacrificeIsOpen;
+        private static FusionInformation _fusionInformation;
+        private static bool _panelIsOpen;
+
+        private IMessageHandler eventBroker;
 
         public override void Setup(IItem item, bool hasCaught = true)
         {
@@ -27,13 +39,14 @@ namespace UI
                 {
                     OnEquippedItem();
                 }
+                sacrificer = FindObjectOfType<Sacrificer>(true);
             }
             if (Item is ISellable sellable)
             {
                 sellable.Sold += OnItemSold;
             }
         }
-
+        
         private void OnOpened()
         {
             GetComponentInChildren<Text>().text = "{Empty}";
@@ -52,33 +65,54 @@ namespace UI
             GetComponentInChildren<Text>().text = "{Empty}";
 
             var sellable = Item as ISellable;
+            Item = null;
             sellable.Sold -= OnItemSold;
             ClearInspectionArea();
         }
 
         private void OnUnEquippedItem()
         {
-            var image = GetComponent<Image>();
-            image.color = defaultColor;
+            slotImage.color = defaultColor;
         }
 
         private void OnEquippedItem()
         {
-            var image = GetComponent<Image>();
-            image.color = Color.green;
+            slotImage.color = Color.green;
         }
-
-
+        
+        private void OnPlaceInUpgradeItem()
+        {
+            /*var image = GetComponent<Image>();
+            image.color = Color.green;*/
+        }
+        
         public void OnPointerClick(PointerEventData eventData)
         {
             //Item?.Use();
-            if (Item != null)
-                GenerateButtons();
+            if (Item == null) 
+                return;
+            
+            var inventoryUI = FindObjectOfType<InventoryUI>();
+            if (inventoryUI.selectedSlot != null)
+            {
+                inventoryUI.selectedSlot.UnSelect();
+            }
+            
+            inventoryUI.selectedSlot = this;
+            highlightImage.gameObject.SetActive(true);
+            
+            GenerateButtons();
+        }
+
+        void UnSelect()
+        {
+            highlightImage.gameObject.SetActive(false);
         }
 
         private void ClearInspectionArea()
         {
             var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
+            itemInspectionArea.gameObject.SetActive(false);
             itemInspectionArea.Clear();
         }
         
@@ -93,7 +127,13 @@ namespace UI
             }
             if (Item is ISellable sellable)
             {
-                delegates.Add("Sell", sellable.Sell);
+                var canSell = true; 
+                if (Item is GearInstance gearInstance)
+                {
+                    canSell = !(_fusionInformation != null && gearInstance == _fusionInformation.GearInstance);
+                }
+                if (canSell)
+                    delegates.Add("Sell", sellable.Sell);
             }
             if (Item is IOpenable openable)
             {
@@ -103,6 +143,32 @@ namespace UI
             itemInspectionArea.gameObject.SetActive(true);
             if (Item is GearInstance gear)
             {
+                this.gear = gear;
+
+                if (_panelIsOpen)
+                {
+                    if (_sacrificeIsOpen && _fusionInformation?.GearInstance != gear)
+                    {
+                        delegates.Add("Sacrifice", gear.AddToSacrificeArea);
+                    }
+                    else if (_fusionInformation != null && _fusionInformation.FusionIsOpen 
+                                                        && gear.EquipmentType == _fusionInformation.EquipmentType
+                                                        && gear.Rarity == _fusionInformation.RarityValue 
+                                                        && gear != _fusionInformation.GearInstance) 
+                    {
+                        delegates.Add("Add", gear.AddToFuseSlotArea);
+                    }
+                }
+                else
+                {
+                    if (_fusionInformation?.GearInstance != gear || _fusionInformation == null)
+                    {
+                        delegates.Add("Upgrade", DoOpenUpgradeArea);
+                        if (gear.Rarity != 3)
+                            delegates.Add("Fusion", DoOpenFusionArea);
+                    }
+                }
+               
                 var stats = gear.GetStats();
                 itemInspectionArea.CreateButtons(delegates, callBacks, Item.Name, stats);
             }
@@ -117,6 +183,49 @@ namespace UI
                 .GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public)
                 .Where(info => info.GetCustomAttributes(typeof(InteractAttribute)).Any()).ToList();
             itemInspectionArea.CreateButtons(Item, interactMethods);*/
+        }
+
+        private void ResetSacrificeIsOpen(SacrificeCloseEvent eventRef)
+        {
+            _fusionInformation = new FusionInformation(false);
+            _sacrificeIsOpen = false;
+            _panelIsOpen = false;
+            eventBroker.UnsubscribeFrom<SacrificeCloseEvent>(ResetSacrificeIsOpen);
+            eventBroker = null;
+        }
+        
+        private void ResetFusionIsOpen(FusionCloseEvent eventRef)
+        {
+            _fusionInformation = new FusionInformation(false);
+            _panelIsOpen = false;
+            eventBroker.UnsubscribeFrom<FusionCloseEvent>(ResetFusionIsOpen);
+            eventBroker = null;
+        }
+        
+        private void DoOpenFusionArea()
+        {
+            var fusionWasOpened = gear.OpenFusionArea();
+            if (fusionWasOpened)
+            {
+                _fusionInformation = new FusionInformation(true, gear, gear.Rarity, gear.EquipmentType);
+            }
+            _panelIsOpen = fusionWasOpened;
+            
+            eventBroker = FindObjectOfType<EventsBroker>();
+            eventBroker.SubscribeTo<FusionCloseEvent>(ResetFusionIsOpen);
+        }
+        
+        private void DoOpenUpgradeArea()
+        {
+            _sacrificeIsOpen = gear.OpenUpgradeArea();
+            if (_sacrificeIsOpen)
+            {
+                _fusionInformation = new FusionInformation(false, gear);
+            }
+            _panelIsOpen = _sacrificeIsOpen;
+            
+            eventBroker = FindObjectOfType<EventsBroker>();
+            eventBroker.SubscribeTo<SacrificeCloseEvent>(ResetSacrificeIsOpen);
         }
 
         private void OnDestroy()

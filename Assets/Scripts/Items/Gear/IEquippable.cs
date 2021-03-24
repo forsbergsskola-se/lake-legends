@@ -7,7 +7,7 @@ namespace Items.Gear
         event Action Equipped;
 
         event Action UnEquipped;
-        
+
         string Name { get; }
         string ID { get; }
         

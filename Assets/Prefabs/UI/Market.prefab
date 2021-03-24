@@ -230,7 +230,7 @@ MonoBehaviour:
   amount: 1000
   givesSilver: 0
   costsGold: 0
-  price: 1000
+  price: 0
 --- !u!1 &1494386226758599126
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,12 +3339,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2333208661926857531}
-  m_Father: {fileID: 2333208663710658960}
-  m_RootOrder: 6
+  m_Father: {fileID: 2333208662929344618}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55.000122, y: -70}
+  m_AnchoredPosition: {x: -138.6825, y: -196.99115}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2333208662738687158
@@ -4521,7 +4521,7 @@ GameObject:
   - component: {fileID: 2333208662929344596}
   - component: {fileID: 2333208662929344597}
   m_Layer: 5
-  m_Name: Market 1
+  m_Name: Market
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4542,6 +4542,7 @@ RectTransform:
   - {fileID: 2333208662600379943}
   - {fileID: 2333208663009591133}
   - {fileID: 2333208663396709415}
+  - {fileID: 2333208662738687157}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6688,7 +6689,6 @@ RectTransform:
   - {fileID: 2333208662680164140}
   - {fileID: 2333208663251788985}
   - {fileID: 2333208663747718122}
-  - {fileID: 2333208662738687157}
   m_Father: {fileID: 2333208662929344618}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7842,7 +7842,7 @@ MonoBehaviour:
   amount: 100
   givesSilver: 0
   costsGold: 0
-  price: 100
+  price: 0
 --- !u!1 &6645156342532119094
 GameObject:
   m_ObjectHideFlags: 0
@@ -8138,7 +8138,7 @@ MonoBehaviour:
   amount: 10
   givesSilver: 0
   costsGold: 0
-  price: 10
+  price: 0
 --- !u!1 &7872132851270745867
 GameObject:
   m_ObjectHideFlags: 0
