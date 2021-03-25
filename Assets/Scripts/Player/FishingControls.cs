@@ -19,6 +19,7 @@ namespace Player
         [SerializeField] private string waitingForBiteText = "Waiting for a bite...";
         [SerializeField] private string nibbleText = "Just a nibble... Waiting  for a bite...";
         [SerializeField] private string biteText = "Got a catchable on the hook! Tap to reel it in!";
+        [SerializeField] private string cantAffordText = "You need more bait, get some at the Market!";
         
         private float timeRemaining;
         private bool isRodCast;
@@ -94,7 +95,7 @@ namespace Player
         {
             if (!affordable)
             {
-                //TODO: Show the "You cannot afford it UI"
+                eventsBroker.Publish(new CanNotAffordUIEvent(cantAffordText));
                 return false;
             }
             return true;
