@@ -77,9 +77,6 @@ namespace Fusion
         
         private bool IsRarityMatch()
         {
-            // TODO: Add Rarity identifiers to match for if is Legendary
-            // If upgradeSlot.gearInstance.Rarity == Legendary => return false;
-            
             foreach (var type in fuseSlots)
             {
                 
