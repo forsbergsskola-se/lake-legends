@@ -194,6 +194,12 @@ namespace Fusion
             currentNumberOfItems = 0;
         }
 
+        private void OnDestroy()
+        {
+            eventBroker.UnsubscribeFrom<PlaceInFuseSlotEvent>(OnPlaceInFusionSacrificeItem);
+            eventBroker.UnsubscribeFrom<PlaceInFusionUpgradeSlotEvent>(OnPlaceInUpgradeItem);
+        }
+
         private void OnDisable()
         {
             eventBroker.UnsubscribeFrom<UpdateSilverUIEvent>(OnSilverUpdate);

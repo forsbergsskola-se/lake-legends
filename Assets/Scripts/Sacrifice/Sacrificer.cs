@@ -1,3 +1,4 @@
+using System;
 using EventManagement;
 using Events;
 using UI;
@@ -111,6 +112,12 @@ namespace Sacrifice
         {
             sacrificeSlot.gearInstance = null;
             sacrificeSlot.ClearName();
+        }
+
+        private void OnDestroy()
+        {
+            eventBroker.UnsubscribeFrom<PlaceInUpgradeSlotEvent>(OnPlaceInUpgradeItem);
+            eventBroker.UnsubscribeFrom<PlaceInSacrificeSlotEvent>(OnPlaceInSacrificeItem);
         }
     }
 }
