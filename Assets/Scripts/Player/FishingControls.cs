@@ -95,7 +95,6 @@ namespace Player
             if (!affordable)
             {
                 //TODO: Show the "You cannot afford it UI"
-                //Debug.Log("You can't afford it");
                 return false;
             }
             return true;
