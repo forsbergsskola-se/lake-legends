@@ -1,4 +1,5 @@
 ﻿using Items;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -11,8 +12,10 @@ namespace UI
         {
             this.hasCaught = hasCaught;
             Item = item;
-            if (hasCaught)
-                GetComponentInChildren<Text>().text = item.Name;
+            var image = GetComponentInChildren<Image>();
+            image.sprite = (item as FishItem).type.sprite;
+            if (!hasCaught)
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0.4f);
         }
         
         public void OnPointerClick(PointerEventData eventData)
