@@ -9,6 +9,7 @@ namespace Player
 {
     public class FishingControls : MonoBehaviour
     {
+        [SerializeField] private int baitCost = 1;
         [SerializeField] private int hookChance;
         [SerializeField] private int minimumTimer;
         [SerializeField] private int maximumTimer;
@@ -23,6 +24,8 @@ namespace Player
         private bool isTimerSet;
         private bool fishBite;
 
+        private bool affordable;
+        
         private IMessageHandler eventsBroker;
 
         [SerializeField] private Transform floatNoBite;
@@ -46,14 +49,18 @@ namespace Player
             isRodCast = false;
             isTimerSet = false;
             
+            eventsBroker.SubscribeTo<UpdateBaitUIEvent>(ComparePriceAndOwnedBait);
             eventsBroker.SubscribeTo<FishAgainEvent>(ReturnFromMinigame);
             eventsBroker.SubscribeTo<EndFishOMeterEvent>(BlankOut);
         }
-        
+
+        private void ComparePriceAndOwnedBait(UpdateBaitUIEvent eventRef)
+        {
+            affordable = baitCost <= eventRef.Bait;
+        }
+
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !isRodCast) CastRod();
-
             if (isTimerSet)
             {
                 if (timeRemaining <= 0)
@@ -66,11 +73,33 @@ namespace Player
                 }
             }
         }
-        
+
+        public void TryToPlayTheGame()
+        {
+            if (!isRodCast)
+            { 
+                eventsBroker.Publish(new RequestBaitData());
+                if (!CheckAffordability())
+                    return;
+                CastRod();
+            }
+        }
+
+        private bool CheckAffordability()
+        {
+            if (!affordable)
+            {
+                //TODO: Show the "You cannot afford it UI"
+                //Debug.Log("You can't afford it");
+                return false;
+            }
+            return true;
+        }
 
         private void CastRod()
         {
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
+            eventsBroker.Publish(new DecreaseBaitEvent(baitCost));
             isRodCast = true;
             if (UsesFloat) floatNoBite.gameObject.SetActive(true);
 
@@ -142,6 +171,7 @@ namespace Player
         {
             eventsBroker?.UnsubscribeFrom<EndFishOMeterEvent>(BlankOut);
             eventsBroker?.UnsubscribeFrom<FishAgainEvent>(ReturnFromMinigame);
+            eventsBroker?.UnsubscribeFrom<UpdateBaitUIEvent>(ComparePriceAndOwnedBait);
         }
     }
 }
