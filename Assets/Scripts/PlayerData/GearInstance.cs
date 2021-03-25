@@ -49,7 +49,8 @@ namespace PlayerData
             get => isEquipped;
             set
             {
-                if (value)
+                isEquipped = value;
+                if (isEquipped)
                 {
                     Equipped?.Invoke();
                 }
@@ -57,7 +58,6 @@ namespace PlayerData
                 {
                     UnEquipped?.Invoke();
                 }
-                isEquipped = value;
             }
         }
 
@@ -112,7 +112,14 @@ namespace PlayerData
             broker.Publish(new CheckAndDoEquipEvent(this));
             IsEquipped = true;
         }
-        
+
+        public void Unequip()
+        {
+            var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new UnEquipEvent(this));
+            IsEquipped = false;
+        }
+
         public void AddToFuseSlotArea()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
@@ -148,9 +155,9 @@ namespace PlayerData
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
             broker.Publish(new RemoveItemFromInventoryEvent(this));
+            UnEquipped?.Invoke();
             broker.Publish(new UnEquipEvent(this));
             Sold?.Invoke();
-            UnEquipped?.Invoke();
         }
         
         public void Sell()
