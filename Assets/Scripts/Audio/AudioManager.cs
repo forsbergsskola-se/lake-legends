@@ -86,8 +86,7 @@ namespace Audio
          audioSource.volume = 0.5f;
          return audioSource;
       }
-   
-      // TODO setup wait time coroutine?
+      
       IEnumerator PlayAndWait(string audioClipName)
       {
          var audioClipSetting = sfxSounds.FirstOrDefault(music => music.audioClip.name == audioClipName);
