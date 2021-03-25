@@ -76,7 +76,6 @@ namespace Sacrifice
 
         public void DoSacrifice()
         {
-            //TODO: Get Exp Value Of Item In SacrificeSlot
             var newLevel = upgradeSlot.gearInstance.IncreaseExp(sacrificeSlot.gearInstance.GetSacrificeValue());
 
             Debug.Log($"{upgradeSlot.gearInstance.Name} is now Level {upgradeSlot.gearInstance.GearSaveData.GearLevel.Level}!");

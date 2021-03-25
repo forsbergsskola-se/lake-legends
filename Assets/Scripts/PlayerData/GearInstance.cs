@@ -109,10 +109,6 @@ namespace PlayerData
         public void Equip()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
-            
-            // Need to publish to showcase UI here in stead of event directly
-
-            //TODO: Send event for opening a ViewItemInfoUI, that has a button that then fires CheckAndDoEquipEvent
             broker.Publish(new CheckAndDoEquipEvent(this));
             IsEquipped = true;
         }
