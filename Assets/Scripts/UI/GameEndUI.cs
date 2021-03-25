@@ -29,7 +29,7 @@ namespace UI
         {
             if (catchable != null)
             {
-                resultText.text = "You caught something!";
+                resultText.text = "You caught a";
                 image.gameObject.SetActive(true);
                 image.sprite = catchable.Sprite;
                 fishNameText.text = catchable.Name;
