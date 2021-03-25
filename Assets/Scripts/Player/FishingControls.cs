@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Audio;
 using EventManagement;
@@ -81,6 +80,7 @@ namespace Player
 
         public void TryToPlayTheGame()
         {
+            
             if (!isRodCast)
             { 
                 eventsBroker.Publish(new RequestBaitData());
@@ -104,10 +104,10 @@ namespace Player
         {
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
             eventsBroker.Publish(new DecreaseBaitEvent(baitCost));
-
-            yield return audioManager.PlaySoundEnumerator(new PlaySoundEvent(SoundType.PlayAndWait, castingSound));
-
+            
             isRodCast = true;
+            yield return audioManager.PlaySoundEnumerator(new PlaySoundEvent(SoundType.PlayAndWait, castingSound));
+            
             if (UsesFloat) floatNoBite.gameObject.SetActive(true);
 
             statusText.text = waitingForBiteText;
