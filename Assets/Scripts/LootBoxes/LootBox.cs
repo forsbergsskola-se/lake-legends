@@ -14,6 +14,7 @@ namespace LootBoxes
     public class LootBox : ScriptableObject, IItem, ICatchable, IOpenable
     {
         [SerializeField] private string itemID;
+        [SerializeField] private Sprite sprite;
         public ScriptableObject[] loot;
         public float[] weights;
         
@@ -92,6 +93,7 @@ namespace LootBoxes
             }
         }
         public string Name => name;
+        public Sprite Sprite => sprite;
         public int Rarity => 0;
         public FloatRange RandomStopTimeRange => randomStopTimeRange;
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;

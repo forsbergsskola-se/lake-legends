@@ -59,6 +59,7 @@ namespace Items
         }
 
         public string Name => name;
+        public Sprite Sprite => type.sprite;
         public int Rarity => rarity.starAmount;
         public FloatRange RandomStopTimeRange => randomStopTimeRange;
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;

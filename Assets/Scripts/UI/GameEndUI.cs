@@ -1,6 +1,7 @@
 using EventManagement;
 using Events;
 using Items;
+using LootBoxes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -30,11 +31,16 @@ namespace UI
             {
                 resultText.text = "You caught something!";
                 image.gameObject.SetActive(true);
+                image.sprite = catchable.Sprite;
+                fishNameText.text = catchable.Name;
+                
                 if (catchable is FishItem fishItem)
                 {
-                    image.sprite = fishItem.type.sprite;
-                    fishNameText.text = fishItem.Name;
                     fishWorth.text = $"It's worth {fishItem.silverValue}!";   
+                }
+                else if (catchable is LootBox lootBox)
+                {
+                    fishWorth.text = "Open it in town!";
                 }
                 else
                 {
