@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Audio;
 using EventManagement;
 using Events;
 using UnityEngine;
@@ -27,10 +29,12 @@ namespace Player
         private bool affordable;
         
         private IMessageHandler eventsBroker;
+        private AudioManager audioManager;
 
         [SerializeField] private Transform floatNoBite;
         [SerializeField] private Transform floatNibbleOrBite;
         [SerializeField] private Text statusText;
+        [SerializeField] private string castingSound = "CastingSound";
 
         private bool UsesFloat => floatNoBite != null && floatNibbleOrBite != null;
         
@@ -39,6 +43,7 @@ namespace Player
             statusText.text = castRodText;
             
             eventsBroker = FindObjectOfType<EventsBroker>();
+            audioManager = FindObjectOfType<AudioManager>();
 
             if (UsesFloat)
             {
@@ -58,7 +63,7 @@ namespace Player
         {
             affordable = baitCost <= eventRef.Bait;
         }
-
+        
         private void Update()
         {
             if (isTimerSet)
@@ -81,7 +86,7 @@ namespace Player
                 eventsBroker.Publish(new RequestBaitData());
                 if (!CheckAffordability())
                     return;
-                CastRod();
+                StartCoroutine(CastRod());
             }
         }
 
@@ -96,10 +101,13 @@ namespace Player
             return true;
         }
 
-        private void CastRod()
+        private IEnumerator CastRod()
         {
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
             eventsBroker.Publish(new DecreaseBaitEvent(baitCost));
+
+            yield return audioManager.PlaySoundEnumerator(new PlaySoundEvent(SoundType.PlayAndWait, castingSound));
+
             isRodCast = true;
             if (UsesFloat) floatNoBite.gameObject.SetActive(true);
 
