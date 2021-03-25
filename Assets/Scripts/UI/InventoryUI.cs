@@ -154,5 +154,10 @@ namespace UI
             FindObjectOfType<EventsBroker>()?.UnsubscribeFrom<EnableInventoryEvent>(Setup);
             FindObjectOfType<EventsBroker>()?.UnsubscribeFrom<UpdateInventoryEvent>(OnUpdateInventoryUI);
         }
+
+        private void OnDestroy()
+        {
+            InventorySlot.ResetPanelValues();
+        }
     }
 }

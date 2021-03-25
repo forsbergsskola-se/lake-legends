@@ -5,7 +5,6 @@ using Events;
 using Items;
 using Items.Gear;
 using PlayerData;
-using Sacrifice;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,7 +17,6 @@ namespace UI
         Color defaultColor = Color.white;
         [SerializeField] Image slotImage;
         [SerializeField] Image highlightImage;
-        Sacrificer sacrificer;
 
         private GearInstance gear;
         private static bool _sacrificeIsOpen;
@@ -39,7 +37,6 @@ namespace UI
                 {
                     OnEquippedItem();
                 }
-                sacrificer = FindObjectOfType<Sacrificer>(true);
             }
             if (Item is ISellable sellable)
             {
@@ -240,6 +237,13 @@ namespace UI
             {
                 sellable.Sold -= OnItemSold;
             }
+        }
+
+        public static void ResetPanelValues()
+        {
+            _fusionInformation = null;
+            _panelIsOpen = false;
+            _sacrificeIsOpen = false;
         }
     }
 }
