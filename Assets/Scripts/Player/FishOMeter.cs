@@ -24,6 +24,8 @@ namespace Player
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
+        [SerializeField] private string loseFishSound = "LoseFishSound";
+        [SerializeField] private string catchFishSound = "CatchFishSound";
 
         const int treasureChanceMaxValue = 101;
         [SerializeField] [Range(0,100)] private int treasureChance;
@@ -216,6 +218,7 @@ namespace Player
 
         private void FishCatch()
         {
+            eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, catchFishSound));
             PlayerPrefs.SetInt("Debug-CaughtFish", PlayerPrefs.GetInt("Debug-CaughtFish", 0) + 1);
             DebugCaughtLost();
             fishOMeterMinigamePanel.gameObject.SetActive(false);
@@ -226,6 +229,7 @@ namespace Player
         
         private void FishEscape()
         {
+            eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, loseFishSound));
             PlayerPrefs.SetInt("Debug-EscapedFish", PlayerPrefs.GetInt("Debug-EscapedFish", 0) + 1);
             DebugCaughtLost();
             fishOMeterMinigamePanel.gameObject.SetActive(false);

@@ -6,6 +6,7 @@ using EventManagement;
 using Events;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 namespace Audio
 {
@@ -31,10 +32,17 @@ namespace Audio
       {
          eventsBroker = FindObjectOfType<EventsBroker>();
          eventsBroker.SubscribeTo<PlaySoundEvent>(PlaySound);
-         PlaySoundsOnStart();
+         SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
       }
 
-      void PlaySound(PlaySoundEvent playSoundEvent)
+      private void SceneManagerOnsceneLoaded(Scene arg0, LoadSceneMode arg1)
+      {
+         CheckSoundsToPlayOnSceneChange(ambiantSounds, AmbienceAudioSource, arg0.name);
+         CheckSoundsToPlayOnSceneChange(sfxSounds, SfxAudioSource, arg0.name);
+         CheckSoundsToPlayOnSceneChange(musicTracks, MusicAudioSource, arg0.name);
+      }
+
+      public void PlaySound(PlaySoundEvent playSoundEvent)
       {
          switch (playSoundEvent._soundType)
          {
@@ -54,15 +62,27 @@ namespace Audio
                throw new ArgumentOutOfRangeException();
          }
       }
+      
+      public IEnumerator PlaySoundEnumerator(PlaySoundEvent playSoundEvent)
+      {
+         switch (playSoundEvent._soundType)
+         {
+            case SoundType.PlayAndWait:
+               yield return PlayAndWait(playSoundEvent._audioClipName);
+               break;
+            default:
+               throw new ArgumentOutOfRangeException();
+         }
+      }
    
       private AudioSource SetupAudio(string audioClipName, List<AudioClipSettings> audioClipSetupList)
       {
-         var audioClipSetup = audioClipSetupList.FirstOrDefault(music => music.audioClip.name == audioClipName);
+         var audioClipSetup = audioClipSetupList.FirstOrDefault(music => music.eventName == audioClipName);
          if(audioClipSetup == null) throw new Exception($"Audio clip {audioClipName} is missing.");
          var audioSource = audioClipSetup.outputAudioSource;
          audioSource.clip = audioClipSetup.audioClip;
          audioSource.loop = audioClipSetup.loop;
-         audioSource.playOnAwake = audioClipSetup.playOnAwake;
+         audioSource.playOnAwake = false;
          audioSource.volume = 0.5f;
          return audioSource;
       }
@@ -82,6 +102,7 @@ namespace Audio
             }
          }
          var audioSource = audioClipSetting.outputAudioSource;
+         audioSource.clip = audioClipSetting.audioClip;
          audioSource.Play();
          yield return new WaitWhile( () => audioSource.isPlaying);
       }
@@ -104,44 +125,25 @@ namespace Audio
          MusicAudioSource.Play();
       }
 
-      void PlaySoundsOnStart()
+      void CheckSoundsToPlayOnSceneChange(List<AudioClipSettings> audioClipSettings, AudioSource audioSource, string sceneName)
       {
-         foreach (var ambSound in ambiantSounds)
+         foreach (var audioClipSetting in audioClipSettings)
          {
-            if (ambSound.playOnAwake)
+            if (audioClipSetting.sceneToPlayIn == sceneName)
             {
-               if (ambSound.loop) 
-                  AmbienceAudioSource.loop = true;
+               if (audioClipSetting.loop)
+                  audioSource.loop = true;
                else
-                  AmbienceAudioSource.loop = false;
-               AmbienceAudioSource.clip = ambSound.audioClip;
-               AmbienceAudioSource.Play();
+                  audioSource.loop = false;
+               if (audioClipSetting.playOnSceneChange)
+               {
+                  audioSource.clip = audioClipSetting.audioClip;
+                  audioSource.Play();
+               }
             }
-         }
-      
-         foreach (var musicTrack in musicTracks)
-         {
-            if (musicTrack.playOnAwake)
+            else if(audioClipSetting.audioClip == audioSource.clip)
             {
-               if (musicTrack.loop)
-                  MusicAudioSource.loop = true;
-               else
-                  MusicAudioSource.loop = false;
-               MusicAudioSource.clip = musicTrack.audioClip;
-               MusicAudioSource.Play();
-            }
-         }
-
-         foreach (var sfxSound in sfxSounds)
-         {
-            if (sfxSound.playOnAwake)
-            {
-               if (sfxSound.loop)
-                  SfxAudioSource.loop = true;
-               else
-                  SfxAudioSource.loop = false;
-               SfxAudioSource.clip = sfxSound.audioClip;
-               SfxAudioSource.Play();
+               audioSource.Stop();
             }
          }
       }
@@ -149,12 +151,14 @@ namespace Audio
       [Serializable]
       public class AudioClipSettings
       {
+         public string eventName;
          public AudioClip audioClip;
          public AudioSource outputAudioSource;
          [Range(0.0f,1.0f)]
          public float volume;
          public bool loop;
-         public bool playOnAwake;
+         public bool playOnSceneChange;
+         public string sceneToPlayIn;
       }
    }
 }
