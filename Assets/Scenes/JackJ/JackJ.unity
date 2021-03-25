@@ -2074,6 +2074,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5290791886258662469, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 5290791886267657843, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2324,6 +2328,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5290791886113237973, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
   m_PrefabInstance: {fileID: 1373520423}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1373520427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5290791886258662466, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+  m_PrefabInstance: {fileID: 1373520423}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1373520428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373520427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1531043259
 GameObject:
   m_ObjectHideFlags: 0

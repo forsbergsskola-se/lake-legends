@@ -69,13 +69,13 @@ namespace UI
 
         private void OnUnEquippedItem()
         {
+            ClearInspectionArea();
             slotImage.color = defaultColor;
         }
 
         private void OnEquippedItem()
         {
             ClearInspectionArea();
-            GenerateButtons();
             slotImage.color = Color.green;
         }
         
