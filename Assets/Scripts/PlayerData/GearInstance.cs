@@ -16,9 +16,9 @@ namespace PlayerData
         private Equipment equipment;
         private bool isEquipped;
 
-        [JsonIgnore] public float CalculatedLineStrength => Mathf.Lerp(Equipment.lineStrength.Min, Equipment.lineStrength.Max, GearSaveData.lineStrength) + GearSaveData.GearLevel.Level;
-        [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction) + GearSaveData.GearLevel.Level;
-        [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy) + GearSaveData.GearLevel.Level;
+        [JsonIgnore] public float CalculatedLineStrength => Mathf.Lerp(Equipment.lineStrength.Min, Equipment.lineStrength.Max, GearSaveData.lineStrength) + GearSaveData.GearLevel.Level * Equipment.lineStrengthIncreasePerLevel;
+        [JsonIgnore] public float CalculatedAttraction => Mathf.Lerp(Equipment.attraction.Min, Equipment.attraction.Max, GearSaveData.attraction) + GearSaveData.GearLevel.Level * Equipment.attractionIncreasePerLevel;
+        [JsonIgnore] public float CalculatedAccuracy => Mathf.Lerp(Equipment.accuracy.Min, Equipment.accuracy.Max, GearSaveData.accuracy) + GearSaveData.GearLevel.Level * Equipment.accuracyIncreasePerLevel;
 
         [JsonIgnore] public Equipment Equipment
         {

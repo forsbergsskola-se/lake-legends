@@ -12,10 +12,13 @@ namespace Items.Gear
         [SerializeField] public EquipmentVariant equipmentVariant;
         [SerializeField] public EquipmentType equipmentType;
         [SerializeField] private Rarity rarity;
-        
+
         [SerializeField] public FloatRange lineStrength = new FloatRange(22,28);
         [SerializeField] public FloatRange attraction = new FloatRange(22,28);
         [SerializeField] public FloatRange accuracy = new FloatRange(22,28);
+        public float lineStrengthIncreasePerLevel = 1;
+        public float attractionIncreasePerLevel = 1;
+        public float accuracyIncreasePerLevel = 1;
         
         public string ID {
             get
