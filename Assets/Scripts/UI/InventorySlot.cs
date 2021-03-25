@@ -74,6 +74,8 @@ namespace UI
 
         private void OnEquippedItem()
         {
+            ClearInspectionArea();
+            GenerateButtons();
             slotImage.color = Color.green;
         }
         
@@ -120,7 +122,10 @@ namespace UI
             var callBacks = new Dictionary<string, Callback>();
             if (Item is IEquippable equippable)
             {
-                delegates.Add("Equip", equippable.Equip);
+                if (equippable.IsEquipped)
+                    delegates.Add("Unequip", equippable.Unequip);
+                else 
+                    delegates.Add("Equip", equippable.Equip);
             }
             if (Item is ISellable sellable)
             {

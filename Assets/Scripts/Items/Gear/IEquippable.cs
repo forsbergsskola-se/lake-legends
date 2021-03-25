@@ -16,5 +16,7 @@ namespace Items.Gear
         bool IsEquipped { get; set; }
 
         void Equip();
+
+        void Unequip();
     }
 }
