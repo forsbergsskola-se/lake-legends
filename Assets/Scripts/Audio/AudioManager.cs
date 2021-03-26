@@ -134,10 +134,14 @@ namespace Audio
                   audioSource.loop = true;
                else
                   audioSource.loop = false;
+               
                if (audioClipSetting.playOnSceneChange)
                {
-                  audioSource.clip = audioClipSetting.audioClip;
-                  audioSource.Play();
+                  if (!audioSource.isPlaying && audioSource.clip != audioClipSetting.audioClip) 
+                  {
+                     audioSource.clip = audioClipSetting.audioClip;
+                     audioSource.Play();
+                  }
                }
             }
             else if(audioClipSetting.audioClip == audioSource.clip)
