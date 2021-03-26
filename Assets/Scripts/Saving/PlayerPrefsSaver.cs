@@ -8,7 +8,7 @@ namespace Saving
     {
         public async Task<string> Load(string key, string defaultValue)
         {
-            var str = GetKey(key, defaultValue);
+            var str = await GetKey(key, defaultValue);
             return str;
         }
 
@@ -17,9 +17,9 @@ namespace Saving
             PlayerPrefs.SetString(key, value);
         }
 
-        private string GetKey(string key, string defaultValue)
+        private async Task<string> GetKey(string key, string defaultValue)
         {
-            return PlayerPrefs.GetString(key, defaultValue);
+            return await Task.FromResult(PlayerPrefs.GetString(key, defaultValue));
         }
     }
 }
