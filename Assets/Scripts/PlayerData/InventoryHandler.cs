@@ -95,7 +95,7 @@ namespace PlayerData
 
         private void OnBaitDataRequest(RequestBaitData request)
         {
-            eventBroker?.Publish(new UpdateBaitUIEvent(currency.Bait));
+            eventBroker?.Publish(new UpdateBaitUIEvent(currency.Bait, currency.MaxBait));
         }
         
         private void OnEndFishing(EndFishOMeterEvent obj)
@@ -109,10 +109,11 @@ namespace PlayerData
         
         private async Task LoadInventory()
         {
-            await inventory.Deserialize();
-            await currency.Deserialize();
-            await fisherDexData.Deserialize();
-            await adWatchTimeSaver.Load();
+            var inventoryTask = inventory.Deserialize();
+            var currencyTask = currency.Deserialize();
+            var fisherDexTask = fisherDexData.Deserialize();
+            var adWatchTask = adWatchTimeSaver.Load();
+            await Task.WhenAll(inventoryTask, currencyTask, fisherDexTask, adWatchTask);
         }
 
         public void AddItemToInventory(IItem item)

@@ -22,7 +22,7 @@ namespace Saving
 
         public async Task<CurrencySave> LoadCurrencies(string key)
         {
-            var save = await saver.Load(key, serializer.SerializeObject(new CurrencySave(0, 0, 100)));
+            var save = await saver.Load(key, serializer.SerializeObject(new CurrencySave(0, 0, 200)));
             return serializer.DeserializeObject<CurrencySave>(save);
         }
     }
