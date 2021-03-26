@@ -36,7 +36,7 @@ namespace UI
                 
                 if (catchable is FishItem fishItem)
                 {
-                    fishWorth.text = $"It's worth {fishItem.silverValue}!";   
+                    fishWorth.text = $"It's worth {fishItem.silverValue}";   
                 }
                 else if (catchable is LootBox lootBox)
                 {
