@@ -686,10 +686,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1601472417, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: secondsToRegenOneBait
-      value: 540
-      objectReference: {fileID: 0}
     - target: {fileID: 662305205732175443, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -738,42 +734,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentObjects
       objectReference: {fileID: 0}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: dcbd94650218cbb4cbb772c5843db30f, type: 3}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].eventName
-      value: ItemUpgradedSound
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].outputAudioSource
-      value: 
-      objectReference: {fileID: 662305205986551175}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].scenesToPlayIn.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].scenesToPlayIn.Array.data[0]
-      value: MainScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-      propertyPath: sfxSounds.Array.data[4].scenesToPlayIn.Array.data[1]
-      value: MainScreen
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
---- !u!82 &662305205986551175 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4297291640527212514, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
-  m_PrefabInstance: {fileID: 662305205986551174}
-  m_PrefabAsset: {fileID: 0}

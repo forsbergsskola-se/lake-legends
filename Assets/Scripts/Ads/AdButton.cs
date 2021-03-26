@@ -13,7 +13,11 @@ namespace Ads
         void Awake()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
-            GetComponent<Button>().onClick.AddListener((() => GetComponent<Button>().interactable = false));
+            GetComponent<Button>().onClick.AddListener(() =>
+            {
+                GetComponent<Button>().interactable = false;
+                eventsBroker.Publish(new ShowAdEvent());
+            });
         }
         private void OnEnable()
         {
@@ -22,7 +26,7 @@ namespace Ads
         }
         private void OnAdWatchTime(GetAdWatchTimeEvent obj)
         {
-            GetComponent<Button>().interactable = (DateTime.UtcNow - obj.latestAdWatchTime).TotalSeconds > adCooldownInSeconds;
+            GetComponent<Button>().interactable = (DateTime.UtcNow - obj.LatestAdWatchTime).TotalSeconds > adCooldownInSeconds;
         }
 
         private void OnDisable()

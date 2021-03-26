@@ -4,11 +4,11 @@ namespace Events
 {
     public class GetAdWatchTimeEvent
     {
-        public readonly DateTime latestAdWatchTime;
+        public readonly DateTime LatestAdWatchTime;
 
         public GetAdWatchTimeEvent(DateTime latestAdWatchTime)
         {
-            this.latestAdWatchTime = latestAdWatchTime;
+            LatestAdWatchTime = latestAdWatchTime;
         }
     }
 }

@@ -16,11 +16,12 @@ namespace Ads
         public int rewardAmount = 100;
         
         private IMessageHandler eventsBroker;
-        void Start()
+        void Awake()
         {
             Advertisement.AddListener(this);
             Advertisement.Initialize(gameId, testMode);
             eventsBroker = FindObjectOfType<EventsBroker>();
+            eventsBroker.SubscribeTo<ShowAdEvent>(adEvent => ShowAd());
         }
         public void ShowAd()
         {
@@ -39,13 +40,6 @@ namespace Ads
             eventsBroker.Publish(new SaveAdWatchTimeEvent());
         }
 
-        public void WatchAdLimit()
-        {
-            var currentTime = DateTime.UtcNow;
-            // 1. limit how many times you can watch the ad// 2. limit how much silver user can get from ads// 3. check time enable button on/off, timestamp
-            //display time left on button perhaps, countdown.
-        }
-        
         public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
         {
             if (showResult == ShowResult.Finished)
@@ -77,7 +71,10 @@ namespace Ads
             
         }
 
-       
+        private void OnDestroy()
+        {
+            Advertisement.RemoveListener(this);
+        }
     }
 
 }
