@@ -4,25 +4,25 @@ namespace Auth
 {
     public class DebugAuth : IAuthorizer
     {
-        public Task Initialize()
+        public async Task Initialize()
         {
-            return new Task(TestFunction);
+            await TestFunction();
         }
 
         public async Task<IUser> LoginAnonymously()
         {
-            var task = await Task.Run(CreateDebugUser);
+            var task = await CreateDebugUser();
             return task;
         }
 
-        private async void TestFunction()
+        private async Task TestFunction()
         {
-            await Task.Delay(1);
+            await Task.Delay(1000);
         }
 
-        private IUser CreateDebugUser()
+        private Task<IUser> CreateDebugUser()
         {
-            return new DebugUser();
+            return Task.FromResult(new DebugUser() as IUser);
         }
 
         public void LogOut()
