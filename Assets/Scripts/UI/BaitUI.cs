@@ -19,7 +19,7 @@ namespace UI
 
         private void UpdateUI(UpdateBaitUIEvent eventRef)
         {
-            baitUIText.text = eventRef.Bait.ToString();
+            baitUIText.text = $"{eventRef.Bait}/{eventRef.MaxBait}";
         }
 
         private void OnDestroy()

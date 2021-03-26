@@ -12,6 +12,7 @@ namespace PlayerData
         private int silver;
         private int gold;
         private int bait;
+        private int maxBait = 200;
         private const string CurrencyKey = "Currency";
         private IMessageHandler messageHandler;
         public Currency(ICurrencySaver saver, IMessageHandler messageHandler)
@@ -53,11 +54,13 @@ namespace PlayerData
             get => bait;
             private set
             {
-                bait = value;
-                messageHandler.Publish(new UpdateBaitUIEvent(bait));
+                bait = Mathf.Clamp(value, 0, MaxBait);
+                messageHandler.Publish(new UpdateBaitUIEvent(bait, MaxBait));
                 Serialize();
             }
         }
+
+        public int MaxBait => maxBait;
 
         public void Serialize()
         {
