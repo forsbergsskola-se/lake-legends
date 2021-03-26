@@ -12,7 +12,7 @@ namespace Ads
         public string gameId = "4059145";
         public bool testMode = true;
         public string placementId = "marketAd";
-
+        public bool givesGold;
         public int rewardAmount = 100;
         
         private IMessageHandler eventsBroker;
@@ -27,9 +27,15 @@ namespace Ads
             Advertisement.Show(placementId);
         }
 
-        public void GiveSilverReward()
+        private void GiveSilverReward()
         {
             eventsBroker.Publish(new IncreaseSilverEvent(rewardAmount)); 
+            eventsBroker.Publish(new SaveAdWatchTimeEvent());
+        }
+
+        private void GiveGoldReward()
+        {
+            eventsBroker.Publish(new IncreaseGoldEvent(rewardAmount)); 
             eventsBroker.Publish(new SaveAdWatchTimeEvent());
         }
 
@@ -45,10 +51,10 @@ namespace Ads
             if (showResult == ShowResult.Finished)
             {
                 Debug.Log("ad finished");
-                GiveSilverReward();
-                
-                
-                
+                if (givesGold)
+                    GiveGoldReward();
+                else 
+                    GiveSilverReward();
             }
             else if (showResult == ShowResult.Failed)
             {
