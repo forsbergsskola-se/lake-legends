@@ -1,3 +1,4 @@
+using System;
 using EventManagement;
 using Events;
 using UnityEngine;
@@ -30,6 +31,11 @@ namespace UI
         public void Close()
         {
             this.gameObject.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            eventsBroker.UnsubscribeFrom<CanNotAffordUIEvent>(DisplayUI);
         }
     }
 }
