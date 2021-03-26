@@ -1,6 +1,8 @@
+using System;
 using EventManagement;
 using Events;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Items.Shop
 {
@@ -20,6 +22,7 @@ namespace Items.Shop
             eventsBroker = FindObjectOfType<EventsBroker>();
             eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
             eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            eventsBroker.SubscribeTo<UpdateBaitUIEvent>(CheckIfBaitIsFull);
         }
 
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
@@ -30,6 +33,12 @@ namespace Items.Shop
         private void ComparePriceAndOwnedSilver(UpdateSilverUIEvent eventRef)
         {
             affordable = price <= eventRef.Silver;
+        }
+
+        private void CheckIfBaitIsFull(UpdateBaitUIEvent eventRef)
+        {
+            if (eventRef.Bait >= eventRef.MaxBait) this.GetComponent<Button>().interactable = false;
+            else this.GetComponent<Button>().interactable = true;
         }
 
         public void Buy()
@@ -69,6 +78,11 @@ namespace Items.Shop
             }
 
             return false;
+        }
+
+        private void OnDestroy()
+        {
+            eventsBroker.UnsubscribeFrom<UpdateBaitUIEvent>(CheckIfBaitIsFull);
         }
     }
 }
