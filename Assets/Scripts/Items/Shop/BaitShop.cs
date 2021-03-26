@@ -82,7 +82,7 @@ namespace Items.Shop
 
         private void OnDestroy()
         {
-            eventsBroker.UnsubscribeFrom<UpdateBaitUIEvent>(CheckIfBaitIsFull);
+            eventsBroker?.UnsubscribeFrom<UpdateBaitUIEvent>(CheckIfBaitIsFull);
         }
     }
 }
