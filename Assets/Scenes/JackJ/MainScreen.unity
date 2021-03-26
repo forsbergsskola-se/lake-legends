@@ -1475,6 +1475,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.28235295
       objectReference: {fileID: 0}
+    - target: {fileID: 5957883727550551861, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e67d57ce0803b14388c6e382c2769d0, type: 3}
     - target: {fileID: 5957883728355419729, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1563,6 +1567,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5957883728472669435, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e75603a85b49e042989bb0fc623a903, type: 3}
+    - target: {fileID: 5957883729085251011, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 261a54b7488c47f4f9386838d4508394, type: 3}
     - target: {fileID: 6067676789890905058, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_Color.b
       value: 0.18039216
@@ -1825,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273006162414072819, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8273006162576038947, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1981,7 +1993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8273006163452259398, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8530182201337381484, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_AnchorMax.y
