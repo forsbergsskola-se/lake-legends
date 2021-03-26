@@ -128,7 +128,7 @@ namespace Audio
       {
          foreach (var audioClipSetting in audioClipSettings)
          {
-            if (audioClipSetting.sceneToPlayIn == sceneName)
+            if (audioClipSetting.scenesToPlayIn.Find(sceneToPlayIn => sceneToPlayIn.Contains(sceneName)) == sceneName)
             {
                if (audioClipSetting.loop)
                   audioSource.loop = true;
@@ -157,7 +157,7 @@ namespace Audio
          public float volume;
          public bool loop;
          public bool playOnSceneChange;
-         public string sceneToPlayIn;
+         public List<string> scenesToPlayIn;
       }
    }
 }
