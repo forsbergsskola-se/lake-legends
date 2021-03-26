@@ -78,7 +78,11 @@ namespace PlayerData
             GearSaveData.instanceID = Guid.NewGuid().ToString();
         }
 
-        [JsonIgnore] public string Name => Equipment.Name;
+        
+        
+        //TODO: Fix for the next build
+        [JsonIgnore] public string Name => Equipment.Name + "\nLvl " + Level;
+        [JsonIgnore] public int Level => GearSaveData.GearLevel.Level;
         [JsonIgnore] public int Rarity => Equipment.Rarity;
 
         public void UpgradeRarity()
