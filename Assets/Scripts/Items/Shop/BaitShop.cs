@@ -1,3 +1,4 @@
+using System;
 using EventManagement;
 using Events;
 using UnityEngine;
@@ -77,6 +78,11 @@ namespace Items.Shop
             }
 
             return false;
+        }
+
+        private void OnDestroy()
+        {
+            eventsBroker.UnsubscribeFrom<UpdateBaitUIEvent>(CheckIfBaitIsFull);
         }
     }
 }
