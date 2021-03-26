@@ -54,6 +54,7 @@ namespace UI
             {
                 resultText.text = "Oh no! It got away!";
                 image.gameObject.SetActive(false);
+                silverImage.gameObject.SetActive(false);
                 fishNameText.text = "";
                 fishWorth.text = "";
             }
