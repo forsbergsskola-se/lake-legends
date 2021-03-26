@@ -295,9 +295,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3055591544369138777, guid: 4bd9f26a760703c4fb3cfd03cdf635c7, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 07019bb2e711a284a8ac878fbf5dad44, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -479,3 +479,12 @@ MonoBehaviour:
     playOnSceneChange: 0
     scenesToPlayIn:
     - JackJ
+  - eventName: ButtonClickSound
+    audioClip: {fileID: 8300000, guid: 07019bb2e711a284a8ac878fbf5dad44, type: 3}
+    outputAudioSource: {fileID: 4496861215658013869}
+    volume: 1
+    loop: 0
+    playOnSceneChange: 0
+    scenesToPlayIn:
+    - JackJ
+    - MainScreen
