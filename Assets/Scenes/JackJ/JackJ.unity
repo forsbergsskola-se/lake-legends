@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.56078434, g: 0.7490196, b: 0.7921569, a: 1}
+  m_Color: {r: 0.101960786, g: 0.19607843, b: 0.23529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 526122111}
   - component: {fileID: 526122110}
   m_Layer: 5
-  m_Name: Close
+  m_Name: No
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 628367401}
   - component: {fileID: 628367400}
   m_Layer: 5
-  m_Name: Close (1)
+  m_Name: Yes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1720,7 +1720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.56078434, g: 0.7490196, b: 0.7921569, a: 1}
+  m_Color: {r: 0.101960786, g: 0.19607843, b: 0.23529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2415,15 +2415,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2750827823117307494, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_Color.b
-      value: 0.7921569
+      value: 0.23529412
       objectReference: {fileID: 0}
     - target: {fileID: 2750827823117307494, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_Color.g
-      value: 0.7490196
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 2750827823117307494, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_Color.r
-      value: 0.56078434
+      value: 0.101960786
       objectReference: {fileID: 0}
     - target: {fileID: 2750827823346120858, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_IsActive
