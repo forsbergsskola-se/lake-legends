@@ -7,6 +7,7 @@ using Events;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Audio
 {
@@ -27,12 +28,13 @@ namespace Audio
       public List<AudioClipSettings> sfxSounds;
 
       private EventsBroker eventsBroker;
-   
+
       private void Start()
       {
          eventsBroker = FindObjectOfType<EventsBroker>();
          eventsBroker.SubscribeTo<PlaySoundEvent>(PlaySound);
          SceneManager.sceneLoaded += SceneManagerOnsceneLoaded;
+         
       }
 
       private void SceneManagerOnsceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -122,6 +124,11 @@ namespace Audio
       {
          MusicAudioSource = SetupAudio(audioClipName, musicTracks);
          MusicAudioSource.Play();
+      }
+
+      public void PlayClickSound()
+      {
+         PlaySound(new PlaySoundEvent(SoundType.Sfx, "ButtonClickSound"));
       }
 
       void CheckSoundsToPlayOnSceneChange(List<AudioClipSettings> audioClipSettings, AudioSource audioSource, string sceneName)
