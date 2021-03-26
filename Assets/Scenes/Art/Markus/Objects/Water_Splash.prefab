@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6032377628967520103
+--- !u!1 &1675743787352318650
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6143365297486406314}
-  - component: {fileID: 254132527252703047}
-  - component: {fileID: 4444126980256658972}
+  - component: {fileID: 1675743787352318629}
+  - component: {fileID: 1675743787352318628}
+  - component: {fileID: 1675743787352318651}
   m_Layer: 0
-  m_Name: GLOW (1)
+  m_Name: Water_Splash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6143365297486406314
+--- !u!4 &1675743787352318629
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6032377628967520103}
+  m_GameObject: {fileID: 1675743787352318650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.927494, y: 5.74, z: 25.29}
-  m_LocalScale: {x: 0.28309602, y: 0.28309602, z: 0.28309602}
+  m_LocalPosition: {x: -13.961, y: 5.828, z: 26.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!2083052967 &254132527252703047
+--- !u!2083052967 &1675743787352318628
 VisualEffect:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6032377628967520103}
+  m_GameObject: {fileID: 1675743787352318650}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: b67a045e4054ff64181c89bb0e4f1d21, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: 49e9d3537b61f95458869332e7506b03, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -69,13 +69,13 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!73398921 &4444126980256658972
+--- !u!73398921 &1675743787352318651
 VFXRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6032377628967520103}
+  m_GameObject: {fileID: 1675743787352318650}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
