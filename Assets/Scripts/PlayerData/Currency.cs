@@ -12,7 +12,7 @@ namespace PlayerData
         private int silver;
         private int gold;
         private int bait;
-        private int maxBait = 200;
+        private int maxBait = 40;
         private const string CurrencyKey = "Currency";
         private IMessageHandler messageHandler;
         public Currency(ICurrencySaver saver, IMessageHandler messageHandler)

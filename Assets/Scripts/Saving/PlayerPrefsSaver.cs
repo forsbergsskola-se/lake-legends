@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Firebase.Extensions;
 using UnityEngine;
 
 namespace Saving
