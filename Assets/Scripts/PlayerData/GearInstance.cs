@@ -83,7 +83,8 @@ namespace PlayerData
         //TODO: Fix for the next build
         [JsonIgnore] public string Name => Equipment.Name + "\nLvl " + Level;
         [JsonIgnore] public int Level => GearSaveData.GearLevel.Level;
-        [JsonIgnore] public int Rarity => Equipment.Rarity;
+        [JsonIgnore] public int RarityValue => Equipment.RarityValue;
+        public Rarity Rarity => equipment.Rarity;
 
         public void UpgradeRarity()
         {
@@ -94,7 +95,7 @@ namespace PlayerData
             var broker = Object.FindObjectOfType<EventsBroker>();
             DestroyItem();
             var gearSaveData = GearSaveData;
-            var upgradedItem = itemsOfSameType.Where(gear => gear.Rarity > Rarity).OrderBy(gear => gear.Rarity).First();
+            var upgradedItem = itemsOfSameType.Where(gear => gear.RarityValue > RarityValue).OrderBy(gear => gear.RarityValue).First();
             gearSaveData.equipID = upgradedItem.ID;
             broker.Publish(new AddItemToInventoryEvent(new GearInstance(gearSaveData)));
         }

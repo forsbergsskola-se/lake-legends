@@ -39,8 +39,9 @@ namespace Items.Gear
         }
 
         public string Name => name;
-        public int Rarity => rarity.starAmount;
-        
+        public int RarityValue => rarity.starAmount;
+        public Rarity Rarity => rarity;
+
         public override string ToString()
         {
             return rarity.name + " " + this.name;

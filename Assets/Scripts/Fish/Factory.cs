@@ -17,14 +17,14 @@ namespace Fish
         public ICatchable GenerateFish(float attractionValue)
         {
             var multiplier = attractionValue * 0.001f + 1;
-            var commonSum = fishItems.Where(fishItem => fishItem.Rarity == 0).Sum(fishItem => fishItem.rarityWeight);
-            var unCommonSum = fishItems.Where(fishItem => fishItem.Rarity != 0).Sum(fishItem => fishItem.rarityWeight * multiplier);
+            var commonSum = fishItems.Where(fishItem => fishItem.RarityValue == 0).Sum(fishItem => fishItem.rarityWeight);
+            var unCommonSum = fishItems.Where(fishItem => fishItem.RarityValue != 0).Sum(fishItem => fishItem.rarityWeight * multiplier);
             
             var randomNum = Random.Range(0f, commonSum + unCommonSum + treasureChestWeight);
             
             foreach (var t in fishItems)
             {
-                if (t.Rarity != 0)
+                if (t.RarityValue != 0)
                 {
                     if (randomNum < t.rarityWeight * multiplier)
                     {

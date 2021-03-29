@@ -60,7 +60,8 @@ namespace Items
 
         public string Name => name;
         public Sprite Sprite => type.sprite;
-        public int Rarity => rarity.starAmount;
+        public int RarityValue => rarity.starAmount;
+        public Rarity Rarity => rarity;
         public FloatRange RandomStopTimeRange => randomStopTimeRange;
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;
         public float CatchableSpeed => fishSpeed;
