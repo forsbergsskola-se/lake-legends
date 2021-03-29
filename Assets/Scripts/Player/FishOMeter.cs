@@ -174,13 +174,15 @@ namespace Player
         {
             if (FishIsInZone)
             {
-                successMeter += Time.deltaTime;    
+                successMeter += Time.deltaTime;
+                eventsBroker.Publish(new InFishOMeterZone(true));
             }
             else
             {
                 var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
                 var successMeterProgress = Time.deltaTime * multiplier;
                 successMeter -= successMeterProgress;
+                eventsBroker.Publish(new InFishOMeterZone(false));
             }
             successMeter = Mathf.Clamp(successMeter, 0 ,fishingTime);
             fishOMeterUI.successBar.fillAmount = successMeter / fishingTime;

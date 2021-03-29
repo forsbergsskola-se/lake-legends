@@ -7,6 +7,8 @@ namespace UI
 {
     public class FisherDexSlot : Slot, IPointerClickHandler
     {
+        public Image fishImage;
+        public Image rarityImage;
         private bool hasCaught;
         [SerializeField] Image highlightImage;
         
@@ -14,10 +16,10 @@ namespace UI
         {
             this.hasCaught = hasCaught;
             Item = item;
-            var image = GetComponentInChildren<Image>();
-            image.sprite = (item as FishItem).type.sprite;
-            if (!hasCaught)
-                image.color = new Color(image.color.r, image.color.g, image.color.b, 0.4f);
+            if (hasCaught)
+                fishImage.sprite = (item as FishItem).type.sprite;
+            GetComponent<Button>().interactable = hasCaught;
+            rarityImage.sprite = (item as FishItem).rarity.sprite;
         }
         
         public void OnPointerClick(PointerEventData eventData)
