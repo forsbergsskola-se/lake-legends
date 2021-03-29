@@ -80,7 +80,7 @@ namespace Fusion
             foreach (var type in fuseSlots)
             {
                 
-                bool result = upgradeSlot.gearInstance.Rarity == type.gearInstance.Rarity;
+                bool result = upgradeSlot.gearInstance.RarityValue == type.gearInstance.RarityValue;
                 RarityMatchList.Add(result);
             }
 
