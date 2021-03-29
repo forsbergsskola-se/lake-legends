@@ -19,9 +19,8 @@ namespace UI
 
             eventsBroker.SubscribeTo<UpdateFishZoneUISizeEvent>(UpdateSize);
             eventsBroker.SubscribeTo<UpdateFishUIPositionEvent>(UpdatePosition);
-            
         }
-        
+
         private void UpdateSize(UpdateFishZoneUISizeEvent eventRef)
         {
             var size = captureAreaParentPanel.sizeDelta.x * eventRef.width;

@@ -3,6 +3,7 @@ using System.Linq;
 using EventManagement;
 using Events;
 using Items;
+using Items.CurrencyItems;
 using Items.Gear;
 using PlayerData;
 using UnityEngine;
@@ -58,7 +59,9 @@ namespace LootBoxes
         {
             itemID = Guid.NewGuid().ToString();
         }
-        
+
+        public Rarity Rarity => null;
+
         public void Use()
         {
             
@@ -94,7 +97,7 @@ namespace LootBoxes
         }
         public string Name => name;
         public Sprite Sprite => sprite;
-        public int Rarity => 0;
+        public int RarityValue => 0;
         public FloatRange RandomStopTimeRange => randomStopTimeRange;
         public FloatRange RandomMoveTimeRange => randomMoveTimeRange;
         public float CatchableSpeed => catchableSpeed;

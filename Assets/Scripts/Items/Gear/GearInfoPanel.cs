@@ -26,7 +26,7 @@ namespace Items.Gear
             if(gearInstance == null) return;
             this.gearInstance = gearInstance;
             title.text = gearInstance.Name;
-            rarity.text = gearInstance.Rarity.ToString();
+            rarity.text = gearInstance.RarityValue.ToString();
             equipmentType.text = gearInstance.EquipmentType.ToString();
             lineStrength.text = gearInstance.CalculatedLineStrength.ToString();
             attraction.text = gearInstance.CalculatedAttraction.ToString();

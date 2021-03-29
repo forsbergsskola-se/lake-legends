@@ -1,6 +1,7 @@
 using EventManagement;
 using Events;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -9,6 +10,7 @@ namespace UI
         private IMessageHandler eventsBroker;
         [SerializeField] private RectTransform parentRectTransform;
         [SerializeField] private RectTransform captureAreaParentPanel;
+        [SerializeField] private Image highlightImage;
 
         private float minimum;
         private float maximum;
@@ -19,6 +21,12 @@ namespace UI
 
             eventsBroker.SubscribeTo<UpdateCaptureZoneUISizeEvent>(UpdateSize);
             eventsBroker.SubscribeTo<UpdateCaptureZoneUIPositionEvent>(UpdatePosition);
+            eventsBroker.SubscribeTo<InFishOMeterZone>(Callback);
+        }
+
+        private void Callback(InFishOMeterZone obj)
+        {
+            highlightImage.enabled = obj.State;
         }
 
         private void UpdateSize(UpdateCaptureZoneUISizeEvent eventRef)
@@ -28,7 +36,8 @@ namespace UI
             var sizeDelta = gameObject.GetComponent<RectTransform>().sizeDelta;
             sizeDelta.x = size;
             gameObject.GetComponent<RectTransform>().sizeDelta = sizeDelta;
-            parentRectTransform.GetComponent<RectTransform>().sizeDelta = sizeDelta;
+            parentRectTransform.sizeDelta = sizeDelta;
+            highlightImage.rectTransform.sizeDelta = sizeDelta;
             
             minimum = 0;
             maximum = captureAreaParentPanel.sizeDelta.x;

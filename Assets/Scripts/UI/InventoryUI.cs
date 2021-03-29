@@ -129,7 +129,7 @@ namespace UI
         public virtual void SortDescended()
         {
             var nameSortedList = inventorySlots.OrderBy(slot => slot.Item.Name);
-            var raritySortedList = nameSortedList.OrderByDescending(slot => slot.Item.Rarity).ToArray();
+            var raritySortedList = nameSortedList.OrderByDescending(slot => slot.Item.RarityValue).ToArray();
             for (var i = 0; i < raritySortedList.Length; i++)
             {
                 raritySortedList[i].transform.SetSiblingIndex(i);
@@ -139,7 +139,7 @@ namespace UI
         public virtual void SortAscended()
         {
             var nameSortedList = inventorySlots.OrderBy(slot => slot.Item.Name);
-            var raritySortedList = nameSortedList.OrderBy(slot => slot.Item.Rarity).ToArray();
+            var raritySortedList = nameSortedList.OrderBy(slot => slot.Item.RarityValue).ToArray();
             for (var i = 0; i < raritySortedList.Length; i++)
             {
                 raritySortedList[i].transform.SetSiblingIndex(i);

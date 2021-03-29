@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Items
@@ -10,7 +8,6 @@ namespace Items
         public int starAmount;
         public int fusionCost = 100;
         public int sacrificeValue = 100;
-        public Color color;
         public Sprite sprite;
     }
 }

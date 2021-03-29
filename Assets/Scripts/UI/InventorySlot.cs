@@ -155,7 +155,7 @@ namespace UI
                     }
                     else if (_fusionInformation != null && _fusionInformation.FusionIsOpen 
                                                         && gear.EquipmentType == _fusionInformation.EquipmentType
-                                                        && gear.Rarity == _fusionInformation.RarityValue 
+                                                        && gear.RarityValue == _fusionInformation.RarityValue 
                                                         && gear != _fusionInformation.GearInstance) 
                     {
                         delegates.Add("Add", gear.AddToFuseSlotArea);
@@ -166,7 +166,7 @@ namespace UI
                     if (_fusionInformation?.GearInstance != gear || _fusionInformation == null)
                     {
                         delegates.Add("Upgrade", DoOpenUpgradeArea);
-                        if (gear.Rarity != 3)
+                        if (gear.RarityValue != 3)
                             delegates.Add("Fusion", DoOpenFusionArea);
                     }
                 }
@@ -209,7 +209,7 @@ namespace UI
             var fusionWasOpened = gear.OpenFusionArea();
             if (fusionWasOpened)
             {
-                _fusionInformation = new FusionInformation(true, gear, gear.Rarity, gear.EquipmentType);
+                _fusionInformation = new FusionInformation(true, gear, gear.RarityValue, gear.EquipmentType);
             }
             _panelIsOpen = fusionWasOpened;
             
