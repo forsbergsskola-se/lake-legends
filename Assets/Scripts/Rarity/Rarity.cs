@@ -8,6 +8,7 @@ namespace Items
         public int starAmount;
         public int fusionCost = 100;
         public int sacrificeValue = 100;
-        public Sprite sprite;
+        public Sprite frame;
+        public Sprite background;
     }
 }

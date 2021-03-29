@@ -39,7 +39,7 @@ namespace UI
                 if (catchable is FishItem fishItem)
                 {
                     fishWorth.text = $"It's worth {fishItem.silverValue}";
-                    frameImage.sprite = fishItem.Rarity.sprite;
+                    frameImage.sprite = fishItem.Rarity.frame;
                     silverImage.gameObject.SetActive(true);
                 }
                 else if (catchable is LootBox lootBox)

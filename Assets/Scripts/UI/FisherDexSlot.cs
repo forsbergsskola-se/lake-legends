@@ -17,7 +17,7 @@ namespace UI
             if (hasCaught)
                 fishImage.sprite = (item as FishItem).type.sprite;
             GetComponent<Button>().interactable = hasCaught;
-            rarityImage.sprite = item.Rarity.sprite;
+            rarityImage.sprite = item.Rarity.frame;
         }
         
         public void OnPointerClick(PointerEventData eventData)

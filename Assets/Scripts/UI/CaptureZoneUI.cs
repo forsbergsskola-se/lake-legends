@@ -56,6 +56,7 @@ namespace UI
         {
             eventsBroker.UnsubscribeFrom<UpdateCaptureZoneUISizeEvent>(UpdateSize);
             eventsBroker.UnsubscribeFrom<UpdateCaptureZoneUIPositionEvent>(UpdatePosition);
+            eventsBroker.UnsubscribeFrom<InFishOMeterZone>(Callback);
         }
     }
 }
