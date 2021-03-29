@@ -3,6 +3,7 @@ using System.Linq;
 using EventManagement;
 using Events;
 using Items;
+using Items.CurrencyItems;
 using Items.Gear;
 using PlayerData;
 using UnityEngine;

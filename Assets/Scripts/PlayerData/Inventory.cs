@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EventManagement;
 using Events;
 using Items;
+using Items.CurrencyItems;
 using Saving;
 
 namespace PlayerData
@@ -40,6 +41,11 @@ namespace PlayerData
 
         private void OnAddItem(AddItemToInventoryEvent obj)
         {
+            if (obj.Item is CurrencySo currencySo)
+            {
+                currencySo.Use();
+                return;
+            }
             if (!(obj.Item is FishItem))
                 AddItem(obj.Item);
             messageHandler.Publish(new UpdateInventoryEvent(true, obj.Item, gearInventory));
