@@ -10,9 +10,6 @@ namespace UI
 {
     public class FisherDexUI : InventoryUI
     {
-        
-        public FisherDexSlot selectedSlot;
-        
         protected override void OnEnable()
         { 
             Clear();

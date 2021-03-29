@@ -10,8 +10,6 @@ namespace UI
         public Image fishImage;
         public Image rarityImage;
         private bool hasCaught;
-        [SerializeField] Image highlightImage;
-        
         public override void Setup(IItem item, bool hasCaught = true)
         {
             this.hasCaught = hasCaught;
@@ -26,20 +24,6 @@ namespace UI
         {
             if (hasCaught)
                 FindObjectOfType<BioArea>().Setup(Item as FishItem);
-            
-            var fishDexUI = FindObjectOfType<FisherDexUI>();
-            if (fishDexUI.selectedSlot != null)
-            {
-                fishDexUI.selectedSlot.UnSelect();
-            }
-            
-            fishDexUI.selectedSlot = this;
-            highlightImage.gameObject.SetActive(true);
-        }
-        
-        void UnSelect()
-        {
-            highlightImage.gameObject.SetActive(false);
         }
     }
 }
