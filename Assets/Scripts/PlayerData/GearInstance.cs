@@ -80,11 +80,11 @@ namespace PlayerData
 
         
         
-        //TODO: Fix for the next build
+        //TODO: Seperate Name and Level Text
         [JsonIgnore] public string Name => Equipment.Name + "\nLvl " + Level;
         [JsonIgnore] public int Level => GearSaveData.GearLevel.Level;
         [JsonIgnore] public int RarityValue => Equipment.RarityValue;
-        public Rarity Rarity => equipment.Rarity;
+        [JsonIgnore] public Rarity Rarity => Equipment.Rarity;
 
         public void UpgradeRarity()
         {
