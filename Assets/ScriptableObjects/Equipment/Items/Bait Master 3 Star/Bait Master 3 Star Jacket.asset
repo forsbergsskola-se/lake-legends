@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bait Master 3 Star Jacket
   m_EditorClassIdentifier: 
   ItemID: pa406f0a9-3815-4573-9225-6fc5f2194ee7
+  sprite: {fileID: 21300000, guid: 452bd069ad5145f45ae708723b2a3be5, type: 3}
   equipmentVariant: {fileID: 11400000, guid: c1ed1da9517e31541ac24d2066799807, type: 2}
   equipmentType: {fileID: 11400000, guid: 22c2747b5a26eb64e8f921503df52c3b, type: 2}
   rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 22
     max: 28
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1
