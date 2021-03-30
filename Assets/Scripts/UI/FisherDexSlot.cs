@@ -1,5 +1,4 @@
 ﻿using Items;
-using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -7,19 +6,23 @@ namespace UI
 {
     public class FisherDexSlot : Slot, IPointerClickHandler
     {
-        public Image fishImage;
-        public Image rarityImage;
         private bool hasCaught;
         public override void Setup(IItem item, bool hasCaught = true)
         {
             this.hasCaught = hasCaught;
             Item = item;
-            if (hasCaught)
-                fishImage.sprite = (item as FishItem).type.sprite;
             GetComponent<Button>().interactable = hasCaught;
-            rarityImage.sprite = item.Rarity.frame;
+            ApplyImages();
         }
-        
+
+        public override void ApplyImages()
+        {
+            if (hasCaught)
+                middleGround.sprite = Item.Sprite;
+            frame.sprite = Item.Rarity.frame;
+            background.sprite = Item.Rarity.background;
+        }
+
         public void OnPointerClick(PointerEventData eventData)
         {
             if (hasCaught)
