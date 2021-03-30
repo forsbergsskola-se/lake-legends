@@ -19,6 +19,7 @@ namespace Player
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
+        [SerializeField] private Animator rodAnimator;
         [SerializeField] private Factory factory;
         [SerializeField] private LootBox lootBox;
         [SerializeField] private FishOMeterUI fishOMeterUI;
@@ -176,9 +177,19 @@ namespace Player
             {
                 successMeter += Time.deltaTime;
                 eventsBroker.Publish(new InFishOMeterZone(true));
+                eventsBroker.Publish(new AnimationTriggerEvent("InZone"));
             }
             else
             {
+                if (fishPositionCenterPoint <= captureZonePosition + DivideByTwo(captureZoneWidth))
+                {
+                    eventsBroker.Publish(new AnimationTriggerEvent("LeftOfZone"));
+                }
+                else if (fishPositionCenterPoint >= captureZonePosition - DivideByTwo(captureZoneWidth))
+                {
+                    eventsBroker.Publish(new AnimationTriggerEvent("RightOfZone"));
+                }
+
                 var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
                 var successMeterProgress = Time.deltaTime * multiplier;
                 successMeter -= successMeterProgress;
