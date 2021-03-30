@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bait Master 2 Star Pants
   m_EditorClassIdentifier: 
   ItemID: k0a4fc1a8-9e68-4ba8-8f69-4461a8a4d60d
+  sprite: {fileID: 21300000, guid: aebbed3e04c0e644db1da8652d26f16f, type: 3}
   equipmentVariant: {fileID: 11400000, guid: c1ed1da9517e31541ac24d2066799807, type: 2}
   equipmentType: {fileID: 11400000, guid: 789ac0eecd6ee3c4a9f171d4bb4800a3, type: 2}
   rarity: {fileID: 11400000, guid: 82ad7896271fb9741805d898dd41b840, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 9
     max: 15
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1
