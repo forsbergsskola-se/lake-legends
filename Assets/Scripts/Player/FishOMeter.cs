@@ -232,6 +232,7 @@ namespace Player
 
         private void FishCatch()
         {
+            eventsBroker.Publish(new AnimationTriggerEvent(CatchAnimation));
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, catchFishSound));
             PlayerPrefs.SetInt("Debug-CaughtFish", PlayerPrefs.GetInt("Debug-CaughtFish", 0) + 1);
             DebugCaughtLost();
@@ -243,6 +244,7 @@ namespace Player
         
         private void FishEscape()
         {
+            eventsBroker.Publish(new AnimationTriggerEvent(IdleAnimation));
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, loseFishSound));
             PlayerPrefs.SetInt("Debug-EscapedFish", PlayerPrefs.GetInt("Debug-EscapedFish", 0) + 1);
             DebugCaughtLost();
@@ -262,7 +264,7 @@ namespace Player
 
         private void EndGame()
         {
-            eventsBroker.Publish(new AnimationTriggerEvent(CatchAnimation));
+            
             fishPositionCenterPoint = 0;
             captureZonePosition = 0;
             minimumZone = 0;
