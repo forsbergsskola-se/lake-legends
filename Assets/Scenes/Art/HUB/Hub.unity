@@ -4452,6 +4452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5957883728677362207, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.2666626
+      objectReference: {fileID: 0}
     - target: {fileID: 8273006161710841630, guid: 9e4b0f5e702fadd469304ba1a53e9b81, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9652,7 +9656,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Test_Scene
+          m_StringArgument: Fishing Scene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1153250995
@@ -15846,7 +15850,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Test_Scene
+          m_StringArgument: Fishing Scene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1879203223
