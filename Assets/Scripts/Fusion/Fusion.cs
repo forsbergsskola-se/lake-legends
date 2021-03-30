@@ -173,7 +173,7 @@ namespace Fusion
         public void ClearUpgradeSlot()
         {
             upgradeSlot.gearInstance = null;
-            upgradeSlot.ClearName();
+            upgradeSlot.ResetImages();
         }
         
         public void ClearSacrificeSlot()

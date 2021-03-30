@@ -46,7 +46,7 @@ namespace Sacrifice
         {
             if (eventRef.gearInstance == upgradeSlot.gearInstance)
                 return;
-            sacrificeSlot.gearInstance = eventRef.gearInstance;
+            sacrificeSlot.Setup(eventRef.gearInstance);
             var currentLevelInfo = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(0);
             var levelInfo = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(sacrificeSlot.gearInstance.GetSacrificeValue());
             if (levelInfo.IsMaxLevel)
@@ -60,7 +60,7 @@ namespace Sacrifice
         private void OnPlaceInUpgradeItem(PlaceInUpgradeSlotEvent eventRef)
         {
             this.gameObject.SetActive(true);
-            upgradeSlot.gearInstance = eventRef.gearInstance;
+            upgradeSlot.Setup(eventRef.gearInstance);
             var currentLevelInfo = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(0);
             if (currentLevelInfo.IsMaxLevel)
                 bar.fillAmount = 1;
@@ -107,13 +107,13 @@ namespace Sacrifice
         public void ClearUpgradeSlot()
         {
             upgradeSlot.gearInstance = null;
-            upgradeSlot.ClearName();
+            upgradeSlot.ResetImages();
         }
         
         public void ClearSacrificeSlot()
         {
             sacrificeSlot.gearInstance = null;
-            sacrificeSlot.ClearName();
+            sacrificeSlot.ResetImages();
         }
 
         private void OnDestroy()

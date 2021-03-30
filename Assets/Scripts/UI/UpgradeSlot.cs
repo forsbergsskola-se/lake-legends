@@ -32,6 +32,7 @@ namespace UI
         {
             gearInstance = item as GearInstance;
             Item = item;
+            SetDefaultImages();
             ApplyImages();
         }
 
