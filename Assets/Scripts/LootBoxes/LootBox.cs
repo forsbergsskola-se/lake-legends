@@ -81,7 +81,7 @@ namespace LootBoxes
             {
                 FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(treasure));
             }
-            FindObjectOfType<ChestOpening>(true).StartOpening(this);
+            FindObjectOfType<ChestOpening>(true).StartOpening(this, treasure);
         }
 
         void RemoveLootBox()
