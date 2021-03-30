@@ -264,7 +264,7 @@ namespace Player
 
         private void EndGame()
         {
-            
+            eventsBroker.Publish(new AnimationBlendEvent(BendAnimationName, 0));
             fishPositionCenterPoint = 0;
             captureZonePosition = 0;
             minimumZone = 0;
