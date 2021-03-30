@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Kingfisher 2 Star Jacket
   m_EditorClassIdentifier: 
   ItemID: at2ba19e7e-b53c-4b3f-9d30-d775888c0677
+  sprite: {fileID: 21300000, guid: 755556a56957a554cb4de772bd38ccb5, type: 3}
   equipmentVariant: {fileID: 11400000, guid: d834859a2d225314b9acc023afff901b, type: 2}
   equipmentType: {fileID: 11400000, guid: 22c2747b5a26eb64e8f921503df52c3b, type: 2}
   rarity: {fileID: 11400000, guid: 82ad7896271fb9741805d898dd41b840, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 9
     max: 15
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1

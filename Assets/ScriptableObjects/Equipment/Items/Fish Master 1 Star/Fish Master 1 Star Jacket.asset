@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fish Master 1 Star Jacket
   m_EditorClassIdentifier: 
   ItemID: v6400ebde-e589-49dc-9c6e-bddf1791be6f
+  sprite: {fileID: 21300000, guid: 118960f14b319cb47a6887e2fdd54f67, type: 3}
   equipmentVariant: {fileID: 11400000, guid: 72c98e047df61a24f99fd32f05e28a2f, type: 2}
   equipmentType: {fileID: 11400000, guid: 22c2747b5a26eb64e8f921503df52c3b, type: 2}
   rarity: {fileID: 11400000, guid: 5b3f4a1547683cb40aebff8ce4d898ca, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 1
     max: 3
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1

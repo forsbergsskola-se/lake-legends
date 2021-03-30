@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Kingfisher Jacket
   m_EditorClassIdentifier: 
   ItemID: an86bbd69e-3c3b-41ea-b7be-b715f3ebd3a0
+  sprite: {fileID: 21300000, guid: 755556a56957a554cb4de772bd38ccb5, type: 3}
   equipmentVariant: {fileID: 11400000, guid: d834859a2d225314b9acc023afff901b, type: 2}
   equipmentType: {fileID: 11400000, guid: 22c2747b5a26eb64e8f921503df52c3b, type: 2}
   rarity: {fileID: 11400000, guid: 5b3f4a1547683cb40aebff8ce4d898ca, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 1
     max: 2
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1

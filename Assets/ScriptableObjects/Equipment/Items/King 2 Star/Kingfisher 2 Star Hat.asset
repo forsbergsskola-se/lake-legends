@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Kingfisher 2 Star Hat
   m_EditorClassIdentifier: 
   ItemID: as2ba19e7e-b53c-4b3f-9d30-d775888c0677
+  sprite: {fileID: 21300000, guid: b364ccc715a30ed41921843283c4c368, type: 3}
   equipmentVariant: {fileID: 11400000, guid: d834859a2d225314b9acc023afff901b, type: 2}
   equipmentType: {fileID: 11400000, guid: bde5d3d209af5ec4a94a63261dc7b1c4, type: 2}
   rarity: {fileID: 11400000, guid: 82ad7896271fb9741805d898dd41b840, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 9
     max: 15
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1

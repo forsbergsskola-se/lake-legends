@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Kingfisher 3 Star Boots
   m_EditorClassIdentifier: 
   ItemID: aw8bf65ff9-307b-45a3-92f3-b48a0ddb7115
+  sprite: {fileID: 21300000, guid: 58117114486e5604c917ec5e2847f457, type: 3}
   equipmentVariant: {fileID: 11400000, guid: d834859a2d225314b9acc023afff901b, type: 2}
   equipmentType: {fileID: 11400000, guid: d22dde3135384994794059744f1299e9, type: 2}
   rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 22
     max: 28
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fish Master 3 Star Pants
   m_EditorClassIdentifier: 
   ItemID: aia58365d1-337f-4480-8705-406b51a03323
+  sprite: {fileID: 21300000, guid: e4694688a5bdb3f468172b87990c9f5b, type: 3}
   equipmentVariant: {fileID: 11400000, guid: 72c98e047df61a24f99fd32f05e28a2f, type: 2}
   equipmentType: {fileID: 11400000, guid: 789ac0eecd6ee3c4a9f171d4bb4800a3, type: 2}
   rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 43
     max: 46
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1
