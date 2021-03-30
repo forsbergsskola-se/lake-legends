@@ -348,34 +348,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.data[3].bodyPartName
-      value: Feet
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.data[4].bodyPartName
-      value: Hands
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.data[5].bodyPartName
-      value: Head
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.data[3].myPreferredEquipment
-      value: 
-      objectReference: {fileID: 11400000, guid: d22dde3135384994794059744f1299e9, type: 2}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.data[4].myPreferredEquipment
-      value: 
-      objectReference: {fileID: 11400000, guid: dba5e30fb886a3d478c2a49483a9d86a, type: 2}
-    - target: {fileID: 4322347072828034989, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
-      propertyPath: bodyParts.Array.data[5].myPreferredEquipment
-      value: 
-      objectReference: {fileID: 11400000, guid: bde5d3d209af5ec4a94a63261dc7b1c4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfd4d8c3681905c418b037c1fac7fac4, type: 3}
 --- !u!4 &3117611497080056577 stripped
