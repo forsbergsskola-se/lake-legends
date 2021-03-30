@@ -56,7 +56,7 @@ namespace UI
                 else if (catchable is LootBox lootBox)
                 {
                     fishWorth.text = "";
-                    treasureBoxText.text = "Open it in town!";
+                    treasureBoxText.text = "Open it in inventory!";
                     silverImage.gameObject.SetActive(false);
                 }
                 else
