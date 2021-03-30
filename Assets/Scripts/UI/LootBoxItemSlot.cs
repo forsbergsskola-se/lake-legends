@@ -9,6 +9,8 @@ namespace UI
     {
         public float secondsToFadeIn;
         public float secondsToFadeOut;
+        public float textFadeInTime = 2f;
+        public float textFadeOutTime = 2f;
         public Text text;
         public override void Setup(IItem item, bool hasCaught = true)
         {
@@ -20,16 +22,16 @@ namespace UI
         public void FadeIn()
         {
             StartCoroutine(DoFadeIn());
-            StartCoroutine(WriteOutText(Item.Name, secondsToFadeIn));
+            StartCoroutine(WriteOutText(Item.Name));
         }
 
-        private IEnumerator WriteOutText(string message, float totalTime)
+        private IEnumerator WriteOutText(string message)
         {
             var allChars = message.ToCharArray();
             var currentMessage = "";
             var time = 0.0f;
             var currentIndex = 0;
-            var timeBetweenIncrement = totalTime / allChars.Length;
+            var timeBetweenIncrement = textFadeInTime / allChars.Length;
             while (currentMessage.Length < message.Length)
             {
                 time += Time.deltaTime;
@@ -44,10 +46,29 @@ namespace UI
                 yield return null;
             }
         }
+        
+        private IEnumerator EraseMessageIncrementally()
+        {
+            var currentMessage = text.text;
+            var time = 0.0f;
+            var timeBetweenIncrement = textFadeOutTime / currentMessage.Length;
+            while (currentMessage.Length > 0)
+            {
+                time += Time.deltaTime;
+                if (time > timeBetweenIncrement)
+                {
+                    time -= timeBetweenIncrement;
+                    currentMessage = currentMessage.Remove(0, 1);
+                    text.text = currentMessage;
+                }
+                yield return null;
+            }
+        }
 
         public void FadeOut()
         {
             StartCoroutine(DoFadeOut());
+            StartCoroutine(EraseMessageIncrementally());
         }
 
         IEnumerator DoFadeIn()
