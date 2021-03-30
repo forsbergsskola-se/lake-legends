@@ -41,23 +41,17 @@ namespace UI
             equipmentSlots = new List<Slot>();
         }
         
-        protected void Setup(PlayerBody inventory)
+        protected void Setup(PlayerBody playerBody)
         {
-            var items = inventory.GetAllEquippedItems().Cast<IItem>();
+            var items = playerBody.GetAllEquippedItems().Cast<IItem>();
             foreach (var item in items)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
+                if (item == null)
+                    continue;
                 
-
                 instance.Setup(item);
-                
-
                 equipmentSlots.Add(instance);
-            }
-  
-            for (var i = equipmentSlots.Count; i < 6; i++)
-            {
-                var instance = Instantiate(slotPrefab, gridParent);
             }
         }
 
