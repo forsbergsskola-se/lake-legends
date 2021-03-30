@@ -747,6 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2229457862974517661}
   - component: {fileID: 1852101155633507405}
+  - component: {fileID: 3860530661573962703}
   m_Layer: 0
   m_Name: FishingRod
   m_TagString: Untagged
@@ -788,3 +789,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3860530661573962703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222524528648575307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f889e5038a0c840855272723aed0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1852101155633507405}
