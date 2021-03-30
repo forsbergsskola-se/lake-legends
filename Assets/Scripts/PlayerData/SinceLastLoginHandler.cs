@@ -26,6 +26,8 @@ namespace PlayerData
 
         private async void OnApplicationFocus(bool hasFocus)
         {
+            if (sinceLastLoginSaver == null)
+                return;
             if (!hasFocus)
             {
                 sinceLastLoginSaver.Save();
