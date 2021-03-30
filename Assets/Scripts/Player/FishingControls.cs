@@ -34,6 +34,7 @@ namespace Player
         [SerializeField] private Transform floatNoBite;
         [SerializeField] private Transform floatNibbleOrBite;
         [SerializeField] private Text statusText;
+        [SerializeField] private string IdleAnimation = "Idle";
         [SerializeField] private string castingSound = "CastingSound";
 
         private bool UsesFloat => floatNoBite != null && floatNibbleOrBite != null;
@@ -103,6 +104,7 @@ namespace Player
 
         private IEnumerator CastRod()
         {
+            eventsBroker.Publish(new AnimationTriggerEvent(IdleAnimation));   
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
             eventsBroker.Publish(new DecreaseBaitEvent(baitCost));
             
