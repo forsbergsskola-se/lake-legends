@@ -14,6 +14,7 @@ namespace UI
         [SerializeField] private Image image;
         [SerializeField] private Image frameImage;
         [SerializeField] private Image silverImage;
+        [SerializeField] private Image backgroundImage;
         public ICatchable catchable;
         public IMessageHandler eventsBroker;
         
@@ -35,17 +36,17 @@ namespace UI
                 image.gameObject.SetActive(true);
                 image.sprite = catchable.Sprite;
                 fishNameText.text = catchable.Name;
+                frameImage.sprite = catchable.Rarity.frame;
+                backgroundImage.sprite = catchable.Rarity.background;
                 
                 if (catchable is FishItem fishItem)
                 {
                     fishWorth.text = $"It's worth {fishItem.silverValue}";
-                    frameImage.sprite = fishItem.Rarity.frame;
                     silverImage.gameObject.SetActive(true);
                 }
                 else if (catchable is LootBox lootBox)
                 {
                     fishWorth.text = "Open it in town!";
-                    frameImage.sprite = null;
                     silverImage.gameObject.SetActive(false);
                 }
                 else
