@@ -13,8 +13,7 @@ namespace UI
         
         private void Start()
         {
-            //gearNameText = gameObject.GetComponentInChildren<Text>();
-            //gearNameText.text = string.Empty;
+            SetDefaultImages();
         }
         
         private void FixedUpdate()
@@ -31,7 +30,6 @@ namespace UI
         {
             gearInstance = item as GearInstance;
             Item = item;
-            SetDefaultImages();
             ApplyImages();
         }
     }
