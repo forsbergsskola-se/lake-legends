@@ -9,7 +9,7 @@ namespace UI
         public UnityEvent onRelease;
 
     
-        private void OnMouseUp()
+        private void OnMouseDown()
         {
             if(!EventSystem.current.IsPointerOverGameObject())
                 onRelease.Invoke();
