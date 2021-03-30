@@ -89,6 +89,17 @@ namespace PlayerData
             return true;
         }
 
+        public void ValidateInventory()
+        {
+            var brokenItems = items.Keys.Where(key => !AllItems.ItemIndexer.indexer.ContainsKey(key) && !GetGear().ContainsKey(key)).ToList();
+
+            foreach (var brokenItem in brokenItems)
+            {
+                items.Remove(brokenItem);
+            }
+            Serialize();
+        }
+
         public virtual Dictionary<string, int> GetAllItems()
         {
             return items;

@@ -16,29 +16,50 @@ namespace Items.Shop
         private bool affordable;
         
         private IMessageHandler eventsBroker;
+        private Button button;
+        private bool inventoryHasSpace;
 
         private void Start()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
-            eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
-            eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            if (costsGold)
+            {
+                eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold); 
+                eventsBroker.Publish(new RequestGoldData());    
+            }
+            else
+            {
+                eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
+                eventsBroker.Publish(new RequestSilverData()); 
+            }
+            eventsBroker.Publish(new RequestBaitData());
             eventsBroker.SubscribeTo<UpdateBaitUIEvent>(CheckIfBaitIsFull);
+        }
+        
+        private void SetInteractableState()
+        {
+            button ??= GetComponent<Button>();
+            button.interactable = inventoryHasSpace && affordable;
         }
 
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
         {
             affordable = price <= eventRef.Gold;
+            SetInteractableState();
+            eventsBroker.Publish(new RequestBaitData());
         }
 
         private void ComparePriceAndOwnedSilver(UpdateSilverUIEvent eventRef)
         {
             affordable = price <= eventRef.Silver;
+            SetInteractableState();
+            eventsBroker.Publish(new RequestBaitData());
         }
 
         private void CheckIfBaitIsFull(UpdateBaitUIEvent eventRef)
         {
-            if (eventRef.Bait >= eventRef.MaxBait) this.GetComponent<Button>().interactable = false;
-            else this.GetComponent<Button>().interactable = true;
+            inventoryHasSpace = eventRef.Bait <= eventRef.MaxBait - baitToBuy;
+            SetInteractableState();
         }
 
         public void Buy()
@@ -81,6 +102,8 @@ namespace Items.Shop
         private void OnDestroy()
         {
             eventsBroker?.UnsubscribeFrom<UpdateBaitUIEvent>(CheckIfBaitIsFull);
+            eventsBroker?.UnsubscribeFrom<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            eventsBroker?.UnsubscribeFrom<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
         }
     }
 }

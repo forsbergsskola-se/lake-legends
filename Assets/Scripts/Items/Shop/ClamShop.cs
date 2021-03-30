@@ -16,34 +16,52 @@ namespace Items.Shop
         public int price = 10;
         
         private bool affordable;
-        private bool inventoryIsFull;
-        
+        private bool inventoryHasSpace;
+        private Button button;
         
         private IMessageHandler eventsBroker;
 
         private void OnEnable()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
-            eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
-            eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            if (costsGold)
+            {
+               eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold); 
+               eventsBroker.Publish(new RequestGoldData());    
+            }
+            else
+            {
+                eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
+                eventsBroker.Publish(new RequestSilverData()); 
+            }
+            
+            
             eventsBroker.SubscribeTo<InventorySizeEvent>(CheckInventoryFull);
             eventsBroker.Publish(new RequestInventorySizeEvent());
         }
 
+        private void SetInteractableState()
+        {
+            button ??= GetComponent<Button>();
+            button.interactable = inventoryHasSpace && affordable;
+        }
+
         private void CheckInventoryFull(InventorySizeEvent obj)
         {
-            inventoryIsFull = obj.CanFit(amountToGive);
-            GetComponent<Button>().interactable = inventoryIsFull;
+            inventoryHasSpace = obj.CanFit(amountToGive);
+            SetInteractableState();
         }
 
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
         {
             affordable = price <= eventRef.Gold;
+            SetInteractableState();
         }
 
         private void ComparePriceAndOwnedSilver(UpdateSilverUIEvent eventRef)
         {
             affordable = price <= eventRef.Silver;
+            SetInteractableState();
         }
 
         public void Buy()

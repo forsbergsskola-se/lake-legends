@@ -14,5 +14,6 @@ namespace PlayerData
         Dictionary<string, GearInstance> GetGear();
         Task Deserialize();
         void Serialize();
+        void ValidateInventory();
     }
 }

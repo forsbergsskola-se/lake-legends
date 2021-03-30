@@ -94,8 +94,11 @@ namespace PlayerData
                 return;
             foreach (var t in loadedEquipment)
             {
-                var item = allGear[t];
-                eventsBroker.Publish(new CheckAndDoEquipEvent(item, true));
+                if (allGear.TryGetValue(t, out var value))
+                {
+                    var item = value;
+                    eventsBroker.Publish(new CheckAndDoEquipEvent(item, true));
+                }
             }
         }
 

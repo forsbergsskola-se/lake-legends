@@ -85,17 +85,26 @@ namespace UI
         protected virtual void Setup(IInventory inventory)
         {
             var items = inventory.GetAllItems();
+            var anyInvalidKey = false;
             foreach (var item in items)
             {
                 for (var i = 0; i < item.Value; i++)
                 {
+                    if (!inventory.GetGear().ContainsKey(item.Key) &&
+                        !AllItems.ItemIndexer.indexer.ContainsKey(item.Key))
+                    {
+                        anyInvalidKey = true;
+                        continue;
+                    }
                     var instance = Instantiate(slotPrefab, gridParent);
-                    if (AllItems.ItemIndexer.indexer.ContainsKey(item.Key))
-                        instance.Setup(AllItems.ItemIndexer.indexer[item.Key] as IItem);
+                    if (AllItems.ItemIndexer.indexer.TryGetValue(item.Key, out var value))
+                        instance.Setup(value as IItem);
                     else
                     {
-                        var gearItem = inventory.GetGear()[item.Key];
-                        instance.Setup(gearItem);
+                        if (inventory.GetGear().TryGetValue(item.Key, out var gearItem))
+                        {
+                           instance.Setup(gearItem); 
+                        }
                     }
                     inventorySlots.Add(instance);
                 }
@@ -104,6 +113,11 @@ namespace UI
             for (var i = inventorySlots.Count; i < inventory.MaxSize; i++)
             {
                 var instance = Instantiate(slotPrefab, gridParent);
+            }
+
+            if (anyInvalidKey)
+            {
+                inventory.ValidateInventory();
             }
 
             inventorySize = inventory.MaxSize;
