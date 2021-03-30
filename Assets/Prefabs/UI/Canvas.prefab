@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2131254376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685077692371852077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 20
+  price: 5
+--- !u!114 &2131254379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346029537712824362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 80
+  price: 10
 --- !u!1 &2193301161582955328
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +135,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2131254380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062548552486188473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 50
+  price: 7
 --- !u!1001 &745245429979938615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,9 +157,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2193301161582955332}
     m_Modifications:
+    - target: {fileID: 112772604925884481, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Name
+      value: Bait Button Shop 20x
+      objectReference: {fileID: 0}
+    - target: {fileID: 112772604925884486, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112772604925884486, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112772604925884486, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 459.7904
+      objectReference: {fileID: 0}
+    - target: {fileID: 112772604925884486, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 612.0585
+      objectReference: {fileID: 0}
+    - target: {fileID: 112772604925884486, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 229.8952
+      objectReference: {fileID: 0}
+    - target: {fileID: 112772604925884486, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -306.02924
+      objectReference: {fileID: 0}
+    - target: {fileID: 171015137819843327, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 171015137819843327, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 177593530896291784, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Name
       value: Clamp Shop Button 10x Tier2
+      objectReference: {fileID: 0}
+    - target: {fileID: 231208587791980007, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Name
+      value: Bait100x
       objectReference: {fileID: 0}
     - target: {fileID: 314658295411324632, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
@@ -156,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 3e2c4e1724335a04ebde6f90d9bc86c7, type: 3}
+    - target: {fileID: 488010172069783245, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Text
+      value: 50x
+      objectReference: {fileID: 0}
     - target: {fileID: 500013107746370431, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -207,6 +296,14 @@ PrefabInstance:
     - target: {fileID: 1062510439975258137, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: costsGold
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143951368761432245, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c34076a413c1d8e45b0ba265287cdf7e, type: 3}
+    - target: {fileID: 1530439831474395310, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Text
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1583006725306635480, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Pivot.x
@@ -307,6 +404,38 @@ PrefabInstance:
     - target: {fileID: 1665092676119908682, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
       value: 2750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1736848833772285664, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Name
+      value: Bait1x
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364609, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364609, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364609, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 459.7904
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364609, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 612.0585
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364609, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1149.4761
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364609, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -306.02924
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927340690540364614, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Name
+      value: Bait Button Shop 80x
       objectReference: {fileID: 0}
     - target: {fileID: 2029967504051615746, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -448,6 +577,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
+    - target: {fileID: 2445910879976053291, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2131254376}
+    - target: {fileID: 2445910879976053291, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Items.Shop.BaitShop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2456652619658556833, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: price
       value: 300
@@ -460,10 +597,18 @@ PrefabInstance:
       propertyPath: costsGold
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2583693479742621514, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
     - target: {fileID: 2744730603027885809, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
+    - target: {fileID: 3008178208850846030, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3051580529055600327, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -472,6 +617,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: 5x
       objectReference: {fileID: 0}
+    - target: {fileID: 3130485687269524810, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea7a1058ca647d6479e7e68b66d79f2b, type: 3}
     - target: {fileID: 3202921710918797557, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -479,6 +628,14 @@ PrefabInstance:
     - target: {fileID: 3377685938261092976, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Name
       value: Clamp Shop Button 5x Tier2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485315615935512141, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea7a1058ca647d6479e7e68b66d79f2b, type: 3}
+    - target: {fileID: 3643656289486117449, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726731303451529668, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
@@ -488,9 +645,21 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9634361b425df0a4bbb8df92e9290145, type: 3}
+    - target: {fileID: 4104173116226108493, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
     - target: {fileID: 4129803739096940755, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4241954133301289260, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2131254379}
+    - target: {fileID: 4241954133301289260, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Items.Shop.BaitShop, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4463744924245118188, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -632,6 +801,10 @@ PrefabInstance:
       propertyPath: price
       value: 2750
       objectReference: {fileID: 0}
+    - target: {fileID: 5024064722120763870, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
     - target: {fileID: 5028074986835108787, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -648,6 +821,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 62ed5416b85cbea47b7ea9d6595bdd56, type: 3}
+    - target: {fileID: 5157625721243661503, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2131254380}
+    - target: {fileID: 5157625721243661503, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Items.Shop.BaitShop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5449247639722675880, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Name
       value: Clamp Shop Button 5x Tier1
@@ -672,6 +853,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
+    - target: {fileID: 5754823640981508058, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5758019746486606440, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
       value: 5x
@@ -708,6 +893,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 62ed5416b85cbea47b7ea9d6595bdd56, type: 3}
+    - target: {fileID: 6213942392369451225, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea7a1058ca647d6479e7e68b66d79f2b, type: 3}
     - target: {fileID: 6633921216591176715, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
       value: 180
@@ -720,9 +909,21 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f4d6e1d1dd882d44e9845ae25ed1f328, type: 3}
+    - target: {fileID: 6964760828610742361, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Text
+      value: 20x
+      objectReference: {fileID: 0}
     - target: {fileID: 7152168540070324176, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
       value: 10x
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223104081524323435, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223104081524323435, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7251290167501707234, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Name
@@ -732,6 +933,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clamp Shop Button 10x Tier1
       objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738258, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738258, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738258, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 459.7904
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738258, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 612.0585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738258, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 689.6856
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738258, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -306.02924
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490235698668738261, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Name
+      value: Bait Button Shop 50x
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525749587155012925, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Text
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602689756895508001, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c34076a413c1d8e45b0ba265287cdf7e, type: 3}
     - target: {fileID: 7666384938374683048, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -758,11 +995,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7990647931210434141, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Size
-      value: 0.3640413
+      value: 0.36404127
       objectReference: {fileID: 0}
     - target: {fileID: 7990647931210434141, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Value
-      value: 0.9999985
+      value: 0.9999986
       objectReference: {fileID: 0}
     - target: {fileID: 7990647931305289924, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Size
@@ -814,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7990647932374001229, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0032348633
+      value: 0.0014038086
       objectReference: {fileID: 0}
     - target: {fileID: 7990647932374001235, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Spacing.x
@@ -859,6 +1096,14 @@ PrefabInstance:
     - target: {fileID: 8122645610953267635, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Text
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263474463586241830, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c34076a413c1d8e45b0ba265287cdf7e, type: 3}
+    - target: {fileID: 8313426469807912506, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Text
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8485764104154199192, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -940,7 +1185,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -8.5182495
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8901401089840395102, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Text
+      value: 80x
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113184990238425204, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_Name
+      value: Bait10x
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156507263618142060, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 9156507263618142060, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2445910879976053288, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+    - {fileID: 5157625721243661500, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+    - {fileID: 4241954133301289263, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
 --- !u!1 &2278923665604815854 stripped
 GameObject:
@@ -960,6 +1224,21 @@ GameObject:
 --- !u!1 &3788240482453973919 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4523070195820106920, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+  m_PrefabInstance: {fileID: 745245429979938615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &685077692371852077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 276485724548736026, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+  m_PrefabInstance: {fileID: 745245429979938615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8062548552486188473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7328563813797104270, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
+  m_PrefabInstance: {fileID: 745245429979938615}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1346029537712824362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1799656986416095005, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
   m_PrefabInstance: {fileID: 745245429979938615}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6555209372866984460 stripped
