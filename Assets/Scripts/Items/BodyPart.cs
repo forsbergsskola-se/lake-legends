@@ -3,6 +3,7 @@ using EventManagement;
 using Events;
 using Items.Gear;
 using PlayerData;
+using UI;
 using UnityEngine;
 
 namespace Items
@@ -34,23 +35,26 @@ namespace Items
                 EquippedItem = null;
                 playerBody.SaveEquipment();
             }
+            eventsBroker.Publish(new RequestEquipmentEvent());
         }
 
         public void DoEquip(CheckAndDoEquipEvent eventRef)
         {
             var itemToEquip = eventRef.Item;
-            
-                if (itemToEquip.Equipment.EquipmentType == myPreferredEquipment)
-                {
-                    if (EquippedItem == null)
-                    {
-                        UnEquipAndEquip(itemToEquip, eventRef.Startup);
-                        return;
-                    }
 
-                    if (itemToEquip.ID == EquippedItem.ID) return;
+            if (itemToEquip.Equipment.EquipmentType == myPreferredEquipment)
+            {
+                if (EquippedItem == null)
+                {
                     UnEquipAndEquip(itemToEquip, eventRef.Startup);
+                    return;
                 }
+
+                if (itemToEquip.ID == EquippedItem.ID) return;
+                UnEquipAndEquip(itemToEquip, eventRef.Startup);
+            }
+
+            eventsBroker.Publish(new RequestEquipmentEvent());
         }
 
         private void UnEquipAndEquip(GearInstance itemToEquip, bool startUp)
@@ -64,6 +68,7 @@ namespace Items
 
             if (!startUp)
                 playerBody.SaveEquipment();
+            eventsBroker.Publish(new RequestEquipmentEvent());
         }
     }
 }

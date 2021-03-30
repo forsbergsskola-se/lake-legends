@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using System.Linq;
 using EventManagement;
 using Events;
 using Items;
+using Items.Gear;
 using Saving;
+using UI;
 using UnityEngine;
 
 namespace PlayerData
@@ -73,6 +76,7 @@ namespace PlayerData
             }
             
             eventsBroker.SubscribeTo<LoadedInventoryEvent>(Initialize);
+            eventsBroker.SubscribeTo<RequestEquipmentEvent>(eventRef => eventsBroker.Publish(new UpdateEquipmentUI(this)));
         }
         
         async void Initialize(LoadedInventoryEvent eventRef)
@@ -93,6 +97,11 @@ namespace PlayerData
                 var item = allGear[t];
                 eventsBroker.Publish(new CheckAndDoEquipEvent(item, true));
             }
+        }
+
+        public IEnumerable<IEquippable> GetAllEquippedItems()
+        {
+            return bodyParts.Where(part => part.EquippedItem != null).Select(part => part.EquippedItem);
         }
         
         public void SaveEquipment()

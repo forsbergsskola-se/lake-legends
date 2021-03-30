@@ -44,9 +44,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyParts:
+  - bodyPartName: Head
+    myPreferredEquipment: {fileID: 11400000, guid: bde5d3d209af5ec4a94a63261dc7b1c4, type: 2}
   - bodyPartName: Torso
     myPreferredEquipment: {fileID: 11400000, guid: 22c2747b5a26eb64e8f921503df52c3b, type: 2}
+  - bodyPartName: Hands
+    myPreferredEquipment: {fileID: 11400000, guid: dba5e30fb886a3d478c2a49483a9d86a, type: 2}
   - bodyPartName: Grip
     myPreferredEquipment: {fileID: 11400000, guid: 209e187ffcdf5d545987b59224fd1959, type: 2}
   - bodyPartName: Legs
     myPreferredEquipment: {fileID: 11400000, guid: 789ac0eecd6ee3c4a9f171d4bb4800a3, type: 2}
+  - bodyPartName: Feet
+    myPreferredEquipment: {fileID: 11400000, guid: d22dde3135384994794059744f1299e9, type: 2}
