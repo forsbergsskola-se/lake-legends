@@ -4,6 +4,9 @@ namespace Events
     {
         public string triggerName;
 
-        public AnimationTriggerEvent(string triggerName) => this.triggerName = triggerName;
+        public AnimationTriggerEvent(string triggerName)
+        {
+            this.triggerName = triggerName;
+        }
     }
 }

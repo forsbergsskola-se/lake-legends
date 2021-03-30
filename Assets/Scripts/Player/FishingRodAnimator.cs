@@ -15,11 +15,17 @@ namespace Player
             animator = this.gameObject.GetComponent<Animator>();
         
             eventsBroker.SubscribeTo<AnimationTriggerEvent>(TriggerAnimation);
+            eventsBroker.SubscribeTo<AnimationBlendEvent>(BlendAnimation);
         }
 
         private void TriggerAnimation(AnimationTriggerEvent eventRef)
         {
             animator.SetTrigger(eventRef.triggerName);
+        }
+        
+        private void BlendAnimation(AnimationBlendEvent eventRef)
+        {
+            animator.SetFloat(0, eventRef.blendValue);
         }
     }
 }
