@@ -40,12 +40,13 @@ namespace UI
             {
                 sellable.Sold += OnItemSold;
             }
+            SetDefaultImages();
             ApplyImages();
         }
         
         private void OnOpened()
         {
-            //GetComponentInChildren<Text>().text = "{Empty}";
+            ResetImages();
             ClearInspectionArea();
             opened = true;
             Item = null;
@@ -58,7 +59,7 @@ namespace UI
                 equippable.Equipped -= OnEquippedItem;
                 equippable.UnEquipped -= OnUnEquippedItem;
             }
-            //GetComponentInChildren<Text>().text = "{Empty}";
+            ResetImages();
 
             var sellable = Item as ISellable;
             Item = null;
