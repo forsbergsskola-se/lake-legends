@@ -91,15 +91,15 @@ namespace Audio
       
       IEnumerator PlayAndWait(string audioClipName)
       {
-         var audioClipSetting = sfxSounds.FirstOrDefault(music => music.audioClip.name == audioClipName);
+         var audioClipSetting = sfxSounds.FirstOrDefault(music => music.eventName == audioClipName);
       
          if (audioClipSetting == null) 
          {
-            audioClipSetting = musicTracks.FirstOrDefault(music => music.audioClip.name == audioClipName);
+            audioClipSetting = musicTracks.FirstOrDefault(music => music.eventName == audioClipName);
          
             if (audioClipSetting == null)
             {
-               audioClipSetting = ambiantSounds.FirstOrDefault(music => music.audioClip.name == audioClipName);
+               audioClipSetting = ambiantSounds.FirstOrDefault(music => music.eventName == audioClipName);
             }
          }
          var audioSource = audioClipSetting.outputAudioSource;
