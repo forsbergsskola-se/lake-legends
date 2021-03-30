@@ -32,9 +32,7 @@ namespace Player
 
         [Header("Animation Related")]
         [SerializeField] private string IdleAnimation = "Idle";
-        [SerializeField] private string InZoneAnimation = "InZone";
-        [SerializeField] private string LeftOfZoneAnimation = "LeftOfZone";
-        [SerializeField] private string RightOfZoneAnimation = "RightOfZone";
+        [SerializeField] private string CatchAnimation = "Catch";
         [SerializeField] private string BendAnimationName = "Bend";
         [SerializeField] private string TiltAnimationName = "Tilt";
         
@@ -264,6 +262,7 @@ namespace Player
 
         private void EndGame()
         {
+            eventsBroker.Publish(new AnimationTriggerEvent(CatchAnimation));
             fishPositionCenterPoint = 0;
             captureZonePosition = 0;
             minimumZone = 0;
@@ -281,9 +280,7 @@ namespace Player
             gameEndUI.gameObject.SetActive(true);
             gameEndUI.eventsBroker = this.eventsBroker;
             gameEndUI.catchable = this.catchable;
-            
             eventsBroker.Publish(new EndFishOMeterEvent(catchable));
-            eventsBroker.Publish(new AnimationTriggerEvent(IdleAnimation));
             fishOMeterMinigamePanel.SetActive(false);
         }
 
