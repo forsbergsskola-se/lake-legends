@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fish Master 3 Star Hat
   m_EditorClassIdentifier: 
   ItemID: aga58365d1-337f-4480-8705-406b51a03323
+  sprite: {fileID: 0}
   equipmentVariant: {fileID: 11400000, guid: 72c98e047df61a24f99fd32f05e28a2f, type: 2}
   equipmentType: {fileID: 11400000, guid: bde5d3d209af5ec4a94a63261dc7b1c4, type: 2}
   rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
@@ -25,3 +26,6 @@ MonoBehaviour:
   accuracy:
     min: 43
     max: 46
+  lineStrengthIncreasePerLevel: 1
+  attractionIncreasePerLevel: 1
+  accuracyIncreasePerLevel: 1
