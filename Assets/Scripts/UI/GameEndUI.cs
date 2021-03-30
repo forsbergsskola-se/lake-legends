@@ -15,11 +15,18 @@ namespace UI
         [SerializeField] private Image frameImage;
         [SerializeField] private Image silverImage;
         [SerializeField] private Image backgroundImage;
+        [SerializeField] private GameObject successUI;
+        [SerializeField] private GameObject failUI;
+
+        [SerializeField] private string IdleAnimation = "Idle";
+        
         public ICatchable catchable;
         public IMessageHandler eventsBroker;
         
         void OnEnable()
         {
+            failUI.gameObject.SetActive(false);
+            successUI.gameObject.SetActive(false);
             UpdateUI();
         }
 
@@ -33,7 +40,8 @@ namespace UI
             if (catchable != null)
             {
                 resultText.text = "You caught a";
-                image.gameObject.SetActive(true);
+                successUI.gameObject.SetActive(true);
+                failUI.gameObject.SetActive(false);
                 image.sprite = catchable.Sprite;
                 fishNameText.text = catchable.Name;
                 frameImage.sprite = catchable.Rarity.frame;
@@ -56,24 +64,25 @@ namespace UI
             }
             else
             {
-                resultText.text = "Oh no! It got away!";
-                image.gameObject.SetActive(false);
-                silverImage.gameObject.SetActive(false);
-                fishNameText.text = "";
-                fishWorth.text = "";
+                failUI.gameObject.SetActive(true);
             }
         }
 
         public void FishAgain()
         {
+            eventsBroker.Publish(new AnimationTriggerEvent(IdleAnimation));
             eventsBroker.Publish(new FishAgainEvent());
             this.gameObject.SetActive(false);
+            failUI.gameObject.SetActive(false);
+            successUI.gameObject.SetActive(false);
         }
 
         public void BackToHub()
         {
             SceneManager.LoadScene("MainUI");
             this.gameObject.SetActive(false);
+            failUI.gameObject.SetActive(false);
+            successUI.gameObject.SetActive(false);
         }
 
         private void OnDisable()
