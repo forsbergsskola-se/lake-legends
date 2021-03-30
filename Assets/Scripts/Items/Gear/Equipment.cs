@@ -8,7 +8,7 @@ namespace Items.Gear
     public class Equipment : ScriptableObject, IItem
     {
         [SerializeField] private string ItemID;
-
+        [SerializeField] private Sprite sprite;
         [SerializeField] public EquipmentVariant equipmentVariant;
         [SerializeField] public EquipmentType equipmentType;
         [SerializeField] private Rarity rarity;
@@ -41,6 +41,7 @@ namespace Items.Gear
         public string Name => name;
         public int RarityValue => rarity.starAmount;
         public Rarity Rarity => rarity;
+        public Sprite Sprite => sprite;
 
         public override string ToString()
         {
