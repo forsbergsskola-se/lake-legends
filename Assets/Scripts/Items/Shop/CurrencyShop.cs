@@ -10,9 +10,10 @@ namespace Items.Shop
 
         [SerializeField] private bool givesSilver;
         [SerializeField] private bool costsGold;
+        [SerializeField] private bool costsRealMoney;
         //TODO: IAP: Introduce bool "requiresApprovedPurchase" for when IAP is implemented 
         
-        [SerializeField] int price = 10;
+        [SerializeField] float price = 10;
         private bool affordable;
         
         private IMessageHandler eventsBroker;
@@ -37,12 +38,17 @@ namespace Items.Shop
 
         public void Buy()
         {
-            if (!costsGold)
+            if (costsRealMoney)
+            {
+                //TODO: Introduce IAP / Paypal / GooglePlay money plugin here
+                GiveCurrency();
+            }
+            else if (!costsGold)
             {
                 eventsBroker.Publish(new RequestSilverData());    
                 
                 if (CheckAffordability()) return;
-                eventsBroker.Publish(new DecreaseSilverEvent(price));
+                eventsBroker.Publish(new DecreaseSilverEvent((int)price));
                 GiveCurrency();
             }
             else
@@ -50,7 +56,7 @@ namespace Items.Shop
                 eventsBroker.Publish(new RequestGoldData());    
                 
                 if (CheckAffordability()) return;
-                eventsBroker.Publish(new DecreaseGoldEvent(price));
+                eventsBroker.Publish(new DecreaseGoldEvent((int)price));
                 GiveCurrency();
             }
         }
