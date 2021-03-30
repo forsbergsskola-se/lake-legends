@@ -101,7 +101,7 @@ namespace PlayerData
 
         public IEnumerable<IEquippable> GetAllEquippedItems()
         {
-            return bodyParts.Where(part => part.EquippedItem != null).Select(part => part.EquippedItem);
+            return bodyParts.Select(part => part.EquippedItem);
         }
         
         public void SaveEquipment()
