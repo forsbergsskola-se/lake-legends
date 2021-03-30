@@ -16,8 +16,7 @@ namespace UI
         
         private void Start()
         {
-            //gearNameText = gameObject.GetComponentInChildren<Text>();
-            //gearNameText.text = string.Empty;
+            
         }
         
         private void FixedUpdate()
