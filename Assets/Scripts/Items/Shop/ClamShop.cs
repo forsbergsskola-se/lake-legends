@@ -1,27 +1,39 @@
+using System;
 using EventManagement;
 using Events;
 using LootBoxes;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Items.Shop
 {
     public class ClamShop : MonoBehaviour, IShop
     {
         [SerializeField] private bool costsGold;
+        [SerializeField] private int amountToGive = 1;
         
         public LootBox clamToBuy;
         public int price = 10;
         
         private bool affordable;
+        private bool inventoryIsFull;
         
         
         private IMessageHandler eventsBroker;
 
-        private void Start()
+        private void OnEnable()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
             eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
             eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            eventsBroker.SubscribeTo<InventorySizeEvent>(CheckInventoryFull);
+            eventsBroker.Publish(new RequestInventorySizeEvent());
+        }
+
+        private void CheckInventoryFull(InventorySizeEvent obj)
+        {
+            inventoryIsFull = obj.CanFit(amountToGive);
+            GetComponent<Button>().interactable = inventoryIsFull;
         }
 
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
@@ -38,7 +50,6 @@ namespace Items.Shop
         {
             if (clamToBuy == null)
             {
-                Debug.Log("Clam is null");
                 return;
             }
             if (!costsGold)
@@ -48,7 +59,10 @@ namespace Items.Shop
                 if (CheckAffordability()) return;
                 
                 eventsBroker.Publish(new DecreaseSilverEvent(price));
-                eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
+                for (var i = 0; i < amountToGive; i++)
+                {
+                    eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
+                }
             }
             else
             {
@@ -57,20 +71,50 @@ namespace Items.Shop
                 if (CheckAffordability()) return;
                 
                 eventsBroker.Publish(new DecreaseGoldEvent(price));
-                eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
+                for (var i = 0; i < amountToGive; i++)
+                {
+                    eventsBroker.Publish(new AddItemToInventoryEvent(clamToBuy));
+                }
             }
         }
-        
+
+        private void OnDisable()
+        {
+            eventsBroker?.UnsubscribeFrom<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
+            eventsBroker?.UnsubscribeFrom<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            eventsBroker?.UnsubscribeFrom<InventorySizeEvent>(CheckInventoryFull);
+        }
+
         private bool CheckAffordability()
         {
             if (!affordable)
             {
                 //TODO: Show "You cannot afford it UI"
-                Debug.Log("You cannot afford it");
                 return true;
             }
 
             return false;
+        }
+    }
+
+    public class RequestInventorySizeEvent
+    {
+    }
+
+    public class InventorySizeEvent
+    {
+        private readonly int maxSize;
+        private readonly int currentInventorySize;
+
+        public InventorySizeEvent(int maxSize, int currentInventorySize)
+        {
+            this.maxSize = maxSize;
+            this.currentInventorySize = currentInventorySize;
+        }
+
+        public bool CanFit(int amount)
+        {
+            return maxSize - currentInventorySize >= amount;
         }
     }
 }

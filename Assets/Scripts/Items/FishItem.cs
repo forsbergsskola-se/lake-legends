@@ -48,7 +48,6 @@ namespace Items
             get
             {
                 if (!string.IsNullOrEmpty(ItemID)) return ItemID;
-                Debug.LogError("Item IDs Aren't Set Up Correctly!");
                 throw new Exception("Item IDs Aren't Set Up Correctly!");
             }
         }

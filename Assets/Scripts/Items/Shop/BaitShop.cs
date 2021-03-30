@@ -45,7 +45,6 @@ namespace Items.Shop
         {
             if (baitToBuy == 0)
             {
-                Debug.Log("Bait is zero");
                 return;
             }
             if (!costsGold)
@@ -73,7 +72,6 @@ namespace Items.Shop
             if (!affordable)
             {
                 //TODO: Show "You cannot afford it UI"
-                Debug.Log("You cannot afford it");
                 return true;
             }
 

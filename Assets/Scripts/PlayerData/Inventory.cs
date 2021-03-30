@@ -5,6 +5,7 @@ using EventManagement;
 using Events;
 using Items;
 using Items.CurrencyItems;
+using Items.Shop;
 using Saving;
 
 namespace PlayerData
@@ -37,6 +38,7 @@ namespace PlayerData
                 if (eve.catchItem != null && eve.catchItem is IItem item && !(eve.catchItem is FishItem))
                     AddItem(item);
             });
+            this.messageHandler.SubscribeTo<RequestInventorySizeEvent>(eventRef => this.messageHandler.Publish(new InventorySizeEvent(MaxSize, TotalSizeOfInventory)));
         }
 
         private void OnAddItem(AddItemToInventoryEvent obj)
@@ -49,6 +51,7 @@ namespace PlayerData
             if (!(obj.Item is FishItem))
                 AddItem(obj.Item);
             messageHandler.Publish(new UpdateInventoryEvent(true, obj.Item, gearInventory));
+            messageHandler.Publish(new InventorySizeEvent(MaxSize, TotalSizeOfInventory));
         }
         
         private void OnRemoveItem(RemoveItemFromInventoryEvent obj)

@@ -81,7 +81,6 @@ namespace Sacrifice
             
             if(newLevel.Level > oldLevel.Level) eventBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "ItemUpgradedSound"));
             
-            Debug.Log($"{upgradeSlot.gearInstance.Name} is now Level {upgradeSlot.gearInstance.GearSaveData.GearLevel.Level}!");
             sacrificeSlot.gearInstance.Sacrifice();
             levelText.text = $"Level: {newLevel.Level}";
             if (newLevel.IsMaxLevel)

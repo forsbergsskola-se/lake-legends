@@ -63,7 +63,6 @@ namespace Fish
         {
             if (Time.time - lastDeviance > deviancyTime)
             {
-                Debug.Log("Deviance Changed");
                 targetPos -= devianceDirection;
                 devianceDirection = new Vector3(Random.Range(-deviancyEffect, deviancyEffect), 0, Random.Range(-deviancyEffect, deviancyEffect));
                 targetPos += devianceDirection;
@@ -76,7 +75,7 @@ namespace Fish
             //    }
             //    else
             //    {
-            //        Debug.Log("Deviance Change");
+            //   
             //        devianceDirection = new Vector3(transform.rotation.x + Random.Range(-10f, 10.0f), transform.rotation.y + Random.Range(-10f, 10.0f), transform.rotation.z + Random.Range(-10f, 10.0f));
             //        lastDeviance = Time.time;
             //    }

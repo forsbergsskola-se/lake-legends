@@ -15,6 +15,36 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 20
   price: 5
+--- !u!114 &1200193490934760456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276485724548736026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 20
+  price: 5
+--- !u!114 &1692791543409827824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276485724548736026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 20
+  price: 5
 --- !u!114 &6535986716557754506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,36 +91,6 @@ MonoBehaviour:
   baitToBuy: 20
   price: 5
 --- !u!114 &8322416287175839955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276485724548736026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 20
-  price: 5
---- !u!114 &1692791543409827824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276485724548736026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 20
-  price: 5
---- !u!114 &1200193490934760456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -560,7 +560,37 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 80
   price: 10
+--- !u!114 &1562898149888848607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799656986416095005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 80
+  price: 10
 --- !u!114 &1645725121019149907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799656986416095005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 80
+  price: 10
+--- !u!114 &1946767288981624025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -620,36 +650,21 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 80
   price: 10
---- !u!114 &1562898149888848607
+--- !u!114 &429333435967524750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799656986416095005}
+  m_GameObject: {fileID: 7328563813797104270}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   costsGold: 1
-  baitToBuy: 80
-  price: 10
---- !u!114 &1946767288981624025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799656986416095005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 80
-  price: 10
+  baitToBuy: 50
+  price: 7
 --- !u!114 &3291913865231657757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +710,21 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 50
   price: 7
+--- !u!114 &7456269266886687652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328563813797104270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 50
+  price: 7
 --- !u!114 &7728004166754745821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,36 +741,6 @@ MonoBehaviour:
   baitToBuy: 50
   price: 7
 --- !u!114 &8176170157898326391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328563813797104270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 50
-  price: 7
---- !u!114 &7456269266886687652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328563813797104270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 50
-  price: 7
---- !u!114 &429333435967524750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1334,6 +1334,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1583006725306635480}
     m_Modifications:
+    - target: {fileID: 25138452022759407, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 176711527002542733, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1378,9 +1382,17 @@ PrefabInstance:
       propertyPath: costsGold
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1327143504498434222, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1377876854934956157, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: price
       value: 2750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377876854934956157, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1399849157783058070, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Sprite
@@ -1409,6 +1421,10 @@ PrefabInstance:
     - target: {fileID: 1955670255994244592, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: costsGold
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955670255994244592, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2104748038497164170, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1664,11 +1680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4057311288858940280, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Size
-      value: 0.35836634
+      value: 0.30239907
       objectReference: {fileID: 0}
     - target: {fileID: 4057311288858940280, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Value
-      value: 0.9999999
+      value: 0.99999565
       objectReference: {fileID: 0}
     - target: {fileID: 4057311288858940281, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1680,7 +1696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4057311288868863457, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Size
-      value: 0.99999917
+      value: 0.99999964
       objectReference: {fileID: 0}
     - target: {fileID: 4057311288868863457, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Value
@@ -1733,6 +1749,10 @@ PrefabInstance:
     - target: {fileID: 4419343889072011748, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: price
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419343889072011748, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4666945631130881212, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Text
@@ -2010,6 +2030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clamp Shop Button 10x Tier2
       objectReference: {fileID: 0}
+    - target: {fileID: 6342428711576086388, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6346917085737786684, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: price
       value: 180
@@ -2021,6 +2045,10 @@ PrefabInstance:
     - target: {fileID: 6346917085737786684, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: costsGold
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346917085737786684, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6492296261174365351, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Sprite
@@ -2074,6 +2102,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0e950bc487d601546bd6565afa815079, type: 3}
+    - target: {fileID: 8257262370229020342, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8412095600993722500, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: price
       value: 300
@@ -2085,6 +2117,10 @@ PrefabInstance:
     - target: {fileID: 8412095600993722500, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: costsGold
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412095600993722500, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
+      propertyPath: amountToGive
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8545374796541230566, guid: 126d96aff7de1bf4c9e1412d9328ccb4, type: 3}
       propertyPath: m_Sprite

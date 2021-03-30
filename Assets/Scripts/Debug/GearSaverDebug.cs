@@ -12,7 +12,6 @@ public class GearSaverDebug : MonoBehaviour
     private void Start()
     {
         gearInstance = Load() ?? new GearInstance(new GearSaveData(Equipment));
-        Debug.Log(JsonConvert.SerializeObject(gearInstance.GearSaveData));
     }
 
     private void OnDestroy()

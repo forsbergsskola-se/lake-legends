@@ -66,7 +66,6 @@ namespace Items.Shop
             if (!affordable)
             {
                 //TODO: Show "You cannot afford it UI"
-                Debug.Log("You cannot afford it");
                 return true;
             }
 

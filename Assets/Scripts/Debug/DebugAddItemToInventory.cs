@@ -20,7 +20,6 @@ public class DebugAddItemToInventory : MonoBehaviour
 
     public void DebugAddItemButton()
     {
-        Debug.Log($"Item to add is {itemToAdd}");
         eventsBroker.Publish(new AddItemToInventoryEvent(new GearInstance(new GearSaveData(itemToAdd))));
     }
 

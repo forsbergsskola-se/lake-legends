@@ -97,7 +97,6 @@ namespace Fusion
         {
             if (currentNumberOfItems == fuseSlots.Length)
             {
-                Debug.Log(currentNumberOfItems);
                 return;
             }
             
@@ -107,7 +106,6 @@ namespace Fusion
                 {
                     if (currentGearInstanceIDs.Contains(eventRef.gearInstance.ID))
                     {
-                        Debug.Log("That item is already selected");
                         break;
                     }
                     currentGearInstanceIDs.Add(eventRef.gearInstance.ID);

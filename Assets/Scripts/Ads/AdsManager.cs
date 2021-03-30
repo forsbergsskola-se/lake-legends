@@ -44,7 +44,6 @@ namespace Ads
         {
             if (showResult == ShowResult.Finished)
             {
-                Debug.Log("ad finished");
                 if (givesGold)
                     GiveGoldReward();
                 else 
@@ -52,7 +51,7 @@ namespace Ads
             }
             else if (showResult == ShowResult.Failed)
             {
-                Debug.Log("damn");
+                
             }
         }
 
