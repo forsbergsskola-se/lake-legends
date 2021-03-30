@@ -1,3 +1,4 @@
+using System;
 using EventManagement;
 using Events;
 using UnityEngine;
@@ -25,7 +26,13 @@ namespace Player
         
         private void BlendAnimation(AnimationBlendEvent eventRef)
         {
-            animator.SetFloat("Blend", eventRef.blendValue);
+            animator.SetFloat(eventRef.blendName, eventRef.blendValue);
+        }
+
+        private void OnDestroy()
+        {
+            eventsBroker.UnsubscribeFrom<AnimationTriggerEvent>(TriggerAnimation);
+            eventsBroker.UnsubscribeFrom<AnimationBlendEvent>(BlendAnimation);
         }
     }
 }
