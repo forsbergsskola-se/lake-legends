@@ -5,6 +5,7 @@ using Events;
 using Items;
 using Items.Gear;
 using PlayerData;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -80,6 +81,7 @@ namespace LootBoxes
             {
                 FindObjectOfType<EventsBroker>().Publish(new AddItemToInventoryEvent(treasure));
             }
+            FindObjectOfType<ChestOpening>(true).StartOpening(this);
         }
 
         void RemoveLootBox()
