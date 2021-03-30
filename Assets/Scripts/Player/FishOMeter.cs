@@ -35,6 +35,8 @@ namespace Player
         [SerializeField] private string InZoneAnimation = "InZone";
         [SerializeField] private string LeftOfZoneAnimation = "LeftOfZone";
         [SerializeField] private string RightOfZoneAnimation = "RightOfZone";
+        [SerializeField] private string BendAnimationName = "Bend";
+        [SerializeField] private string TiltAnimationName = "Tilt";
         
         
         const int treasureChanceMaxValue = 101;
@@ -186,19 +188,9 @@ namespace Player
             {
                 successMeter += Time.deltaTime;
                 eventsBroker.Publish(new InFishOMeterZone(true));
-                //eventsBroker.Publish(new AnimationTriggerEvent(InZoneAnimation));
             }
             else
             {
-                // if (fishPositionCenterPoint <= captureZonePosition + DivideByTwo(captureZoneWidth))
-                // {
-                //     eventsBroker.Publish(new AnimationTriggerEvent(LeftOfZoneAnimation));
-                // }
-                // else if (fishPositionCenterPoint >= captureZonePosition - DivideByTwo(captureZoneWidth))
-                // {
-                //     eventsBroker.Publish(new AnimationTriggerEvent(RightOfZoneAnimation));
-                // }
-
                 var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
                 var successMeterProgress = Time.deltaTime * multiplier;
                 successMeter -= successMeterProgress;
@@ -206,6 +198,7 @@ namespace Player
             }
             successMeter = Mathf.Clamp(successMeter, 0 ,fishingTime);
             fishOMeterUI.successBar.fillAmount = successMeter / fishingTime;
+            eventsBroker.Publish(new AnimationBlendEvent(BendAnimationName, successMeter));
         }
 
         private void UpdateFishPosition()
@@ -217,7 +210,7 @@ namespace Player
                 minimumFishZone,
                 maximumFishZone);
             
-            eventsBroker.Publish(new AnimationBlendEvent(fishPositionCenterPoint));
+            eventsBroker.Publish(new AnimationBlendEvent(TiltAnimationName, fishPositionCenterPoint));
             eventsBroker.Publish(new UpdateFishUIPositionEvent(fishPositionCenterPoint));
         }
         

@@ -25,7 +25,7 @@ namespace Player
         
         private void BlendAnimation(AnimationBlendEvent eventRef)
         {
-            animator.SetFloat("Blend", eventRef.blendValue);
+            animator.SetFloat(eventRef.blendName, eventRef.blendValue);
         }
     }
 }
