@@ -3,6 +3,7 @@ using System.Collections;
 using Items;
 using LootBoxes;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -24,12 +25,7 @@ namespace UI
         public IEnumerator CloseBox()
         {
             var animator = currentLootBox.GetComponent<Animator>();
-            var length = animator.GetAnimatorTransitionInfo(0).duration + animator.GetNextAnimatorStateInfo(0).length;
-            yield return new WaitForSeconds(length);
-            while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Opened"))
-            {
-                yield return null;
-            }
+            yield return new WaitForSeconds(2f);
             itemSlot.FadeIn();
             yield return new WaitForSeconds(5f);
             animator.SetBool("Open", false);
