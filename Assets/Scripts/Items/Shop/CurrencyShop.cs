@@ -1,6 +1,8 @@
+using System;
 using EventManagement;
 using Events;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Items.Shop
 {
@@ -17,23 +19,40 @@ namespace Items.Shop
         private bool affordable;
         
         private IMessageHandler eventsBroker;
+        private Button button;
 
         private void Start()
         {
             eventsBroker = FindObjectOfType<EventsBroker>();
-            
-            eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
-            eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            if (!costsGold && !costsRealMoney)
+            {
+                eventsBroker.SubscribeTo<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
+                eventsBroker.Publish(new RequestSilverData());  
+            }
+                
+            else if (costsGold && !costsRealMoney)
+            {
+                eventsBroker.SubscribeTo<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+                eventsBroker.Publish(new RequestGoldData());
+            }
+        }
+        
+        private void SetInteractableState()
+        {
+            button ??= GetComponent<Button>();
+            button.interactable = affordable;
         }
         
         private void ComparePriceAndOwnedGold(UpdateGoldUIEvent eventRef)
         {
             affordable = price <= eventRef.Gold;
+            SetInteractableState();
         }
 
         private void ComparePriceAndOwnedSilver(UpdateSilverUIEvent eventRef)
         {
             affordable = price <= eventRef.Silver;
+            SetInteractableState();
         }
 
         public void Buy()
@@ -47,7 +66,8 @@ namespace Items.Shop
             {
                 eventsBroker.Publish(new RequestSilverData());    
                 
-                if (CheckAffordability()) return;
+                if (CheckAffordability()) 
+                    return;
                 eventsBroker.Publish(new DecreaseSilverEvent((int)price));
                 GiveCurrency();
             }
@@ -55,7 +75,8 @@ namespace Items.Shop
             {
                 eventsBroker.Publish(new RequestGoldData());    
                 
-                if (CheckAffordability()) return;
+                if (CheckAffordability()) 
+                    return;
                 eventsBroker.Publish(new DecreaseGoldEvent((int)price));
                 GiveCurrency();
             }
@@ -70,6 +91,12 @@ namespace Items.Shop
             }
 
             return false;
+        }
+
+        private void OnDestroy()
+        {
+            eventsBroker?.UnsubscribeFrom<UpdateGoldUIEvent>(ComparePriceAndOwnedGold);
+            eventsBroker?.UnsubscribeFrom<UpdateSilverUIEvent>(ComparePriceAndOwnedSilver);
         }
 
         private void GiveCurrency()
