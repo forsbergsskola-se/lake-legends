@@ -113,7 +113,7 @@ namespace Fusion
                     currentGearInstanceIDs.Add(eventRef.gearInstance.ID);
                     currentGearInstanceEquipmentTypes.Add(eventRef.gearInstance.EquipmentType);
                     
-                    item.gearInstance = eventRef.gearInstance;
+                    item.Setup(eventRef.gearInstance);
                     currentNumberOfItems++;
                     break;
                 }
@@ -125,7 +125,7 @@ namespace Fusion
         {
             this.gameObject.SetActive(true);
             currentGearInstanceIDs.Add(eventRef.gearInstance.ID);
-            upgradeSlot.gearInstance = eventRef.gearInstance;
+            upgradeSlot.Setup(eventRef.gearInstance);
             costText.text = costText.text.Replace("[Cost]", upgradeSlot.gearInstance.GetFusionCost().ToString());
             FindObjectOfType<ItemInspectionArea>(true).gameObject.SetActive(false);
             eventBroker.Publish(new RequestSilverData());
@@ -185,7 +185,7 @@ namespace Fusion
                 if (currentGearInstanceIDs.Contains(item.gearInstance.ID))
                     currentGearInstanceIDs.Remove(item.gearInstance.ID);
                 item.gearInstance = null;
-                item.ClearName();
+                item.ResetImages();
             }
             
             currentNumberOfItems = 0;

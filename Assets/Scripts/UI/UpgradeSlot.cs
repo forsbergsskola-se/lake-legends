@@ -30,6 +30,7 @@ namespace UI
         
         public override void Setup(IItem item, bool hasCaught = true)
         {
+            gearInstance = item as GearInstance;
             Item = item;
             ApplyImages();
         }
