@@ -198,7 +198,7 @@ namespace Player
             }
             successMeter = Mathf.Clamp(successMeter, 0 ,fishingTime);
             fishOMeterUI.successBar.fillAmount = successMeter / fishingTime;
-            eventsBroker.Publish(new AnimationBlendEvent(BendAnimationName, successMeter));
+            eventsBroker.Publish(new AnimationBlendEvent(BendAnimationName, successMeter / fishingTime));
         }
 
         private void UpdateFishPosition()
