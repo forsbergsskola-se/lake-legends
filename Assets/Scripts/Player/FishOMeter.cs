@@ -25,9 +25,18 @@ namespace Player
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
+        
+        [Header("Sound Related")]
         [SerializeField] private string loseFishSound = "LoseFishSound";
         [SerializeField] private string catchFishSound = "CatchFishSound";
 
+        [Header("Animation Related")]
+        [SerializeField] private string IdleAnimation = "Idle";
+        [SerializeField] private string InZoneAnimation = "InZone";
+        [SerializeField] private string LeftOfZoneAnimation = "LeftOfZone";
+        [SerializeField] private string RightOfZoneAnimation = "RightOfZone";
+        
+        
         const int treasureChanceMaxValue = 101;
         [SerializeField] [Range(0,100)] private int treasureChance;
 
@@ -177,17 +186,17 @@ namespace Player
             {
                 successMeter += Time.deltaTime;
                 eventsBroker.Publish(new InFishOMeterZone(true));
-                eventsBroker.Publish(new AnimationTriggerEvent("InZone"));
+                eventsBroker.Publish(new AnimationTriggerEvent(InZoneAnimation));
             }
             else
             {
                 if (fishPositionCenterPoint <= captureZonePosition + DivideByTwo(captureZoneWidth))
                 {
-                    eventsBroker.Publish(new AnimationTriggerEvent("LeftOfZone"));
+                    eventsBroker.Publish(new AnimationTriggerEvent(LeftOfZoneAnimation));
                 }
                 else if (fishPositionCenterPoint >= captureZonePosition - DivideByTwo(captureZoneWidth))
                 {
-                    eventsBroker.Publish(new AnimationTriggerEvent("RightOfZone"));
+                    eventsBroker.Publish(new AnimationTriggerEvent(RightOfZoneAnimation));
                 }
 
                 var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
@@ -280,6 +289,7 @@ namespace Player
             gameEndUI.catchable = this.catchable;
             
             eventsBroker.Publish(new EndFishOMeterEvent(catchable));
+            eventsBroker.Publish(new AnimationTriggerEvent(IdleAnimation));
             fishOMeterMinigamePanel.SetActive(false);
         }
 
