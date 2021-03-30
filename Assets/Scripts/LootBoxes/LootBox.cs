@@ -3,7 +3,6 @@ using System.Linq;
 using EventManagement;
 using Events;
 using Items;
-using Items.CurrencyItems;
 using Items.Gear;
 using PlayerData;
 using UnityEngine;
@@ -16,6 +15,7 @@ namespace LootBoxes
     {
         [SerializeField] private string itemID;
         [SerializeField] private Sprite sprite;
+        [SerializeField] private Rarity rarity;
         public ScriptableObject[] loot;
         public float[] weights;
         
@@ -60,7 +60,7 @@ namespace LootBoxes
             itemID = Guid.NewGuid().ToString();
         }
 
-        public Rarity Rarity => null;
+        public Rarity Rarity => rarity;
 
         public void Use()
         {

@@ -16,6 +16,8 @@ namespace Items
         int RarityValue { get; }
         
         Rarity Rarity { get; }
+        
+        Sprite Sprite { get; }
 
         void Use();
     }

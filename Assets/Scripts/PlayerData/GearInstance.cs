@@ -85,6 +85,7 @@ namespace PlayerData
         [JsonIgnore] public int Level => GearSaveData.GearLevel.Level;
         [JsonIgnore] public int RarityValue => Equipment.RarityValue;
         [JsonIgnore] public Rarity Rarity => Equipment.Rarity;
+        public Sprite Sprite => Equipment.Sprite;
 
         public void UpgradeRarity()
         {

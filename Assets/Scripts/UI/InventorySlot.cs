@@ -15,7 +15,6 @@ namespace UI
     {
         public bool opened;
         Color defaultColor = Color.white;
-        [SerializeField] Image slotImage;
         [SerializeField] Image highlightImage;
 
         private GearInstance gear;
@@ -28,7 +27,6 @@ namespace UI
         public override void Setup(IItem item, bool hasCaught = true)
         {
             Item = item;
-            GetComponentInChildren<Text>().text = item.Name;
             if (Item is IEquippable equippable)
             {
                 equippable.Equipped += OnEquippedItem;
@@ -42,11 +40,12 @@ namespace UI
             {
                 sellable.Sold += OnItemSold;
             }
+            ApplyImages();
         }
         
         private void OnOpened()
         {
-            GetComponentInChildren<Text>().text = "{Empty}";
+            //GetComponentInChildren<Text>().text = "{Empty}";
             ClearInspectionArea();
             opened = true;
             Item = null;
@@ -59,7 +58,7 @@ namespace UI
                 equippable.Equipped -= OnEquippedItem;
                 equippable.UnEquipped -= OnUnEquippedItem;
             }
-            GetComponentInChildren<Text>().text = "{Empty}";
+            //GetComponentInChildren<Text>().text = "{Empty}";
 
             var sellable = Item as ISellable;
             Item = null;
@@ -70,13 +69,11 @@ namespace UI
         private void OnUnEquippedItem()
         {
             ClearInspectionArea();
-            slotImage.color = defaultColor;
         }
 
         private void OnEquippedItem()
         {
             ClearInspectionArea();
-            slotImage.color = Color.green;
         }
         
         private void OnPlaceInUpgradeItem()

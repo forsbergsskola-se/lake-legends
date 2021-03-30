@@ -8,9 +8,11 @@ namespace Items.CurrencyItems
     [CreateAssetMenu(menuName = "ScriptableObjects/Currency")]
     public class CurrencySo : ScriptableObject, IItem
     {
+        [SerializeField] private Sprite sprite;
         [SerializeField] private int amount;
         [SerializeField] private string ItemID;
         [SerializeField] private CurrencyType currencyType;
+        [SerializeField] private Rarity rarity;
         public string ID {
             get
             {
@@ -32,7 +34,8 @@ namespace Items.CurrencyItems
 
         public string Name => name;
         public int RarityValue => 0;
-        public Rarity Rarity => null;
+        public Sprite Sprite => sprite;
+        public Rarity Rarity => rarity;
         public int Amount => amount;
         public CurrencyType CurrencyType => currencyType;
         public void Use()

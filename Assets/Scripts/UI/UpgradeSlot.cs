@@ -31,7 +31,7 @@ namespace UI
         public override void Setup(IItem item, bool hasCaught = true)
         {
             Item = item;
-            GetComponentInChildren<Text>().text = item.Name;
+            ApplyImages();
         }
 
         private void OnUpgrade()
