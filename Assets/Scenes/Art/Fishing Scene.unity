@@ -515,7 +515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.438
+      value: 19.39
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -523,15 +523,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.172
+      value: 3.954
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9975641
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.06975647
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalRotation.y
@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2229457862974517661, guid: e0d64d8b48920b24ea2e5c947ac78dc5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -15597,6 +15597,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 576808524631562087, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.685501
+      objectReference: {fileID: 0}
+    - target: {fileID: 576808525080519844, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.518188
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093960420499850490, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.518188
+      objectReference: {fileID: 0}
     - target: {fileID: 3940818767411511370, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_Name
       value: FishingHUD
@@ -15693,6 +15705,14 @@ PrefabInstance:
       propertyPath: floatNibbleOrBite
       value: 
       objectReference: {fileID: 797884784743303361}
+    - target: {fileID: 4937550514941203013, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.518188
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140509778323186538, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.518188
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
 --- !u!1 &9213294989042136240 stripped

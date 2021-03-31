@@ -1,8 +1,29 @@
 fileFormatVersion: 2
-guid: 992da7454257fe74ba8e5730ea6d6f4a
+guid: 3d09f618b54b5154ba757cd0fcf3e6ca
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4781951162920444690
+    second: Armature|ArmatureAction
+  - first:
+      74: -1422011007694221501
+    second: Armature|ArmatureAction.001
+  - first:
+      74: 6093225430303232669
+    second: Armature|ArmatureAction.002
+  - first:
+      74: 4419341551624498096
+    second: Armature|ArmatureAction.003
+  - first:
+      74: 6221187890141279125
+    second: Armature|ArmatureAction.004
+  - first:
+      74: -4713758405279828350
+    second: Armature|BezierCurve.002Action
+  - first:
+      74: 743219869138854927
+    second: Armature|BezierCurve.002Action.001
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -92,7 +113,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
