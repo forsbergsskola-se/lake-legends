@@ -759,9 +759,17 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: musicTracks.Array.data[0].volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
       propertyPath: sfxSounds.Array.data[0].audioClip
       value: 
       objectReference: {fileID: 8300000, guid: f0849fe80e3e9774689dc0889dec09cf, type: 3}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: ambiantSounds.Array.data[0].volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
       propertyPath: sfxSounds.Array.data[1].scenesToPlayIn.Array.size
       value: 5
