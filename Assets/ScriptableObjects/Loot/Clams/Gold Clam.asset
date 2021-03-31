@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 233b23d7fc4694c40aa68beb6ac2e378, type: 3}
-  m_Name: Clam 1
+  m_Name: Gold Clam
   m_EditorClassIdentifier: 
-  itemID: 14a4ac53-8194-4965-aab3-d3175d75ac21
+  itemID: c725a859-5576-4968-b14b-373ba3fb9736
   sprite: {fileID: 21300000, guid: b459f3f3e20bdc6449ac84f8bdf99af0, type: 3}
-  rarity: {fileID: 11400000, guid: 5b3f4a1547683cb40aebff8ce4d898ca, type: 2}
+  rarity: {fileID: 11400000, guid: cb025a08c77ba884584a791bfc92a41e, type: 2}
   loot:
-  - {fileID: 11400000, guid: f3734860747ac6b4f9063e606f2eb7fc, type: 2}
   - {fileID: 11400000, guid: f7fa6d635f519ad498e67a687d16ffc4, type: 2}
+  - {fileID: 11400000, guid: f91a45a7ced2a3c4eb3b1469ff66fc08, type: 2}
   weights:
-  - 90
-  - 10
+  - 75
+  - 25
   randomStopTimeRange:
     min: 0.5
     max: 2
