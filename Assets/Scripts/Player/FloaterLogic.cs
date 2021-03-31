@@ -48,8 +48,8 @@ namespace Player
 
         private void OnDestroy()
         {
-            eventsBroker.UnsubscribeFrom<EndFishOMeterEvent>(OnEndFishing);
-            eventsBroker.UnsubscribeFrom<StartFishOMeterEvent>(OnStartFishing);
+            eventsBroker?.UnsubscribeFrom<EndFishOMeterEvent>(OnEndFishing);
+            eventsBroker?.UnsubscribeFrom<StartFishOMeterEvent>(OnStartFishing);
         }
     }
 }
