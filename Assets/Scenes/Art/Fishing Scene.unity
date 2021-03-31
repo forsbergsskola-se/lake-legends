@@ -15905,11 +15905,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3940818768839629051, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
   m_PrefabInstance: {fileID: 9213294989042136239}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9213294989042136282 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8847441309240569496, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
-  m_PrefabInstance: {fileID: 9213294989042136239}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9213294989042136283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16450,19 +16445,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9213294989042136281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db356c859b42403290ae5b5873931efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventName: ButtonClickSound
---- !u!114 &9213294989042136325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9213294989042136282}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db356c859b42403290ae5b5873931efc, type: 3}
