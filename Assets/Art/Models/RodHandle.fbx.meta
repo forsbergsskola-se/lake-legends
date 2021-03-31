@@ -3,7 +3,27 @@ guid: 645994eda8a4b7b4588dd8ca93c7ad3c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cork
+    second: {fileID: 2100000, guid: 91a856ba879f9a6408aea86c17a447ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodColor
+    second: {fileID: 2100000, guid: 47520a5469375c44986a172dea455f79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodColorShadow
+    second: {fileID: 2100000, guid: 46af7e5d6d5139f45a264c52050d3f2c, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Cork_Texture
+    second: {fileID: 2800000, guid: 175de174ce3f0204491e01d2f5acdb49, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
