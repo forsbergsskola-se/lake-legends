@@ -45,6 +45,21 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 20
   price: 5
+--- !u!114 &4784842186876995742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276485724548736026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 20
+  price: 5
 --- !u!114 &6535986716557754506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,37 +105,22 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 20
   price: 5
---- !u!114 &8322416287175839955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276485724548736026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 20
-  price: 5
---- !u!114 &4784842186876995742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276485724548736026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 20
-  price: 5
 --- !u!114 &7385020170139932295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276485724548736026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 20
+  price: 5
+--- !u!114 &8322416287175839955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,7 +361,6 @@ GameObject:
   - component: {fileID: 1583006725306635494}
   - component: {fileID: 1583006725306635495}
   - component: {fileID: 3861485730206342335}
-  - component: {fileID: 7752197428442348022}
   m_Layer: 5
   m_Name: Market
   m_TagString: Untagged
@@ -442,18 +441,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55fd2b673dc57fc4298cdd7aa0e302f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7752197428442348022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583006725306635481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29961341728d01d44976dce2eb8b854e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1583006725599181215
@@ -663,6 +650,21 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 80
   price: 10
+--- !u!114 &2821874429115864575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799656986416095005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 80
+  price: 10
 --- !u!114 &4908517414316016332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,21 +695,6 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 80
   price: 10
---- !u!114 &2821874429115864575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799656986416095005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 80
-  price: 10
 --- !u!114 &7533190407065281168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +711,21 @@ MonoBehaviour:
   baitToBuy: 80
   price: 10
 --- !u!114 &429333435967524750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328563813797104270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 50
+  price: 7
+--- !u!114 &1912586240019079157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -783,6 +785,21 @@ MonoBehaviour:
   costsGold: 1
   baitToBuy: 50
   price: 7
+--- !u!114 &7435964480163619212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328563813797104270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costsGold: 1
+  baitToBuy: 50
+  price: 7
 --- !u!114 &7456269266886687652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,36 +831,6 @@ MonoBehaviour:
   baitToBuy: 50
   price: 7
 --- !u!114 &8176170157898326391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328563813797104270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 50
-  price: 7
---- !u!114 &7435964480163619212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328563813797104270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e847fb20107ba4ca0d310fe12a59ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costsGold: 1
-  baitToBuy: 50
-  price: 7
---- !u!114 &1912586240019079157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1956,19 +1943,14 @@ PrefabInstance:
     - {fileID: 8135607197765488075, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
     - {fileID: 1622830907447927647, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
+--- !u!1 &1799656986416095005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3426465941954274922, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
+  m_PrefabInstance: {fileID: 3996077018147535223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7328563813797104270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5962945221168837625, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
-  m_PrefabInstance: {fileID: 3996077018147535223}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4523070195820106920 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 698557673595645407, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
-  m_PrefabInstance: {fileID: 3996077018147535223}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &276485724548736026 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3792783695446318445, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
   m_PrefabInstance: {fileID: 3996077018147535223}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &4523070195820106923 stripped
@@ -1976,9 +1958,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 698557673595645404, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
   m_PrefabInstance: {fileID: 3996077018147535223}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1799656986416095005 stripped
+--- !u!1 &276485724548736026 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3426465941954274922, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3792783695446318445, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
+  m_PrefabInstance: {fileID: 3996077018147535223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4523070195820106920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 698557673595645407, guid: e152a1142e66e074785c29d42892ccb4, type: 3}
   m_PrefabInstance: {fileID: 3996077018147535223}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9173931597586451993
