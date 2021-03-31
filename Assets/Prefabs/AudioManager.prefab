@@ -488,3 +488,12 @@ MonoBehaviour:
     scenesToPlayIn:
     - Fishing Scene
     - Hub
+  - eventName: OpenClamSound
+    audioClip: {fileID: 8300000, guid: 03a9302063f7fc449989af4348313988, type: 3}
+    outputAudioSource: {fileID: 4496861215658013869}
+    volume: 1
+    loop: 0
+    playOnSceneChange: 0
+    scenesToPlayIn:
+    - Fishing Scene
+    - Hub
