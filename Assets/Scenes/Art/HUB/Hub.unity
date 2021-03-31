@@ -15858,7 +15858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7561341507013394706, guid: 9ddb66eb7a2266d4dae890996a5fc231, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -393.547
+      value: -393.54547
       objectReference: {fileID: 0}
     - target: {fileID: 7561341507037280116, guid: 9ddb66eb7a2266d4dae890996a5fc231, type: 3}
       propertyPath: m_IsActive
@@ -16397,7 +16397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db356c859b42403290ae5b5873931efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: ButtonClickSound
+  eventName: ItemUpgradedSound
 --- !u!114 &2131254428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16423,7 +16423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db356c859b42403290ae5b5873931efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: ButtonClickSound
+  eventName: ItemUpgradedSound
 --- !u!114 &2131254430
 MonoBehaviour:
   m_ObjectHideFlags: 0
