@@ -14,13 +14,14 @@ namespace UI
         [SerializeField] private LootBoxItemSlot itemSlot;
         [SerializeField] private LootBoxGoDictionary Dictionary;
         [SerializeField] private LootBoxStringDictionary soundEvents;
+        [SerializeField] private LootBoxColorDictionary textColors;
         private GameObject currentGameObject;
         private LootBox currentLootBox;
         public void StartOpening(LootBox lootBox, IItem item)
         {
             currentLootBox = lootBox;
             gameObject.SetActive(true);
-            itemSlot.Setup(item);
+            itemSlot.Setup(item, textColors[currentLootBox]);
             currentGameObject = Dictionary[currentLootBox];
             currentGameObject.SetActive(true);
             currentGameObject.GetComponent<Animator>().SetBool("Open", true);
@@ -62,6 +63,12 @@ namespace UI
     
     [Serializable]
     public class LootBoxStringDictionary : SerializableDictionary<LootBox, string>
+    {
+        
+    }
+
+    [Serializable]
+    public class LootBoxColorDictionary : SerializableDictionary<LootBox, Color>
     {
         
     }

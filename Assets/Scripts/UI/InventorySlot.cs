@@ -5,6 +5,7 @@ using Events;
 using Items;
 using Items.Gear;
 using PlayerData;
+using Sacrifice;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,7 +16,9 @@ namespace UI
     {
         public bool opened;
         Color defaultColor = Color.white;
+        Color equippedColor = Color.green;
         [SerializeField] Image highlightImage;
+        [SerializeField] private GameObject equippedImage;
 
         private GearInstance gear;
         private static bool _sacrificeIsOpen;
@@ -70,11 +73,13 @@ namespace UI
         private void OnUnEquippedItem()
         {
             ClearInspectionArea();
+            equippedImage.SetActive(false);
         }
 
         private void OnEquippedItem()
         {
             ClearInspectionArea();
+            equippedImage.SetActive(true);
         }
         
         private void OnPlaceInUpgradeItem()
@@ -121,19 +126,24 @@ namespace UI
             var callBacks = new Dictionary<string, Callback>();
             if (Item is IEquippable equippable)
             {
-                if (equippable.IsEquipped)
-                    delegates.Add("Unequip", equippable.Unequip);
-                else 
-                    delegates.Add("Equip", equippable.Equip);
+                if (!(_panelIsOpen))
+                {
+                    if (equippable.IsEquipped)
+                        delegates.Add("Unequip", equippable.Unequip);
+                    else
+                        delegates.Add("Equip", equippable.Equip);
+                }
             }
             if (Item is ISellable sellable)
             {
-                var canSell = true; 
+                var canSell = true;
+                var isEquipped = false;
                 if (Item is GearInstance gearInstance)
                 {
                     canSell = !(_fusionInformation != null && gearInstance == _fusionInformation.GearInstance);
+                    isEquipped = gearInstance.IsEquipped;
                 }
-                if (canSell)
+                if (canSell && !isEquipped)
                     delegates.Add("Sell", sellable.Sell);
             }
             if (Item is IOpenable openable)
@@ -148,16 +158,27 @@ namespace UI
 
                 if (_panelIsOpen)
                 {
-                    if (_sacrificeIsOpen && _fusionInformation?.GearInstance != gear)
+                    if (_sacrificeIsOpen && _fusionInformation?.GearInstance != gear && !gear.IsEquipped)
                     {
                         delegates.Add("Sacrifice", gear.AddToSacrificeArea);
                     }
                     else if (_fusionInformation != null && _fusionInformation.FusionIsOpen 
                                                         && gear.EquipmentType == _fusionInformation.EquipmentType
                                                         && gear.RarityValue == _fusionInformation.RarityValue 
-                                                        && gear != _fusionInformation.GearInstance) 
+                                                        && gear != _fusionInformation.GearInstance
+                                                        && !gear.IsEquipped) 
                     {
                         delegates.Add("Add", gear.AddToFuseSlotArea);
+                    }
+
+                    if (_sacrificeIsOpen)
+                    {
+                        //delegates.Add("Close Upgrade", () => FindObjectOfType<Sacrificer>().Close());
+                    }
+
+                    if (_fusionInformation != null && _fusionInformation.FusionIsOpen)
+                    {
+                        //delegates.Add("Close Fusion", () => FindObjectOfType<Fusion.Fusion>().Close());
                     }
                 }
                 else
