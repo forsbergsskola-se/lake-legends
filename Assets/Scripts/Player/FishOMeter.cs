@@ -19,9 +19,7 @@ namespace Player
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
         [SerializeField] private float fishLeftSpeed = 0.3f;
         [SerializeField] private float fishRightSpeed = 1.3f;
-        [SerializeField] private Animator rodAnimator;
         [SerializeField] private Factory factory;
-        [SerializeField] private LootBox lootBox;
         [SerializeField] private FishOMeterUI fishOMeterUI;
         [SerializeField] private GameEndUI gameEndUI;
         [SerializeField] private GameObject fishOMeterMinigamePanel;
@@ -35,6 +33,7 @@ namespace Player
         [SerializeField] private string CatchAnimation = "Catch";
         [SerializeField] private string BendAnimationName = "Bend";
         [SerializeField] private string TiltAnimationName = "Tilt";
+        [SerializeField] private string HookedAnimationName = "Hooked";
         
         
         const int treasureChanceMaxValue = 101;
@@ -138,6 +137,7 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
+            eventsBroker.Publish(new AnimationTriggerEvent(HookedAnimationName));
             successMeter = startingSuccessMeter;
 
             catchable = /*IsTreasureCatch() ?  lootBox :*/ factory.GenerateFish(Attraction);
