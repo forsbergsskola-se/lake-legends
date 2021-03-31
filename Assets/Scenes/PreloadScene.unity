@@ -734,5 +734,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[5].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[6].volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
