@@ -173,12 +173,12 @@ namespace UI
 
                     if (_sacrificeIsOpen)
                     {
-                        //delegates.Add("Close Upgrade", () => FindObjectOfType<Sacrificer>().Close());
+                        delegates.Add("Close Upgrade", () => FindObjectOfType<Sacrificer>().Close());
                     }
 
                     if (_fusionInformation != null && _fusionInformation.FusionIsOpen)
                     {
-                        //delegates.Add("Close Fusion", () => FindObjectOfType<Fusion.Fusion>().Close());
+                        delegates.Add("Close Fusion", () => FindObjectOfType<Fusion.Fusion>().Close());
                     }
                 }
                 else
