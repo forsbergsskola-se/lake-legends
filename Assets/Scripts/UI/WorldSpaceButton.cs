@@ -11,7 +11,7 @@ namespace UI
     
         private void OnMouseDown()
         {
-            if(!EventSystem.current.IsPointerOverGameObject())
+            if (MenuPanel.AllAreClosed)
                 onRelease.Invoke();
         }
     }
