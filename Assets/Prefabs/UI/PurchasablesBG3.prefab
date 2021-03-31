@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05, y: 0.1}
   m_AnchorMax: {x: 0.95, y: 0.75}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: -37.5}
+  m_SizeDelta: {x: -0.00012207031, y: -75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5619831292971021723
 MonoBehaviour:
@@ -238,6 +238,7 @@ MonoBehaviour:
   amount: 100
   givesSilver: 1
   costsGold: 1
+  costsRealMoney: 0
   price: 100
 --- !u!1 &6108145592786730440
 GameObject:
@@ -333,6 +334,7 @@ MonoBehaviour:
   amount: 1000
   givesSilver: 1
   costsGold: 1
+  costsRealMoney: 0
   price: 1000
 --- !u!114 &7372497693475866040
 MonoBehaviour:
@@ -349,6 +351,7 @@ MonoBehaviour:
   amount: 10
   givesSilver: 1
   costsGold: 1
+  costsRealMoney: 0
   price: 10
 --- !u!1 &7419586325010223634
 GameObject:
