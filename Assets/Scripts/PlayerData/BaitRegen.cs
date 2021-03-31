@@ -35,8 +35,8 @@ namespace PlayerData
             var remainder = amount % 1;
             var secondsPassed = remainder * secondsToRegenOneBait;
             var baitAmount = (int)amount;
-            currentSecondsPassed = secondsPassed;
-            eventBroker.Publish(new IncreaseBaitEvent(baitAmount));
+            currentSecondsPassed += secondsPassed;
+            eventBroker.Publish(new IncreaseBaitEvent(baitAmount, false));
         }
 
         private IEnumerator Timer(float interval)
@@ -47,7 +47,7 @@ namespace PlayerData
                 currentSecondsPassed += interval;
                 if (currentSecondsPassed >= secondsToRegenOneBait)
                 {
-                    eventBroker.Publish(new IncreaseBaitEvent(1));
+                    eventBroker.Publish(new IncreaseBaitEvent(1, false));
                     currentSecondsPassed -= secondsToRegenOneBait;
                 }
             }

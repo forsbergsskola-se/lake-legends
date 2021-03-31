@@ -23,7 +23,13 @@ namespace PlayerData
             this.messageHandler.SubscribeTo<DecreaseSilverEvent>(silverEvent => Silver -= silverEvent.Silver);
             this.messageHandler.SubscribeTo<IncreaseGoldEvent>(goldEvent => Gold += goldEvent.Gold);
             this.messageHandler.SubscribeTo<DecreaseGoldEvent>(goldEvent => Gold -= goldEvent.Gold);
-            this.messageHandler.SubscribeTo<IncreaseBaitEvent>(baitEvent => Bait += baitEvent.Bait);
+            this.messageHandler.SubscribeTo<IncreaseBaitEvent>(baitEvent =>
+            {
+                if (baitEvent.IsPremium)
+                    Bait += baitEvent.Bait;
+                else
+                    AddRegenBait(baitEvent.Bait);
+            });
             this.messageHandler.SubscribeTo<DecreaseBaitEvent>(baitEvent => Bait -= baitEvent.Bait);
         }
 
@@ -49,12 +55,17 @@ namespace PlayerData
             }
         }
 
+        private void AddRegenBait(int amount)
+        {
+            Bait += Mathf.Clamp(amount, 0, Mathf.Clamp(MaxBait - Bait, 0, maxBait));
+        }
+
         public int Bait
         {
             get => bait;
             private set
             {
-                bait = Mathf.Clamp(value, 0, MaxBait);
+                bait = Mathf.Clamp(value, 0, int.MaxValue);
                 messageHandler.Publish(new UpdateBaitUIEvent(bait, MaxBait));
                 Serialize();
             }

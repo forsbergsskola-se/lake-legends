@@ -48,7 +48,7 @@ namespace Items.CurrencyItems
                     FindObjectOfType<EventsBroker>().Publish(new IncreaseGoldEvent(Amount));
                     break;
                 case CurrencyType.Bait:
-                    FindObjectOfType<EventsBroker>().Publish(new IncreaseBaitEvent(Amount));
+                    FindObjectOfType<EventsBroker>().Publish(new IncreaseBaitEvent(Amount, true));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
