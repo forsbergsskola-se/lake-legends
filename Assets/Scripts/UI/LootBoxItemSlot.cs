@@ -18,6 +18,14 @@ namespace UI
             text.text = "";
             ApplyImages();
         }
+        
+        public void Setup(IItem item, Color textColor)
+        {
+            Item = item;
+            text.color = textColor;
+            text.text = "";
+            ApplyImages();
+        }
 
         public void FadeIn()
         {
