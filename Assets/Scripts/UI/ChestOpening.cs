@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using EventManagement;
+using Events;
 using Items;
 using LootBoxes;
 using UnityEngine;
@@ -11,21 +13,28 @@ namespace UI
     {
         [SerializeField] private LootBoxItemSlot itemSlot;
         [SerializeField] private LootBoxGoDictionary Dictionary;
-        private GameObject currentLootBox;
+        [SerializeField] private LootBoxStringDictionary soundEvents;
+        private GameObject currentGameObject;
+        private LootBox currentLootBox;
         public void StartOpening(LootBox lootBox, IItem item)
         {
+            currentLootBox = lootBox;
             gameObject.SetActive(true);
             itemSlot.Setup(item);
-            currentLootBox = Dictionary[lootBox];
-            currentLootBox.SetActive(true);
-            currentLootBox.GetComponent<Animator>().SetBool("Open", true);
+            currentGameObject = Dictionary[currentLootBox];
+            currentGameObject.SetActive(true);
+            currentGameObject.GetComponent<Animator>().SetBool("Open", true);
             StartCoroutine(CloseBox());
         }
 
         public IEnumerator CloseBox()
         {
-            var animator = currentLootBox.GetComponent<Animator>();
+            var animator = currentGameObject.GetComponent<Animator>();
             yield return new WaitForSeconds(2f);
+            if (soundEvents.TryGetValue(currentLootBox, out var value))
+            {
+                FindObjectOfType<EventsBroker>().Publish(new PlaySoundEvent(SoundType.Sfx, value));
+            }
             itemSlot.FadeIn();
             yield return new WaitForSeconds(5f);
             animator.SetBool("Open", false);
@@ -40,13 +49,19 @@ namespace UI
 
         public void StopOpening()
         {
-            currentLootBox.SetActive(false);
+            currentGameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
 
     [Serializable]
     public class LootBoxGoDictionary : SerializableDictionary<LootBox, GameObject>
+    {
+        
+    }
+    
+    [Serializable]
+    public class LootBoxStringDictionary : SerializableDictionary<LootBox, string>
     {
         
     }
