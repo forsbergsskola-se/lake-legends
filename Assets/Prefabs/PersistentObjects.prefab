@@ -211,31 +211,87 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
       propertyPath: sfxSounds.Array.size
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
-      propertyPath: sfxSounds.Array.data[4].volume
+      propertyPath: sfxSounds.Array.data[1].volume
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[2].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[5].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[6].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 92e90149027a1e24e9b9740481aa9bde, type: 3}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[1].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ec28c44a6da4344187df760b7bd8908, type: 3}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
       propertyPath: sfxSounds.Array.data[4].audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: dcbd94650218cbb4cbb772c5843db30f, type: 3}
+      objectReference: {fileID: 8300000, guid: 013ebe443d068084b9d400141d22b676, type: 3}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
-      propertyPath: sfxSounds.Array.data[4].eventName
-      value: ItemUpgradedSound
+      propertyPath: sfxSounds.Array.data[5].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f2abb465e7103d4fa41f17915e4b640, type: 3}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[5].eventName
+      value: OpenTreasureSound
       objectReference: {fileID: 0}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
-      propertyPath: sfxSounds.Array.data[4].outputAudioSource
+      propertyPath: sfxSounds.Array.data[6].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 50fb8045edcb2e84d83a467f95fdcb6f, type: 3}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[6].eventName
+      value: SellItemSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: ambiantSounds.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e5dfde588578f2f41a7bff1863f44981, type: 3}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[5].outputAudioSource
       value: 
       objectReference: {fileID: 4297291640527212514}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
-      propertyPath: sfxSounds.Array.data[4].scenesToPlayIn.Array.size
-      value: 1
+      propertyPath: sfxSounds.Array.data[6].outputAudioSource
+      value: 
+      objectReference: {fileID: 4297291640527212514}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[5].scenesToPlayIn.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
-      propertyPath: sfxSounds.Array.data[4].scenesToPlayIn.Array.data[0]
-      value: MainScreen
+      propertyPath: sfxSounds.Array.data[6].scenesToPlayIn.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[5].scenesToPlayIn.Array.data[0]
+      value: Fishing Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[5].scenesToPlayIn.Array.data[1]
+      value: Hub
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[6].scenesToPlayIn.Array.data[0]
+      value: Fishing Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496861215703160302, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
+      propertyPath: sfxSounds.Array.data[6].scenesToPlayIn.Array.data[1]
+      value: Hub
       objectReference: {fileID: 0}
     - target: {fileID: 4496861215703160303, guid: 21907dba1a586974aa2e205a227dda94, type: 3}
       propertyPath: m_RootOrder
