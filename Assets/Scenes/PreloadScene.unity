@@ -734,13 +734,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 2156414906699620511, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: rewardAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[0].volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[1].volume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[2].volume
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
       propertyPath: sfxSounds.Array.data[5].volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
       propertyPath: sfxSounds.Array.data[6].volume
-      value: 1
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[1].scenesToPlayIn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[1].scenesToPlayIn.Array.data[1]
+      value: Fishing Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[1].scenesToPlayIn.Array.data[2]
+      value: Fishing Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[1].scenesToPlayIn.Array.data[3]
+      value: Fishing Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297291640568049313, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
+      propertyPath: sfxSounds.Array.data[1].scenesToPlayIn.Array.data[4]
+      value: Fishing Scene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b908663e7590ea4d9f095500457c187, type: 3}
