@@ -37,6 +37,16 @@ namespace UI
                 instance.GetComponent<Button>().onClick.AddListener(() => action.Value?.Method?.Invoke(action.Value.CallbackMethod));
             }
         }
+
+        public void Close()
+        {
+            gameObject.SetActive(false);
+            var inventoryUI = FindObjectOfType<InventoryUI>();
+            if (inventoryUI.selectedSlot != null)
+            {
+                inventoryUI.selectedSlot.UnSelect();
+            }
+        }
         
         // Reflection
         /*public void CreateButtons(IItem item, List<MethodInfo> methodInfos)

@@ -101,7 +101,7 @@ namespace UI
             GenerateButtons();
         }
 
-        void UnSelect()
+        public void UnSelect()
         {
             highlightImage.gameObject.SetActive(false);
         }
@@ -111,6 +111,7 @@ namespace UI
             var itemInspectionArea = FindObjectOfType<ItemInspectionArea>(true);
             itemInspectionArea.gameObject.SetActive(false);
             itemInspectionArea.Clear();
+            UnSelect();
         }
         
         public void GenerateButtons()
