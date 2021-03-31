@@ -438,7 +438,7 @@ MonoBehaviour:
   - eventName: Ambience
     audioClip: {fileID: 8300000, guid: f3355301b6d8e5948bd88a0c34efbcf2, type: 3}
     outputAudioSource: {fileID: 4496861215263339659}
-    volume: 1
+    volume: 0.5
     loop: 1
     playOnSceneChange: 1
     scenesToPlayIn:
@@ -446,7 +446,7 @@ MonoBehaviour:
     - Fishing Scene
   musicTracks:
   - eventName: MusicTrack1
-    audioClip: {fileID: 8300000, guid: 69558f1e68c3bbb4aa387ac2f7d5bc94, type: 3}
+    audioClip: {fileID: 8300000, guid: a50b9cf94d9f4ea46b2e9cffe9a91375, type: 3}
     outputAudioSource: {fileID: 4496861214669812061}
     volume: 0.5
     loop: 1
@@ -458,7 +458,7 @@ MonoBehaviour:
   - eventName: CastingSound
     audioClip: {fileID: 8300000, guid: b7fa4033e0a53304ca6483cb621efd39, type: 3}
     outputAudioSource: {fileID: 4496861215658013869}
-    volume: 1
+    volume: 0.5
     loop: 0
     playOnSceneChange: 0
     scenesToPlayIn:
@@ -466,7 +466,7 @@ MonoBehaviour:
   - eventName: LoseFishSound
     audioClip: {fileID: 8300000, guid: a54c6747142726e49a5a8a7029a3950b, type: 3}
     outputAudioSource: {fileID: 4496861215658013869}
-    volume: 0.5
+    volume: 1
     loop: 0
     playOnSceneChange: 0
     scenesToPlayIn:
@@ -474,7 +474,7 @@ MonoBehaviour:
   - eventName: CatchFishSound
     audioClip: {fileID: 8300000, guid: 3b40439de31b60a40be5c3c150db45d5, type: 3}
     outputAudioSource: {fileID: 4496861215658013869}
-    volume: 0.5
+    volume: 1
     loop: 0
     playOnSceneChange: 0
     scenesToPlayIn:
