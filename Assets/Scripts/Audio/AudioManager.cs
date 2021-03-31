@@ -80,7 +80,8 @@ namespace Audio
       private AudioSource SetupAudio(string audioClipName, List<AudioClipSettings> audioClipSetupList)
       {
          var audioClipSetup = audioClipSetupList.FirstOrDefault(music => music.eventName == audioClipName);
-         if(audioClipSetup == null) throw new Exception($"Audio clip {audioClipName} is missing.");
+         if (audioClipSetup == null)
+            return null;
          var audioSource = audioClipSetup.outputAudioSource;
          audioSource.clip = audioClipSetup.audioClip;
          audioSource.loop = audioClipSetup.loop;
@@ -102,6 +103,8 @@ namespace Audio
                audioClipSetting = ambiantSounds.FirstOrDefault(music => music.eventName == audioClipName);
             }
          }
+         if (audioClipSetting == null)
+            yield break;
          var audioSource = audioClipSetting.outputAudioSource;
          audioSource.clip = audioClipSetting.audioClip;
          audioSource.Play();
@@ -111,19 +114,22 @@ namespace Audio
       void PlayAmbianceSound(string audioClipName)
       {
          AmbienceAudioSource = SetupAudio(audioClipName, ambiantSounds);
-         AmbienceAudioSource.Play();
+         if (AmbienceAudioSource != null)
+             AmbienceAudioSource.Play();
       }
 
       void PlaySfxSound(string audioClipName)
       {
          SfxAudioSource = SetupAudio(audioClipName, sfxSounds);
-         SfxAudioSource.Play();
+         if (SfxAudioSource != null)
+             SfxAudioSource.Play();
       }
 
       void PlayMusicSound(string audioClipName)
       {
          MusicAudioSource = SetupAudio(audioClipName, musicTracks);
-         MusicAudioSource.Play();
+         if (MusicAudioSource != null)
+             MusicAudioSource.Play();
       }
 
       public void PlayClickSound()
