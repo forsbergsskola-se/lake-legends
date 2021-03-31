@@ -169,6 +169,7 @@ namespace PlayerData
         public void Sell()
         {
             var broker = Object.FindObjectOfType<EventsBroker>();
+            broker.Publish(new IncreaseSilverEvent(Equipment.SilverValue));
             broker.Publish(new PlaySoundEvent(SoundType.Sfx, "SellItemSound"));
             DestroyItem();
         }

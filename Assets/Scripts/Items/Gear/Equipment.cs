@@ -16,6 +16,7 @@ namespace Items.Gear
         [SerializeField] public FloatRange lineStrength = new FloatRange(22,28);
         [SerializeField] public FloatRange attraction = new FloatRange(22,28);
         [SerializeField] public FloatRange accuracy = new FloatRange(22,28);
+        [SerializeField] private int silverValue = 5;
         public float lineStrengthIncreasePerLevel = 1;
         public float attractionIncreasePerLevel = 1;
         public float accuracyIncreasePerLevel = 1;
@@ -41,6 +42,8 @@ namespace Items.Gear
         public int RarityValue => rarity.starAmount;
         public Rarity Rarity => rarity;
         public Sprite Sprite => sprite;
+
+        public int SilverValue => silverValue;
 
         public override string ToString()
         {
