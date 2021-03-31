@@ -436,7 +436,7 @@ MonoBehaviour:
   MusicAudioSource: {fileID: 4496861214669812061}
   ambiantSounds:
   - eventName: Ambience
-    audioClip: {fileID: 8300000, guid: f3355301b6d8e5948bd88a0c34efbcf2, type: 3}
+    audioClip: {fileID: 8300000, guid: e5dfde588578f2f41a7bff1863f44981, type: 3}
     outputAudioSource: {fileID: 4496861215263339659}
     volume: 0.5
     loop: 1
@@ -456,7 +456,7 @@ MonoBehaviour:
     - Fishing Scene
   sfxSounds:
   - eventName: CastingSound
-    audioClip: {fileID: 8300000, guid: b7fa4033e0a53304ca6483cb621efd39, type: 3}
+    audioClip: {fileID: 8300000, guid: 92e90149027a1e24e9b9740481aa9bde, type: 3}
     outputAudioSource: {fileID: 4496861215658013869}
     volume: 0.5
     loop: 0
@@ -464,9 +464,9 @@ MonoBehaviour:
     scenesToPlayIn:
     - Fishing Scene
   - eventName: LoseFishSound
-    audioClip: {fileID: 8300000, guid: a54c6747142726e49a5a8a7029a3950b, type: 3}
+    audioClip: {fileID: 8300000, guid: 8ec28c44a6da4344187df760b7bd8908, type: 3}
     outputAudioSource: {fileID: 4496861215658013869}
-    volume: 0.5
+    volume: 1
     loop: 0
     playOnSceneChange: 0
     scenesToPlayIn:
@@ -489,11 +489,37 @@ MonoBehaviour:
     - Fishing Scene
     - Hub
   - eventName: OpenClamSound
-    audioClip: {fileID: 8300000, guid: 03a9302063f7fc449989af4348313988, type: 3}
+    audioClip: {fileID: 8300000, guid: 013ebe443d068084b9d400141d22b676, type: 3}
     outputAudioSource: {fileID: 4496861215658013869}
     volume: 1
     loop: 0
     playOnSceneChange: 0
     scenesToPlayIn:
     - Fishing Scene
+    - Hub
+  - eventName: OpenTreasureSound
+    audioClip: {fileID: 8300000, guid: 9f2abb465e7103d4fa41f17915e4b640, type: 3}
+    outputAudioSource: {fileID: 4496861215658013869}
+    volume: 1
+    loop: 0
+    playOnSceneChange: 0
+    scenesToPlayIn:
+    - Fishing Scene
+    - Hub
+  - eventName: SellItemSound
+    audioClip: {fileID: 8300000, guid: 50fb8045edcb2e84d83a467f95fdcb6f, type: 3}
+    outputAudioSource: {fileID: 4496861215658013869}
+    volume: 1
+    loop: 0
+    playOnSceneChange: 0
+    scenesToPlayIn:
+    - Fishing Scene
+    - Hub
+  - eventName: ItemUpgradedSound
+    audioClip: {fileID: 8300000, guid: dcbd94650218cbb4cbb772c5843db30f, type: 3}
+    outputAudioSource: {fileID: 4496861215658013869}
+    volume: 1
+    loop: 0
+    playOnSceneChange: 0
+    scenesToPlayIn:
     - Hub
