@@ -78,9 +78,7 @@ namespace Sacrifice
         {
             var oldLevel = upgradeSlot.gearInstance.GetLevelInfoAfterIncrease(0);
             var newLevel = upgradeSlot.gearInstance.IncreaseExp(sacrificeSlot.gearInstance.GetSacrificeValue());
-            
-            if(newLevel.Level > oldLevel.Level) eventBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "ItemUpgradedSound"));
-            
+
             sacrificeSlot.gearInstance.Sacrifice();
             levelText.text = $"Level: {newLevel.Level}";
             if (newLevel.IsMaxLevel)
