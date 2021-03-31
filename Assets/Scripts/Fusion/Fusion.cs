@@ -142,7 +142,8 @@ namespace Fusion
             {
                 item.gearInstance.Sacrifice();
             }
-            
+
+            eventBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "ItemUpgradedSound"));
             eventBroker.Publish(new DecreaseSilverEvent(upgradeSlot.gearInstance.GetFusionCost()));
 
             Close();
