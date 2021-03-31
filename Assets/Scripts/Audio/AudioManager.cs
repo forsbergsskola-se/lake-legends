@@ -85,7 +85,7 @@ namespace Audio
          audioSource.clip = audioClipSetup.audioClip;
          audioSource.loop = audioClipSetup.loop;
          audioSource.playOnAwake = false;
-         audioSource.volume = 0.5f;
+         audioSource.volume = audioClipSetup.volume;
          return audioSource;
       }
       
