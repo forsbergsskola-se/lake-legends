@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 5342772297060115451}
   - component: {fileID: 5342772297060115448}
   - component: {fileID: 5342772297060115449}
+  - component: {fileID: 4501377966097531943}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -1008,6 +1009,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4501377966097531943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342772297060115431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db356c859b42403290ae5b5873931efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: ButtonClickSound
 --- !u!1 &5342772297266750673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,8 +1552,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 695699383153231363}
   m_HandleRect: {fileID: 3685588928055726738}
   m_Direction: 2
-  m_Value: 0.99997264
-  m_Size: 0.76226157
+  m_Value: 0.99998343
+  m_Size: 0.57608753
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

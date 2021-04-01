@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 610341018619449901}
   - component: {fileID: 112632907899159654}
   - component: {fileID: 4288799706886579515}
+  - component: {fileID: 6840177314474478986}
   m_Layer: 5
   m_Name: InventoryButton
   m_TagString: Untagged
@@ -121,6 +122,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6840177314474478986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789183411282790783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db356c859b42403290ae5b5873931efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventName: ButtonClickSound
 --- !u!1 &4750983612456760387
 GameObject:
   m_ObjectHideFlags: 0

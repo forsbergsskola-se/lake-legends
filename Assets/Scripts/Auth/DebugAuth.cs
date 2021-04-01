@@ -17,7 +17,7 @@ namespace Auth
 
         private async Task TestFunction()
         {
-            await Task.Delay(1000);
+            await Task.Delay(1);
         }
 
         private Task<IUser> CreateDebugUser()
