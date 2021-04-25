@@ -9,6 +9,7 @@ namespace Ads
     public class AdButton : MonoBehaviour
     {
         public int adCooldownInSeconds = 120;
+        [SerializeField] private Text timeRemainingText; 
         private EventsBroker eventsBroker;
         void Awake()
         {
@@ -16,6 +17,7 @@ namespace Ads
             GetComponent<Button>().onClick.AddListener(() =>
             {
                 GetComponent<Button>().interactable = false;
+                UpdateText(1);
                 eventsBroker.Publish(new ShowAdEvent());
             });
         }
@@ -26,7 +28,20 @@ namespace Ads
         }
         private void OnAdWatchTime(GetAdWatchTimeEvent obj)
         {
-            GetComponent<Button>().interactable = (DateTime.UtcNow - obj.LatestAdWatchTime).TotalSeconds > adCooldownInSeconds;
+            var differenceInSec = (DateTime.UtcNow - obj.LatestAdWatchTime).TotalSeconds;
+            var canWatchAd = differenceInSec > adCooldownInSeconds;
+            GetComponent<Button>().interactable = canWatchAd;
+            if (canWatchAd)
+                return;
+            UpdateText(differenceInSec);
+        }
+
+        private void UpdateText(double secondsPast)
+        {
+            var timeUntilNextWatch = adCooldownInSeconds - secondsPast;
+            var hours = timeUntilNextWatch / 3600;
+            var mins = timeUntilNextWatch / 60 % 60;
+            timeRemainingText.text = hours > 1 ? $"Come Back In {Mathf.Floor((float)hours)} hours and {Mathf.Floor((float)mins)} mins" : $"Come Back In {mins:F0} mins";
         }
 
         private void OnDisable()
