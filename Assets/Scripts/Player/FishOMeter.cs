@@ -115,18 +115,18 @@ namespace Player
             eventsBroker.SubscribeTo<StartFishOMeterEvent>(SetupGameplayArea);
         }
         
-        private void FixedUpdate() // Was Changed From Update TODO Make Sure It Works
+        private void FixedUpdate()
         {
             if (gameRunning)
             {
+                if (Input.GetMouseButton(0)) isMoving = true;
+                else isMoving = false;
+                
                 ChangeSuccessMeterValue();
                 UpdateFishPosition();
                 UpdateCaptureZonePosition();
                 if (successMeter <= 0) FishEscape();
                 else if (successMeter >= fishingTime) FishCatch();
-                
-                if(Input.GetMouseButton(0)) isMoving = true;
-                else isMoving = false;
             }
         }
 

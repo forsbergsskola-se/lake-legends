@@ -14,6 +14,7 @@ public class BackButton : MonoBehaviour
             quitMenuIsOpen = true;
             openMenu = Instantiate(quitMenu, FindObjectOfType<Canvas>().transform);
             openMenu.SetUp(this);
+            Time.timeScale = 0;
         }
         
         else if (Input.GetKeyDown(KeyCode.Escape) && quitMenuIsOpen)
@@ -26,6 +27,7 @@ public class BackButton : MonoBehaviour
     {
         quitMenuIsOpen = false;
         Destroy(openMenu.gameObject);
+        Time.timeScale = 1;
     }
 
     public void Quit()
