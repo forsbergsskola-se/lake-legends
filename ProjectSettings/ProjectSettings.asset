@@ -129,7 +129,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1.11
+  bundleVersion: 0.1.13
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -154,7 +154,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 12
+  AndroidBundleVersionCode: 14
   AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -259,7 +259,14 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
@@ -300,37 +307,37 @@ PlayerSettings:
       m_Kind: 1
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: f9e835887cd292c458c42f00701cc1d1, type: 3}
+      - {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: f9e835887cd292c458c42f00701cc1d1, type: 3}
+      - {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
       m_Width: 144
       m_Height: 144
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: f9e835887cd292c458c42f00701cc1d1, type: 3}
+      - {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
       m_Width: 96
       m_Height: 96
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: f9e835887cd292c458c42f00701cc1d1, type: 3}
+      - {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
       m_Width: 72
       m_Height: 72
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: f9e835887cd292c458c42f00701cc1d1, type: 3}
+      - {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
       m_Width: 48
       m_Height: 48
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: f9e835887cd292c458c42f00701cc1d1, type: 3}
+      - {fileID: 2800000, guid: dd94ac88f4a5d3b43a687f4ebd334b65, type: 3}
       m_Width: 36
       m_Height: 36
       m_Kind: 0

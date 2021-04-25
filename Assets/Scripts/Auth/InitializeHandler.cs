@@ -29,7 +29,6 @@ namespace Auth
         }
         private void Start()
         {
-            Application.targetFrameRate = 24;
             if (HasAcceptedEula)
             {
                 messageHandler = FindObjectOfType<EventsBroker>();
