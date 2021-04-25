@@ -115,7 +115,7 @@ namespace Player
             eventsBroker.SubscribeTo<StartFishOMeterEvent>(SetupGameplayArea);
         }
         
-        private void Update()
+        private void FixedUpdate() // Was Changed From Update TODO Make Sure It Works
         {
             if (gameRunning)
             {
@@ -184,13 +184,13 @@ namespace Player
         {
             if (FishIsInZone)
             {
-                successMeter += Time.deltaTime;
+                successMeter += Time.fixedDeltaTime;
                 eventsBroker.Publish(new InFishOMeterZone(true));
             }
             else
             {
                 var multiplier = Mathf.Lerp(1,0,LineStrength * 0.001f);
-                var successMeterProgress = Time.deltaTime * multiplier;
+                var successMeterProgress = Time.fixedDeltaTime * multiplier;
                 successMeter -= successMeterProgress;
                 eventsBroker.Publish(new InFishOMeterZone(false));
             }
@@ -204,7 +204,7 @@ namespace Player
             if (isMoving) directionMod = fishRightSpeed; 
             else directionMod = -fishLeftSpeed;
 
-            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.deltaTime)),
+            fishPositionCenterPoint = Mathf.Clamp(fishPositionCenterPoint + (directionMod * (Time.fixedDeltaTime)),
                 minimumFishZone,
                 maximumFishZone);
             
@@ -216,7 +216,7 @@ namespace Player
         {
             if (captureZoneStopped) 
                 return;
-            currentCaptureZoneTime += (Time.deltaTime * fishSpeedMagnitudeValue);
+            currentCaptureZoneTime += (Time.fixedDeltaTime * fishSpeedMagnitudeValue);
             captureZonePosition = Mathf.Lerp(minimumZone, maximumZone, currentCaptureZoneTime);
 
             eventsBroker.Publish(new UpdateCaptureZoneUIPositionEvent(captureZonePosition));
