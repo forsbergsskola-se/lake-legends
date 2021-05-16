@@ -16035,10 +16035,6 @@ PrefabInstance:
       propertyPath: floatNibbleOrBite
       value: 
       objectReference: {fileID: 7438218602313729622}
-    - target: {fileID: 3940818768752871845, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
-      propertyPath: factory
-      value: 
-      objectReference: {fileID: 11400000, guid: 385393cf6c495aa408c2c2bb8504248b, type: 2}
     - target: {fileID: 4672514844602895431, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16117,7 +16113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6175944060712481141, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6390075446216774318, guid: ab6cd9f935cb76249a65fda0db2305c0, type: 3}
       propertyPath: m_SizeDelta.y
