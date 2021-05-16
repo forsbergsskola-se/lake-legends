@@ -45,6 +45,26 @@ namespace Tutorial
             if (!Directory.Exists(EventFolder))
                 Directory.CreateDirectory(EventFolder);
             File.WriteAllText(fullPath, content);
+            EditTutorialSystemFile(className);
+        }
+
+        private void EditTutorialSystemFile(string className)
+        {
+            var tutorialSystemPath = "Assets/Scripts/Tutorial/TutorialSystem.cs";
+            var tutorialSystemContent = File.ReadAllText(tutorialSystemPath);
+            var startMethodIndex = tutorialSystemContent.IndexOf("void Start");
+            var endIndex = tutorialSystemContent.IndexOf("}", startMethodIndex);
+            var indentation = "      ";
+            var subscribe = $"messageHandler.SubscribeTo<{className}>(On{className});";
+            if (!tutorialSystemContent.Contains(subscribe))
+                tutorialSystemContent = tutorialSystemContent.Insert(endIndex - (indentation+indentation).Length + 3, "\n"+ indentation+indentation + subscribe);
+            var method = $"{indentation}  private void On{className}({className} eventRef)\n" +
+                         indentation+"  {\n" +
+                         indentation+"  }\n";
+            var classEnd = tutorialSystemContent.LastIndexOf("}", tutorialSystemContent.Length - 2);
+            if (!tutorialSystemContent.Contains($"private void On{className}({className}"))
+                tutorialSystemContent = tutorialSystemContent.Insert(classEnd-4, method);
+            File.WriteAllText(tutorialSystemPath, tutorialSystemContent);
         }
     }
 }
