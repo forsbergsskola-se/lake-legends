@@ -64,7 +64,10 @@ public class CheatMenu : MonoBehaviour
         var instance = Instantiate(prefab, content);
         var label = $"Give {equipment.RarityValue} Star {equipment.Name}";
         instance.GetComponentInChildren<Text>().text = label;
-        var gearInstance = new GearInstance(new GearSaveData(equipment));
-        instance.onClick.AddListener(() => messageHandler.Publish(new AddItemToInventoryEvent(gearInstance)));
+        instance.onClick.AddListener(() =>
+        {
+            var gearInstance = new GearInstance(new GearSaveData(equipment));
+            messageHandler.Publish(new AddItemToInventoryEvent(gearInstance));
+        });
     }
 }
