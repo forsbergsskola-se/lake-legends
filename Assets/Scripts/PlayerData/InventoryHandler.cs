@@ -103,7 +103,10 @@ namespace PlayerData
             if (obj.catchItem == null) return;
             if (obj.catchItem is FishItem fishItem)
             {
-                eventBroker.Publish(new IncreaseSilverEvent(fishItem.silverValue));
+                if (fishItem.givesGold)
+                    eventBroker.Publish(new IncreaseGoldEvent(fishItem.value));
+                else
+                    eventBroker.Publish(new IncreaseSilverEvent(fishItem.value));
             }
         }
         

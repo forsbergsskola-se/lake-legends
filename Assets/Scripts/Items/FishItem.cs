@@ -2,13 +2,15 @@ using System;
 using Fish;
 using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Items
 {    
     [CreateAssetMenu(menuName = "ScriptableObjects/FishItem")]
     public class FishItem : ScriptableObject, IItem, ICatchable
     {
-        public int silverValue = 10;
+        public bool givesGold;
+        [FormerlySerializedAs("silverValue")] public int value = 10;
         [SerializeField] private string ItemID;
         public FishType type;
         public Rarity rarity;

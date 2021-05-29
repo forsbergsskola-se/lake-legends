@@ -14,6 +14,7 @@ namespace UI
         [SerializeField] private Image image;
         [SerializeField] private Image frameImage;
         [SerializeField] private Image silverImage;
+        [SerializeField] private Image goldImage;
         [SerializeField] private Image backgroundImage;
         [SerializeField] private GameObject successUI;
         [SerializeField] private GameObject failUI;
@@ -50,14 +51,25 @@ namespace UI
                 if (catchable is FishItem fishItem)
                 {
                     treasureBoxText.text = "";
-                    fishWorth.text = $"It's worth {fishItem.silverValue}";
-                    silverImage.gameObject.SetActive(true);
+                    fishWorth.text = $"It's worth {fishItem.value}";
+                    if (fishItem.givesGold)
+                    {
+                        goldImage.gameObject.SetActive(true);
+                        silverImage.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        silverImage.gameObject.SetActive(true);
+                        goldImage.gameObject.SetActive(false);
+                    }
+                        
                 }
                 else if (catchable is LootBox lootBox)
                 {
                     fishWorth.text = "";
                     treasureBoxText.text = "Open it in inventory!";
                     silverImage.gameObject.SetActive(false);
+                    goldImage.gameObject.SetActive(false);
                 }
                 else
                 {
