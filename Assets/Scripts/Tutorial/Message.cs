@@ -7,14 +7,14 @@ namespace Tutorial
     {
         [TextArea] [SerializeField] private string message;
 
-        private bool WasTriggered
+        public bool WasTriggered
         {
             get
             {
                 var num = PlayerPrefs.GetInt(name, 0);
                 return num != 0;
             }
-            set
+            private set
             {
                 var num = value == false ? 0 : 1;
                 PlayerPrefs.SetInt(name, num);
