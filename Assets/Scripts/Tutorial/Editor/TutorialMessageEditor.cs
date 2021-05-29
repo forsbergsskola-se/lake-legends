@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Tutorial
         {
             EditorGUILayout.Space();
             messageName = EditorGUILayout.TextField("Name", messageName);
+            EditorGUILayout.LabelField("Content");
             messageContent = EditorGUILayout.TextArea(messageContent);
             if (GUILayout.Button("Create"))
             {
@@ -53,6 +55,11 @@ namespace Tutorial
             var tutorialSystemPath = "Assets/Scripts/Tutorial/TutorialSystem.cs";
             var tutorialSystemContent = File.ReadAllText(tutorialSystemPath);
             var startMethodIndex = tutorialSystemContent.IndexOf("void Start");
+            var variableName = className.Remove(0, 1);
+            variableName = variableName.Insert(0, Char.ToLower(className[0]).ToString());
+            var addVariable = $"\n        [SerializeField] private Message {variableName};";
+            if (!tutorialSystemContent.Contains(addVariable))
+                tutorialSystemContent = tutorialSystemContent.Insert(startMethodIndex - 18, addVariable);
             var endIndex = tutorialSystemContent.IndexOf("}", startMethodIndex);
             var indentation = "      ";
             var subscribe = $"messageHandler.SubscribeTo<{className}>(On{className});";
@@ -60,6 +67,7 @@ namespace Tutorial
                 tutorialSystemContent = tutorialSystemContent.Insert(endIndex - (indentation+indentation).Length + 3, "\n"+ indentation+indentation + subscribe);
             var method = $"{indentation}  private void On{className}({className} eventRef)\n" +
                          indentation+"  {\n" +
+                         indentation+$"     TryCall({variableName});\n" +
                          indentation+"  }\n";
             var classEnd = tutorialSystemContent.LastIndexOf("}", tutorialSystemContent.Length - 2);
             if (!tutorialSystemContent.Contains($"private void On{className}({className}"))
