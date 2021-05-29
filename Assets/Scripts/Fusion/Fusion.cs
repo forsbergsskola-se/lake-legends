@@ -60,7 +60,7 @@ namespace Fusion
 
         private void Update()
         {
-            fuseButton.interactable = SlotsAreOccupied && AllSlotsMatchType && AllSlotsMatchRarity && affordAble;
+            fuseButton.interactable = SlotsAreOccupied && AllSlotsMatchType && AllSlotsMatchRarity && affordAble && upgradeSlot.gearInstance.Level == 10;
         }
 
         private void HideAllSlots()
