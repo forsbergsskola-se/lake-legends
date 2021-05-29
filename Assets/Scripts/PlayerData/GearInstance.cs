@@ -97,6 +97,7 @@ namespace PlayerData
             DestroyItem();
             var gearSaveData = GearSaveData;
             var upgradedItem = itemsOfSameType.Where(gear => gear.RarityValue > RarityValue).OrderBy(gear => gear.RarityValue).First();
+            gearSaveData.GearLevel.Level = 1;
             gearSaveData.equipID = upgradedItem.ID;
             broker.Publish(new AddItemToInventoryEvent(new GearInstance(gearSaveData)));
         }
