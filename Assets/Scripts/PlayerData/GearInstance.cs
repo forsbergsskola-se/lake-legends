@@ -175,6 +175,8 @@ namespace PlayerData
             DestroyItem();
         }
 
+        public int Value => Equipment.SilverValue;
+
         public override string ToString()
         {
             return

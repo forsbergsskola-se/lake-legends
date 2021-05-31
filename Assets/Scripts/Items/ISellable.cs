@@ -6,6 +6,8 @@ namespace Items
     {
         void Sell();
 
+        int Value { get; }
+
         event Action Sold;
     }
 }

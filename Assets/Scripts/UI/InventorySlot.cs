@@ -144,7 +144,7 @@ namespace UI
                     isEquipped = gearInstance.IsEquipped;
                 }
                 if (canSell && !isEquipped)
-                    delegates.Add("Sell", sellable.Sell);
+                    delegates.Add($"Sell ({sellable.Value})", sellable.Sell);
             }
             if (Item is IOpenable openable)
             {
