@@ -1,4 +1,5 @@
 using System;
+using Items;
 using Items.Gear;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -38,10 +39,8 @@ namespace PlayerData
         public int Experience;
 
         private int MaxLevel => 10;
-        
-        public static GearLevel operator +(GearLevel gearLevel, int amount) => gearLevel.IncreaseExp(amount);
-        
-        [JsonIgnore] public bool IsMaxLevel => Level == MaxLevel;
+
+        [JsonIgnore] public bool IsMaxLevel => Level >= MaxLevel;
 
         private GearLevel(int level, int experience)
         {
@@ -49,21 +48,27 @@ namespace PlayerData
             Experience = experience;
         }
 
-        private GearLevel IncreaseExp(int amount)
+        public GearLevel IncreaseExp(int amount, Rarity rarity)
         {
             var newLevel = Level;
             var newExp = Experience + amount;
-            while (newExp >= RequiredExp(newLevel) && !IsMaxLevel)
+            while (newExp >= RequiredExp(rarity) && !IsMaxLevel)
             {
-                newExp -= RequiredExp(newLevel);
+                newExp -= RequiredExp(rarity);
                 newLevel++;
+            }
+
+            if (newLevel > MaxLevel)
+            {
+                newLevel = MaxLevel;
+                newExp = 0;
             }
             return new GearLevel(newLevel, newExp);
         }
 
-        [JsonIgnore] public float DifferenceToNextLevel => Mathf.InverseLerp(0, RequiredExp(Level), Experience);
+        public float DifferenceToNextLevel(Rarity rarity) => Mathf.InverseLerp(0, RequiredExp(rarity), Experience);
 
-        private int RequiredExp(int level) => 100 * level;
+        private int RequiredExp(Rarity rarity) => rarity.expPerLevel;
 
         [JsonIgnore] public static GearLevel NewGearLevel => new GearLevel(1, 0);
     }

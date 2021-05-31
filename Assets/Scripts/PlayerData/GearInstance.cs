@@ -108,10 +108,10 @@ namespace PlayerData
 
         public GearLevel IncreaseExp(int amount)
         {
-            return GearSaveData.GearLevel += amount;
+            return GearSaveData.GearLevel = GearSaveData.GearLevel.IncreaseExp(amount, Rarity);
         }
 
-        public GearLevel GetLevelInfoAfterIncrease(int amount) => GearSaveData.GearLevel + amount;
+        public GearLevel GetLevelInfoAfterIncrease(int amount) => GearSaveData.GearLevel.IncreaseExp(amount, Rarity);
         
         public void Equip()
         {

@@ -52,7 +52,7 @@ namespace Sacrifice
             if (levelInfo.IsMaxLevel)
                 bar.fillAmount = 1;
             else
-                bar.fillAmount = levelInfo.DifferenceToNextLevel;
+                bar.fillAmount = levelInfo.DifferenceToNextLevel(upgradeSlot.gearInstance.Rarity);
             levelText.text = $"Level {currentLevelInfo.Level} > {levelInfo.Level}";
             FindObjectOfType<ItemInspectionArea>().gameObject.SetActive(false);
         }
@@ -65,7 +65,7 @@ namespace Sacrifice
             if (currentLevelInfo.IsMaxLevel)
                 bar.fillAmount = 1;
             else
-                bar.fillAmount = currentLevelInfo.DifferenceToNextLevel;
+                bar.fillAmount = currentLevelInfo.DifferenceToNextLevel(upgradeSlot.gearInstance.Rarity);
             levelText.text = $"Level: {currentLevelInfo.Level}";
             if (upgradeSlot.gearInstance.GearSaveData.GearLevel.IsMaxLevel)
             {
