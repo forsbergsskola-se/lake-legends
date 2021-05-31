@@ -48,10 +48,14 @@ namespace PlayerData
                 currencySo.Use();
                 return;
             }
-            if (!(obj.Item is FishItem))
-                AddItem(obj.Item);
-            messageHandler.Publish(new UpdateInventoryEvent(true, obj.Item, gearInventory));
-            messageHandler.Publish(new InventorySizeEvent(MaxSize, TotalSizeOfInventory));
+
+            if (obj.Item is FishItem) return;
+            var wasSuccessFul = AddItem(obj.Item);
+            if (wasSuccessFul)
+            {
+                messageHandler.Publish(new UpdateInventoryEvent(true, obj.Item, gearInventory));
+                messageHandler.Publish(new InventorySizeEvent(MaxSize, TotalSizeOfInventory));
+            }
         }
         
         private void OnRemoveItem(RemoveItemFromInventoryEvent obj)
