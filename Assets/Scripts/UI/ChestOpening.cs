@@ -14,10 +14,11 @@ namespace UI
     public class ChestOpening : MonoBehaviour
     {
         [SerializeField] private LootBoxItemSlot itemSlot;
-        [SerializeField] private LootBoxGoDictionary Dictionary;
         [SerializeField] private LootBoxGoDictionary videos;
         [SerializeField] private LootBoxStringDictionary soundEvents;
         [SerializeField] private LootBoxColorDictionary textColors;
+        [SerializeField] private GameObject skipButton;
+        [SerializeField] private bool skipable;
         private GameObject currentGameObject;
         private LootBox currentLootBox;
         public void StartOpening(LootBox lootBox, IItem item)
@@ -29,12 +30,13 @@ namespace UI
             currentGameObject.SetActive(true);
             var video = videos[currentLootBox];
             video.GetComponent<VideoPlayer>().Play();
-            //currentGameObject.GetComponent<Animator>().SetBool("Open", true);
             StartCoroutine(CloseBox());
         }
 
         private void Update()
         {
+            if (!skipable)
+                return;
             if (Input.GetMouseButton(0))
                 Skip();
         }
@@ -47,7 +49,6 @@ namespace UI
 
         private IEnumerator CloseBox()
         {
-            //var animator = currentGameObject.GetComponent<Animator>();
             var video = currentGameObject.GetComponent<VideoPlayer>();
             yield return new WaitForSeconds(2f);
             if (soundEvents.TryGetValue(currentLootBox, out var value))
@@ -55,17 +56,14 @@ namespace UI
                 FindObjectOfType<EventsBroker>().Publish(new PlaySoundEvent(SoundType.Sfx, value));
             }
             itemSlot.FadeIn();
+            skipable = true;
+            skipButton.SetActive(skipable);
             yield return new WaitForSeconds(5f);
-            //animator.SetBool("Open", false);
             itemSlot.FadeOut();
             while (video.isPlaying)
             {
                 yield return null;
             }
-            //while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
-            //{
-                //yield return null;
-            //}
             StopOpening();
         }
 
@@ -73,7 +71,8 @@ namespace UI
         {
             var video = currentGameObject.GetComponent<VideoPlayer>();
             video.Stop();
-            //currentGameObject.SetActive(false);
+            skipable = false;
+            skipButton.SetActive(skipable);
             gameObject.SetActive(false);
         }
     }
