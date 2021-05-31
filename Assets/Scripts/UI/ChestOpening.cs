@@ -5,7 +5,9 @@ using Events;
 using Items;
 using LootBoxes;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace UI
 {
@@ -13,6 +15,7 @@ namespace UI
     {
         [SerializeField] private LootBoxItemSlot itemSlot;
         [SerializeField] private LootBoxGoDictionary Dictionary;
+        [SerializeField] private LootBoxGoDictionary videos;
         [SerializeField] private LootBoxStringDictionary soundEvents;
         [SerializeField] private LootBoxColorDictionary textColors;
         private GameObject currentGameObject;
@@ -22,15 +25,18 @@ namespace UI
             currentLootBox = lootBox;
             gameObject.SetActive(true);
             itemSlot.Setup(item, textColors[currentLootBox]);
-            currentGameObject = Dictionary[currentLootBox];
+            currentGameObject = videos[currentLootBox].gameObject;
             currentGameObject.SetActive(true);
-            currentGameObject.GetComponent<Animator>().SetBool("Open", true);
+            var video = videos[currentLootBox];
+            video.GetComponent<VideoPlayer>().Play();
+            //currentGameObject.GetComponent<Animator>().SetBool("Open", true);
             StartCoroutine(CloseBox());
         }
 
         public IEnumerator CloseBox()
         {
-            var animator = currentGameObject.GetComponent<Animator>();
+            //var animator = currentGameObject.GetComponent<Animator>();
+            var video = currentGameObject.GetComponent<VideoPlayer>();
             yield return new WaitForSeconds(2f);
             if (soundEvents.TryGetValue(currentLootBox, out var value))
             {
@@ -38,19 +44,24 @@ namespace UI
             }
             itemSlot.FadeIn();
             yield return new WaitForSeconds(5f);
-            animator.SetBool("Open", false);
+            //animator.SetBool("Open", false);
             itemSlot.FadeOut();
-            while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+            while (video.isPlaying)
             {
                 yield return null;
             }
-            yield return new WaitForSeconds(1f);
+            //while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
+            //{
+                //yield return null;
+            //}
             StopOpening();
         }
 
         public void StopOpening()
         {
-            currentGameObject.SetActive(false);
+            var video = currentGameObject.GetComponent<VideoPlayer>();
+            video.Stop();
+            //currentGameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
@@ -60,7 +71,7 @@ namespace UI
     {
         
     }
-    
+
     [Serializable]
     public class LootBoxStringDictionary : SerializableDictionary<LootBox, string>
     {
