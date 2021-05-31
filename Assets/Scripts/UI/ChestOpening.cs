@@ -33,7 +33,19 @@ namespace UI
             StartCoroutine(CloseBox());
         }
 
-        public IEnumerator CloseBox()
+        private void Update()
+        {
+            if (Input.GetMouseButton(0))
+                Skip();
+        }
+
+        public void Skip()
+        {
+            itemSlot.Reset();
+            StopOpening();
+        }
+
+        private IEnumerator CloseBox()
         {
             //var animator = currentGameObject.GetComponent<Animator>();
             var video = currentGameObject.GetComponent<VideoPlayer>();

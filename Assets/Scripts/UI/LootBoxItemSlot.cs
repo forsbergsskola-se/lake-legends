@@ -106,5 +106,13 @@ namespace UI
                 yield return null;
             } while (currentLerpValue < 1);
         }
+
+        public void Reset()
+        {
+            var currentColor = new Color(1, 1, 1, 0);
+            background.color = currentColor;
+            frame.color = currentColor;
+            middleGround.color = currentColor;
+        }
     }
 }
