@@ -11,6 +11,7 @@ namespace Auth
     {
         public string sceneToLoad;
         public EULA eula;
+        public Transform canvas;
         private IMessageHandler messageHandler;
 
         public bool HasAcceptedEula
@@ -36,7 +37,7 @@ namespace Auth
             }
             else
             {
-                var instance = Instantiate(eula, FindObjectOfType<Canvas>().transform);
+                var instance = Instantiate(eula, canvas);
                 instance.SetUp(this);
             }
         }

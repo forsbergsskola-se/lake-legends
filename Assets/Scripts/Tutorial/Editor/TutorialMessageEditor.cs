@@ -9,6 +9,7 @@ namespace Tutorial
     {
         private string messageName;
         private string messageContent;
+        private string buttonContent;
         private const string SoPath = "Assets/ScriptableObjects/TutorialMessages";
         private const string EventFolder = "Assets/Scripts/Tutorial/Events";
         [MenuItem("Window/Custom Editors/Tutorial Message Editor")]
@@ -22,6 +23,8 @@ namespace Tutorial
             messageName = EditorGUILayout.TextField("Name", messageName);
             EditorGUILayout.LabelField("Content");
             messageContent = EditorGUILayout.TextArea(messageContent);
+            EditorGUILayout.LabelField("ButtonText");
+            buttonContent = EditorGUILayout.TextField(buttonContent);
             if (GUILayout.Button("Create"))
             {
                 CreateMessage();
@@ -33,7 +36,7 @@ namespace Tutorial
         {
             var message = CreateInstance<Message>();
             message.name = messageName;
-            message.Init(messageContent);
+            message.Init(messageContent, buttonContent);
             var fullPath = $"{SoPath}/{messageName}.asset";
             AssetDatabase.CreateAsset(message, fullPath);
         }

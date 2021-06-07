@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Tutorial
     public class Message : ScriptableObject
     {
         [TextArea] [SerializeField] private string message;
+        [SerializeField] private string buttonText;
 
         public bool WasTriggered
         {
@@ -24,14 +26,20 @@ namespace Tutorial
         [CanBeNull]
         public string GetMessage()
         {
-            if (WasTriggered) return null;
             WasTriggered = true;
             return message;
         }
+        
+        public string GetButtonText()
+        {
+            WasTriggered = true;
+            return buttonText;
+        }
 
-        public void Init(string content)
+        public void Init(string content, string buttonContent)
         {
             message = content;
+            buttonText = buttonContent;
         }
 
         public void ResetTutorial()
