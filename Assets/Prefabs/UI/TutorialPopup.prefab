@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 2762109148886872472}
   - component: {fileID: 8571133925927335792}
   - component: {fileID: 5781160806873823857}
+  - component: {fileID: 3802736130714202800}
   m_Layer: 5
   m_Name: TutorialPopup
   m_TagString: Untagged
@@ -294,3 +295,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3802736130714202800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8498057676638512844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30842bdfce39437da459fa3d98cca22a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textArea: {fileID: 6302537774753170329}
+  buttonArea: {fileID: 7512995434078235725}
+  buttonPrefab: {fileID: 7043146467525731410, guid: 3944e5433a4fd8841b6cb6918427c7f3, type: 3}

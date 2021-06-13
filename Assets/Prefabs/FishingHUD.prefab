@@ -827,6 +827,7 @@ GameObject:
   - component: {fileID: 3940818767411511374}
   - component: {fileID: 3940818767411511375}
   - component: {fileID: 3940818767411511372}
+  - component: {fileID: 4534851252460097717}
   m_Layer: 5
   m_Name: FishingHUD
   m_TagString: Untagged
@@ -922,6 +923,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4534851252460097717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940818767411511370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78db0dd3214f24a4b8cc7f754d332269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3940818767828647647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6158,7 +6171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1796021041182050867, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0.9999961
       objectReference: {fileID: 0}
     - target: {fileID: 1796021041292895402, guid: b654dc3c39307b74abf39eaa6c38fcb0, type: 3}
       propertyPath: m_Size

@@ -20,6 +20,7 @@ namespace Tutorial.Redirection
 
         protected virtual void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             var menuPanel = FindObjectsOfType<MenuPanel>(true).First(panel => panel.name == panelName);
             menuPanel.gameObject.SetActive(true);
         }

@@ -1,6 +1,9 @@
+using System;
+using System.Collections;
 using EventManagement;
 using UnityEngine;
 using Tutorial.Events;
+using UI;
 
 namespace Tutorial
 {
@@ -27,11 +30,7 @@ namespace Tutorial
         
         private void TryCall(Message message)
         {
-            if (!message.WasTriggered)
-            {
-                var instance = Instantiate(tutorialPopup);
-                instance.Setup(message);
-            }
+           StartCoroutine(TryCallDelay(message));
         }
         private void OnCatchEvent(CatchEvent eventRef)
         {
@@ -56,6 +55,21 @@ namespace Tutorial
         private void OnFuseTutorialEvent(FuseEvent eventRef)
         {
            TryCall(fuseTutorialEvent);
+        }
+
+        private IEnumerator TryCallDelay(Message message)
+        {
+           yield return new WaitForSeconds(0.2f);
+           DoTryCall(message);
+        }
+        
+        private void DoTryCall(Message message)
+        {
+           if (!message.WasTriggered)
+           {
+              var instance = Instantiate(tutorialPopup, FindObjectOfType<MainCanvas>().transform);
+              instance.Setup(message);
+           }
         }
     }
 }

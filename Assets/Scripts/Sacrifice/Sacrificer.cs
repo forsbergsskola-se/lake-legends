@@ -19,6 +19,11 @@ namespace Sacrifice
 
         private bool SlotsAreOccupied => upgradeSlot.gearInstance != null && sacrificeSlot.gearInstance != null && !upgradeSlot.gearInstance.GearSaveData.GearLevel.IsMaxLevel;
 
+        private void OnEnable()
+        {
+            eventBroker.Publish(new Tutorial.Events.UpgradeEvent());
+        }
+
         void Awake()
         {
             upgradeSlot = gameObject.GetComponentInChildren<UpgradeSlot>();

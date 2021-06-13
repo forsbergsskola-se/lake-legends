@@ -175,6 +175,11 @@ MonoBehaviour:
   buttonAnchor: {fileID: 8997667109341432793}
   tutorialMessages:
   - {fileID: 11400000, guid: 89999592b188ff54f9c654ade55b5d86, type: 2}
+  - {fileID: 11400000, guid: 22d6f50406773634daea9a4c43d44a8f, type: 2}
+  - {fileID: 11400000, guid: b3822abde70ac404895d13fe5506ffdc, type: 2}
+  - {fileID: 11400000, guid: 0a761fa121eae6146b7b4baa80a1cc62, type: 2}
+  - {fileID: 11400000, guid: 4a2d5f8479de94e42b31f6ed98a87505, type: 2}
+  - {fileID: 11400000, guid: ddde762e87a2d374497a33c6dc62cd3d, type: 2}
 --- !u!114 &2570504125810682099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +617,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5609076823135655252}
   m_HandleRect: {fileID: 5484801130448305990}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -839,7 +844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00000004241233}
+  m_AnchoredPosition: {x: 0, y: -0.0036606824}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5816555151322679834

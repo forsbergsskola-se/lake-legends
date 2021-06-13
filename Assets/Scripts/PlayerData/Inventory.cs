@@ -6,6 +6,7 @@ using Events;
 using Items;
 using Items.CurrencyItems;
 using Items.Shop;
+using LootBoxes;
 using Saving;
 
 namespace PlayerData
@@ -55,6 +56,14 @@ namespace PlayerData
             {
                 messageHandler.Publish(new UpdateInventoryEvent(true, obj.Item, gearInventory));
                 messageHandler.Publish(new InventorySizeEvent(MaxSize, TotalSizeOfInventory));
+                if (obj.Item is GearInstance)
+                {
+                    messageHandler.Publish(new Tutorial.Events.GearEvent());
+                }
+                else if (obj.Item is LootBox {isLootStealer: true})
+                {
+                    messageHandler.Publish(new Tutorial.Events.ClamEvent());
+                }
             }
         }
         

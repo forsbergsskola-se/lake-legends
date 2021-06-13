@@ -6,7 +6,6 @@ using Fish;
 using Items;
 using LootBoxes;
 using PlayerData;
-using Tutorial.Events;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -284,8 +283,15 @@ namespace Player
             gameEndUI.eventsBroker = this.eventsBroker;
             gameEndUI.catchable = this.catchable;
             eventsBroker.Publish(new EndFishOMeterEvent(catchable));
-            if (this.catchable != null)
-                eventsBroker.Publish(new CatchEvent());
+            switch (this.catchable)
+            {
+                case FishItem _:
+                    eventsBroker.Publish(new Tutorial.Events.CatchEvent());
+                    break;
+                case LootBox _:
+                    eventsBroker.Publish(new Tutorial.Events.ChestEvent());
+                    break;
+            }
             fishOMeterMinigamePanel.SetActive(false);
         }
 
