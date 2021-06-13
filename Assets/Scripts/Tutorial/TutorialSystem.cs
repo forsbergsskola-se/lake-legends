@@ -8,21 +8,21 @@ namespace Tutorial
     {
         private IMessageHandler messageHandler;
         [SerializeField] private TutorialPopup tutorialPopup;
-        [SerializeField] private Message catchEvent;
-        [SerializeField] private Message chest TutorialEvent;
-        [SerializeField] private Message clam TutorialEvent;
-        [SerializeField] private Message gear TutorialEvent;
-        [SerializeField] private Message upgrade TutorialEvent;
-        [SerializeField] private Message fuse TutorialEvent;
+        [SerializeField] private Message catchTutorialEvent;
+        [SerializeField] private Message chestTutorialEvent;
+        [SerializeField] private Message clamTutorialEvent;
+        [SerializeField] private Message gearTutorialEvent;
+        [SerializeField] private Message upgradeTutorialEvent;
+        [SerializeField] private Message fuseTutorialEvent;
         private void Start()
         {
             messageHandler = FindObjectOfType<EventsBroker>();
             messageHandler.SubscribeTo<CatchEvent>(OnCatchEvent);
-            messageHandler.SubscribeTo<Chest TutorialEvent>(OnChest TutorialEvent);
-            messageHandler.SubscribeTo<Clam TutorialEvent>(OnClam TutorialEvent);
-            messageHandler.SubscribeTo<Gear TutorialEvent>(OnGear TutorialEvent);
-            messageHandler.SubscribeTo<Upgrade TutorialEvent>(OnUpgrade TutorialEvent);
-            messageHandler.SubscribeTo<Fuse TutorialEvent>(OnFuse TutorialEvent);
+            messageHandler.SubscribeTo<ChestEvent>(OnChestTutorialEvent);
+            messageHandler.SubscribeTo<ClamEvent>(OnClamTutorialEvent);
+            messageHandler.SubscribeTo<GearEvent>(OnGearTutorialEvent);
+            messageHandler.SubscribeTo<UpgradeEvent>(OnUpgradeTutorialEvent);
+            messageHandler.SubscribeTo<FuseEvent>(OnFuseTutorialEvent);
         }
         
         private void TryCall(Message message)
@@ -35,27 +35,27 @@ namespace Tutorial
         }
         private void OnCatchEvent(CatchEvent eventRef)
         {
-           TryCall(catchEvent);
+           TryCall(catchTutorialEvent);
         }
-        private void OnChest TutorialEvent(Chest TutorialEvent eventRef)
+        private void OnChestTutorialEvent(ChestEvent eventRef)
         {
-           TryCall(chest TutorialEvent);
+           TryCall(chestTutorialEvent);
         }
-        private void OnClam TutorialEvent(Clam TutorialEvent eventRef)
+        private void OnClamTutorialEvent(ClamEvent eventRef)
         {
-           TryCall(clam TutorialEvent);
+           TryCall(clamTutorialEvent);
         }
-        private void OnGear TutorialEvent(Gear TutorialEvent eventRef)
+        private void OnGearTutorialEvent(GearEvent eventRef)
         {
-           TryCall(gear TutorialEvent);
+           TryCall(gearTutorialEvent);
         }
-        private void OnUpgrade TutorialEvent(Upgrade TutorialEvent eventRef)
+        private void OnUpgradeTutorialEvent(UpgradeEvent eventRef)
         {
-           TryCall(upgrade TutorialEvent);
+           TryCall(upgradeTutorialEvent);
         }
-        private void OnFuse TutorialEvent(Fuse TutorialEvent eventRef)
+        private void OnFuseTutorialEvent(FuseEvent eventRef)
         {
-           TryCall(fuse TutorialEvent);
+           TryCall(fuseTutorialEvent);
         }
     }
 }
