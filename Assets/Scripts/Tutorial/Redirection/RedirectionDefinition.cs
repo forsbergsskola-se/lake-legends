@@ -14,6 +14,7 @@ namespace Tutorial.Redirection
 
         public virtual void Redirect(TutorialPopup tutorialPopup)
         {
+            tutorialPopup.UnPause();
             SceneManager.LoadScene(sceneToLoad.name);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }

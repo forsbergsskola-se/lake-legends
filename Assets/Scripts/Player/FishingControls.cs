@@ -107,15 +107,13 @@ namespace Player
         {
             eventsBroker.Publish(new AnimationTriggerEvent(CastAnimation));   
             eventsBroker.Publish(new PlaySoundEvent(SoundType.Sfx, "CastingSound"));
-            eventsBroker.Publish(new DecreaseBaitEvent(baitCost));
-            
+                      
             isRodCast = true;
             statusText.text = waitingForBiteText;
             yield return audioManager.PlaySoundEnumerator(new PlaySoundEvent(SoundType.PlayAndWait, castingSound));
             
             if (UsesFloat) floatNoBite.gameObject.SetActive(true);
 
-            
             RandomizeTimer();
         }
         

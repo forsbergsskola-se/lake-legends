@@ -6,6 +6,7 @@ using Fish;
 using Items;
 using LootBoxes;
 using PlayerData;
+using Tutorial.Events;
 using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,7 @@ namespace Player
 {
     public class FishOMeter : MonoBehaviour
     {
+        [SerializeField] private int baitCost = 1;
         [SerializeField] private float fishingTime = 10;
         [SerializeField] private float startingSuccessMeter = 3.0f;
         [SerializeField] private float targetBarSpeedMultiplier = 0.2f;
@@ -137,6 +139,8 @@ namespace Player
 
         private void SetupGameplayArea(StartFishOMeterEvent eventTrigger)
         {
+            eventsBroker.Publish(new DecreaseBaitEvent(baitCost));
+            eventsBroker.Publish(new UsingBaitEvent());
             eventsBroker.Publish(new AnimationTriggerEvent(HookedAnimationName));
             successMeter = startingSuccessMeter;
 

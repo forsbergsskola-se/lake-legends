@@ -17,6 +17,7 @@ namespace Tutorial
         [SerializeField] private Message gearTutorialEvent;
         [SerializeField] private Message upgradeTutorialEvent;
         [SerializeField] private Message fuseTutorialEvent;
+        [SerializeField] private Message usingBaitEvent;
         private void Start()
         {
             messageHandler = FindObjectOfType<EventsBroker>();
@@ -26,6 +27,7 @@ namespace Tutorial
             messageHandler.SubscribeTo<GearEvent>(OnGearTutorialEvent);
             messageHandler.SubscribeTo<UpgradeEvent>(OnUpgradeTutorialEvent);
             messageHandler.SubscribeTo<FuseEvent>(OnFuseTutorialEvent);
+            messageHandler.SubscribeTo<UsingBaitEvent>(OnUsingBaitEvent);
         }
         
         private void TryCall(Message message)
@@ -70,6 +72,10 @@ namespace Tutorial
               var instance = Instantiate(tutorialPopup, FindObjectOfType<MainCanvas>().transform);
               instance.Setup(message);
            }
+        }
+        private void OnUsingBaitEvent(UsingBaitEvent eventRef)
+        {
+           TryCall(usingBaitEvent);
         }
     }
 }

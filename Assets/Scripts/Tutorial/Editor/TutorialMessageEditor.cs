@@ -22,7 +22,6 @@ namespace Tutorial
             messageName = EditorGUILayout.TextField("Name", messageName);
             EditorGUILayout.LabelField("Content");
             messageContent = EditorGUILayout.TextArea(messageContent);
-            EditorGUILayout.LabelField("ButtonText");
             if (GUILayout.Button("Create"))
             {
                 CreateMessage();

@@ -9,6 +9,7 @@ namespace Tutorial
     {
         [TextArea] [SerializeField] private string message;
         [SerializeField] private TutorialButtonDefinition[] tutorialButtons;
+        public bool shouldPauseGame;
 
         public bool WasTriggered
         {

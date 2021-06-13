@@ -12,6 +12,8 @@ namespace Tutorial
 
         public void Setup(Message message)
         {
+            if (message.shouldPauseGame)
+                Pause();
             textArea.text = message.GetMessage();
             var buttons = message.GetButtons();
             foreach (var buttonDefinition in buttons)
@@ -20,6 +22,16 @@ namespace Tutorial
                 button.GetComponentInChildren<Text>().text = buttonDefinition.buttonText;
                 button.onClick.AddListener(() => buttonDefinition.redirectionDefinition.Redirect(this));
             }
+        }
+
+        public void Pause()
+        {
+            Time.timeScale = 0;
+        }
+        
+        public void UnPause()
+        {
+            Time.timeScale = 1;
         }
     }
 }

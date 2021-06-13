@@ -7,6 +7,7 @@ namespace Tutorial.Redirection
     {
         public override void Redirect(TutorialPopup tutorialPopup)
         {
+            tutorialPopup.UnPause();
             Destroy(tutorialPopup.gameObject);
         }
     }
