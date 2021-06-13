@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: 'You have caught a chest! They contain: Clams, Bait, Silver and Gold.
     Go to your inventory to open it.'
-  buttonText: Go to inventory
+  tutorialButtons:
+  - buttonText: Go to inventory
+    redirectionDefinition: {fileID: 11400000, guid: 7f6b3a1097009b248915ee416d723f59, type: 2}

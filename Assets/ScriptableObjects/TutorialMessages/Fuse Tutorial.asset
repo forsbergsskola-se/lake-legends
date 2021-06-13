@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: This is where you can fuse a piece of gear to increase its rarity. After
     upgrading a piece of gear to level 10 you can select it and click fuse. Then
-    select an identical item to the one you want to improve to fuse it with.
-  buttonText: Continue
+    select an identical item to the one you want to improve to complete the fusion.
+  tutorialButtons:
+  - buttonText: Continue
+    redirectionDefinition: {fileID: 11400000, guid: 3f3c8d24651e82b43bdf40f71f77abfb, type: 2}

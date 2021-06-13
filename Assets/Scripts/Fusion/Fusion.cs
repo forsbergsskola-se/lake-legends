@@ -5,6 +5,7 @@ using EventManagement;
 using Events;
 using Items;
 using Items.Gear;
+using Tutorial.Events;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -56,6 +57,7 @@ namespace Fusion
         private void OnEnable()
         {
             eventBroker.SubscribeTo<UpdateSilverUIEvent>(OnSilverUpdate);
+            eventBroker.Publish(new FuseEvent());
         }
 
         private void Update()

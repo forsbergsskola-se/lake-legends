@@ -16,4 +16,6 @@ MonoBehaviour:
     the gear you wish to upgrade, then click upgrade. After selecting upgrade you
     will need to select a piece of gear to sacrifice which will slowly help upgrade
     your gears level!
-  buttonText: Continue
+  tutorialButtons:
+  - buttonText: Continue
+    redirectionDefinition: {fileID: 11400000, guid: 3f3c8d24651e82b43bdf40f71f77abfb, type: 2}

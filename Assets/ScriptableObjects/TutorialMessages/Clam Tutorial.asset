@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: Well done! You found a clam! These contain different types of gear that
     will make fishing easier when equipped.
-  buttonText: Continue
+  tutorialButtons:
+  - buttonText: Continue
+    redirectionDefinition: {fileID: 11400000, guid: 3f3c8d24651e82b43bdf40f71f77abfb, type: 2}

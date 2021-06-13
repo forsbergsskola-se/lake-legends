@@ -15,4 +15,6 @@ MonoBehaviour:
   message: Well done! you received your first piece of gear! There are 3 different
     gear sets, each one prioritises a certain stat over the others. Try equiping
     it to see how it improves your stats!
-  buttonText: Continue
+  tutorialButtons:
+  - buttonText: Continue
+    redirectionDefinition: {fileID: 11400000, guid: 3f3c8d24651e82b43bdf40f71f77abfb, type: 2}

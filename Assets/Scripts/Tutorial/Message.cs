@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Tutorial.Redirection;
 using UnityEngine;
 
 namespace Tutorial
@@ -7,7 +8,7 @@ namespace Tutorial
     public class Message : ScriptableObject
     {
         [TextArea] [SerializeField] private string message;
-        [SerializeField] private string buttonText;
+        [SerializeField] private TutorialButtonDefinition[] tutorialButtons;
 
         public bool WasTriggered
         {
@@ -30,21 +31,26 @@ namespace Tutorial
             return message;
         }
         
-        public string GetButtonText()
+        public TutorialButtonDefinition[] GetButtons()
         {
-            WasTriggered = true;
-            return buttonText;
+            return tutorialButtons;
         }
 
-        public void Init(string content, string buttonContent)
+        public void Init(string content)
         {
             message = content;
-            buttonText = buttonContent;
         }
 
         public void ResetTutorial()
         {
             WasTriggered = false;
         }
+    }
+
+    [Serializable]
+    public class TutorialButtonDefinition
+    {
+        public string buttonText;
+        public RedirectionDefinition redirectionDefinition;
     }
 }

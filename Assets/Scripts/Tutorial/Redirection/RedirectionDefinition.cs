@@ -12,7 +12,7 @@ namespace Tutorial.Redirection
         public SceneAsset sceneToLoad;
         public string panelName;
 
-        public virtual void Redirect()
+        public virtual void Redirect(TutorialPopup tutorialPopup)
         {
             SceneManager.LoadScene(sceneToLoad.name);
             SceneManager.sceneLoaded += OnSceneLoaded;
