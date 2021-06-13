@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f397a669a7be7ec43a129da2279c7221, type: 3}
-  m_Name: Catch
+  m_Name: Upgrade Tutorial
   m_EditorClassIdentifier: 
-  message: You caught your first fish! Fish automatically sell for silver, the more
-    rare they are the more they sell for!
-  buttonText: Continue Fishing
+  message: This is where you can upgrade your gear. To upgrade a piece of gear, select
+    the gear you wish to upgrade, then click upgrade. After selecting upgrade you
+    will need to select a piece of gear to sacrifice which will slowly help upgrade
+    your gears level!
+  buttonText: Continue

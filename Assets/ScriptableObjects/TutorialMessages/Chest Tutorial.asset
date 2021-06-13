@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f397a669a7be7ec43a129da2279c7221, type: 3}
-  m_Name: Catch
+  m_Name: Chest Tutorial
   m_EditorClassIdentifier: 
-  message: You caught your first fish! Fish automatically sell for silver, the more
-    rare they are the more they sell for!
-  buttonText: Continue Fishing
+  message: 'You have caught a chest! They contain: Clams, Bait, Silver and Gold.
+    Go to your inventory to open it.'
+  buttonText: Go to inventory
