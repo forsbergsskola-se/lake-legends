@@ -1,6 +1,5 @@
 using System.Linq;
 using UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,13 +8,16 @@ namespace Tutorial.Redirection
     [CreateAssetMenu(menuName = "ScriptableObjects/RedirectionDefinition")]
     public class RedirectionDefinition : ScriptableObject
     {
-        public SceneAsset sceneToLoad;
+#if UNITY_EDITOR
+        public UnityEditor.SceneAsset sceneToLoad;
+#endif
+        public string sceneName;
         public string panelName;
 
         public virtual void Redirect(TutorialPopup tutorialPopup)
         {
             tutorialPopup.UnPause();
-            SceneManager.LoadScene(sceneToLoad.name);
+            SceneManager.LoadScene(sceneName);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
@@ -25,5 +27,13 @@ namespace Tutorial.Redirection
             var menuPanel = FindObjectsOfType<MenuPanel>(true).First(panel => panel.name == panelName);
             menuPanel.gameObject.SetActive(true);
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (sceneToLoad != null)
+                sceneName = sceneToLoad.name;
+        }
+#endif
     }
 }
